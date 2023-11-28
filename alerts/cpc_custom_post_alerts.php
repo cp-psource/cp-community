@@ -7,19 +7,19 @@
 
 function cpc_custom_post_alerts() {
 	$labels = array(
-		'name'               => __( 'Alerts', CPC2_TEXT_DOMAIN ),
-		'singular_name'      => __( 'Alerts', CPC2_TEXT_DOMAIN ),
-		'add_new'            => __( 'Add New', CPC2_TEXT_DOMAIN ),
-		'add_new_item'       => __( 'Add New alert', CPC2_TEXT_DOMAIN ),
-		'edit_item'          => __( 'Edit alert', CPC2_TEXT_DOMAIN ),
-		'new_item'           => __( 'New alert', CPC2_TEXT_DOMAIN ),
-		'all_items'          => __( 'Alerts', CPC2_TEXT_DOMAIN ),
-		'view_item'          => __( 'View alerts', CPC2_TEXT_DOMAIN ),
-		'search_items'       => __( 'Search alerts', CPC2_TEXT_DOMAIN ),
-		'not_found'          => __( 'No alerts found', CPC2_TEXT_DOMAIN ),
-		'not_found_in_trash' => __( 'No alerts found in the Trash', CPC2_TEXT_DOMAIN ), 
+		'name'               => __( 'Benachrichtigungen', CPC2_TEXT_DOMAIN ),
+		'singular_name'      => __( 'Benachrichtigungen', CPC2_TEXT_DOMAIN ),
+		'add_new'            => __( 'Neue hinzufügen', CPC2_TEXT_DOMAIN ),
+		'add_new_item'       => __( 'Neue Benachrichtigung hinzufügen', CPC2_TEXT_DOMAIN ),
+		'edit_item'          => __( 'Benachrichtigung bearbeiten', CPC2_TEXT_DOMAIN ),
+		'new_item'           => __( 'Neue Benachrichtigung', CPC2_TEXT_DOMAIN ),
+		'all_items'          => __( 'Benachrichtigungen', CPC2_TEXT_DOMAIN ),
+		'view_item'          => __( 'Benachrichtigung anzeigen', CPC2_TEXT_DOMAIN ),
+		'search_items'       => __( 'Suche Benachrichtigungen', CPC2_TEXT_DOMAIN ),
+		'not_found'          => __( 'Keine Benachrichtigungen gefunden', CPC2_TEXT_DOMAIN ),
+		'not_found_in_trash' => __( 'Im Papierkorb wurden keine Benachrichtigungen gefunden', CPC2_TEXT_DOMAIN ), 
 		'parent_item_colon'  => '',
-		'menu_name'          => __('Alerts', CPC2_TEXT_DOMAIN),
+		'menu_name'          => __('Benachrichtigungen', CPC2_TEXT_DOMAIN),
 	);
 	$args = array(
 		'labels'        		=> $labels,

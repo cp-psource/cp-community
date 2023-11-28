@@ -2770,8 +2770,7 @@ if (!function_exists('cpc_admin_getting_started_extensions')):
         <tr class="form-field">
             <th scope="row" valign="top">
                 <label for="cpc_forum_order"><?php _e('Funktionen aktivieren', CPC2_TEXT_DOMAIN); ?></label><br />
-                <a href="javascript:void(0)" style="font-weight:normal" id="cpc_check_all_extensions"><?php _e('Alle aktivieren', CPC2_TEXT_DOMAIN); ?></a> |
-                <a href="javascript:void(0)" style="font-weight:normal" id="cpc_uncheck_all_extensions"><?php _e('Alles deaktivieren', CPC2_TEXT_DOMAIN); ?></a>
+                <?php echo __('Hier kannst Du Core-Funktionen aktivieren/deaktivieren', CPC2_TEXT_DOMAIN);?>
             </th>
             <td>
                 <?php
@@ -2779,12 +2778,12 @@ if (!function_exists('cpc_admin_getting_started_extensions')):
                 $values = get_option('cpc_default_core');
                 $values = $values ? explode(',', $values) : array();        
                 echo '<p style="font-size:2.0em;">'.__('Core Plugin', CPC2_TEXT_DOMAIN).'</p>';
-                echo cpc_show_core($values,     'core-profile',             __('Profil', CPC2_TEXT_DOMAIN), 'https://cp-community.n3rds.work/profile-page/', '');
-                echo cpc_show_core($values,     'core-activity',            __('Aktivität', CPC2_TEXT_DOMAIN), 'https://cp-community.n3rds.work/profile-page/', '');
-                echo cpc_show_core($values,     'core-avatar',              __('Avatar', CPC2_TEXT_DOMAIN), 'https://cp-community.n3rds.work/profile-page/', '');
-                echo cpc_show_core($values,     'core-friendships',         __('Freundschaften', CPC2_TEXT_DOMAIN), 'https://cp-community.n3rds.work/profile-page/', '');
-                echo cpc_show_core($values,     'core-alerts',              __('Benachrichtigungen', CPC2_TEXT_DOMAIN), 'https://cp-community.n3rds.work/email-alerts/', '');
-                echo cpc_show_core($values,     'core-forums',              __('Foren', CPC2_TEXT_DOMAIN), 'https://cp-community.n3rds.work/forum-page/', '');
+                echo cpc_show_core($values, 'core-profile', __('Profil', CPC2_TEXT_DOMAIN), 'https://cp-community.n3rds.work/profile-page/', '');
+                echo cpc_show_core($values, 'core-activity', __('Aktivität', CPC2_TEXT_DOMAIN), 'https://cp-community.n3rds.work/profile-page/', '');
+                echo cpc_show_core($values, 'core-avatar', __('Avatar', CPC2_TEXT_DOMAIN), 'https://cp-community.n3rds.work/profile-page/', '');
+                echo cpc_show_core($values, 'core-friendships', __('Freundschaften', CPC2_TEXT_DOMAIN), 'https://cp-community.n3rds.work/profile-page/', '');
+                echo cpc_show_core($values, 'core-alerts', __('Benachrichtigungen', CPC2_TEXT_DOMAIN), 'https://cp-community.n3rds.work/email-alerts/', '');
+                echo cpc_show_core($values, 'core-forums', __('Foren', CPC2_TEXT_DOMAIN), 'https://cp-community.n3rds.work/forum-page/', '');
                 ?>
             </td>
         </tr> 

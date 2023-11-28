@@ -1,7 +1,5 @@
 <?php 
-/* ************* */
-/* HOOKS/FILTERS */
-/* ************* */
+/* ************* */ /* HOOKS/FILTERS */ /* ************* */
 
 // Updates last logged in
 function cpc_update_last_logged_in($user_login, $user) {
@@ -83,9 +81,7 @@ function cpc_filter_recent_comments( $array ) {
 add_filter( 'widget_comments_args', 'cpc_filter_recent_comments' );
 
 
-/* ********** */
-/* SHORTCODES */
-/* ********** */
+/* ********** */ /* SHORTCODES */ /* ********** */
 
 function cpc_display_name($atts) {
     
@@ -157,9 +153,7 @@ function cpc_display_name($atts) {
 add_shortcode('cpc-display-name', 'cpc_display_name');
 
 
-																	/* ********* */
-																	/* FUNCTIONS */
-																	/* ********* */
+/* ********* */ /* FUNCTIONS */ /* ********* */
 
 // Get link to a user's profile page
 function cpc_comfile_link($user_id) {
@@ -324,9 +318,8 @@ function cpc_bbcode_replace($text_to_search) {
 	return $r;
 
 }
-																	/* ********* */
-																	/* FUNCTIONS */
-																	/* ********* */
+
+/* ********* */ /* FUNCTIONS */ /* ********* */
 
 function cpc_make_clickable($text) {
 

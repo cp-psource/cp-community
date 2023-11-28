@@ -20,7 +20,18 @@ function cpc_admin_getting_started_friendships() {
 				<input type="checkbox" style="width:10px" name="cpc_friendships_all" <?php if (get_option('cpc_friendships_all')) echo 'CHECKED'; ?> /> 
 				<span class="description"><?php _e('Makes every user friends with everyone else, always. Good for private social networks.', CPC2_TEXT_DOMAIN); ?></span>
 			</td>
-		</tr> 
+		</tr>
+		<tr class="form-field">
+        <td scope="row" valign="top">
+            <label for="cpc_friends_layout"><?php _e('Friends Layout', CPC2_TEXT_DOMAIN); ?></label>
+        </td>
+        <td>
+            <select name="cpc_friends_layout">
+                <option value="list" <?php selected(get_option('cpc_friends_layout', 'list'), 'list'); ?>><?php _e('List', CPC2_TEXT_DOMAIN); ?></option>
+                <option value="fluid" <?php selected(get_option('cpc_friends_layout', 'list'), 'fluid'); ?>><?php _e('Fluid', CPC2_TEXT_DOMAIN); ?></option>
+            </select>
+        </td>
+    	</tr> 
 		</table>
         <?php
 	echo '</div>';
@@ -39,6 +50,11 @@ function cpc_admin_friendships_save($the_post) {
 	else:
 		delete_option('cpc_friendships_all');
 	endif;
+
+	// Speichern der Layout-Option
+    if (isset($the_post['cpc_friends_layout'])) {
+        update_option('cpc_friends_layout', sanitize_text_field($the_post['cpc_friends_layout']));
+    }
 
 }
 

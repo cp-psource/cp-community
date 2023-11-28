@@ -1,8 +1,6 @@
 <?php
 
-/* **** */
-/* INIT */
-/* **** */
+/* **** */ /* INIT */ /* **** */
 
 function cpc_friends_init() {
 	wp_enqueue_script('cpc-friendship-js', plugins_url('cpc_friends.js', __FILE__), array('jquery'));	
@@ -16,9 +14,9 @@ function cpc_friends_init() {
 	do_action('cpc_friends_init_hook');
 
 }
-/* ********** */
-/* SHORTCODES */
-/* ********** */
+
+/* ********** */ /* SHORTCODES */ /* ********** */
+
 function cpc_favourite_friend($atts) {
 
 	// Init
@@ -35,10 +33,10 @@ function cpc_favourite_friend($atts) {
 			'user_id' => '',
 			'class' => '',
 			'style' => cpc_get_shortcode_value($values, 'cpc_favourite_friend-style', 'button'),			
-			'favourite_yes' => cpc_get_shortcode_value($values, 'cpc_favourite_friend-favourite_yes', __('Remove as Favourite', CPC2_TEXT_DOMAIN)),
-			'favourite_no' => cpc_get_shortcode_value($values, 'cpc_favourite_friend-favourite_no', __('Add as Favourite', CPC2_TEXT_DOMAIN)),
-			'favourite_yes_msg' => cpc_get_shortcode_value($values, 'cpc_favourite_friend-subscribed_msg', __('Removed as a favourite.', CPC2_TEXT_DOMAIN)),
-			'favourite_no_msg' => cpc_get_shortcode_value($values, 'cpc_favourite_friend-unsubscribed_msg', __('Added as a favourite.', CPC2_TEXT_DOMAIN)),
+			'favourite_yes' => cpc_get_shortcode_value($values, 'cpc_favourite_friend-favourite_yes', __('Als Favorit entfernen', CPC2_TEXT_DOMAIN)),
+			'favourite_no' => cpc_get_shortcode_value($values, 'cpc_favourite_friend-favourite_no', __('Als Favorit hinzufügen', CPC2_TEXT_DOMAIN)),
+			'favourite_yes_msg' => cpc_get_shortcode_value($values, 'cpc_favourite_friend-subscribed_msg', __('Als Favorit entfernt.', CPC2_TEXT_DOMAIN)),
+			'favourite_no_msg' => cpc_get_shortcode_value($values, 'cpc_favourite_friend-unsubscribed_msg', __('Als Favorit hinzugefügt.', CPC2_TEXT_DOMAIN)),
 			'before' => '',
 			'styles' => true,
             'after' => '',
@@ -95,10 +93,10 @@ function cpc_friends_status($atts) {
         $values = cpc_get_shortcode_options('cpc_friends_status');
 		extract( shortcode_atts( array(
 			'user_id' => '',
-			'friends_yes' => cpc_get_shortcode_value($values, 'cpc_friends_status-friends_yes', __('You are friends', CPC2_TEXT_DOMAIN)),
-			'friends_pending' => cpc_get_shortcode_value($values, 'cpc_friends_status-friends_pending', __('You have requested to be friends', CPC2_TEXT_DOMAIN)),
-			'friend_request' => cpc_get_shortcode_value($values, 'cpc_friends_status-friend_request', __('You have a friends request', CPC2_TEXT_DOMAIN)),
-			'friends_no' => cpc_get_shortcode_value($values, 'cpc_friends_status-friends_no', __('You are not friends', CPC2_TEXT_DOMAIN)),
+			'friends_yes' => cpc_get_shortcode_value($values, 'cpc_friends_status-friends_yes', __('Ihr seid Freunde', CPC2_TEXT_DOMAIN)),
+			'friends_pending' => cpc_get_shortcode_value($values, 'cpc_friends_status-friends_pending', __('Du hast darum gebeten, Freunde zu werden', CPC2_TEXT_DOMAIN)),
+			'friend_request' => cpc_get_shortcode_value($values, 'cpc_friends_status-friend_request', __('Du hast eine Freundschaftsanfrage', CPC2_TEXT_DOMAIN)),
+			'friends_no' => cpc_get_shortcode_value($values, 'cpc_friends_status-friends_no', __('Ihr seid keine Freunde', CPC2_TEXT_DOMAIN)),
 			'before' => '',
 			'styles' => true,
             'after' => '',
@@ -148,9 +146,9 @@ function cpc_friends_add_button($atts) {
         $values = cpc_get_shortcode_options('cpc_friends_add_button');
 		extract( shortcode_atts( array(
 			'user_id' => 0,
-			'label' => cpc_get_shortcode_value($values, 'cpc_friends_add_button-label', __('Make friends', CPC2_TEXT_DOMAIN)),
-			'cancel_label' => cpc_get_shortcode_value($values, 'cpc_friends_add_button-cancel_label', __('Cancel friendship', CPC2_TEXT_DOMAIN)),
-			'cancel_request_label' => cpc_get_shortcode_value($values, 'cpc_friends_add_button-cancel_request_label', __('Cancel friendship request', CPC2_TEXT_DOMAIN)),
+			'label' => cpc_get_shortcode_value($values, 'cpc_friends_add_button-label', __('Freundschaft schließen', CPC2_TEXT_DOMAIN)),
+			'cancel_label' => cpc_get_shortcode_value($values, 'cpc_friends_add_button-cancel_label', __('Freundschaft kündigen', CPC2_TEXT_DOMAIN)),
+			'cancel_request_label' => cpc_get_shortcode_value($values, 'cpc_friends_add_button-cancel_request_label', __('Freundschaftsanfrage abbrechen', CPC2_TEXT_DOMAIN)),
 			'class' => cpc_get_shortcode_value($values, 'cpc_friends_add_button-class', ''),
 			'before' => '',
 			'styles' => true,
@@ -213,7 +211,7 @@ function cpc_friends($atts) {
 		'last_active_format' => cpc_get_shortcode_value($values, 'cpc_friends-last_active_format', __('%s ago', CPC2_TEXT_DOMAIN)),
 		'private' => cpc_get_shortcode_value($values, 'cpc_friends-private', __('Private information', CPC2_TEXT_DOMAIN)),
 		'none' => cpc_get_shortcode_value($values, 'cpc_friends-none', __('No friends', CPC2_TEXT_DOMAIN)),
-		'layout' => cpc_get_shortcode_value($values, 'cpc_friends-layout', 'list'), // list|fluid
+		'layout' => cpc_get_shortcode_value($values, 'cpc_friends-layout', get_option('cpc_friends_layout', 'list')), // list|fluid
         'logged_out_msg' => cpc_get_shortcode_value($values, 'cpc_friends-logged_out_msg', __('You must be logged in to view this page.', CPC2_TEXT_DOMAIN)),
 		'remove_all_friends' => cpc_get_shortcode_value($values, 'cpc_friends-remove_all_friends', true),
         'remove_all_friends_msg' => cpc_get_shortcode_value($values, 'cpc_friends-remove_all_friends_msg', __('Remove all friends', CPC2_TEXT_DOMAIN)),
