@@ -186,7 +186,6 @@ function cpccom_manage() {
 
     if (!get_option('cpc_core_admin_icons')):
 
-	$values = get_option('cpc_default_extensions');
 	$values = $values ? explode(',', $values) : array();
 
 	  	echo '<div id="cpc_admin_admin_links">';
@@ -194,14 +193,12 @@ function cpccom_manage() {
 		  	echo '<div class="cpc_manage_left">';
 			  	echo '<h3>'.__('Configure', CPC2_TEXT_DOMAIN).'</h3>';
 			  	echo '<ul class="cpc_manage_icons">';
-			  	if (in_array('core-extended', $values) && function_exists('__cpc__cpccom_extensions_au')) 	echo '<li class="cpc_icon_profile'.cpc_admin_fav('profile_extensions').'"><a href="edit.php?post_type=cpc_extension">'.__('Setup Profile Extensions', CPC2_TEXT_DOMAIN).'</a></li>';
-			  	if (in_array('core-rewards', $values) && function_exists('__cpc__cpccom_extensions_au'))		echo '<li class="cpc_icon_rewards'.cpc_admin_fav('setup_rewards').'"><a href="edit.php?post_type=cpc_rewards">'.__('Setup Rewards', CPC2_TEXT_DOMAIN).'</a></li>';
 			  	echo '<li class="cpc_icon_css'.cpc_admin_fav('custom_css').'"><a href="admin.php?page=cpc_com_custom_css">'.__('Custom CSS', CPC2_TEXT_DOMAIN).'</a></li>';
 			  	echo '<li class="cpc_icon_reset'.cpc_admin_fav('cpc_com_reset').'"><a href="admin.php?page=cpc_com_reset">'.__('Clear all CP Community data', CPC2_TEXT_DOMAIN).'</a></li>';
 			  	echo '</ul>';
 		  	echo '</div>';
 
-            if (strpos(CPC_CORE_PLUGINS, 'core-activity') !== false || strpos(CPC_CORE_PLUGINS, 'core-friendships') !== false || (strpos(CPC_CORE_PLUGINS, 'core-profile') !== false && ((in_array('core-rewards', $values) || in_array('core-rewards', $values)) && function_exists('__cpc__cpccom_extensions_au'))) ):
+            if (strpos(CPC_CORE_PLUGINS, 'core-activity') !== false || strpos(CPC_CORE_PLUGINS, 'core-friendships') !== false || (strpos(CPC_CORE_PLUGINS, 'core-profile') !== false && ((in_array('core-rewards', $values) || in_array('core-rewards', $values)))) ):
                 echo '<div class="cpc_manage_left">';
                     echo '<h3>'.__('User', CPC2_TEXT_DOMAIN).'</h3>';
                     echo '<ul class="cpc_manage_icons">';
@@ -211,41 +208,32 @@ function cpccom_manage() {
                         echo '<li class="cpc_icon_friends'.cpc_admin_fav('friendships').'"><a href="edit.php?post_type=cpc_friendship">'.__('Manage Friendships', CPC2_TEXT_DOMAIN).'</a></li>';
                         echo '<li class="cpc_icon_friends'.cpc_admin_fav('favourite_friendships').'"><a href="edit.php?post_type=cpc_favourite_friend">'.__('Manage Favourites', CPC2_TEXT_DOMAIN).'</a></li>';
                     endif;
-                    if (in_array('core-rewards', $values) && function_exists('__cpc__cpccom_extensions_au'))		echo '<li class="cpc_icon_rewards'.cpc_admin_fav('rewards').'"><a href="edit.php?post_type=cpc_reward">'.__('Manage Rewards Given', CPC2_TEXT_DOMAIN).'</a></li>';
-                    if (in_array('core-crowds', $values) && function_exists('__cpc__cpccom_extensions_au'))      echo '<li class="cpc_icon_whoto'.cpc_admin_fav('whoto').'"><a href="edit.php?post_type=cpc_crowd">'.__('Manage "Who To" lists', CPC2_TEXT_DOMAIN).'</a></li>';
-                    if (in_array('core-reviews', $values) && function_exists('__cpc__cpccom_extensions_au'))     echo '<li class="cpc_icon_reviews'.cpc_admin_fav('reviews').'"><a href="edit.php?post_type=cpc_review">'.__('Manage Reviews', CPC2_TEXT_DOMAIN).'</a></li>';
                     echo '</ul>';
                 echo '</div>';
             endif;
 
             if (strpos(CPC_CORE_PLUGINS, 'core-forums') !== false):
                 echo '<div class="cpc_manage_left">';
-                    echo '<h3>'.__('Forums', CPC2_TEXT_DOMAIN).'</h3>';
+                    echo '<h3>'.__('Foren', CPC2_TEXT_DOMAIN).'</h3>';
                     echo '<ul class="cpc_manage_icons">';
                     echo '<li class="cpc_icon_forums'.cpc_admin_fav('manage_all_forums').'"><a href="admin.php?page=cpccom_forum_setup">'.__('Manage All Forums', CPC2_TEXT_DOMAIN).'</a></li>';
                     echo '<li class="cpc_icon_forums'.cpc_admin_fav('forum_posts').'"><a href="edit.php?post_type=cpc_forum_post">'.__('Manage Forum Posts', CPC2_TEXT_DOMAIN).'</a></li>';
-                    if (in_array('core-forum-extended', $values) && function_exists('__cpc__cpccom_extensions_au'))		echo '<li class="cpc_icon_forums'.cpc_admin_fav('forum_extensions').'"><a href="edit.php?post_type=cpc_forum_extension">'.__('Forum Extensions', CPC2_TEXT_DOMAIN).'</a></li>';
-                    if (in_array('core-forum-reply-extended', $values) && function_exists('__cpc__cpccom_extensions_au'))echo '<li class="cpc_icon_forums'.cpc_admin_fav('forum_reply_extensions').'"><a href="edit.php?post_type=cpc_forum_reply_ext">'.__('Forum Reply Extensions', CPC2_TEXT_DOMAIN).'</a></li>';
-                    if (in_array('core-forum-subs', $values) && function_exists('__cpc__cpccom_extensions_au'))			echo '<li class="cpc_icon_subs'.cpc_admin_fav('cpc_forum_subs').'"><a href="edit.php?post_type=cpc_forum_subs">'.__('Forum Subscriptions', CPC2_TEXT_DOMAIN).'</a></li>';
-                    if (in_array('core-forum-subs', $values) && function_exists('__cpc__cpccom_extensions_au'))			echo '<li class="cpc_icon_subs'.cpc_admin_fav('cpc_subs').'"><a href="edit.php?post_type=cpc_subs">'.__('Topic Subscriptions', CPC2_TEXT_DOMAIN).'</a></li>';
                     echo '</ul>';
                 echo '</div>';
             endif;
 
             if (strpos(CPC_CORE_PLUGINS, 'core-alerts') !== false):
                 echo '<div class="cpc_manage_left">';
-                    echo '<h3>'.__('Alerts', CPC2_TEXT_DOMAIN).'</h3>';
+                    echo '<h3>'.__('Benachrichtigungen', CPC2_TEXT_DOMAIN).'</h3>';
                     echo '<ul class="cpc_manage_icons">';
                     echo '<li class="cpc_icon_alerts'.cpc_admin_fav('manage_alerts').'"><a href="edit.php?post_type=cpc_alerts">'.__('Manage Alerts', CPC2_TEXT_DOMAIN).'</a></li>';
                     echo '<li class="cpc_icon_alerts'.cpc_admin_fav('manage_user_alerts').'"><a href="edit.php?page=cpc_alerts_per_user">'.__('Manage User Alerts', CPC2_TEXT_DOMAIN).'</a></li>';
                     echo '</ul>';
                     echo '<p>'.sprintf(__('Clear out your <a href="%s">sent and pending alerts</a> regularly.', CPC2_TEXT_DOMAIN), admin_url( 'edit.php?post_type=cpc_alerts' )).'</p>';
-                    if (function_exists('__cpc__cpccom_extensions_au'))
-                        echo '<p>'.sprintf(__('<a href="%s">Click here</a> to clean up forum subscriptions for non-existent users.', CPC2_TEXT_DOMAIN), admin_url( 'edit.php?post_type=cpc_alerts&cpc_cleanup=1' )).'</p>';
                 echo '</div>';
             endif;
 
-            if (strpos(CPC_CORE_PLUGINS, 'core-groups') !== false):
+            /*if (strpos(CPC_CORE_PLUGINS, 'core-groups') !== false):
 		  	    echo '<div class="cpc_manage_left">';
 			  	    echo '<h3>'.__('Gruppen', CPC2_TEXT_DOMAIN).'</h3>';
 			  	    echo '<ul class="cpc_manage_icons">';
@@ -253,45 +241,7 @@ function cpccom_manage() {
 			  	    echo '<li class="cpc_icon_groups'.cpc_admin_fav('group_members').'"><a href="edit.php?post_type=cpc_group_members">'.__('Group Members', CPC2_TEXT_DOMAIN).'</a></li>';
 			  	    echo '</ul>';
 		  	    echo '</div>';
-		  	endif;
-
-		  	if (in_array('core-gallery', $values) && function_exists('__cpc__cpccom_extensions_au')):
-		  	echo '<div class="cpc_manage_left">';
-			  	echo '<h3>'.__('Galleries', CPC2_TEXT_DOMAIN).'</h3>';
-			  	echo '<ul class="cpc_manage_icons">';
-			  	echo '<li class="cpc_icon_galleries'.cpc_admin_fav('galleries').'"><a href="edit.php?post_type=cpc_gallery">'.__('Manage Galleries', CPC2_TEXT_DOMAIN).'</a></li>';
-			  	echo '</ul>';
-		  	echo '</div>';
-		  	endif;
-
-		  	if (in_array('core-mail', $values) && function_exists('__cpc__cpccom_extensions_au')):
-		  	echo '<div class="cpc_manage_left">';
-			  	echo '<h3>'.__('Private Messages', CPC2_TEXT_DOMAIN).'</h3>';
-			  	echo '<ul class="cpc_manage_icons">';
-			  	echo '<li class="cpc_icon_mail'.cpc_admin_fav('messages').'"><a href="edit.php?post_type=cpc_mail">'.__('Manage Messages', CPC2_TEXT_DOMAIN).'</a></li>';
-			  	echo '</ul>';
-		  	echo '</div>';
-		  	endif;
-
-		  	if (in_array('core-lounge', $values) && function_exists('__cpc__cpccom_extensions_au')):
-		  	echo '<div class="cpc_manage_left">';
-			  	echo '<h3>'.__('Lounge', CPC2_TEXT_DOMAIN).'</h3>';
-			  	echo '<ul class="cpc_manage_icons">';
-			  	echo '<li class="cpc_icon_lounge'.cpc_admin_fav('lounge').'"><a href="edit.php?post_type=cpc_lounge">'.__('Manage Lounge Chat', CPC2_TEXT_DOMAIN).'</a></li>';
-			  	echo '</ul>';
-                echo '<p>'.sprintf(__('Please note that the Lounge is an unsupported feature, we recommend <a href="%s" target="_new">Simple Ajax Chat</a>.', CPC2_TEXT_DOMAIN), 'https://wordpress.org/plugins/simple-ajax-chat/').'</p>';
-		  	echo '</div>';
-		  	endif;
-
-		  	if (in_array('core-calendar', $values) && function_exists('__cpc__cpccom_extensions_au')):
-		  	echo '<div class="cpc_manage_left">';
-			  	echo '<h3>'.__('Calendars', CPC2_TEXT_DOMAIN).'</h3>';
-			  	echo '<ul class="cpc_manage_icons">';
-			  	echo '<li class="cpc_icon_calendars'.cpc_admin_fav('calendars').'"><a href="edit.php?post_type=cpc_calendar">'.__('Manage Calendars', CPC2_TEXT_DOMAIN).'</a></li>';
-			  	echo '<li class="cpc_icon_calendars'.cpc_admin_fav('calendar_events').'"><a href="edit.php?post_type=cpc_event">'.__('Manage Calendar Events', CPC2_TEXT_DOMAIN).'</a></li>';
-			  	echo '</ul>';
-		  	echo '</div>';
-		  	endif;
+		  	endif;*/
 
 		echo '</div>';
 
@@ -410,7 +360,6 @@ function cpccom_setup() {
         // Backdoor to de-activate everything
         if (isset($_GET['cpc_deactivate_all'])):
             delete_option('cpc_default_core');
-            delete_option('cpc_default_extensions');
             echo '<div class="cpc_warning">'.__('Alle Funktionen deaktiviert', CPC2_TEXT_DOMAIN).'</div>';
         endif;
 
@@ -430,18 +379,6 @@ function cpccom_setup() {
 				echo '<p style="font-size:1.4em; font-weight:100;">'.__('So erhältst Du Unterstützung', CPC2_TEXT_DOMAIN).'</p>';
 				echo '<p style="font-weight:100;">'.sprintf(__('Support is available at <a target="_blank" href="%s">cp-community.n3rds.work</a>', CPC2_TEXT_DOMAIN), 'https://cp-community.n3rds.work/').'<br />';
 				echo sprintf(__('with <a href="%s" target="_blank">forums</a>, <a href="https://cp-community.n3rds.work/help/" target="_blank">helpdesk</a>, and live chat support.', CPC2_TEXT_DOMAIN), 'https://n3rds.work/forums/', 'https://cp-community.n3rds.work/help/').'</p>';
-			echo '</div>';
-			echo '<div class="cpc_setup_video_div">';
-				echo '<p style="font-size:1.4em; font-weight:100;">'.__('CP-Community einrichten', CPC2_TEXT_DOMAIN).'</p>';
-				echo '<div class="cpc_video_container" style="margin-bottom:-30px;">';
-				echo '<iframe class="cpc_setup_video_iframe" src="//www.youtube.com/embed/8beh25UWQOs?feature=player_embedded&showinfo=0&rel=0&autohide=1&vq=hd720" frameborder="0" allowfullscreen></iframe>';
-				echo '</div>';
-			echo '</div>';
-			echo '<div class="cpc_setup_video_div">';
-				echo '<p style="font-size:1.4em; font-weight:100;">'.__('Weitere Erweiterungen installieren und aktivieren', CPC2_TEXT_DOMAIN).'</p>';
-				echo '<div class="cpc_video_container" style="margin-bottom:-30px;">';
-				echo '<iframe class="cpc_setup_video_iframe" src="//www.youtube.com/embed/It3bJ0IGy2M?feature=player_embedded&showinfo=0&rel=0&autohide=1&vq=hd720" frameborder="0" allowfullscreen></iframe>';
-				echo '</div>';
 			echo '</div>';
 		echo '</div>';
 
@@ -478,9 +415,7 @@ function cpccom_setup() {
 
 		// Option Sections
 		echo '<p style="clear:both;">'.__('Klicke unten auf einen Abschnittstitel, um Optionen und Hilfe für den Einstieg anzuzeigen.', CPC2_TEXT_DOMAIN).'</p>';
-		if (!function_exists('__cpc__cpccom_extensions_au'))
-			echo '<p>'.sprintf(__('Viele weitere Funktionen sind verfügbar unter <a href="%s">cp-community.n3rds.work</a>.', CPC2_TEXT_DOMAIN), "https://cp-community.n3rds.work/").'</p>';
-
+	
 		// Do any saving
 		if (isset($_POST['cpccom_update']) && $_POST['cpccom_update'] == 'yes'):
 			do_action( 'cpc_admin_setup_form_save_hook', $_POST);

@@ -260,10 +260,7 @@ function cpc_alerts_clear_sent( $views )
 	    $views['cpc-alerts-clear-sent'] = '<a onclick="return confirm(\''.__('Are you sure, this cannot be undone?', CPC2_TEXT_DOMAIN).'\')" id="cpc_alerts_clear_sent" href="edit.php?post_type=cpc_alerts&cpc_action=cpc_alerts_clear_sent&_wpnonce='.$nonce.'">'.__('Remove all sent alerts', CPC2_TEXT_DOMAIN).'</a>';
 	    $views['cpc-alerts-pending-sent'] = '<a onclick="return confirm(\''.__('Are you sure, this cannot be undone?', CPC2_TEXT_DOMAIN).'\')" id="cpc_alerts_clear_sent" href="edit.php?post_type=cpc_alerts&cpc_action=cpc_alerts_clear_pending&_wpnonce='.$nonce.'">'.__('Remove all pending alerts', CPC2_TEXT_DOMAIN).'</a>';
         if (get_option('cpc_alert_resend')) $views['cpc-alerts-pending-sent'] .= ' ('.__('re-send enabled', CPC2_TEXT_DOMAIN).')';
-    	$views['cpc-alerts-clear-all'] = '<a onclick="return confirm(\''.__('Are you sure, this cannot be undone?', CPC2_TEXT_DOMAIN).'\')" id="cpc_alerts_clear_sent" href="edit.php?post_type=cpc_alerts&cpc_action=cpc_alerts_clear_all&_wpnonce='.$nonce.'">'.__('Remove all alerts', CPC2_TEXT_DOMAIN).'</a>';
-    	if (function_exists('__cpc__cpccom_extensions_au'))
-    		$views['cpc-alerts-cleanup'] = '<a id="cpc_alerts_cleanup" href="edit.php?post_type=cpc_alerts&cpc_cleanup=1">'.__('Cleanup invalid subscriptions', CPC2_TEXT_DOMAIN).'</a>';    	
-    	
+    	$views['cpc-alerts-clear-all'] = '<a onclick="return confirm(\''.__('Are you sure, this cannot be undone?', CPC2_TEXT_DOMAIN).'\')" id="cpc_alerts_clear_sent" href="edit.php?post_type=cpc_alerts&cpc_action=cpc_alerts_clear_all&_wpnonce='.$nonce.'">'.__('Remove all alerts', CPC2_TEXT_DOMAIN).'</a>';   	
     	$views['cpc-server-time'] = __('Server time', CPC2_TEXT_DOMAIN).': '.current_time('mysql', 1);
 
     	return $views;
