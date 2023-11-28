@@ -776,20 +776,20 @@ function cpc_admin_getting_started_core_hook_alerts($the_post) {
 	?>
 	<tr class="form-field">
 		<th scope="row" valign="top">
-			<label for="cpc_core_options"><?php _e('Content cleanup', CPC2_TEXT_DOMAIN); ?></label>
+			<label for="cpc_core_options"><?php _e('Inhaltsbereinigung', CPC2_TEXT_DOMAIN); ?></label>
 		</th>
 		<td>
-			<input type="checkbox" style="width:10px" name="cpc_cleanup" /><span class="description"><?php _e('Run this if you delete users (one off operation, checkbox does not stay checked).', CPC2_TEXT_DOMAIN); ?></span>
+			<input type="checkbox" style="width:10px" name="cpc_cleanup" /><span class="description"><?php _e('Führe dies aus, wenn Du Benutzer löschst (einmaliger Vorgang, Kontrollkästchen bleibt nicht aktiviert).', CPC2_TEXT_DOMAIN); ?></span>
 		</td>
 	</tr> 
 
 	<tr class="form-field">
         <th scope="row" valign="top">
-            <label for="activity_sync_avatars"><?php _e('Re-sync avatar meta', CPC2_TEXT_DOMAIN); ?></label>
+            <label for="activity_sync_avatars"><?php _e('Avatar-Meta neu synchronisieren', CPC2_TEXT_DOMAIN); ?></label>
         </th>
         <td>
             <input name="activity_sync_avatars" id="activity_sync_avatars" type="checkbox" style="width:10px" />
-            <span class="description"><?php _e('Initiates re-sync, one-off operation, can take a while... (one off operation, checkbox does not stay checked).', CPC2_TEXT_DOMAIN); ?></span>
+            <span class="description"><?php _e('Initiiert eine erneute Synchronisierung, einmaliger Vorgang, kann eine Weile dauern ... (einmaliger Vorgang, Kontrollkästchen bleibt nicht aktiviert).', CPC2_TEXT_DOMAIN); ?></span>
 
             <?php
             if (isset($_POST['activity_sync_avatars'])):
@@ -817,8 +817,8 @@ function cpc_admin_getting_started_core_hook_alerts($the_post) {
                         delete_user_meta( $id, 'cpc_com_avatar' );
                     endif;
                 endforeach;
-                echo '<div class="cpc_success" style="margin-top:20px">'.sprintf(__('%d users found.', CPC2_TEXT_DOMAIN), $count).'<br />';
-                echo sprintf(__('%d users with avatars found, all other users have no avatar uploaded.', CPC2_TEXT_DOMAIN), $avatars_found).'</div>';
+                echo '<div class="cpc_success" style="margin-top:20px">'.sprintf(__('%d Benutzer gefunden.', CPC2_TEXT_DOMAIN), $count).'<br />';
+                echo sprintf(__('%d Benutzer mit Avataren gefunden, alle anderen Benutzer haben keinen Avatar hochgeladen.', CPC2_TEXT_DOMAIN), $avatars_found).'</div>';
             endif;
             ?>
 
@@ -827,15 +827,15 @@ function cpc_admin_getting_started_core_hook_alerts($the_post) {
 
 	<tr class="form-field">
 		<th scope="row" valign="top">
-			<label for="cpc_filter_recent_comments"><?php _e('Recent Comments Widget', CPC2_TEXT_DOMAIN); ?></label>
+			<label for="cpc_filter_recent_comments"><?php _e('Neueste Kommentare Widget.', CPC2_TEXT_DOMAIN); ?></label>
 		</th>
 		<td>
-			<input type="checkbox" style="width:10px" name="cpc_filter_recent_comments" <?php if (get_option('cpc_filter_recent_comments')) echo 'CHECKED '; ?>/><span class="description"><?php _e('Include forum and activity replies in Recent Comments widget (forum security not observed).', CPC2_TEXT_DOMAIN); ?></span>
+			<input type="checkbox" style="width:10px" name="cpc_filter_recent_comments" <?php if (get_option('cpc_filter_recent_comments')) echo 'CHECKED '; ?>/><span class="description"><?php _e('Füge Forum- und Aktivitätsantworten in das Widget "Letzte Kommentare" ein (Forumssicherheit wird nicht beachtet).', CPC2_TEXT_DOMAIN); ?></span>
 		</td>
 	</tr> 
 	<tr class="form-field">
 		<th scope="row" valign="top">
-			<label for="cpc_force_https"><?php _e('HTTPS detection', CPC2_TEXT_DOMAIN); ?></label>
+			<label for="cpc_force_https"><?php _e('HTTPS-Erkennung', CPC2_TEXT_DOMAIN); ?></label>
 		</th>
 		<td>
 	        <select name="cpc_force_https">
@@ -843,13 +843,13 @@ function cpc_admin_getting_started_core_hook_alerts($the_post) {
                 $force_https = get_option('cpc_force_https');
                 echo '<option value="0"';
                     if ($force_https != "http" && $force_https != "https") echo ' SELECTED';
-                    echo'>'.__('Default', CPC2_TEXT_DOMAIN).'</option>';
+                    echo'>'.__('Standard', CPC2_TEXT_DOMAIN).'</option>';
                 echo '<option value="https"';
                     if ($force_https == "https") echo ' SELECTED';
-                    echo'>'.__('Force on (https:)', CPC2_TEXT_DOMAIN).'</option>';
+                    echo'>'.__('Erzwingen (https:)', CPC2_TEXT_DOMAIN).'</option>';
                 echo '<option value="http"';
                     if ($force_https == "http") echo ' SELECTED';
-                    echo '>'.__('Force off (http:)', CPC2_TEXT_DOMAIN).'</option>';
+                    echo '>'.__('Ausschalten erzwingen (http:)', CPC2_TEXT_DOMAIN).'</option>';
              ?>						
             </select>
 		</td>
@@ -872,7 +872,7 @@ function cpc_admin_getting_started_core_save_hook_alerts($the_post) {
 			echo '<div class="'.$class.'" style="'.$style.'"><p>';
 
 				// Alerts with no recipient
-				echo '<strong>'.__('Checking alerts...', CPC2_TEXT_DOMAIN).'</strong><br />';
+				echo '<strong>'.__('Benachrichtigungen werden überprüft...', CPC2_TEXT_DOMAIN).'</strong><br />';
 				$alerts = get_posts( array(
 					'post_type' => 'cpc_alerts',
 					'posts_per_page' => -1,
@@ -889,13 +889,13 @@ function cpc_admin_getting_started_core_save_hook_alerts($the_post) {
 							$u = get_user_by('login', $target);
 							if (!$u):
 								wp_delete_post($alert->ID, true);
-								echo sprintf(__('Alert deleted (user ID %d does not exist).', CPC2_TEXT_DOMAIN), $target).'<br />';
+								echo sprintf(__('Benachrichtigung gelöscht (Benutzer-ID %d existiert nicht).', CPC2_TEXT_DOMAIN), $target).'<br />';
 								$sql = "DELETE FROM ".$wpdb->prefix."posts WHERE post_type='cpc_forum_subs' AND post_title = %s";
 								$wpdb->query($wpdb->prepare($sql, $target));
-								echo sprintf(__('Forum subscriptions for %s deleted.', CPC2_TEXT_DOMAIN), $target).'<br />';
+								echo sprintf(__('Forum-Abonnements für %s gelöscht.', CPC2_TEXT_DOMAIN), $target).'<br />';
 								$sql = "DELETE FROM ".$wpdb->prefix."posts WHERE post_type='cpc_subs' AND post_title = %s";
 								$wpdb->query($wpdb->prepare($sql, $target));
-								echo sprintf(__('Forum topic subscriptions for %s deleted.', CPC2_TEXT_DOMAIN), $target).'<br />';
+								echo sprintf(__('Forum-Themenabonnements für %s gelöscht.', CPC2_TEXT_DOMAIN), $target).'<br />';
 								$alerts_c++;
 							endif;
 						else:
@@ -903,15 +903,15 @@ function cpc_admin_getting_started_core_save_hook_alerts($the_post) {
 	                        $alerts_c++;
 						endif;
 					}
-					echo __('Alerts checked:', CPC2_TEXT_DOMAIN).' '.$alerts_n.', ';
-					echo __('deleted:', CPC2_TEXT_DOMAIN).' '.$alerts_c.'<br />';
+					echo __('Geprüfte Benachrichtigungen:', CPC2_TEXT_DOMAIN).' '.$alerts_n.', ';
+					echo __('gelöscht:', CPC2_TEXT_DOMAIN).' '.$alerts_c.'<br />';
 
 				} else {
-					echo __('Alerts checked:', CPC2_TEXT_DOMAIN).' 0<br />';
+					echo __('Geprüfte Benachrichtigungen:', CPC2_TEXT_DOMAIN).' 0<br />';
 	            }
 
 	            // Subscriptions where user no longer exists
-				echo '<br /><strong>'.__('Checking subscriptions...', CPC2_TEXT_DOMAIN).'</strong><br />';	            
+				echo '<br /><strong>'.__('Abonnements werden geprüft...', CPC2_TEXT_DOMAIN).'</strong><br />';	            
 	            $sql = "SELECT DISTINCT post_title FROM wp_posts 
 	            		WHERE (post_type='cpc_subs' OR post_type = 'cpc_forum_subs')
 	            		AND post_title NOT IN (SELECT user_login FROM wp_users)";
@@ -923,9 +923,9 @@ function cpc_admin_getting_started_core_save_hook_alerts($the_post) {
 	            		$wpdb->query($wpdb->prepare($sql, $user_login));
 	            		$m++;
 	            	endforeach;
-	            	echo __('Subscriptions deleted:', CPC2_TEXT_DOMAIN).' '.$m.'<br />';
+	            	echo __('Abonnements gelöscht:', CPC2_TEXT_DOMAIN).' '.$m.'<br />';
 	            else:
-					echo __('No invalid subscriptions.', CPC2_TEXT_DOMAIN);
+					echo __('Keine ungültigen Abonnements.', CPC2_TEXT_DOMAIN);
 	            endif;
 
 	        echo '</p>';
