@@ -148,15 +148,15 @@ add_action( 'admin_head', 'cpc_admin_shortcodes_add_usermeta_js' );
 function cpc_admin_shortcodes_add_usermeta_js() {
 	$js = '
 
-	$(document).ready(function() {
+	jQuery(document).ready(function() {
 
-		$("#cpc_admin_shortcodes_select_usermeta").on('change', function() {
-			$(".cpc_admin_shortcodes_dialog_div").hide();
-			$("#cpc_admin_shortcodes_usermeta_" + $(this).val()).show();
+		jQuery("#cpc_admin_shortcodes_select_usermeta").change(function() {
+			jQuery(".cpc_admin_shortcodes_dialog_div").hide();
+			jQuery("#cpc_admin_shortcodes_usermeta_"+jQuery(this).val()).show();
 		});
-	
+
 		// Display name
-		$("#insert_cpc_display_name").on('click', function(event) {
+		jQuery("#insert_cpc_display_name").click(function (event) {
 
 			var link = jQuery("#cpc_display_name_link").val();
 			var before = jQuery("#cpc_display_name_before").val().replace(/\"/g, "\'");
@@ -177,7 +177,7 @@ function cpc_admin_shortcodes_add_usermeta_js() {
 		});
 
 		// Avatar
-		$("#insert_cpc_avatar").on('click', function(event) {
+		jQuery("#insert_cpc_avatar").click(function (event) {
 
 			var size = jQuery("#cpc_avatar_size").val().replace(/px/g, "");
 			var change_link = jQuery("#cpc_avatar_change_link").val();
@@ -200,7 +200,7 @@ function cpc_admin_shortcodes_add_usermeta_js() {
 		});
 
 		// User meta
-		$("#insert_cpc_usermeta").on('click', function(event) {
+		jQuery("#insert_cpc_usermeta").click(function (event) {
 
 			var meta = jQuery("#cpc_usermeta_meta").val();
 			var label = jQuery("#cpc_usermeta_label").val();
@@ -227,7 +227,7 @@ function cpc_admin_shortcodes_add_usermeta_js() {
 		});
 
 		// User meta (edit profile)
-		$("#insert_cpc_usermeta_change").on('click', function (event) {
+		jQuery("#insert_cpc_usermeta_change").click(function (event) {
 
 			var label = jQuery("#cpc_usermeta_change_label").val();
 			var displayname = jQuery("#cpc_usermeta_change_displayname").val();
