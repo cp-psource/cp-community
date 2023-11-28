@@ -2779,7 +2779,7 @@ if (!function_exists('cpc_admin_getting_started_extensions')):
                 $values = get_option('cpc_default_core');
                 $values = $values ? explode(',', $values) : array();        
                 echo '<p style="font-size:2.0em;">'.__('Core Plugin', CPC2_TEXT_DOMAIN).'</p>';
-                echo cpc_show_core($values,     'core-profile',             __('Profile', CPC2_TEXT_DOMAIN), 'https://cp-community.n3rds.work/profile-page/', '');
+                echo cpc_show_core($values,     'core-profile',             __('Profil', CPC2_TEXT_DOMAIN), 'https://cp-community.n3rds.work/profile-page/', '');
                 echo cpc_show_core($values,     'core-activity',            __('Aktivität', CPC2_TEXT_DOMAIN), 'https://cp-community.n3rds.work/profile-page/', '');
                 echo cpc_show_core($values,     'core-avatar',              __('Avatar', CPC2_TEXT_DOMAIN), 'https://cp-community.n3rds.work/profile-page/', '');
                 echo cpc_show_core($values,     'core-friendships',         __('Freundschaften', CPC2_TEXT_DOMAIN), 'https://cp-community.n3rds.work/profile-page/', '');
