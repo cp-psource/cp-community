@@ -41,7 +41,7 @@ function cpc_alerts_activity($atts) {
             'flag_url' => cpc_get_shortcode_value($values, 'cpc_alerts_activity-flag_url', ''),
             'flag_src' => cpc_get_shortcode_value($values, 'cpc_alerts_activity-flag_src', ''),
 			'recent_alerts_text' => cpc_get_shortcode_value($values, 'cpc_alerts_activity-recent_alerts_text', __('Aktuelle Benachrichtigungen...', CPC2_TEXT_DOMAIN)),
-			'no_activity_text' => cpc_get_shortcode_value($values, 'cpc_alerts_activity-no_activity_text', __('Keine Aktivitätswarnungen', CPC2_TEXT_DOMAIN)),
+			'no_activity_text' => cpc_get_shortcode_value($values, 'cpc_alerts_activity-no_activity_text', __('Keine Aktivitätsbenachrichtigung', CPC2_TEXT_DOMAIN)),
 			'select_activity_text' => cpc_get_shortcode_value($values, 'cpc_alerts_activity-select_activity_text', __('Du hast eine neue Benachrichtigung, Du hast %d neue Benachrichtigungen, Du hast keine neuen Benachrichtigungen', CPC2_TEXT_DOMAIN)),
 			'make_all_read_text' => cpc_get_shortcode_value($values, 'cpc_alerts_activity-make_all_read_text', __('Alles als gelesen markieren', CPC2_TEXT_DOMAIN)),
             'delete_all_text' => cpc_get_shortcode_value($values, 'cpc_alerts_activity-delete_all_text', __('Alles löschen', CPC2_TEXT_DOMAIN)),

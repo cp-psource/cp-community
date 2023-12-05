@@ -207,15 +207,15 @@ function cpc_friends($atts) {
 		'size' => cpc_get_shortcode_value($values, 'cpc_friends-size', 64),
 		'link' => cpc_get_shortcode_value($values, 'cpc_friends-link', true),
 		'show_last_active' => cpc_get_shortcode_value($values, 'cpc_friends-show_last_active', true),
-		'last_active_text' => cpc_get_shortcode_value($values, 'cpc_friends-last_active_text', __('Last seen:', CPC2_TEXT_DOMAIN)),
-		'last_active_format' => cpc_get_shortcode_value($values, 'cpc_friends-last_active_format', __('%s ago', CPC2_TEXT_DOMAIN)),
-		'private' => cpc_get_shortcode_value($values, 'cpc_friends-private', __('Private information', CPC2_TEXT_DOMAIN)),
-		'none' => cpc_get_shortcode_value($values, 'cpc_friends-none', __('No friends', CPC2_TEXT_DOMAIN)),
+		'last_active_text' => cpc_get_shortcode_value($values, 'cpc_friends-last_active_text', __('Zuletzt gesehen:', CPC2_TEXT_DOMAIN)),
+		'last_active_format' => cpc_get_shortcode_value($values, 'cpc_friends-last_active_format', __('vor %s', CPC2_TEXT_DOMAIN)),
+		'private' => cpc_get_shortcode_value($values, 'cpc_friends-private', __('Private Informationen', CPC2_TEXT_DOMAIN)),
+		'none' => cpc_get_shortcode_value($values, 'cpc_friends-none', __('Keine Freunde', CPC2_TEXT_DOMAIN)),
 		'layout' => cpc_get_shortcode_value($values, 'cpc_friends-layout', get_option('cpc_friends_layout', 'list')), // list|fluid
-        'logged_out_msg' => cpc_get_shortcode_value($values, 'cpc_friends-logged_out_msg', __('You must be logged in to view this page.', CPC2_TEXT_DOMAIN)),
+        'logged_out_msg' => cpc_get_shortcode_value($values, 'cpc_friends-logged_out_msg', __('Du musst angemeldet sein, um diese Seite anzuzeigen.', CPC2_TEXT_DOMAIN)),
 		'remove_all_friends' => cpc_get_shortcode_value($values, 'cpc_friends-remove_all_friends', true),
-        'remove_all_friends_msg' => cpc_get_shortcode_value($values, 'cpc_friends-remove_all_friends_msg', __('Remove all friends', CPC2_TEXT_DOMAIN)),
-        'remove_all_friends_sure_msg' => cpc_get_shortcode_value($values, 'cpc_friends-remove_all_friends_sure_msg', __('Are you sure? This cannot be undone!', CPC2_TEXT_DOMAIN)),
+        'remove_all_friends_msg' => cpc_get_shortcode_value($values, 'cpc_friends-remove_all_friends_msg', __('Alle Freunde entfernen', CPC2_TEXT_DOMAIN)),
+        'remove_all_friends_sure_msg' => cpc_get_shortcode_value($values, 'cpc_friends-remove_all_friends_sure_msg', __('Bist du sicher? Das kann nicht rückgängig gemacht werden!', CPC2_TEXT_DOMAIN)),
         'login_url' => cpc_get_shortcode_value($values, 'cpc_friends-login_url', ''),        
 		'before' => '',
 		'styles' => true,
@@ -225,7 +225,7 @@ function cpc_friends($atts) {
 	// Shortcode parameters
     $values = cpc_get_shortcode_options('cpc_favourite_friend');
 	extract( shortcode_atts( array(
-		'friends_tooltip' => cpc_get_shortcode_value($values, 'cpc_favourite_friend-friends_tooltip', __('Add/remove as a favourite', CPC2_TEXT_DOMAIN)),
+		'friends_tooltip' => cpc_get_shortcode_value($values, 'cpc_favourite_friend-friends_tooltip', __('Als Favorit hinzufügen/entfernen', CPC2_TEXT_DOMAIN)),
 	), $atts, 'cpc_favourite_friend' ) );
 
 	if (!$user_id)
@@ -236,7 +236,7 @@ function cpc_friends($atts) {
     if (is_user_logged_in()) {
         
         if (current_user_can('manage_options') && !$login_url && function_exists('cpc_login_init')):
-            $html = cpc_admin_tip($html, 'cpc_friends', __('Add login_url="/example" to the [cpc-friends] shortcode to let users login and redirect back here when not logged in.', CPC2_TEXT_DOMAIN));
+            $html = cpc_admin_tip($html, 'cpc_friends', __('Füge login_url="/example" zum Shortcode [cpc-friends] hinzu, damit sich Benutzer anmelden und hierher zurückleiten können, wenn sie nicht angemeldet sind.', CPC2_TEXT_DOMAIN));
         endif;                
     
         $friends = cpc_are_friends($current_user->ID, $user_id);
@@ -398,8 +398,8 @@ function cpc_friends_pending($atts) {
 		'size' => cpc_get_shortcode_value($values, 'cpc_friends_pending-size', 64),
 		'link' => cpc_get_shortcode_value($values, 'cpc_friends_pending-link', true),
 		'class' => cpc_get_shortcode_value($values, 'cpc_friends_pending-class', ''),
-		'accept_request_label' => cpc_get_shortcode_value($values, 'cpc_friends_pending-accept_request_label', __('Accept', CPC2_TEXT_DOMAIN)),
-		'reject_request_label' => cpc_get_shortcode_value($values, 'cpc_friends_pending-reject_request_label', __('Reject', CPC2_TEXT_DOMAIN)),
+		'accept_request_label' => cpc_get_shortcode_value($values, 'cpc_friends_pending-accept_request_label', __('Akzeptieren', CPC2_TEXT_DOMAIN)),
+		'reject_request_label' => cpc_get_shortcode_value($values, 'cpc_friends_pending-reject_request_label', __('Ablehnen', CPC2_TEXT_DOMAIN)),
 		'none' => cpc_get_shortcode_value($values, 'cpc_friends_pending-none', ''),
 		'before' => '',
 		'styles' => true,
@@ -581,7 +581,7 @@ function cpc_alerts_friends($atts) {
             $html .= '<div id="cpc_alerts_friends_flag_unread" style="position: absolute; padding-top: '.($flag_pending_size*0.2).'px; line-height:'.($flag_pending_size*0.8).'px; font-size:'.($flag_pending_size*0.8).'px; border-radius: '.$flag_pending_radius.'px; top:'.$flag_pending_top.'px; left:'.$flag_pending_left.'px; width:'.$flag_pending_size.'px; height:'.$flag_pending_size.'px;">'.$unread_count.'</div>';
         endif;
         $html .= '</a></div>';
-        if (!$flag_url) $html .= '<div class="cpc_error">'.__('Set flag_url in CP Community->Setup->Default Shortcode Settings (Friends), or in the shortcode, in shortcode for the link, probably to the page with [cpc-friends] on it.', CPC2_TEXT_DOMAIN).'</div>';
+        if (!$flag_url) $html .= '<div class="cpc_error">'.__('Lege flag_url in CP Community->Setup->Standard-Shortcode-Einstellungen (Freunde) oder im Shortcode fest, im Shortcode für den Link, wahrscheinlich auf die Seite mit [cpc-friends] darauf.', CPC2_TEXT_DOMAIN).'</div>';
         
         if ($html) $html = apply_filters ('cpc_wrap_shortcode_styles_filter', $html, 'cpc_alerts_friends', $before, $after, $styles, $values);
 

@@ -343,7 +343,7 @@ function cpc_admin_getting_started_edit_profile() {
         echo '<tr><td style="width:300px">'.__('Messgerät für die Passwortstärke', CPC2_TEXT_DOMAIN).'</td><td><input type="checkbox" name="cpc_password_strength_meter"'.($cpc_password_strength_meter ? ' CHECKED' : '').' /> '.__('Aktiviere diese Option, um sie auf der Seite Profil bearbeiten auszublenden', CPC2_TEXT_DOMAIN).'</td></tr>';
         echo '<tr><td style="width:300px">'.__('Optionen für die Passwortstärke', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_strength_array" style="width:300px" value="'.$cpc_strength.'" /> '.__('Komma getrennt, alle 5 erforderlich', CPC2_TEXT_DOMAIN),'</td></tr>';
         echo '<tr><td style="width:300px">'.__('Avatar-Effekte ändern', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_change_avatar_effects" style="width:300px" value="'.$cpc_change_avatar_effects.'" /> '.__('Komma getrennt (zum Zurücksetzen löschen)', CPC2_TEXT_DOMAIN),'</td></tr>';
-        echo '<tr><td style="width:300px"></td><td style="font-style:italic">'.sprintf(__('Enable, and change the labels via <a href="%s">Shortcodes</a>->Avatar->[cpc-avatar-change]', CPC2_TEXT_DOMAIN), admin_url( 'admin.php?page=cpc_com_shortcodes' )).'</td></tr>';
+        echo '<tr><td style="width:300px"></td><td style="font-style:italic">'.sprintf(__('Aktiviere und ändere die Beschriftungen über <a href="%s">Shortcodes</a>->Avatar->[cpc-avatar-change]', CPC2_TEXT_DOMAIN), admin_url( 'admin.php?page=cpc_com_shortcodes' )).'</td></tr>';
         echo '<tr><td style="width:300px">'.__('Erhalte E-Mail-Benachrichtigungen für Aktivitäten', CPC2_TEXT_DOMAIN).'</td><td><input type="checkbox" name="hide_email_notifications_for_activity"'.($hide_email_notifications_for_activity ? ' CHECKED' : '').' /> '.__('Aktiviere diese Option, um sie auf der Seite Profil bearbeiten auszublenden', CPC2_TEXT_DOMAIN).'</td></tr>';
         echo '</table>';
 		
@@ -354,7 +354,7 @@ function cpc_admin_getting_started_edit_profile() {
 			$charset_collate = $wpdb->get_charset_collate();
 			require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 
-			echo 'Creating countries...'.'<br />';
+			echo __('Länder erstellen...', CPC2_TEXT_DOMAIN).'<br />';
 			
 			$table_name = $wpdb->base_prefix . 'cpc_countries';
 			$sql = "CREATE TABLE $table_name (
@@ -364,7 +364,7 @@ function cpc_admin_getting_started_edit_profile() {
 			) $charset_collate;";
 			dbDelta( $sql );
 
-			echo 'Creating cities...'.'<br />';
+			echo __('Städte erstellen...', CPC2_TEXT_DOMAIN).'<br />';
 			
 			$table_name = $wpdb->base_prefix . 'cpc_cities';
 			$sql = "CREATE TABLE $table_name (
@@ -375,7 +375,7 @@ function cpc_admin_getting_started_edit_profile() {
 			) $charset_collate;";
 			dbDelta( $sql );   
 			
-			echo 'Importing data...'.'<br />';
+			echo __('Daten werden importiert...', CPC2_TEXT_DOMAIN).'<br />';
 			
 			// Get JSON file and decode contents into PHP arrays/values
 			$jsonFile = plugins_url('../geo.json', __FILE__);

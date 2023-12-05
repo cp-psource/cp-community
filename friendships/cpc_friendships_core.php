@@ -57,7 +57,7 @@ function cpc_friends_add() {
 				update_post_meta( $post_id, 'cpc_friendship_since', date('Y-m-d H:i:s') );
 
 				// Add alert
-				$subject = __('New friendship request', CPC2_TEXT_DOMAIN);
+				$subject = __('Neue Freundschaftsanfrage', CPC2_TEXT_DOMAIN);
 				$subject = get_bloginfo('name').': '.$subject;
 
 				$content = '';
@@ -66,7 +66,7 @@ function cpc_friends_add() {
 		
 				$content .= '<h1>'.$user->display_name.'</h1>';
 
-				$msg = sprintf(__('Friendship request from %s.', CPC2_TEXT_DOMAIN), $current_user->display_name);
+				$msg = sprintf(__('Freundschaftsanfrage von %s.', CPC2_TEXT_DOMAIN), $current_user->display_name);
 				$content .= '<p>'.$msg.'</p>';
 
 				$url = get_permalink(get_option('cpccom_profile_page'));
@@ -154,7 +154,7 @@ function cpc_friends_accept() {
 		wp_update_post( $my_post );
 
 		// Add alert
-		$subject = __('Friendship request accepted', CPC2_TEXT_DOMAIN);
+		$subject = __('Freundschaftsanfrage angenommen', CPC2_TEXT_DOMAIN);
 		$subject = get_bloginfo('name').': '.$subject;
 
 		$content = '';
@@ -170,7 +170,7 @@ function cpc_friends_accept() {
 		endif;
 		$content .= '<h1>'.$sent->display_name.'</h1>';
 
-		$msg = sprintf(__('Friend request accepted by %s.', CPC2_TEXT_DOMAIN), $accepted->display_name);
+		$msg = sprintf(__('Freundschaftsanfrage von %s angenommen.', CPC2_TEXT_DOMAIN), $accepted->display_name);
 		$content .= '<p>'.$msg.'</p>';
 
 		$permalink = get_permalink(get_option('cpccom_profile_page'));
@@ -196,11 +196,7 @@ function cpc_friends_accept() {
 
 }
 
-
-
-																	/* ********* */
-																	/* FUNCTIONS */
-																	/* ********* */
+/* ********* */ /* FUNCTIONS */ /* ********* */
 
 function cpc_friend_avatar($id, $avatar_size, $link) {
 

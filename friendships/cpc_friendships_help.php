@@ -5,7 +5,7 @@ add_action('cpc_admin_getting_started_hook', 'cpc_admin_getting_started_friendsh
 function cpc_admin_getting_started_friendships() {
 
     $css = isset($_POST['cpc_expand']) && $_POST['cpc_expand'] == 'cpc_admin_getting_started_friendships' ? 'cpc_admin_getting_started_menu_item_remove_icon ' : '';    
-  	echo '<div class="'.$css.'cpc_admin_getting_started_menu_item" rel="cpc_admin_getting_started_friendships" id="cpc_admin_getting_started_friendships_div">'.__('Friendships', CPC2_TEXT_DOMAIN).'</div>';
+  	echo '<div class="'.$css.'cpc_admin_getting_started_menu_item" rel="cpc_admin_getting_started_friendships" id="cpc_admin_getting_started_friendships_div">'.__('Freundschaften', CPC2_TEXT_DOMAIN).'</div>';
 
   	$display = isset($_POST['cpc_expand']) && $_POST['cpc_expand'] == 'cpc_admin_getting_started_friendships' ? 'block' : 'none';
   	echo '<div class="cpc_admin_getting_started_content" id="cpc_admin_getting_started_friendships" style="display:'.$display.'">';
@@ -14,21 +14,21 @@ function cpc_admin_getting_started_friendships() {
 		<table class="form-table">
 		<tr class="form-field">
 			<td scope="row" valign="top">
-				<label for="cpc_friendships_all"><?php _e('Everybody friends', CPC2_TEXT_DOMAIN); ?></label>
+				<label for="cpc_friendships_all"><?php _e('Alle Freunde', CPC2_TEXT_DOMAIN); ?></label>
 			</td>
 			<td>
 				<input type="checkbox" style="width:10px" name="cpc_friendships_all" <?php if (get_option('cpc_friendships_all')) echo 'CHECKED'; ?> /> 
-				<span class="description"><?php _e('Makes every user friends with everyone else, always. Good for private social networks.', CPC2_TEXT_DOMAIN); ?></span>
+				<span class="description"><?php _e('Macht jeden Benutzer immer mit allen anderen befreundet. Gut für private soziale Netzwerke.', CPC2_TEXT_DOMAIN); ?></span>
 			</td>
 		</tr>
 		<tr class="form-field">
         <td scope="row" valign="top">
-            <label for="cpc_friends_layout"><?php _e('Friends Layout', CPC2_TEXT_DOMAIN); ?></label>
+            <label for="cpc_friends_layout"><?php _e('Freunde-Layout', CPC2_TEXT_DOMAIN); ?></label>
         </td>
         <td>
             <select name="cpc_friends_layout">
-                <option value="list" <?php selected(get_option('cpc_friends_layout', 'list'), 'list'); ?>><?php _e('List', CPC2_TEXT_DOMAIN); ?></option>
-                <option value="fluid" <?php selected(get_option('cpc_friends_layout', 'list'), 'fluid'); ?>><?php _e('Fluid', CPC2_TEXT_DOMAIN); ?></option>
+                <option value="list" <?php selected(get_option('cpc_friends_layout', 'list'), 'list'); ?>><?php _e('Liste', CPC2_TEXT_DOMAIN); ?></option>
+                <option value="fluid" <?php selected(get_option('cpc_friends_layout', 'list'), 'fluid'); ?>><?php _e('Flüssig', CPC2_TEXT_DOMAIN); ?></option>
             </select>
         </td>
     	</tr> 
