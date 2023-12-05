@@ -477,7 +477,7 @@ function cpc_admin_getting_started_options() {
                                     echo '<tr class="cpc_desc"><td colspan="3">';
                                         echo __('Bezieht sich auf die Stadt, normalerweise auf das Land, kann jedoch einen anderen Detaillierungsgrad aufweisen.', CPC2_TEXT_DOMAIN);
                                         echo '</td></tr>';
-                                    echo '<tr><td>'.__('reundschaftsanfragen-Label.', CPC2_TEXT_DOMAIN).'</td><td>';
+                                    echo '<tr><td>'.__('Freundschaftsanfragen-Label.', CPC2_TEXT_DOMAIN).'</td><td>';
                                         $requests_label = cpc_get_shortcode_default($values, 'cpc_activity_page-requests_label', __('Freundschaftsanfragen', CPC2_TEXT_DOMAIN));
                                         echo '<input type="text" name="cpc_activity_page-requests_label" value="'.$requests_label.'" /></td><td>(requests_label="'.$requests_label.'")</td></tr>';
                                     echo '<tr class="cpc_desc"><td colspan="3">';
@@ -497,35 +497,35 @@ function cpc_admin_getting_started_options() {
                                 echo cpc_codex_link('https://cp-community.n3rds.work/cpc_codex/cpc-activity-post/');
                                 echo '<p><strong>'.__('Optionen', CPC2_TEXT_DOMAIN).'</strong><br />';
                                 echo '<table cellpadding="0" cellspacing="0"  class="cpc_shortcode_value_row">';
-                                    echo '<tr><td>'.__("Optional CSS class for button", CPC2_TEXT_DOMAIN).'</td><td>';
+                                    echo '<tr><td>'.__("Optionale CSS-Klasse für die Schaltfläche", CPC2_TEXT_DOMAIN).'</td><td>';
                                         $class = cpc_get_shortcode_default($values, 'cpc_activity_post-class', '');
                                         echo '<input type="text" name="cpc_activity_post-class" value="'.$class.'" /></td><td>(class="'.$class.'")</td></tr>';
                                     echo '<tr class="cpc_desc"><td colspan="3">';
-                                        echo __("A class to be added to the button for styling.", CPC2_TEXT_DOMAIN);
+                                        echo __("Eine Klasse, die der Schaltfläche zum Stylen hinzugefügt werden soll.", CPC2_TEXT_DOMAIN);
                                         echo '</td></tr>';
-                                    echo '<tr><td>'.__("Label for button", CPC2_TEXT_DOMAIN).'</td><td>';
-                                        $label = cpc_get_shortcode_default($values, 'cpc_activity_post-label', __('Add Post', CPC2_TEXT_DOMAIN));
+                                    echo '<tr><td>'.__("Beschriftung für Schaltfläche", CPC2_TEXT_DOMAIN).'</td><td>';
+                                        $label = cpc_get_shortcode_default($values, 'cpc_activity_post-label', __('Beitrag hinzufügen', CPC2_TEXT_DOMAIN));
                                         echo '<input type="text" name="cpc_activity_post-label" value="'.$label.'" /></td><td>(label="'.$label.'")</td></tr>';
                                     echo '<tr class="cpc_desc"><td colspan="3">';
-                                        echo __("The label on the button.", CPC2_TEXT_DOMAIN);
+                                        echo __("Die Beschriftung auf der Schaltfläche.", CPC2_TEXT_DOMAIN);
                                         echo '</td></tr>';
-                                    echo '<tr><td>'.__("Message that only friends can post", CPC2_TEXT_DOMAIN).'</td><td>';
-                                        $private_msg = cpc_get_shortcode_default($values, 'cpc_activity_post-private_msg', __('You do not have permission to post here', CPC2_TEXT_DOMAIN));
+                                    echo '<tr><td>'.__("Nachricht, das nur Freunde posten können", CPC2_TEXT_DOMAIN).'</td><td>';
+                                        $private_msg = cpc_get_shortcode_default($values, 'cpc_activity_post-private_msg', __('Du hast keine Berechtigung, hier etwas zu posten', CPC2_TEXT_DOMAIN));
                                         echo '<input type="text" name="cpc_activity_post-private_msg" value="'.$private_msg.'" /></td><td>(private_msg="'.$private_msg.'")</td></tr>';
                                     echo '<tr class="cpc_desc"><td colspan="3">';
-                                        echo __("Message shown if not allowed to post to activity.", CPC2_TEXT_DOMAIN);
+                                        echo __("Meldung wird angezeigt, wenn das Posten in der Aktivität nicht gestattet ist.", CPC2_TEXT_DOMAIN);
                                         echo '</td></tr>';
-                                    echo '<tr><td>'.__("Message that account is closed", CPC2_TEXT_DOMAIN).'</td><td>';
-                                        $account_closed_msg = cpc_get_shortcode_default($values, 'cpc_activity_post-account_closed_msg', __('Account closed.', CPC2_TEXT_DOMAIN));
+                                    echo '<tr><td>'.__("Nachricht, dass das Konto geschlossen ist", CPC2_TEXT_DOMAIN).'</td><td>';
+                                        $account_closed_msg = cpc_get_shortcode_default($values, 'cpc_activity_post-account_closed_msg', __('Konto geschlossen.', CPC2_TEXT_DOMAIN));
                                         echo '<input type="text" name="cpc_activity_post-account_closed_msg" value="'.$account_closed_msg.'" /></td><td>(account_closed_msg="'.$account_closed_msg.'")</td></tr>';
                                     echo '<tr class="cpc_desc"><td colspan="3">';
-                                        echo __("Account is closed message.", CPC2_TEXT_DOMAIN);
+                                        echo __("Nachricht Konto ist geschlossen.", CPC2_TEXT_DOMAIN);
                                         echo '</td></tr>';
-                                    echo '<tr><td>'.__("Icon in new activity post textarea", CPC2_TEXT_DOMAIN).'</td><td>';
+                                    echo '<tr><td>'.__("Symbol im Textbereich für neue Aktivitätsbeiträge", CPC2_TEXT_DOMAIN).'</td><td>';
                                         $background_icon = cpc_get_shortcode_default($values, 'cpc_activity_post-background_icon', false);
                                         echo '<input type="checkbox" name="cpc_activity_post-background_icon"'.($background_icon ? ' CHECKED' : '').'></td><td>(background_icon="'.($background_icon ? '1' : '0').'")</td></tr>';
                                     echo '<tr class="cpc_desc"><td colspan="3">';
-                                        echo __("Should a little icon be shown inside the post textarea?", CPC2_TEXT_DOMAIN);
+                                        echo __("Sollte im Textbereich des Beitrags ein kleines Symbol angezeigt werden?", CPC2_TEXT_DOMAIN);
                                         echo '</td></tr>';
 
                                     do_action('cpc_show_styling_options_hook', 'cpc_activity_post', $values);
@@ -536,34 +536,32 @@ function cpc_admin_getting_started_options() {
                             // [cpc-display-name]
                             $values = get_option('cpc_shortcode_options_'.'cpc_display_name') ? get_option('cpc_shortcode_options_'.'cpc_display_name') : array();   
                             echo cpc_show_options($cpc_expand_shortcode, 'cpc_display_name_tab');
-                                echo '<strong>'.__('Zweck:', CPC2_TEXT_DOMAIN).'</strong> '.__("Displays a users display name.", CPC2_TEXT_DOMAIN).'<br />';
-                                echo '<strong>'.__('Wie benutzen:', CPC2_TEXT_DOMAIN).'</strong> '.__('Add [cpc-display-name] to a ClassicPress Page, Post or Text widget.', CPC2_TEXT_DOMAIN);
+                                echo '<strong>'.__('Zweck:', CPC2_TEXT_DOMAIN).'</strong> '.__("Zeigt den Anzeigenamen eines Benutzers an.", CPC2_TEXT_DOMAIN).'<br />';
+                                echo '<strong>'.__('Wie benutzen:', CPC2_TEXT_DOMAIN).'</strong> '.__('Füge [cpc-display-name] zu einer ClassicPress-Seite, einem Beitrag oder einem Text-Widget hinzu.', CPC2_TEXT_DOMAIN);
                                 echo cpc_codex_link('https://cp-community.n3rds.work/cpc_codex/cpc-display-name/');
                                 echo '<p><strong>'.__('Optionen', CPC2_TEXT_DOMAIN).'</strong><br />';
                                 echo '<table cellpadding="0" cellspacing="0"  class="cpc_shortcode_value_row">';
 
-                                    echo '<tr><td>'.__('User', CPC2_TEXT_DOMAIN).'</td><td>';
+                                    echo '<tr><td>'.__('Benutzer', CPC2_TEXT_DOMAIN).'</td><td>';
                                     $user_id = cpc_get_shortcode_default($values, 'cpc_display_name-user_id', '');
                                     echo '<select name="cpc_display_name-user_id">';
-                                        echo '<option value=""'.($user_id == '' ? ' SELECTED' : '').'>'.__('Reflects page context', CPC2_TEXT_DOMAIN).'</option>';
-                                        echo '<option value="user"'.($user_id == 'user' ? ' SELECTED' : '').'>'.__('Current user', CPC2_TEXT_DOMAIN).'</option>';
-                                    echo '</select> '.__('or set to a user ID in shortcode', CPC2_TEXT_DOMAIN).'</td><td>(user_id="'.$user_id.'")</td></tr>';    
+                                        echo '<option value=""'.($user_id == '' ? ' SELECTED' : '').'>'.__('Spiegelt den Seitenkontext wider', CPC2_TEXT_DOMAIN).'</option>';
+                                        echo '<option value="user"'.($user_id == 'user' ? ' SELECTED' : '').'>'.__('Aktueller Benutzer', CPC2_TEXT_DOMAIN).'</option>';
+                                    echo '</select> '.__('oder im Shortcode auf eine Benutzer-ID setzen', CPC2_TEXT_DOMAIN).'</td><td>(user_id="'.$user_id.'")</td></tr>';    
                                     echo '<tr class="cpc_desc"><td colspan="3">';
-                                        echo __('Which user to display. Can also set to a user ID via the shortcode itself.', CPC2_TEXT_DOMAIN);
+                                        echo __('Welcher Benutzer angezeigt werden soll. Kann auch über den Shortcode selbst auf eine Benutzer-ID festgelegt werden.', CPC2_TEXT_DOMAIN);
                                         echo '</td></tr>';    
-
-                                    echo '<tr><td>'.__("Name links to profile page", CPC2_TEXT_DOMAIN).'</td><td>';
+                                    echo '<tr><td>'.__("Name verlinkt zur Profilseite", CPC2_TEXT_DOMAIN).'</td><td>';
                                         $link = cpc_get_shortcode_default($values, 'cpc_display_name-link', false);
                                         echo '<input type="checkbox" name="cpc_display_name-link"'.($link ? ' CHECKED' : '').'></td><td>(link="'.($link ? '1' : '0').'")</td></tr>';
                                     echo '<tr class="cpc_desc"><td colspan="3">';
-                                        echo __('Should the name link to the profile page?', CPC2_TEXT_DOMAIN);
+                                        echo __('Soll der Name auf die Profilseite verweisen?', CPC2_TEXT_DOMAIN);
                                         echo '</td></tr>';    
-
-                                    echo '<tr><td>'.__('Show first name/last name instead of display name', CPC2_TEXT_DOMAIN).'</td><td>';
+                                    echo '<tr><td>'.__('Vor-/Nachnamen statt Anzeigenamen anzeigen', CPC2_TEXT_DOMAIN).'</td><td>';
                                         $firstlast = cpc_get_shortcode_default($values, 'cpc_display_name-firstlast', false);
                                         echo '<input type="checkbox" name="cpc_display_name-firstlast"'.($firstlast ? ' CHECKED' : '').'></td><td>(firstlast="'.($firstlast ? '1' : '0').'")</td></tr>';
                                     echo '<tr class="cpc_desc"><td colspan="3">';
-                                        echo __('Show first name and last name, useful if sorting by last name. Consider if people are actually filling these in though on your site.', CPC2_TEXT_DOMAIN);
+                                        echo __('Zeigt Vor- und Nachnamen an, nützlich beim Sortieren nach Nachnamen. Überlege, ob die Leute diese Angaben tatsächlich auf Deiner Webseite ausfüllen.', CPC2_TEXT_DOMAIN);
                                         echo '</td></tr>';    
                         
                                     do_action('cpc_show_styling_options_hook', 'cpc_display_name', $values);
@@ -574,24 +572,23 @@ function cpc_admin_getting_started_options() {
                             // [cpc-last-logged-in]
                             $values = get_option('cpc_shortcode_options_'.'cpc_last_logged_in') ? get_option('cpc_shortcode_options_'.'cpc_last_logged_in') : array();   
                             echo cpc_show_options($cpc_expand_shortcode, 'cpc_last_logged_in_tab');
-                                echo '<strong>'.__('Zweck:', CPC2_TEXT_DOMAIN).'</strong> '.__("Displays when a user last logged in.", CPC2_TEXT_DOMAIN).'<br />';
-                                echo '<strong>'.__('Wie benutzen:', CPC2_TEXT_DOMAIN).'</strong> '.__('Add [cpc-last-logged-in] to a ClassicPress Page, Post or Text widget.', CPC2_TEXT_DOMAIN);
+                                echo '<strong>'.__('Zweck:', CPC2_TEXT_DOMAIN).'</strong> '.__("Zeigt an, wann sich ein Benutzer zuletzt angemeldet hat.", CPC2_TEXT_DOMAIN).'<br />';
+                                echo '<strong>'.__('Wie benutzen:', CPC2_TEXT_DOMAIN).'</strong> '.__('Füge [cpc-last-logged-in] zu einer ClassicPress-Seite, einem Beitrag oder einem Text-Widget hinzu.', CPC2_TEXT_DOMAIN);
                                 echo cpc_codex_link('https://cp-community.n3rds.work/cpc_codex/cpc-last-logged-in/');
                                 echo '<p><strong>'.__('Optionen', CPC2_TEXT_DOMAIN).'</strong><br />';
                                 echo '<table cellpadding="0" cellspacing="0"  class="cpc_shortcode_value_row">';
 
-                                    echo '<tr><td>'.__('User', CPC2_TEXT_DOMAIN).'</td><td>';
+                                    echo '<tr><td>'.__('Benutzer', CPC2_TEXT_DOMAIN).'</td><td>';
                                     $user_id = cpc_get_shortcode_default($values, 'cpc_last_logged_in-user_id', '');
                                     echo '<select name="cpc_last_logged_in-user_id">';
-                                        echo '<option value=""'.($user_id == '' ? ' SELECTED' : '').'>'.__('Reflects page context', CPC2_TEXT_DOMAIN).'</option>';
-                                        echo '<option value="user"'.($user_id == 'user' ? ' SELECTED' : '').'>'.__('Current user', CPC2_TEXT_DOMAIN).'</option>';
-                                    echo '</select> '.__('or set to a user ID in shortcode', CPC2_TEXT_DOMAIN).'</td><td>(user_id="'.$user_id.'")</td></tr>';    
-                        
-                                    echo '<tr><td>'.__("Format for date", CPC2_TEXT_DOMAIN).'</td><td>';
-                                        $date_format = cpc_get_shortcode_default($values, 'cpc_last_logged_in-date_format', __('%s ago', CPC2_TEXT_DOMAIN));
+                                        echo '<option value=""'.($user_id == '' ? ' SELECTED' : '').'>'.__('Spiegelt Seitenkontext wider', CPC2_TEXT_DOMAIN).'</option>';
+                                        echo '<option value="user"'.($user_id == 'user' ? ' SELECTED' : '').'>'.__('Aktueller Benutzer', CPC2_TEXT_DOMAIN).'</option>';
+                                    echo '</select> '.__('oder im Shortcode auf eine Benutzer-ID setzen', CPC2_TEXT_DOMAIN).'</td><td>(user_id="'.$user_id.'")</td></tr>';   
+                                    echo '<tr><td>'.__("Format für Datum", CPC2_TEXT_DOMAIN).'</td><td>';
+                                        $date_format = cpc_get_shortcode_default($values, 'cpc_last_logged_in-date_format', __('vor %s', CPC2_TEXT_DOMAIN));
                                         echo '<input type="text" name="cpc_last_logged_in-date_format" value="'.$date_format.'" /></td><td>(date_format="'.$date_format.'")</td></tr>';                        
-                                    echo '<tr><td>'.__("No last login text", CPC2_TEXT_DOMAIN).'</td><td>';
-                                        $not_logged_in_msg = cpc_get_shortcode_default($values, 'cpc_last_logged_in-not_logged_in_msg', __('Not logged in recently.', CPC2_TEXT_DOMAIN));
+                                    echo '<tr><td>'.__("Kein letzter Login-Text", CPC2_TEXT_DOMAIN).'</td><td>';
+                                        $not_logged_in_msg = cpc_get_shortcode_default($values, 'cpc_last_logged_in-not_logged_in_msg', __('Kürzlich nicht angemeldet.', CPC2_TEXT_DOMAIN));
                                         echo '<input type="text" name="cpc_last_logged_in-not_logged_in_msg" value="'.$not_logged_in_msg.'" /></td><td>(not_logged_in_msg="'.$not_logged_in_msg.'")</td></tr>';                        
                         
                                     do_action('cpc_show_styling_options_hook', 'cpc_last_logged_in', $values);
@@ -602,24 +599,24 @@ function cpc_admin_getting_started_options() {
                             // [cpc-last-active]
                             $values = get_option('cpc_shortcode_options_'.'cpc_last_active') ? get_option('cpc_shortcode_options_'.'cpc_last_active') : array();   
                             echo cpc_show_options($cpc_expand_shortcode, 'cpc_last_active_tab');
-                                echo '<strong>'.__('Zweck:', CPC2_TEXT_DOMAIN).'</strong> '.__("Displays when a user was last active.", CPC2_TEXT_DOMAIN).'<br />';
-                                echo '<strong>'.__('Wie benutzen:', CPC2_TEXT_DOMAIN).'</strong> '.__('Add [cpc-last-active] to a ClassicPress Page, Post or Text widget.', CPC2_TEXT_DOMAIN);
+                                echo '<strong>'.__('Zweck:', CPC2_TEXT_DOMAIN).'</strong> '.__("Zeigt an, wann ein Benutzer zuletzt aktiv war.", CPC2_TEXT_DOMAIN).'<br />';
+                                echo '<strong>'.__('Wie benutzen:', CPC2_TEXT_DOMAIN).'</strong> '.__('Füge [cpc-last-active] zu einer ClassicPress-Seite, einem Beitrag oder einem Text-Widget hinzu.', CPC2_TEXT_DOMAIN);
                                 echo cpc_codex_link('https://cp-community.n3rds.work/cpc_codex/cpc-last-active/');
                                 echo '<p><strong>'.__('Optionen', CPC2_TEXT_DOMAIN).'</strong><br />';
                                 echo '<table cellpadding="0" cellspacing="0"  class="cpc_shortcode_value_row">';
 
-                                    echo '<tr><td>'.__('User', CPC2_TEXT_DOMAIN).'</td><td>';
+                                    echo '<tr><td>'.__('Benutzer', CPC2_TEXT_DOMAIN).'</td><td>';
                                     $user_id = cpc_get_shortcode_default($values, 'cpc_last_active-user_id', '');
                                     echo '<select name="cpc_last_active-user_id">';
-                                        echo '<option value=""'.($user_id == '' ? ' SELECTED' : '').'>'.__('Reflects page context', CPC2_TEXT_DOMAIN).'</option>';
-                                        echo '<option value="user"'.($user_id == 'user' ? ' SELECTED' : '').'>'.__('Current user', CPC2_TEXT_DOMAIN).'</option>';
-                                    echo '</select> '.__('or set to a user ID in shortcode', CPC2_TEXT_DOMAIN).'</td><td>(user_id="'.$user_id.'")</td></tr>';    
+                                        echo '<option value=""'.($user_id == '' ? ' SELECTED' : '').'>'.__('Spiegelt Seitenkontext wider', CPC2_TEXT_DOMAIN).'</option>';
+                                        echo '<option value="user"'.($user_id == 'user' ? ' SELECTED' : '').'>'.__('Aktueller Benutzer', CPC2_TEXT_DOMAIN).'</option>';
+                                    echo '</select> '.__('oder im Shortcode auf eine Benutzer-ID setzen', CPC2_TEXT_DOMAIN).'</td><td>(user_id="'.$user_id.'")</td></tr>';    
 
-                                    echo '<tr><td>'.__("Format for date", CPC2_TEXT_DOMAIN).'</td><td>';
-                                        $date_format = cpc_get_shortcode_default($values, 'cpc_last_active-date_format', __('%s ago', CPC2_TEXT_DOMAIN));
+                                    echo '<tr><td>'.__("Format für Datum", CPC2_TEXT_DOMAIN).'</td><td>';
+                                        $date_format = cpc_get_shortcode_default($values, 'cpc_last_active-date_format', __('vor %s', CPC2_TEXT_DOMAIN));
                                         echo '<input type="text" name="cpc_last_active-date_format" value="'.$date_format.'" /></td><td>(date_format="'.$date_format.'")</td></tr>';                        
-                                    echo '<tr><td>'.__("No last login text", CPC2_TEXT_DOMAIN).'</td><td>';
-                                        $not_logged_in_msg = cpc_get_shortcode_default($values, 'cpc_last_active-not_logged_in_msg', __('Not logged in recently.', CPC2_TEXT_DOMAIN));
+                                    echo '<tr><td>'.__("Kein letzter Login-Text", CPC2_TEXT_DOMAIN).'</td><td>';
+                                        $not_logged_in_msg = cpc_get_shortcode_default($values, 'cpc_last_active-not_logged_in_msg', __('Kürzlich nicht angemeldet.', CPC2_TEXT_DOMAIN));
                                         echo '<input type="text" name="cpc_last_active-not_logged_in_msg" value="'.$not_logged_in_msg.'" /></td><td>(not_logged_in_msg="'.$not_logged_in_msg.'")</td></tr>';                        
                         
                                     do_action('cpc_show_styling_options_hook', 'cpc_last_active', $values);
@@ -632,8 +629,8 @@ function cpc_admin_getting_started_options() {
                             // [cpc-alerts-activity]
                             $values = get_option('cpc_shortcode_options_'.'cpc_alerts_activity') ? get_option('cpc_shortcode_options_'.'cpc_alerts_activity') : array();   
                             echo cpc_show_options($cpc_expand_shortcode, 'cpc_alerts_activity_tab');
-                                echo '<strong>'.__('Zweck:', CPC2_TEXT_DOMAIN).'</strong> '.__("Displays a drop-down list of alerts for the user.", CPC2_TEXT_DOMAIN).'<br />';
-                                echo '<strong>'.__('Wie benutzen:', CPC2_TEXT_DOMAIN).'</strong> '.__('Add [cpc-alerts-activity] to a ClassicPress Page, Post or Text widget.', CPC2_TEXT_DOMAIN);
+                                echo '<strong>'.__('Zweck:', CPC2_TEXT_DOMAIN).'</strong> '.__("Zeigt eine Dropdown-Liste mit Warnungen für den Benutzer an.", CPC2_TEXT_DOMAIN).'<br />';
+                                echo '<strong>'.__('Wie benutzen:', CPC2_TEXT_DOMAIN).'</strong> '.__('Füge [cpc-alerts-activity] zu einer ClassicPress-Seite, einem Beitrag oder einem Text-Widget hinzu.', CPC2_TEXT_DOMAIN);
                                 echo cpc_codex_link('https://cp-community.n3rds.work/cpc_codex/cpc-alerts-activity');
                                 echo '<p><strong>'.__('Optionen', CPC2_TEXT_DOMAIN).'</strong><br />';
                                 echo '<table cellpadding="0" cellspacing="0"  class="cpc_shortcode_value_row">';
