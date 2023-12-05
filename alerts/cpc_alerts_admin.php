@@ -338,7 +338,7 @@ function cpc_admin_getting_started_alerts() {
 		<td>
 			<input type="checkbox" name="cpc_alert_resend" <?php if (get_option('cpc_alert_resend')) echo 'CHECKED '; ?> />
 			<span class="description">
-				<?php echo sprintf(__('Send fehlgeschlagene Benachrichtigungen erneut (da die Zahl fehlgeschlagener Benachrichtigungen zunimmt, solltest Du <a href="%s">erwägen, sie zu entfernen</a>). Gilt nicht für geschlossene Konten.', CPC2_TEXT_DOMAIN), admin_url( 'edit.php?post_type=cpc_alerts' )); ?>
+				<?php echo sprintf(__('Sende fehlgeschlagene Benachrichtigungen erneut (da die Zahl fehlgeschlagener Benachrichtigungen zunimmt, solltest Du <a href="%s">erwägen, sie zu entfernen</a>). Gilt nicht für geschlossene Konten.', CPC2_TEXT_DOMAIN), admin_url( 'edit.php?post_type=cpc_alerts' )); ?>
 			</span></td> 
 		</tr> 	
 

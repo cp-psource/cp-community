@@ -10,7 +10,7 @@ function cpc_admin_quick_start_profile() {
 		echo '<div style="margin-right:10px; float:left">';
 		echo '<form action="" method="POST">';
 		echo '<input type="hidden" name="cpccom_quick_start" value="profile" />';
-		echo '<input type="submit" class="button-secondary" value="'.__('Add Profile Pages', CPC2_TEXT_DOMAIN).'" />';
+		echo '<input type="submit" class="button-secondary" value="'.__('Profilseiten hinzufügen', CPC2_TEXT_DOMAIN).'" />';
 		echo '</form></div>';
 
 	endif;
@@ -27,7 +27,7 @@ function cpc_admin_quick_start_profile_save($the_post) {
 		$post = array(
 		  'post_content'   => $post_content,
 		  'post_name'      => 'profile',
-		  'post_title'     => __('Profile', CPC2_TEXT_DOMAIN),
+		  'post_title'     => __('Profil', CPC2_TEXT_DOMAIN),
 		  'post_status'    => 'publish',
 		  'post_type'      => 'page',
 		  'ping_status'    => 'closed',
@@ -41,7 +41,7 @@ function cpc_admin_quick_start_profile_save($the_post) {
 		$post = array(
 		  'post_content'   => '['.CPC_PREFIX.'-usermeta-change]',
 		  'post_name'      => 'edit-profile',
-		  'post_title'     => __('Edit Profile', CPC2_TEXT_DOMAIN),
+		  'post_title'     => __('Profil bearbeiten', CPC2_TEXT_DOMAIN),
 		  'post_status'    => 'publish',
 		  'post_type'      => 'page',
 		  'ping_status'    => 'closed',
@@ -55,7 +55,7 @@ function cpc_admin_quick_start_profile_save($the_post) {
 		$post = array(
 		  'post_content'   => '['.CPC_PREFIX.'-avatar-change]',
 		  'post_name'      => 'change-avatar',
-		  'post_title'     => __('Change Avatar', CPC2_TEXT_DOMAIN),
+		  'post_title'     => __('Avatar ändern', CPC2_TEXT_DOMAIN),
 		  'post_status'    => 'publish',
 		  'post_type'      => 'page',
 		  'ping_status'    => 'closed',
@@ -69,7 +69,7 @@ function cpc_admin_quick_start_profile_save($the_post) {
 		$post = array(
 		  'post_content'   => '['.CPC_PREFIX.'-friends-pending]['.CPC_PREFIX.'-friends count="100"]',
 		  'post_name'      => 'friends',
-		  'post_title'     => __('Friends', CPC2_TEXT_DOMAIN),
+		  'post_title'     => __('Freunde', CPC2_TEXT_DOMAIN),
 		  'post_status'    => 'publish',
 		  'post_type'      => 'page',
 		  'ping_status'    => 'closed',
@@ -78,12 +78,12 @@ function cpc_admin_quick_start_profile_save($the_post) {
 
 		$new_friends_id = wp_insert_post( $post );
 
-		echo '<div class="cpc_success">'.sprintf(__('Profile Page (%s) added. [<a href="%s">view</a>]', CPC2_TEXT_DOMAIN), get_permalink($new_id), get_permalink($new_id)).'<br />';
-		echo sprintf(__('Edit Profile Page (%s) added. [<a href="%s">view</a>]', CPC2_TEXT_DOMAIN), get_permalink($new_edit_profile_id), get_permalink($new_edit_profile_id)).'<br />';
-		echo sprintf(__('Change Avatar Page (%s) added. [<a href="%s">view</a>]', CPC2_TEXT_DOMAIN), get_permalink($new_change_avatar_id), get_permalink($new_change_avatar_id)).'<br />';
-		echo sprintf(__('Friends Page (%s) added. [<a href="%s">view</a>]', CPC2_TEXT_DOMAIN), get_permalink($new_friends_id), get_permalink($new_friends_id)).'<br /><br />';
+		echo '<div class="cpc_success">'.sprintf(__('Profilseite (%s) hinzugefügt. [<a href="%s">view</a>]', CPC2_TEXT_DOMAIN), get_permalink($new_id), get_permalink($new_id)).'<br />';
+		echo sprintf(__('Profil bearbeiten-Seite (%s) hinzugefügt. [<a href="%s">view</a>]', CPC2_TEXT_DOMAIN), get_permalink($new_edit_profile_id), get_permalink($new_edit_profile_id)).'<br />';
+		echo sprintf(__('Avatar ändern-Seite (%s) hinzugefügt. [<a href="%s">view</a>]', CPC2_TEXT_DOMAIN), get_permalink($new_change_avatar_id), get_permalink($new_change_avatar_id)).'<br />';
+		echo sprintf(__('Freundesseite (%s) hinzugefügt. [<a href="%s">view</a>]', CPC2_TEXT_DOMAIN), get_permalink($new_friends_id), get_permalink($new_friends_id)).'<br /><br />';
 
-		echo sprintf(__('You might want to add them to your <a href="%s">ClassicPress menu</a>.', CPC2_TEXT_DOMAIN), "nav-menus.php").'</div>';
+		echo sprintf(__('Vielleicht möchtest Du sie zu Deinem <a href="%s">ClassicPress-Menü</a> hinzufügen.', CPC2_TEXT_DOMAIN), "nav-menus.php").'</div>';
 
 	endif;
 
@@ -95,7 +95,7 @@ function cpc_admin_getting_started_profile() {
 
 	// Show menu item	
     $css = isset($_POST['cpc_expand']) && $_POST['cpc_expand'] == 'cpc_admin_getting_started_profile' ? 'cpc_admin_getting_started_menu_item_remove_icon ' : '';    
-  	echo '<div class="'.$css.'cpc_admin_getting_started_menu_item" id="cpc_admin_getting_started_profile_div" rel="cpc_admin_getting_started_profile">'.__('Profile Page', CPC2_TEXT_DOMAIN).'</div>';
+  	echo '<div class="'.$css.'cpc_admin_getting_started_menu_item" id="cpc_admin_getting_started_profile_div" rel="cpc_admin_getting_started_profile">'.__('Profilseite', CPC2_TEXT_DOMAIN).'</div>';
 
   	// Show setup/help content
   	$display = isset($_POST['cpc_expand']) && $_POST['cpc_expand'] == 'cpc_admin_getting_started_profile' ? 'block' : 'none';
@@ -104,14 +104,14 @@ function cpc_admin_getting_started_profile() {
 
 		<table class="form-table">
 			<tr valign="top"> 
-			<td scope="row"><label for="profile_page"><?php echo __('Profile Page', CPC2_TEXT_DOMAIN); ?></label></td>
+			<td scope="row"><label for="profile_page"><?php echo __('Profilseite', CPC2_TEXT_DOMAIN); ?></label></td>
 			<td>
-				<p style="margin-bottom:5px"><strong><?php echo __('Your profile page must not have a parent page.', CPC2_TEXT_DOMAIN); ?></strong></p>
+				<p style="margin-bottom:5px"><strong><?php echo __('Deine Profilseite darf keine übergeordnete Seite haben.', CPC2_TEXT_DOMAIN); ?></strong></p>
 				<select name="profile_page">
 				 <?php 
 				  $profile_page = get_option('cpccom_profile_page');
-				  if (!$profile_page) echo '<option value="0">'.__('Select page...', CPC2_TEXT_DOMAIN).'</option>';
-				  if ($profile_page) echo '<option value="0">'.__('Reset...', CPC2_TEXT_DOMAIN).'</option>';						
+				  if (!$profile_page) echo '<option value="0">'.__('Seite auswählen...', CPC2_TEXT_DOMAIN).'</option>';
+				  if ($profile_page) echo '<option value="0">'.__('Zurücksetzen...', CPC2_TEXT_DOMAIN).'</option>';						
 				  $pages = get_pages(); 
 				  foreach ( $pages as $page ) {
 				  	$option = '<option value="' . $page->ID . '"';
@@ -123,23 +123,23 @@ function cpc_admin_getting_started_profile() {
 				  }
 				 ?>						
 				</select>
-				<span class="description"><?php echo __('ClassicPress page that profile links go to.', CPC2_TEXT_DOMAIN); ?>
+				<span class="description"><?php echo __('ClassicPress-Seite, zu der Profillinks führen.', CPC2_TEXT_DOMAIN); ?>
 				<?php if ($profile_page) {
-					echo ' [<a href="post.php?post='.$profile_page.'&action=edit">'.__('edit', CPC2_TEXT_DOMAIN).'</a>';
-					echo '|<a href="'.get_permalink($profile_page).'">'.__('view', CPC2_TEXT_DOMAIN).'</a>]';
+					echo ' [<a href="post.php?post='.$profile_page.'&action=edit">'.__('bearbeiten', CPC2_TEXT_DOMAIN).'</a>';
+					echo '|<a href="'.get_permalink($profile_page).'">'.__('ansehen', CPC2_TEXT_DOMAIN).'</a>]';
 				}
 				?>
 				</span></td> 
 			</tr> 
 
 			<tr valign="top"> 
-			<td scope="row"><label for="edit_profile_page"><?php echo __('Edit Profile Page', CPC2_TEXT_DOMAIN); ?></label></td>
+			<td scope="row"><label for="edit_profile_page"><?php echo __('Profilseite bearbeiten', CPC2_TEXT_DOMAIN); ?></label></td>
 			<td>
 				<select name="edit_profile_page">
 				 <?php 
 				  $profile_page = get_option('cpccom_edit_profile_page');
-				  if (!$profile_page) echo '<option value="0">'.__('Select page...', CPC2_TEXT_DOMAIN).'</option>';
-				  if ($profile_page) echo '<option value="0">'.__('Reset...', CPC2_TEXT_DOMAIN).'</option>';						
+				  if (!$profile_page) echo '<option value="0">'.__('Seite auswählen...', CPC2_TEXT_DOMAIN).'</option>';
+				  if ($profile_page) echo '<option value="0">'.__('Zurücksetzen...', CPC2_TEXT_DOMAIN).'</option>';						
 				  $pages = get_pages(); 
 				  foreach ( $pages as $page ) {
 				  	$option = '<option value="' . $page->ID . '"';
@@ -151,22 +151,22 @@ function cpc_admin_getting_started_profile() {
 				  }
 				 ?>						
 				</select>
-				<span class="description"><?php echo __('ClassicPress page that allows user to edit their profile.', CPC2_TEXT_DOMAIN); ?>
+				<span class="description"><?php echo __('ClassicPress-Seite, auf der Benutzer ihr Profil bearbeiten können.', CPC2_TEXT_DOMAIN); ?>
 				<?php if ($profile_page) {
-					echo ' [<a href="post.php?post='.$profile_page.'&action=edit">'.__('edit', CPC2_TEXT_DOMAIN).'</a>';
-					echo '|<a href="'.get_permalink($profile_page).'">'.__('view', CPC2_TEXT_DOMAIN).'</a>]';
+					echo ' [<a href="post.php?post='.$profile_page.'&action=edit">'.__('bearbeiten', CPC2_TEXT_DOMAIN).'</a>';
+					echo '|<a href="'.get_permalink($profile_page).'">'.__('ansehen', CPC2_TEXT_DOMAIN).'</a>]';
 				 } ?>
 				</span></td> 
 			</tr> 
 
 			<tr valign="top"> 
-			<td scope="row"><label for="change_avatar_page"><?php echo __('Change Avatar Page', CPC2_TEXT_DOMAIN); ?></label></td>
+			<td scope="row"><label for="change_avatar_page"><?php echo __('Avatar-Seite ändern', CPC2_TEXT_DOMAIN); ?></label></td>
 			<td>
 				<select name="change_avatar_page">
 				 <?php 
 				  $profile_page = get_option('cpccom_change_avatar_page');
-				  if (!$profile_page) echo '<option value="0">'.__('Select page...', CPC2_TEXT_DOMAIN).'</option>';
-				  if ($profile_page) echo '<option value="0">'.__('Reset...', CPC2_TEXT_DOMAIN).'</option>';						
+				  if (!$profile_page) echo '<option value="0">'.__('Seite auswählen...', CPC2_TEXT_DOMAIN).'</option>';
+				  if ($profile_page) echo '<option value="0">'.__('Zurücksetzen...', CPC2_TEXT_DOMAIN).'</option>';						
 				  $pages = get_pages(); 
 				  foreach ( $pages as $page ) {
 				  	$option = '<option value="' . $page->ID . '"';
@@ -178,90 +178,90 @@ function cpc_admin_getting_started_profile() {
 				  }
 				 ?>						
 				</select>
-				<span class="description"><?php echo __('ClassicPress page that allows user to change their avatar.', CPC2_TEXT_DOMAIN); ?>
+				<span class="description"><?php echo __('ClassicPress-Seite, auf der Benutzer ihren Avatar ändern können.', CPC2_TEXT_DOMAIN); ?>
 				<?php if ($profile_page) {
-					echo ' [<a href="post.php?post='.$profile_page.'&action=edit">'.__('edit', CPC2_TEXT_DOMAIN).'</a>';
-					echo '|<a href="'.get_permalink($profile_page).'">'.__('view', CPC2_TEXT_DOMAIN).'</a>]';
+					echo ' [<a href="post.php?post='.$profile_page.'&action=edit">'.__('bearbeiten', CPC2_TEXT_DOMAIN).'</a>';
+					echo '|<a href="'.get_permalink($profile_page).'">'.__('ansehen', CPC2_TEXT_DOMAIN).'</a>]';
 				} ?>
 				</span></td> 
 			</tr> 
 
 			<tr valign="top"> 
-			<td scope="row"><label for="profile_permalinks"><?php echo __('Profile Parameter', CPC2_TEXT_DOMAIN); ?></label></td>
+			<td scope="row"><label for="profile_permalinks"><?php echo __('Profilparameter', CPC2_TEXT_DOMAIN); ?></label></td>
 			<td>
 				<input name="cpccom_profile_permalinks" id="cpccom_profile_permalinks" type="checkbox" <?php if ( get_option('cpccom_profile_permalinks') ) echo 'CHECKED'; ?> style="width:10px" />
-   				<span class="description"><?php _e('Do not use usernames for profile page links', CPC2_TEXT_DOMAIN); ?></span>
+   				<span class="description"><?php _e('Verwende keine Benutzernamen für Links zu Profilseiten', CPC2_TEXT_DOMAIN); ?></span>
 			</tr> 
 
 			<tr valign="top"> 
-			<td scope="row"><label for="all_friends_alerts"><?php echo __('Posts to all friends', CPC2_TEXT_DOMAIN); ?></label></td>
+			<td scope="row"><label for="all_friends_alerts"><?php echo __('Beiträge an alle Freunde', CPC2_TEXT_DOMAIN); ?></label></td>
 			<td>
 				<input name="cpccom_all_friends_alerts" id="cpccom_all_friends_alerts" type="checkbox" <?php if ( get_option('cpccom_all_friends_alerts') ) echo 'CHECKED'; ?> style="width:10px" />
-   				<span class="description"><?php _e('When an activity post will be sent to all friends, should an alert be generated?', CPC2_TEXT_DOMAIN); ?></span>
+   				<span class="description"><?php _e('Soll eine Benachrichtigung generiert werden, wenn ein Aktivitätsbeitrag an alle Freunde gesendet wird?', CPC2_TEXT_DOMAIN); ?></span>
 			</tr> 
 
 			<tr valign="top"> 
-			<td scope="row"><label for="activity_set_focus"><?php echo __('Activity post focus', CPC2_TEXT_DOMAIN); ?></label></td>
+			<td scope="row"><label for="activity_set_focus"><?php echo __('Fokus auf Aktivität Posten', CPC2_TEXT_DOMAIN); ?></label></td>
 			<td>
 				<input name="cpccom_activity_set_focus" id="cpccom_activity_set_focus" type="checkbox" <?php if ( get_option('cpccom_activity_set_focus') ) echo 'CHECKED'; ?> style="width:10px" />
-   				<span class="description"><?php _e('When profile page is loaded, set focus to activity post textarea.', CPC2_TEXT_DOMAIN); ?></span>
+   				<span class="description"><?php _e('Wenn die Profilseite geladen ist, setze den Fokus auf den Textbereich des Aktivitätsbeitrags.', CPC2_TEXT_DOMAIN); ?></span>
 			</tr> 
 
 			<tr valign="top"> 
-			<td scope="row"><label for="activity_sticky_admin_only"><?php echo __('Sticky posts', CPC2_TEXT_DOMAIN); ?></label></td>
+			<td scope="row"><label for="activity_sticky_admin_only"><?php echo __('Sticky Beiträge', CPC2_TEXT_DOMAIN); ?></label></td>
 			<td>
 				<input name="activity_sticky_admin_only" id="activity_sticky_admin_only" type="checkbox" <?php if ( get_option('activity_sticky_admin_only') ) echo 'CHECKED'; ?> style="width:10px" />
-   				<span class="description"><?php _e('Limit sticky post option to site administrator only.', CPC2_TEXT_DOMAIN); ?></span>
+   				<span class="description"><?php _e('Beschränke die Option Sticky Beitrag nur auf den Webseiten-Administrator.', CPC2_TEXT_DOMAIN); ?></span>
 			</tr> 
 
 		</table>
 
 		<?php
 
-  		echo '<h2>'.__('Getting Started', CPC2_TEXT_DOMAIN).'</h2>';
+  		echo '<h2>'.__('Erste Schritte', CPC2_TEXT_DOMAIN).'</h2>';
 
-  		echo '<p><em>'.__('Either click on "<a href="#">Add Profile Pages</a>" at the top of this page, or...', CPC2_TEXT_DOMAIN).'</em></p>';
+  		echo '<p><em>'.__('Klicke entweder oben auf dieser Seite auf <a href="#">Profilseiten hinzufügen</a> oder...', CPC2_TEXT_DOMAIN).'</em></p>';
 
   		echo '<div style="border:1px dashed #333; background-color:#efefef; margin-bottom:10px; padding-left:15px">';
 
-		  	echo '<h3>'.__('Profile Page', CPC2_TEXT_DOMAIN).'</h3>';
+		  	echo '<h3>'.__('Profilseite', CPC2_TEXT_DOMAIN).'</h3>';
 
 		  	if (!$profile_page = get_option('cpccom_profile_page')):
-			  	echo '<p>'.sprintf(__('<a href="%s">Create a ClassicPress page</a>, then select it above, and save. When you have done that, some example shortcodes will be shown here that you can copy into that page.', CPC2_TEXT_DOMAIN), 'post-new.php?post_type=page').'</p>';
+			  	echo '<p>'.sprintf(__('<a href="%s">Erstelle eine ClassicPress-Seite</a>, wähle dann oben aus und speichere sie. Wenn Du das getan hast, werden hier einige Beispiel-Shortcodes angezeigt, die Du auf diese Seite kopieren kannst.', CPC2_TEXT_DOMAIN), 'post-new.php?post_type=page').'</p>';
 		  	else:
-		  		echo '<p>'.__('Copy the following shortcode', CPC2_TEXT_DOMAIN).', <a href="post.php?post='.$profile_page.'&action=edit">'.__('edit your "Profile" page', CPC2_TEXT_DOMAIN).'</a> '.__('and paste the shortcodes to get started.', CPC2_TEXT_DOMAIN).'</p>';
+		  		echo '<p>'.__('Kopiere den folgenden Shortcode', CPC2_TEXT_DOMAIN).', <a href="post.php?post='.$profile_page.'&action=edit">'.__('Bearbeite Deine Profil-Seite', CPC2_TEXT_DOMAIN).'</a> '.__('und füge die Shortcodes ein, um loszulegen.', CPC2_TEXT_DOMAIN).'</p>';
 		  		echo '<p>';
-			  	echo '<strong>['.CPC_PREFIX.'-activity-page]</strong> <span class="description">'.__("Creates a profile page with key elements", CPC2_TEXT_DOMAIN).'</span><br />';
-			  	echo '<span class="description"><a href="https://n3rds.work/shortcodes" target="_blank">'.__('more examples...', CPC2_TEXT_DOMAIN).'</a></span>';
+			  	echo '<strong>['.CPC_PREFIX.'-activity-page]</strong> <span class="description">'.__("Erstellt eine Profilseite mit Schlüsselelementen", CPC2_TEXT_DOMAIN).'</span><br />';
+			  	echo '<span class="description"><a href="https://n3rds.work/shortcodes" target="_blank">'.__('mehr Beispiele...', CPC2_TEXT_DOMAIN).'</a></span>';
 			  	echo '</p>';
 		  	endif;
 
-		  	echo '<h3>'.__('Edit Profile Page', CPC2_TEXT_DOMAIN).'</h3>';
+		  	echo '<h3>'.__('Profilseite bearbeiten', CPC2_TEXT_DOMAIN).'</h3>';
 
 		  	if (!$profile_page = get_option('cpccom_edit_profile_page')):
-			  	echo '<p>'.sprintf(__('<a href="%s">Create a ClassicPress page</a>, then select it above, and save. When you have done that, some example shortcodes will be shown here that you can copy into that page.', CPC2_TEXT_DOMAIN), 'post-new.php?post_type=page').'</p>';
+			  	echo '<p>'.sprintf(__('<a href="%s">Erstelle eine ClassicPress-Seite</a>, wähle dann oben aus und speichere sie. Wenn Du das getan hast, werden hier einige Beispiel-Shortcodes angezeigt, die Du auf diese Seite kopieren kannst.', CPC2_TEXT_DOMAIN), 'post-new.php?post_type=page').'</p>';
 		  	else:
-		  		echo '<p>'.__('Copy the following shortcodes', CPC2_TEXT_DOMAIN).', <a href="post.php?post='.$profile_page.'&action=edit">'.__('edit your "Edit Profile" page', CPC2_TEXT_DOMAIN).'</a> '.__('and paste the shortcodes to get started.', CPC2_TEXT_DOMAIN).'</p>';
+		  		echo '<p>'.__('Kopiere die folgenden Shortcodes', CPC2_TEXT_DOMAIN).', <a href="post.php?post='.$profile_page.'&action=edit">'.__('Bearbeite Deine Seite Profil bearbeiten.', CPC2_TEXT_DOMAIN).'</a> '.__('und füge die Shortcodes ein, um loszulegen.', CPC2_TEXT_DOMAIN).'</p>';
 		  		echo '<p>';
-			  	echo '<strong>['.CPC_PREFIX.'-usermeta-change]</strong> <span class="description">'.__("Let's the user change their profile details", CPC2_TEXT_DOMAIN).'</span><br />';
-			  	echo '<span class="description"><a href="https://n3rds.work/shortcodes" target="_blank">'.__('more examples...', CPC2_TEXT_DOMAIN).'</a></span>';
+			  	echo '<strong>['.CPC_PREFIX.'-usermeta-change]</strong> <span class="description">'.__("Lasse den Benutzer seine Profildetails ändern", CPC2_TEXT_DOMAIN).'</span><br />';
+			  	echo '<span class="description"><a href="https://n3rds.work/shortcodes" target="_blank">'.__('mehr Beispiele...', CPC2_TEXT_DOMAIN).'</a></span>';
 			  	echo '</p>';
 		  	endif;
 
-		  	echo '<h3>'.__('Change Avatar Page', CPC2_TEXT_DOMAIN).'</h3>';
+		  	echo '<h3>'.__('Avatar-Seite ändern', CPC2_TEXT_DOMAIN).'</h3>';
 
 		  	if (!$profile_page = get_option('cpccom_change_avatar_page')):
-			  	echo '<p>'.sprintf(__('<a href="%s">Create a ClassicPress page</a>, then select it above, and save. When you have done that, some example shortcodes will be shown here that you can copy into that page.', CPC2_TEXT_DOMAIN), 'post-new.php?post_type=page').'</p>';
+			  	echo '<p>'.sprintf(__('<a href="%s">Erstelle eine ClassicPress-Seite</a>, wähle dann oben aus und speichere sie. Wenn Du das getan hast, werden hier einige Beispiel-Shortcodes angezeigt, die Du auf diese Seite kopieren kannst.', CPC2_TEXT_DOMAIN), 'post-new.php?post_type=page').'</p>';
 		  	else:
-		  		echo '<p>'.__('Copy the following shortcodes', CPC2_TEXT_DOMAIN).', <a href="post.php?post='.$profile_page.'&action=edit">'.__('edit your "Change Avatar" page', CPC2_TEXT_DOMAIN).'</a> '.__('and paste the shortcodes to get started.', CPC2_TEXT_DOMAIN).'</p>';
+		  		echo '<p>'.__('Kopiere die folgenden Shortcodes', CPC2_TEXT_DOMAIN).', <a href="post.php?post='.$profile_page.'&action=edit">'.__('Bearbeite Deine Seite Avatar ändern.', CPC2_TEXT_DOMAIN).'</a> '.__('und füge die Shortcodes ein, um loszulegen.', CPC2_TEXT_DOMAIN).'</p>';
 		  		echo '<p>';
-			  	echo '<strong>['.CPC_PREFIX.'-avatar-change]</strong> <span class="description">'.__("Let's the user upload and crop their avatar", CPC2_TEXT_DOMAIN).'</span><br />';
-			  	echo '<span class="description"><a href="https://n3rds.work/shortcodes" target="_blank">'.__('more examples...', CPC2_TEXT_DOMAIN).'</a></span>';
+			  	echo '<strong>['.CPC_PREFIX.'-avatar-change]</strong> <span class="description">'.__("Lasse den Benutzer seinen Avatar hochladen und zuschneiden", CPC2_TEXT_DOMAIN).'</span><br />';
+			  	echo '<span class="description"><a href="https://n3rds.work/shortcodes" target="_blank">'.__('mehr Beispiele...', CPC2_TEXT_DOMAIN).'</a></span>';
 			  	echo '</p>';
 		  	endif;
 
-		  	echo '<h3>'.__('Adding the Pages to your Site', CPC2_TEXT_DOMAIN).'</h3>';
-		  	echo '<p>'.sprintf(__('Once you have created your pages, you may want to add them to your <a href="%s">site menu</a>.', CPC2_TEXT_DOMAIN), 'nav-menus.php').'</p>';
+		  	echo '<h3>'.__('Hinzufügen der Seiten zu Deiner Webseite', CPC2_TEXT_DOMAIN).'</h3>';
+		  	echo '<p>'.sprintf(__('Sobald Du Deine Seiten erstellt hast, möchtest Du sie möglicherweise zu Deinem <a href="%s">Webseiten-Menü</a> hinzufügen.', CPC2_TEXT_DOMAIN), 'nav-menus.php').'</p>';
 
 		echo '</div>';
 
@@ -323,13 +323,13 @@ function cpc_admin_getting_started_edit_profile() {
 
 	// Show menu item	
     $css = isset($_POST['cpc_expand']) && $_POST['cpc_expand'] == 'cpc_admin_getting_started_edit_profile' ? 'cpc_admin_getting_started_menu_item_remove_icon ' : '';    
-  	echo '<div class="'.$css.'cpc_admin_getting_started_menu_item" id="cpc_admin_getting_started_edit_profile_div" rel="cpc_admin_getting_started_edit_profile">'.__('Edit Profile Page', CPC2_TEXT_DOMAIN).'</div>';
+  	echo '<div class="'.$css.'cpc_admin_getting_started_menu_item" id="cpc_admin_getting_started_edit_profile_div" rel="cpc_admin_getting_started_edit_profile">'.__('Profilseite bearbeiten', CPC2_TEXT_DOMAIN).'</div>';
 
   	// Show setup/help content
   	$display = isset($_POST['cpc_expand']) && $_POST['cpc_expand'] == 'cpc_admin_getting_started_edit_profile' ? 'block' : 'none';
   	echo '<div class="cpc_admin_getting_started_content" id="cpc_admin_getting_started_edit_profile" style="display:'.$display.'">';
 
-        echo '<h3>'.__('Options available to user', CPC2_TEXT_DOMAIN).'</h3>';
+        echo '<h3>'.__('Für den Benutzer verfügbare Optionen', CPC2_TEXT_DOMAIN).'</h3>';
     
         $cpc_password_strength_meter = get_option('cpc_password_strength_meter');
         $cpc_strength_array = get_option('cpc_strength_array');
@@ -340,11 +340,11 @@ function cpc_admin_getting_started_edit_profile() {
         if (!$cpc_change_avatar_effects) $cpc_change_avatar_effects = 'flip,rotate,invert,sketch,pixelate,sepia,emboss';
         $hide_email_notifications_for_activity = get_option('hide_email_notifications_for_activity');
         echo '<table>';
-        echo '<tr><td style="width:300px">'.__('Password strength meter', CPC2_TEXT_DOMAIN).'</td><td><input type="checkbox" name="cpc_password_strength_meter"'.($cpc_password_strength_meter ? ' CHECKED' : '').' /> '.__('Check to hide on Edit Profile page', CPC2_TEXT_DOMAIN).'</td></tr>';
-        echo '<tr><td style="width:300px">'.__('Password strength options', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_strength_array" style="width:300px" value="'.$cpc_strength.'" /> '.__('comma seperated, all 5 required', CPC2_TEXT_DOMAIN),'</td></tr>';
-        echo '<tr><td style="width:300px">'.__('Change avatar effects', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_change_avatar_effects" style="width:300px" value="'.$cpc_change_avatar_effects.'" /> '.__('comma seperated (delete to reset)', CPC2_TEXT_DOMAIN),'</td></tr>';
+        echo '<tr><td style="width:300px">'.__('Messgerät für die Passwortstärke', CPC2_TEXT_DOMAIN).'</td><td><input type="checkbox" name="cpc_password_strength_meter"'.($cpc_password_strength_meter ? ' CHECKED' : '').' /> '.__('Aktiviere diese Option, um sie auf der Seite Profil bearbeiten auszublenden', CPC2_TEXT_DOMAIN).'</td></tr>';
+        echo '<tr><td style="width:300px">'.__('Optionen für die Passwortstärke', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_strength_array" style="width:300px" value="'.$cpc_strength.'" /> '.__('Komma getrennt, alle 5 erforderlich', CPC2_TEXT_DOMAIN),'</td></tr>';
+        echo '<tr><td style="width:300px">'.__('Avatar-Effekte ändern', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_change_avatar_effects" style="width:300px" value="'.$cpc_change_avatar_effects.'" /> '.__('Komma getrennt (zum Zurücksetzen löschen)', CPC2_TEXT_DOMAIN),'</td></tr>';
         echo '<tr><td style="width:300px"></td><td style="font-style:italic">'.sprintf(__('Enable, and change the labels via <a href="%s">Shortcodes</a>->Avatar->[cpc-avatar-change]', CPC2_TEXT_DOMAIN), admin_url( 'admin.php?page=cpc_com_shortcodes' )).'</td></tr>';
-        echo '<tr><td style="width:300px">'.__('Receive email notifications for activity', CPC2_TEXT_DOMAIN).'</td><td><input type="checkbox" name="hide_email_notifications_for_activity"'.($hide_email_notifications_for_activity ? ' CHECKED' : '').' /> '.__('Check to hide on Edit Profile page', CPC2_TEXT_DOMAIN).'</td></tr>';
+        echo '<tr><td style="width:300px">'.__('Erhalte E-Mail-Benachrichtigungen für Aktivitäten', CPC2_TEXT_DOMAIN).'</td><td><input type="checkbox" name="hide_email_notifications_for_activity"'.($hide_email_notifications_for_activity ? ' CHECKED' : '').' /> '.__('Aktiviere diese Option, um sie auf der Seite Profil bearbeiten auszublenden', CPC2_TEXT_DOMAIN).'</td></tr>';
         echo '</table>';
 		
 		if (isset($_GET['cpc_reload_geo'])) {
@@ -424,10 +424,10 @@ function cpc_admin_getting_started_edit_profile() {
 		
 		}
     
-        echo '<h3>'.__('Tabs', CPC2_TEXT_DOMAIN).'</h3>';
+        echo '<h3>'.__('Registerkarten', CPC2_TEXT_DOMAIN).'</h3>';
 
-        echo '<p>'.__('You can have up to 10 tabs on the edit profile page. Set them up by entering a description (blank tabs are not displayed).<br />', CPC2_TEXT_DOMAIN);
-        echo sprintf(__('Then below, after saving, you can choose which tab various items appear on (including <a href="%s" target="_blank">profile extensions</a> if you are using that feature).', CPC2_TEXT_DOMAIN), 'https://n3rds.work/browse-plugins/').'</p>';
+        echo '<p>'.__('Auf der Seite Profil bearbeiten können bis zu 10 Registerkarten vorhanden sein. Richte sie ein, indem Du eine Beschreibung eingibst (leere Registerkarten werden nicht angezeigt).<br />', CPC2_TEXT_DOMAIN);
+        echo sprintf(__('Nach dem Speichern kannst Du unten auswählen, auf welcher Registerkarte verschiedene Elemente angezeigt werden (einschließlich <a href="%s" target="_blank">Profilerweiterungen</a>, wenn Du diese Funktion verwendest).', CPC2_TEXT_DOMAIN), 'https://n3rds.work/browse-plugins/').'</p>';
 
         $tabs_array = get_option('cpc_comfile_tabs');
     
@@ -449,21 +449,21 @@ function cpc_admin_getting_started_edit_profile() {
         $cpc_comfile_tab_animation = (isset($tabs_array['cpc_comfile_tab_animation'])) ? $tabs_array['cpc_comfile_tab_animation'] : 'slide';
 
         echo '<table style="margin-top:20px">';
-        echo '<tr><td style="width:300px">'.__('Tab 1:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab1" style="width:300px" value="'.$cpc_comfile_tab1.'" /><br />';
-        echo '<tr><td>'.__('Tab 2:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab2" style="width:300px" value="'.$cpc_comfile_tab2.'" /></td></tr>';
-        echo '<tr><td>'.__('Tab 3:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab3" style="width:300px" value="'.$cpc_comfile_tab3.'" /></td></tr>';
-        echo '<tr><td>'.__('Tab 4:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab4" style="width:300px" value="'.$cpc_comfile_tab4.'" /></td></tr>';
-        echo '<tr><td>'.__('Tab 5:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab5" style="width:300px" value="'.$cpc_comfile_tab5.'" /></td></tr>';
-        echo '<tr><td>'.__('Tab 6:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab6" style="width:300px" value="'.$cpc_comfile_tab6.'" /></td></tr>';
-        echo '<tr><td>'.__('Tab 7:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab7" style="width:300px" value="'.$cpc_comfile_tab7.'" /></td></tr>';
-        echo '<tr><td>'.__('Tab 8:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab8" style="width:300px" value="'.$cpc_comfile_tab8.'" /></td></tr>';
-        echo '<tr><td>'.__('Tab 9:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab9" style="width:300px" value="'.$cpc_comfile_tab9.'" /></td></tr>';
-        echo '<tr><td>'.__('Tab 10:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab10" style="width:300px" value="'.$cpc_comfile_tab10.'" /></td></tr>';
-        echo '<tr><td>'.__('Active Tab Color:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab_active_color" value="'.$cpc_comfile_tab_active_color.'" class="cpc-color-picker" data-default-color="#fff" /></td></tr>';
-        echo '<tr><td>'.__('Active Tab Text Color:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab_active_text_color" value="'.$cpc_comfile_tab_active_text_color.'" class="cpc-color-picker" data-default-color="#000" /></td></tr>';
-        echo '<tr><td>'.__('Inactive Tab Color:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab_inactive_color" value="'.$cpc_comfile_tab_inactive_color.'" class="cpc-color-picker" data-default-color="#d2d2d2" /></td></tr>';
-        echo '<tr><td>'.__('Inactive Tab Text Color:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab_inactive_text_color" value="'.$cpc_comfile_tab_inactive_text_color.'" class="cpc-color-picker" data-default-color="#000" /></td></tr>';
-        echo '<tr><td>'.__('Tab Animation:', CPC2_TEXT_DOMAIN).'</td><td>';
+        echo '<tr><td style="width:300px">'.__('Registerkarte 1:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab1" style="width:300px" value="'.$cpc_comfile_tab1.'" /><br />';
+        echo '<tr><td>'.__('Registerkarte 2:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab2" style="width:300px" value="'.$cpc_comfile_tab2.'" /></td></tr>';
+        echo '<tr><td>'.__('Registerkarte 3:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab3" style="width:300px" value="'.$cpc_comfile_tab3.'" /></td></tr>';
+        echo '<tr><td>'.__('Registerkarte 4:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab4" style="width:300px" value="'.$cpc_comfile_tab4.'" /></td></tr>';
+        echo '<tr><td>'.__('Registerkarte 5:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab5" style="width:300px" value="'.$cpc_comfile_tab5.'" /></td></tr>';
+        echo '<tr><td>'.__('Registerkarte 6:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab6" style="width:300px" value="'.$cpc_comfile_tab6.'" /></td></tr>';
+        echo '<tr><td>'.__('Registerkarte 7:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab7" style="width:300px" value="'.$cpc_comfile_tab7.'" /></td></tr>';
+        echo '<tr><td>'.__('Registerkarte 8:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab8" style="width:300px" value="'.$cpc_comfile_tab8.'" /></td></tr>';
+        echo '<tr><td>'.__('Registerkarte 9:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab9" style="width:300px" value="'.$cpc_comfile_tab9.'" /></td></tr>';
+        echo '<tr><td>'.__('Registerkarte 10:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab10" style="width:300px" value="'.$cpc_comfile_tab10.'" /></td></tr>';
+        echo '<tr><td>'.__('Farbe der aktiven Registerkarte:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab_active_color" value="'.$cpc_comfile_tab_active_color.'" class="cpc-color-picker" data-default-color="#fff" /></td></tr>';
+        echo '<tr><td>'.__('Textfarbe der aktiven Registerkarte:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab_active_text_color" value="'.$cpc_comfile_tab_active_text_color.'" class="cpc-color-picker" data-default-color="#000" /></td></tr>';
+        echo '<tr><td>'.__('Farbe der inaktiven Registerkarte:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab_inactive_color" value="'.$cpc_comfile_tab_inactive_color.'" class="cpc-color-picker" data-default-color="#d2d2d2" /></td></tr>';
+        echo '<tr><td>'.__('Farbe des inaktiven Tab-Textes:', CPC2_TEXT_DOMAIN).'</td><td><input type="text" name="cpc_comfile_tab_inactive_text_color" value="'.$cpc_comfile_tab_inactive_text_color.'" class="cpc-color-picker" data-default-color="#000" /></td></tr>';
+        echo '<tr><td>'.__('Registerkarten-Animation:', CPC2_TEXT_DOMAIN).'</td><td>';
             echo '<select name="cpc_comfile_tab_animation">';
             echo '<option value="slide"';
                 if ($cpc_comfile_tab_animation == 'slide') echo ' SELECTED';
@@ -473,18 +473,18 @@ function cpc_admin_getting_started_edit_profile() {
                 echo '>'.__('Fade', CPC2_TEXT_DOMAIN).'</option>';
             echo '<option value="none"';
                 if ($cpc_comfile_tab_animation == 'none') echo ' SELECTED';
-                echo '>'.__('None', CPC2_TEXT_DOMAIN).'</option>';
+                echo '>'.__('Keine', CPC2_TEXT_DOMAIN).'</option>';
         echo '</td></tr>';
     
         if ($cpc_comfile_tab1 || $cpc_comfile_tab2 || $cpc_comfile_tab3 || $cpc_comfile_tab4 || $cpc_comfile_tab5 || $cpc_comfile_tab6 || $cpc_comfile_tab7 || $cpc_comfile_tab8 || $cpc_comfile_tab9 || $cpc_comfile_tab10):
     
-            echo cpc_show_edit_profile_tabs('Default Tab', 'default_tab');
+            echo cpc_show_edit_profile_tabs('Standard-Registerkarte', 'default_tab');
             echo cpc_show_edit_profile_tabs('Name/Display Name', 'names');
             echo cpc_show_edit_profile_tabs('Email Address', 'email');
             echo cpc_show_edit_profile_tabs('Stadt/Gemeinde/Country', 'location');
-            echo cpc_show_edit_profile_tabs('Change Password', 'password');
+            echo cpc_show_edit_profile_tabs('Passwort ändern', 'password');
             if ($lang = get_option('cpc_com_lang')):
-	            echo cpc_show_edit_profile_tabs('Languages', 'lang');
+	            echo cpc_show_edit_profile_tabs('Sprachen', 'lang');
 	        endif;
             echo cpc_show_edit_profile_tabs('Activity email alerts', 'activity_alerts');
             do_action( 'cpc_show_edit_profile_tabs_hook' );
@@ -551,7 +551,7 @@ function cpc_show_edit_profile_tabs($label, $select_name) {
         if ($select_name != 'cpc_comfile_tab_default_tab'):
             $ret .= '<option value="99"';
                 if (isset($tabs_array[$select_name]) && $tabs_array[$select_name] == 99) $ret .= ' SELECTED';
-                $ret .= '>'.__('Do not show', CPC2_TEXT_DOMAIN).'</option>';
+                $ret .= '>'.__('Nicht zeigen', CPC2_TEXT_DOMAIN).'</option>';
         endif;
     $ret .= '</select>';
     $ret .= '</td></tr>';
@@ -659,16 +659,16 @@ function cpc_options_shortcode_options_hook_user_exists_content($cpc_expand_shor
 
     $values = get_option('cpc_shortcode_options_'.'cpc_user_exists_content') ? get_option('cpc_shortcode_options_'.'cpc_user_exists_content') : array();
     echo cpc_show_options($cpc_expand_shortcode, 'cpc_user_exists_content_tab');
-        echo '<strong>'.__('Purpose:', CPC2_TEXT_DOMAIN).'</strong> '.__("Hides content if no user found.", CPC2_TEXT_DOMAIN).'<br />';
-        echo '<strong>'.__('How to use:', CPC2_TEXT_DOMAIN).'</strong> '.__('Add [cpc-user-exists-content]CONTENT[/cpc-user-exists-content] to a ClassicPress Page, Post or Text widget. CONTENT will only be shown if a user is found.', CPC2_TEXT_DOMAIN);
+        echo '<strong>'.__('Zweck:', CPC2_TEXT_DOMAIN).'</strong> '.__("Versteckt Inhalte, wenn kein Benutzer gefunden wird.", CPC2_TEXT_DOMAIN).'<br />';
+        echo '<strong>'.__('Wie benutzen:', CPC2_TEXT_DOMAIN).'</strong> '.__('Füge [cpc-user-exists-content]INHALT[/cpc-user-exists-content] zu einer ClassicPress-Seite, einem Beitrag oder einem Text-Widget hinzu. INHALT wird nur angezeigt, wenn ein Benutzer gefunden wurde.', CPC2_TEXT_DOMAIN);
         echo cpc_codex_link('http://www.cpccom.com/cpc-user-exists-content');
-        echo '<p><strong>'.__('Options', CPC2_TEXT_DOMAIN).'</strong><br />';
+        echo '<p><strong>'.__('Optionen', CPC2_TEXT_DOMAIN).'</strong><br />';
         echo '<table cellpadding="0" cellspacing="0"  class="cpc_shortcode_value_row">';
-            echo '<tr><td>'.__('Text shown if no user found', CPC2_TEXT_DOMAIN).'</td><td>';
-                $not_found_msg = cpc_get_shortcode_default($values, 'cpc_user_exists_content-not_found_msg', __('User does not exist!', CPC2_TEXT_DOMAIN));
+            echo '<tr><td>'.__('Text wird angezeigt, wenn kein Benutzer gefunden wurde', CPC2_TEXT_DOMAIN).'</td><td>';
+                $not_found_msg = cpc_get_shortcode_default($values, 'cpc_user_exists_content-not_found_msg', __('Benutzer existiert nicht!', CPC2_TEXT_DOMAIN));
                 echo '<input type="text" name="cpc_user_exists_content-not_found_msg" value="'.$not_found_msg.'" /></td><td>(not_found_msg="'.$not_found_msg.'")</td></tr>';
             echo '<tr class="cpc_desc"><td colspan="3">';
-                echo __("Message to show if the user is not found.", CPC2_TEXT_DOMAIN);
+                echo __("Meldung, die angezeigt wird, wenn der Benutzer nicht gefunden wird.", CPC2_TEXT_DOMAIN);
                 echo '</td></tr>';
     
             do_action('cpc_show_styling_options_hook', 'cpc_user_exists_content', $values);
@@ -693,52 +693,52 @@ function cpc_options_shortcode_options_hook_is_friend_content($cpc_expand_shortc
 
     $values = get_option('cpc_shortcode_options_'.'cpc_is_friend_content') ? get_option('cpc_shortcode_options_'.'cpc_is_friend_content') : array();
     echo cpc_show_options($cpc_expand_shortcode, 'cpc_is_friend_content_tab');
-        echo '<strong>'.__('Purpose:', CPC2_TEXT_DOMAIN).'</strong> '.__("Hides content if users are not friends.", CPC2_TEXT_DOMAIN).'<br />';
-        echo '<strong>'.__('How to use:', CPC2_TEXT_DOMAIN).'</strong> '.__('Add [cpc-is-friend-content]CONTENT[/cpc-is-friend-content] to a ClassicPress Page, Post or Text widget. CONTENT will only be shown if users are friends.', CPC2_TEXT_DOMAIN);
+        echo '<strong>'.__('Zweck:', CPC2_TEXT_DOMAIN).'</strong> '.__("Versteckt Inhalte, wenn Benutzer keine Freunde sind.", CPC2_TEXT_DOMAIN).'<br />';
+        echo '<strong>'.__('Wie benutzen:', CPC2_TEXT_DOMAIN).'</strong> '.__('Füge [cpc-is-friend-content]INHALT[/cpc-is-friend-content] zu einer ClassicPress-Seite, einem Beitrag oder einem Text-Widget hinzu. INHALT wird nur angezeigt, wenn Benutzer Freunde sind.', CPC2_TEXT_DOMAIN);
         echo cpc_codex_link('http://www.cpccom.com/cpc-is-friend-content');
-        echo '<p><strong>'.__('Options', CPC2_TEXT_DOMAIN).'</strong><br />';
+        echo '<p><strong>'.__('Optionen', CPC2_TEXT_DOMAIN).'</strong><br />';
         echo '<table cellpadding="0" cellspacing="0"  class="cpc_shortcode_value_row">';
-            echo '<tr><td>'.__('Text shown if are not friends', CPC2_TEXT_DOMAIN).'</td><td>';
-                $not_friends_msg = cpc_get_shortcode_default($values, 'cpc_is_friend_content-not_friends_msg', __('Sorry, you are not friends!', CPC2_TEXT_DOMAIN));
+            echo '<tr><td>'.__('Text wird angezeigt, wenn Sie keine Freunde sind', CPC2_TEXT_DOMAIN).'</td><td>';
+                $not_friends_msg = cpc_get_shortcode_default($values, 'cpc_is_friend_content-not_friends_msg', __('Tut mir leid, ihr seid keine Freunde!', CPC2_TEXT_DOMAIN));
                 echo '<input type="text" name="cpc_is_friend_content-not_friends_msg" value="'.$not_friends_msg.'" /></td><td>(not_friends_msg="'.$not_friends_msg.'")</td></tr>';
             echo '<tr class="cpc_desc"><td colspan="3">';
-                echo __("Message shown if not friends.", CPC2_TEXT_DOMAIN);
+                echo __("Nachricht wird angezeigt, wenn keine Freunde vorhanden sind.", CPC2_TEXT_DOMAIN);
                 echo '</td></tr>';    
-            echo '<tr><td>'.__('Show friendship action buttons', CPC2_TEXT_DOMAIN).'</td><td>';
+            echo '<tr><td>'.__('Freundschafts-Aktionsschaltflächen anzeigen', CPC2_TEXT_DOMAIN).'</td><td>';
                 $include_friendship_action = cpc_get_shortcode_default($values, 'cpc_is_friend_content-include_friendship_action', true);
                 echo '<input type="checkbox" name="cpc_is_friend_content-include_friendship_action"'.($include_friendship_action ? ' CHECKED' : '').'></td><td>(include_friendship_action="'.($include_friendship_action ? '1' : '0').'")</td></tr>';
             echo '<tr class="cpc_desc"><td colspan="3">';
-                echo __("Whether to show friendship action buttons (to make friends, etc).", CPC2_TEXT_DOMAIN);
+                echo __("Ob Freundschafts-Aktionsschaltflächen angezeigt werden sollen (um Freunde zu finden usw.).", CPC2_TEXT_DOMAIN);
                 echo '</td></tr>';    
-            echo '<tr><td>'.__('Make friends label', CPC2_TEXT_DOMAIN).'</td><td>';
-                $friend_add_label = cpc_get_shortcode_default($values, 'cpc_is_friend_content-friend_add_label', __('Make friends', CPC2_TEXT_DOMAIN));
+            echo '<tr><td>'.__('Label Freunde finden.', CPC2_TEXT_DOMAIN).'</td><td>';
+                $friend_add_label = cpc_get_shortcode_default($values, 'cpc_is_friend_content-friend_add_label', __('Freundschaft schließen', CPC2_TEXT_DOMAIN));
                 echo '<input type="text" name="cpc_is_friend_content-friend_add_label" value="'.$friend_add_label.'" /></td><td>(friend_add_label="'.$friend_add_label.'")</td></tr>';
             echo '<tr class="cpc_desc"><td colspan="3">';
-                echo __("Text for the make friends label.", CPC2_TEXT_DOMAIN);
+                echo __("Text für das Label Freunde finden.", CPC2_TEXT_DOMAIN);
                 echo '</td></tr>';    
-            echo '<tr><td>'.__('Cancel friendship request label', CPC2_TEXT_DOMAIN).'</td><td>';
-                $friend_cancel_request_label = cpc_get_shortcode_default($values, 'cpc_is_friend_content-friend_cancel_request_label', __('Cancel Request', CPC2_TEXT_DOMAIN));
+            echo '<tr><td>'.__('Freundschaftsanfrage löschen-Label', CPC2_TEXT_DOMAIN).'</td><td>';
+                $friend_cancel_request_label = cpc_get_shortcode_default($values, 'cpc_is_friend_content-friend_cancel_request_label', __('Anfrage abbrechen', CPC2_TEXT_DOMAIN));
                 echo '<input type="text" name="cpc_is_friend_content-friend_cancel_request_label" value="'.$friend_cancel_request_label.'" /></td><td>(friend_cancel_request_label="'.$friend_cancel_request_label.'")</td></tr>';
             echo '<tr class="cpc_desc"><td colspan="3">';
-                echo __("Text to cancel the friendship request, to basically ignore it.", CPC2_TEXT_DOMAIN);
+                echo __("Text, um die Freundschaftsanfrage abzubrechen, also im Grunde zu ignorieren.", CPC2_TEXT_DOMAIN);
                 echo '</td></tr>';    
-            echo '<tr><td>'.__('Request made text', CPC2_TEXT_DOMAIN).'</td><td>';
-                $request_made_msg = cpc_get_shortcode_default($values, 'cpc_is_friend_content-request_made_msg', __('You have received a friend request from this user.', CPC2_TEXT_DOMAIN));
+            echo '<tr><td>'.__('Anfrage gestellt-Text', CPC2_TEXT_DOMAIN).'</td><td>';
+                $request_made_msg = cpc_get_shortcode_default($values, 'cpc_is_friend_content-request_made_msg', __('Du hast eine Freundschaftsanfrage von diesem Benutzer erhalten.', CPC2_TEXT_DOMAIN));
                 echo '<input type="text" name="cpc_is_friend_content-request_made_msg" value="'.$request_made_msg.'" /></td><td>(request_made_msg="'.$request_made_msg.'")</td></tr>';
             echo '<tr class="cpc_desc"><td colspan="3">';
-                echo __("Text to shown when a friendship request is made.", CPC2_TEXT_DOMAIN);
+                echo __("Text, der angezeigt wird, wenn eine Freundschaftsanfrage gestellt wird.", CPC2_TEXT_DOMAIN);
                 echo '</td></tr>';    
-            echo '<tr><td>'.__('Accept request label', CPC2_TEXT_DOMAIN).'</td><td>';
-                $accept_request_label = cpc_get_shortcode_default($values, 'cpc_is_friend_content-accept_request_label', __('Accept Friendship', CPC2_TEXT_DOMAIN));
+            echo '<tr><td>'.__('Anfrage akzeptieren-Label', CPC2_TEXT_DOMAIN).'</td><td>';
+                $accept_request_label = cpc_get_shortcode_default($values, 'cpc_is_friend_content-accept_request_label', __('Akzeptiere Freundschaft', CPC2_TEXT_DOMAIN));
                 echo '<input type="text" name="cpc_is_friend_content-accept_request_label" value="'.$accept_request_label.'" /></td><td>(accept_request_label="'.$accept_request_label.'")</td></tr>';
             echo '<tr class="cpc_desc"><td colspan="3">';
-                echo __("Label to accept a friendship request.", CPC2_TEXT_DOMAIN);
+                echo __("Beschriften um eine Freundschaftsanfrage anzunehmen.", CPC2_TEXT_DOMAIN);
                 echo '</td></tr>';    
-            echo '<tr><td>'.__('Reject request label', CPC2_TEXT_DOMAIN).'</td><td>';
-                $reject_request_label = cpc_get_shortcode_default($values, 'cpc_is_friend_content-reject_request_label', __('Reject', CPC2_TEXT_DOMAIN));
+            echo '<tr><td>'.__('Anfrage ablehnen-Label', CPC2_TEXT_DOMAIN).'</td><td>';
+                $reject_request_label = cpc_get_shortcode_default($values, 'cpc_is_friend_content-reject_request_label', __('Ablehnen', CPC2_TEXT_DOMAIN));
                 echo '<input type="text" name="cpc_is_friend_content-reject_request_label" value="'.$reject_request_label.'" /></td><td>(reject_request_label="'.$reject_request_label.'")</td></tr>';
             echo '<tr class="cpc_desc"><td colspan="3">';
-                echo __("Label to reject a friendship request.", CPC2_TEXT_DOMAIN);
+                echo __("Label zum Ablehnen einer Freundschaftsanfrage.", CPC2_TEXT_DOMAIN);
                 echo '</td></tr>';    
 
             do_action('cpc_show_styling_options_hook', 'cpc_is_friend_content', $values);

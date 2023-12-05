@@ -1,8 +1,6 @@
 <?php
 
-																	/* **** */
-																	/* INIT */
-																	/* **** */
+/* **** */ /* INIT */ /* **** */
 
 function cpc_usermeta_init() {
 
@@ -76,10 +74,7 @@ function cpc_add_tab_css(){
     
 }   
 
-
-																	/* ********** */
-																	/* SHORTCODES */
-																	/* ********** */
+/* ********** */ /* SHORTCODES */ /* ********** */
 
 function cpc_user_id($atts) {
     global $current_user;
@@ -113,7 +108,7 @@ function cpc_usermeta_button($atts) {
 
 	if (!$url):
 
-		$html .= '<div class="cpc_error">'.__('Please set URL option in the shortcode.', CPC2_TEXT_DOMAIN).'</div>';
+		$html .= '<div class="cpc_error">'.__('Bitte lege die URL-Option im Shortcode fest.', CPC2_TEXT_DOMAIN).'</div>';
 
 	else:
 
@@ -243,24 +238,24 @@ function cpc_usermeta_change($atts) {
         'show_country' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-show_country', true),
         'show_name' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-show_name', true),
         'class' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-class', ''),
-        'label' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-label', __('Update', CPC2_TEXT_DOMAIN)),
+        'label' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-label', __('Aktualisieren', CPC2_TEXT_DOMAIN)),
         'town' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-town', __('Stadt/Gemeinde', CPC2_TEXT_DOMAIN)),
         'town_default' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-town_default', ''),
         'town_mandatory' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-town_mandatory', false),
-        'country' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-country', __('Country', CPC2_TEXT_DOMAIN)),
+        'country' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-country', __('Land', CPC2_TEXT_DOMAIN)),
         'country_default' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-country_default', ''),
         'country_mandatory' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-country_mandatory', false),
-        'displayname' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-displayname', __('Display Name', CPC2_TEXT_DOMAIN)),
-        'name' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-name', __('Your first name and family name', CPC2_TEXT_DOMAIN)),
-        'language' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-language', __('Select your language', CPC2_TEXT_DOMAIN)),
-        'password' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-password', __('Change your password', CPC2_TEXT_DOMAIN)),
-        'password2' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-password2', __('Re-type your password', CPC2_TEXT_DOMAIN)),
-        'password_msg' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-password_msg', __('Password changed, please log in again.', CPC2_TEXT_DOMAIN)),
-        'email' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-email', __('Email address', CPC2_TEXT_DOMAIN)),
-        'logged_out_msg' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-logged_out_msg', __('You must be logged in to view this page.', CPC2_TEXT_DOMAIN)),
+        'displayname' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-displayname', __('Anzeigename', CPC2_TEXT_DOMAIN)),
+        'name' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-name', __('Dein Vorname und Nachname', CPC2_TEXT_DOMAIN)),
+        'language' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-language', __('Wähle deine Sprache', CPC2_TEXT_DOMAIN)),
+        'password' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-password', __('Ändere Dein Passwort', CPC2_TEXT_DOMAIN)),
+        'password2' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-password2', __('Passwort erneut eingeben', CPC2_TEXT_DOMAIN)),
+        'password_msg' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-password_msg', __('Passwort geändert, bitte melde Dich erneut an.', CPC2_TEXT_DOMAIN)),
+        'email' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-email', __('E-Mail-Adresse', CPC2_TEXT_DOMAIN)),
+        'logged_out_msg' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-logged_out_msg', __('Du musst angemeldet sein, um diese Seite anzuzeigen.', CPC2_TEXT_DOMAIN)),
         'mandatory' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-mandatory', '<span style="color:red;"> *</span>'),        
         'login_url' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-login_url', ''),
-        'required_msg' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-required_msg', __('Please check for required fields', CPC2_TEXT_DOMAIN)),
+        'required_msg' => cpc_get_shortcode_value($values, 'cpc_usermeta_change-required_msg', __('Bitte überprüfe die Pflichtfelder', CPC2_TEXT_DOMAIN)),
         'styles' => true,
         'after' => '',
         'before' => '',
@@ -275,7 +270,7 @@ function cpc_usermeta_change($atts) {
 		$user_can_see_profile = ($current_user->ID == $user_id || current_user_can('manage_options')) ? true : false;
 
         if (current_user_can('manage_options') && !$login_url && function_exists('cpc_login_init')):
-            $html = cpc_admin_tip($html, 'cpc_usermeta_change', __('Add login_url="/example" to the [cpc-usermeta-change] shortcode to let users login and redirect back here when not logged in.', CPC2_TEXT_DOMAIN));
+            $html = cpc_admin_tip($html, 'cpc_usermeta_change', __('Füge login_url="/example" zum Shortcode [cpc-usermeta-change] hinzu, damit sich Benutzer anmelden und hierher zurückleiten können, wenn sie nicht angemeldet sind.', CPC2_TEXT_DOMAIN));
         endif;    
         
 		if ($user_can_see_profile):
@@ -295,7 +290,7 @@ function cpc_usermeta_change($atts) {
                     || ! wp_verify_nonce( $_POST['cpc_usermeta_change_nonce_field'], 'cpc_usermeta_change_nonce' ) 
                 ) {        
                     
-                    $html .= '<div class="cpc_error">'.__('Security field did not validate').'</div>';
+                    $html .= '<div class="cpc_error">'.__('Das Sicherheitsfeld wurde nicht validiert').'</div>';
                     
                 } else {
 
@@ -374,7 +369,7 @@ function cpc_usermeta_change($atts) {
                         echo '<script>';
                             echo "window.setTimeout(cpc_reload_page,1000);";
                             echo "function cpc_reload_page() {";
-                                echo "alert('".__('Page will be refreshed for your chosen language.', CPC2_TEXT_DOMAIN)."');";
+                                echo "alert('".__('Die Seite wird für die von Dir gewählte Sprache aktualisiert.', CPC2_TEXT_DOMAIN)."');";
                                 echo "window.location.reload();"; 
                             echo "}";
                         echo '</script>';
@@ -627,7 +622,7 @@ function cpc_usermeta_change_link($atts) {
 		// Shortcode parameters
         $values = cpc_get_shortcode_options('cpc_usermeta_change_link');    
 		extract( shortcode_atts( array(
-			'text' => cpc_get_shortcode_value($values, 'cpc_usermeta_change_link-text', __('Edit Profile', CPC2_TEXT_DOMAIN)),
+			'text' => cpc_get_shortcode_value($values, 'cpc_usermeta_change_link-text', __('Profil bearbeiten', CPC2_TEXT_DOMAIN)),
 			'user_id' => 0,
 			'styles' => true,
             'after' => '',
@@ -668,9 +663,9 @@ function cpc_close_account($atts) {
         $values = cpc_get_shortcode_options('cpc_close_account');    
 		extract( shortcode_atts( array(
 			'class' => cpc_get_shortcode_value($values, 'cpc_close_account-class', ''),
-			'label' => cpc_get_shortcode_value($values, 'cpc_close_account-label', __('Close account', CPC2_TEXT_DOMAIN)),
-			'are_you_sure_text' => cpc_get_shortcode_value($values, 'cpc_close_account-are_you_sure_text', __('Are you sure? You cannot re-open a closed account.', CPC2_TEXT_DOMAIN)),
-			'logout_text' => cpc_get_shortcode_value($values, 'cpc_close_account-logout_text', __('Your account has been closed.', CPC2_TEXT_DOMAIN)),
+			'label' => cpc_get_shortcode_value($values, 'cpc_close_account-label', __('Konto schließen', CPC2_TEXT_DOMAIN)),
+			'are_you_sure_text' => cpc_get_shortcode_value($values, 'cpc_close_account-are_you_sure_text', __('Bist du sicher? Du kannst ein geschlossenes Konto nicht erneut eröffnen.', CPC2_TEXT_DOMAIN)),
+			'logout_text' => cpc_get_shortcode_value($values, 'cpc_close_account-logout_text', __('Dein Konto wurde geschlossen.', CPC2_TEXT_DOMAIN)),
             'url' => cpc_get_shortcode_value($values, 'cpc_close_account-url', '/'), // set URL to go to after de-activation, probably a logout page, or '' for current page
 			'styles' => true,
             'after' => '',
@@ -701,7 +696,7 @@ function cpc_join_site($atts) {
     $values = cpc_get_shortcode_options('cpc_join_site');    
     extract( shortcode_atts( array(
         'class' => cpc_get_shortcode_value($values, 'cpc_join_site-label', ''),
-        'label' => cpc_get_shortcode_value($values, 'cpc_join_site-label', __('Join this site', CPC2_TEXT_DOMAIN)),
+        'label' => cpc_get_shortcode_value($values, 'cpc_join_site-label', __('Treten dieser Webseite bei', CPC2_TEXT_DOMAIN)),
         'style' => cpc_get_shortcode_value($values, 'cpc_join_site-label', 'button'), // button|text
         'styles' => true,
         'after' => '',
@@ -736,7 +731,7 @@ function cpc_no_user_check($atts){
     // Shortcode parameters
     $values = cpc_get_shortcode_options('cpc_no_user_check');
     extract( shortcode_atts( array(
-        'not_found_msg' => cpc_get_shortcode_value($values, 'cpc_no_user_check-not_found_msg', __('User does not exist!', CPC2_TEXT_DOMAIN)),
+        'not_found_msg' => cpc_get_shortcode_value($values, 'cpc_no_user_check-not_found_msg', __('Benutzer existiert nicht!', CPC2_TEXT_DOMAIN)),
         'styles' => true,
         'after' => '',
         'before' => '',        
@@ -784,14 +779,13 @@ function cpc_is_friend_content($atts, $content="") {
         // Shortcode parameters
         $values = cpc_get_shortcode_options('cpc_is_friend_content');
         extract( shortcode_atts( array(
-            'not_friends_msg' => cpc_get_shortcode_value($values, 'cpc_is_friend_content-not_friends_msg', __('Sorry, you are not friends.', CPC2_TEXT_DOMAIN)),
+            'not_friends_msg' => cpc_get_shortcode_value($values, 'cpc_is_friend_content-not_friends_msg', __('Tut mir leid, ihr seid keine Freunde.', CPC2_TEXT_DOMAIN)),
             'include_friendship_action' => cpc_get_shortcode_value($values, 'cpc_is_friend_content-include_friendship_action', true),
-            'friend_add_label' => cpc_get_shortcode_value($values, 'cpc_is_friend_content-friend_add_label', __('Make friends', CPC2_TEXT_DOMAIN)),
-            'friend_cancel_request_label' => cpc_get_shortcode_value($values, 'cpc_is_friend_content-friend_cancel_request_label', __('Cancel Request', CPC2_TEXT_DOMAIN)),     
-            'accept_request_label' => cpc_get_shortcode_value($values, 'cpc_is_friend_content-accept_request_label', __('Accept Friendship', CPC2_TEXT_DOMAIN)),
-            'reject_request_label' => cpc_get_shortcode_value($values, 'cpc_is_friend_content-reject_request_label', __('Reject', CPC2_TEXT_DOMAIN)),
-            'reject_request_label' => cpc_get_shortcode_value($values, 'cpc_is_friend_content-reject_request_label', __('Reject', CPC2_TEXT_DOMAIN)),
-            'request_made_msg' => cpc_get_shortcode_value($values, 'cpc_is_friend_content-request_made_msg', __('You have received a friend request from this user.', CPC2_TEXT_DOMAIN)),
+            'friend_add_label' => cpc_get_shortcode_value($values, 'cpc_is_friend_content-friend_add_label', __('Freundschaft schließen', CPC2_TEXT_DOMAIN)),
+            'friend_cancel_request_label' => cpc_get_shortcode_value($values, 'cpc_is_friend_content-friend_cancel_request_label', __('Anfrage abbrechen', CPC2_TEXT_DOMAIN)),     
+            'accept_request_label' => cpc_get_shortcode_value($values, 'cpc_is_friend_content-accept_request_label', __('Akzeptiere Freundschaft', CPC2_TEXT_DOMAIN)),
+            'reject_request_label' => cpc_get_shortcode_value($values, 'cpc_is_friend_content-reject_request_label', __('Ablehnen', CPC2_TEXT_DOMAIN)),
+            'request_made_msg' => cpc_get_shortcode_value($values, 'cpc_is_friend_content-request_made_msg', __('Du hast eine Freundschaftsanfrage von diesem Benutzer erhalten.', CPC2_TEXT_DOMAIN)),
             'friendship_class' => cpc_get_shortcode_value($values, 'cpc_is_friend_content-friendship_class', ''),
             'styles' => true,
             'after' => '',
@@ -869,7 +863,7 @@ function cpc_user_exists_content($atts, $content="") {
     // Shortcode parameters
     $values = cpc_get_shortcode_options('cpc_user_exists_content');
     extract( shortcode_atts( array(
-        'not_found_msg' => cpc_get_shortcode_value($values, 'cpc_user_exists_content-not_found_msg', __('User does not exist!', CPC2_TEXT_DOMAIN)),
+        'not_found_msg' => cpc_get_shortcode_value($values, 'cpc_user_exists_content-not_found_msg', __('Benutzer existiert nicht!', CPC2_TEXT_DOMAIN)),
         'styles' => true,
         'after' => '',
         'before' => '',        
@@ -964,8 +958,8 @@ function cpc_backup_activity_page($atts){
 		'map_size' => cpc_get_shortcode_value($values, 'cpc_activity_page-map_size', '150,150'),
 		'map_zoom' => cpc_get_shortcode_value($values, 'cpc_activity_page-map_zoom', 4),
 		'town_label' => cpc_get_shortcode_value($values, 'cpc_activity_page-town_label', __('Stadt/Gemeinde', CPC2_TEXT_DOMAIN)),
-        'country_label' => cpc_get_shortcode_value($values, 'cpc_activity_page-country_label', __('Country', CPC2_TEXT_DOMAIN)),
-        'requests_label' => cpc_get_shortcode_value($values, 'cpc_activity_page-requests_label', __('Friend Requests', CPC2_TEXT_DOMAIN)),
+        'country_label' => cpc_get_shortcode_value($values, 'cpc_activity_page-country_label', __('Land', CPC2_TEXT_DOMAIN)),
+        'requests_label' => cpc_get_shortcode_value($values, 'cpc_activity_page-requests_label', __('Freundschaftsanfragen', CPC2_TEXT_DOMAIN)),
         'styles' => true,
 	), $atts, 'cpc_activity_page' ) );
     
@@ -1026,8 +1020,8 @@ function cpc_last_active($atts) {
         extract( shortcode_atts( array(
             'user_id' => cpc_get_shortcode_value($values, 'cpc_last_active-user_id', ''),
             'show_as_date' => cpc_get_shortcode_value($values, 'cpc_last_active-show_as_date', false),                    
-            'date_format' => cpc_get_shortcode_value($values, 'cpc_last_active-date_format', __('%s ago', CPC2_TEXT_DOMAIN)),
-            'not_active_msg' => cpc_get_shortcode_value($values, 'cpc_last_active-not_logged_in_msg', __('Not active recently.', CPC2_TEXT_DOMAIN)),                    
+            'date_format' => cpc_get_shortcode_value($values, 'cpc_last_active-date_format', __('vor %s', CPC2_TEXT_DOMAIN)),
+            'not_active_msg' => cpc_get_shortcode_value($values, 'cpc_last_active-not_logged_in_msg', __('In letzter Zeit nicht aktiv.', CPC2_TEXT_DOMAIN)),                    
             'after' => '',
             'before' => '',            
             'styles' => true,
@@ -1078,9 +1072,9 @@ function cpc_last_logged_in($atts) {
         extract( shortcode_atts( array(
             'user_id' => cpc_get_shortcode_value($values, 'cpc_last_logged_in-user_id', ''),
             'show_as_date' => cpc_get_shortcode_value($values, 'cpc_last_logged_in-show_as_date', false),                    
-            'date_format' => cpc_get_shortcode_value($values, 'cpc_last_logged_in-date_format', __('%s ago', CPC2_TEXT_DOMAIN)),
+            'date_format' => cpc_get_shortcode_value($values, 'cpc_last_logged_in-date_format', __('vor %s', CPC2_TEXT_DOMAIN)),
             'previous' => cpc_get_shortcode_value($values, 'cpc_last_logged_in-previous', false),                    
-            'not_logged_in_msg' => cpc_get_shortcode_value($values, 'cpc_last_logged_in-not_logged_in_msg', __('Not logged in recently.', CPC2_TEXT_DOMAIN)),
+            'not_logged_in_msg' => cpc_get_shortcode_value($values, 'cpc_last_logged_in-not_logged_in_msg', __('Kürzlich nicht angemeldet.', CPC2_TEXT_DOMAIN)),
             'after' => '',
             'before' => '',            
             'styles' => true,
