@@ -3,7 +3,7 @@
 add_action( 'admin_menu', 'cpc_add_forums_menu' );
 function cpc_add_forums_menu() {
     add_submenu_page(get_option('cpc_core_admin_icons') ? 'cpc_com' : '', __('Forum Setup', CPC2_TEXT_DOMAIN), __('Forum Setup', CPC2_TEXT_DOMAIN), 'manage_options', 'edit-tags.php?taxonomy=cpc_forum&post_type=cpc_forum_post');
-    add_submenu_page(get_option('cpc_core_admin_icons') ? 'cpc_com' : '', __('All Forums', CPC2_TEXT_DOMAIN), __('All Forums', CPC2_TEXT_DOMAIN), 'manage_options', 'cpccom_forum_setup', 'cpccom_forum_setup');
+    add_submenu_page(get_option('cpc_core_admin_icons') ? 'cpc_com' : '', __('Alle Foren', CPC2_TEXT_DOMAIN), __('AAlle Foren', CPC2_TEXT_DOMAIN), 'manage_options', 'cpccom_forum_setup', 'cpccom_forum_setup');
 }
 
 // Quick Start
@@ -11,17 +11,17 @@ add_action('cpc_admin_quick_start_hook', 'cpc_admin_quick_start_forum');
 function cpc_admin_quick_start_forum() {
 
 	echo '<div style="margin-right:10px; float:left">';
-	echo '<input type="submit" id="cpc_admin_forum_add" class="button-secondary" value="'.__('Add Forum', CPC2_TEXT_DOMAIN).'" />';
+	echo '<input type="submit" id="cpc_admin_forum_add" class="button-secondary" value="'.__('Forum hinzufügen', CPC2_TEXT_DOMAIN).'" />';
 	echo '</div>';
 
 	echo '<div id="cpc_admin_forum_add_details" style="clear:both;display:none">';
 		echo '<form action="" method="POST">';
 		echo '<input type="hidden" name="cpccom_quick_start" value="forum" />';
-		echo '<br /><strong>'.__('Enter name of new forum', CPC2_TEXT_DOMAIN).'</strong><br />';
+		echo '<br /><strong>'.__('Gib den Namen des neuen Forums ein', CPC2_TEXT_DOMAIN).'</strong><br />';
 		echo '<input type="input" style="margin-top:4px;" id="cpc_admin_forum_add_name" name="cpc_admin_forum_add_name" /><br />';
-		echo '<br /><strong>'.__('Enter description of new forum', CPC2_TEXT_DOMAIN).'</strong><br />';
+		echo '<br /><strong>'.__('Gib eine Beschreibung des neuen Forums ein', CPC2_TEXT_DOMAIN).'</strong><br />';
 		echo '<input type="input" style="margin-top:4px;width:300px;" id="cpc_admin_forum_add_description" name="cpc_admin_forum_add_description" /><br /><br />';
-		echo '<input type="submit" id="cpc_admin_forum_add_button" class="button-primary" value="'.__('Publish', CPC2_TEXT_DOMAIN).'" />';
+		echo '<input type="submit" id="cpc_admin_forum_add_button" class="button-primary" value="'.__('Veröffentlichen', CPC2_TEXT_DOMAIN).'" />';
 		echo '</form>';
 	echo '</div>';
 
@@ -49,7 +49,7 @@ function cpc_admin_quick_start_forum_save($the_post) {
 
 		if (is_wp_error($new_term)):
 			
-			echo '<div class="cpc_error">'.__('You have already added this Forum.', CPC2_TEXT_DOMAIN).'</div>';
+			echo '<div class="cpc_error">'.__('Du hast dieses Forum bereits hinzugefügt.', CPC2_TEXT_DOMAIN).'</div>';
 
 		else:
 
@@ -74,9 +74,8 @@ function cpc_admin_quick_start_forum_save($the_post) {
 			cpc_update_term_meta( $new_term['term_id'], 'cpc_forum_order', 1 );
 
 			echo '<div class="cpc_success">';
-				echo sprintf(__('Forum Page (%s) added. [<a href="%s">view</a>]', CPC2_TEXT_DOMAIN), urldecode(get_permalink($new_id)), urldecode(get_permalink($new_id))).'<br /><br />';
-				echo sprintf(__('If you are using the <a href="%s">Forum Roles Security</a> extension, choose who can see the forum via <a href="%s">CP Community->Manage All Forums</a>.', CPC2_TEXT_DOMAIN), "http://www.cpcymposiumpro.info/forum-security/", "admin.php?page=cpccom_forum_setup").'<br />';
-				echo sprintf(__('You might want to add it to your <a href="%s">ClassicPress menu</a>.', CPC2_TEXT_DOMAIN), "nav-menus.php");
+				echo sprintf(__('Forumseite (%s) hinzugefügt. [<a href="%s">view</a>]', CPC2_TEXT_DOMAIN), urldecode(get_permalink($new_id)), urldecode(get_permalink($new_id))).'<br /><br />';
+				echo sprintf(__('Vielleicht möchtest Du es zu Deinem <a href="%s">ClassicPress-Menü</a> hinzufügen.', CPC2_TEXT_DOMAIN), "nav-menus.php");
 			echo '</div>';
 
 		endif;
@@ -99,33 +98,33 @@ function cpc_admin_getting_started_forum() {
 		<table class="form-table">
 		<tr class="form-field">
 			<td scope="row" valign="top">
-				<label for="cpc_forum_auto_close"><?php _e('Auto-close period', CPC2_TEXT_DOMAIN); ?></label>
+				<label for="cpc_forum_auto_close"><?php _e('Automatischer Schließzeitraum', CPC2_TEXT_DOMAIN); ?></label>
 			</td>
 			<td>
 				<input type="text" style="width:50px" name="cpc_forum_auto_close" value="<?php echo get_option('cpc_forum_auto_close'); ?>" /> 
-				<span class="description"><?php echo sprintf(__('Default number of days after no activity that a forum post will close automatically (blank for never). Can be overridden for individual forums via Edit on <a href="%s">Manage All Forums</a>.', CPC2_TEXT_DOMAIN), admin_url( 'admin.php?page=cpccom_forum_setup' ) ); ?></span>
+				<span class="description"><?php echo sprintf(__('Standardanzahl der Tage nach Inaktivität, in denen ein Forumsbeitrag automatisch geschlossen wird (leer für „Nie“). Kann für einzelne Foren über Bearbeiten unter <a href="%s">Alle Foren verwalten</a> überschrieben werden.', CPC2_TEXT_DOMAIN), admin_url( 'admin.php?page=cpccom_forum_setup' ) ); ?></span>
 			</td>
         </tr>
 		<tr class="form-field">
 			<td scope="row" valign="top">
-				<label for="cpc_forum_slug_length"><?php _e('Slug length', CPC2_TEXT_DOMAIN); ?></label>
+				<label for="cpc_forum_slug_length"><?php _e('Slug Länge', CPC2_TEXT_DOMAIN); ?></label>
 			</td>
 			<td>
                 <?php $cpc_forum_slug_length = get_option('cpc_forum_slug_length') ? get_option('cpc_forum_slug_length') : 50; ?>
 				<input type="text" style="width:50px" name="cpc_forum_slug_length" value="<?php echo $cpc_forum_slug_length; ?>" /> 
-				<span class="description"><?php echo __('Maximum length for forum post titles in URLs.', CPC2_TEXT_DOMAIN) ; ?></span>
+				<span class="description"><?php echo __('Maximale Länge für Forenbeitragstitel in URLs.', CPC2_TEXT_DOMAIN) ; ?></span>
 			</td>
         </tr>
         <tr class="form-field">
 			<td scope="row" valign="top">
-				<label for="cpc_forum_sticky_admin_only"><?php _e('Sticky posts', CPC2_TEXT_DOMAIN); ?></label>
+				<label for="cpc_forum_sticky_admin_only"><?php _e('Sticky Beiträge', CPC2_TEXT_DOMAIN); ?></label>
 			</td>            
             <td>
                 <input type="checkbox" name="cpc_forum_sticky_admin_only" 
                 <?php if (get_option('cpc_forum_sticky_admin_only')) echo ' CHECKED'; ?>
                 />
                 <span class="description">
-                    <?php _e('Only display sticky option to site administrator.', CPC2_TEXT_DOMAIN); ?>
+                    <?php _e('Sticky-Option nur dem Webseiten-Administrator anzeigen.', CPC2_TEXT_DOMAIN); ?>
                 </span>
             </td>            
 		</tr> 
