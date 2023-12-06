@@ -41,8 +41,8 @@ function cpc_return_activity_posts() {
                     'report' => cpc_get_shortcode_value($values, 'cpc_activity-report', true),
                     'report_label' => cpc_get_shortcode_value($values, 'cpc_activity-report_label', __('Melden', CPC2_TEXT_DOMAIN)), 
                     'report_email' => cpc_get_shortcode_value($values, 'cpc_activity-report_email', get_bloginfo('admin_email')), 
-                    'sticky_label' => cpc_get_shortcode_value($values, 'cpc_activity-sticky_label', __('Stick', CPC2_TEXT_DOMAIN)), // blank to hide
-                    'unsticky_label' => cpc_get_shortcode_value($values, 'cpc_activity-unsticky_label', __('Unstick', CPC2_TEXT_DOMAIN)),
+                    'sticky_label' => cpc_get_shortcode_value($values, 'cpc_activity-sticky_label', __('Sticky', CPC2_TEXT_DOMAIN)), // blank to hide
+                    'unsticky_label' => cpc_get_shortcode_value($values, 'cpc_activity-unsticky_label', __('Lösen', CPC2_TEXT_DOMAIN)),
                     'delete_label' => cpc_get_shortcode_value($values, 'cpc_activity-delete_label', __('Löschen', CPC2_TEXT_DOMAIN)), // blank to hide
                     'hide_label' => cpc_get_shortcode_value($values, 'cpc_activity-hide_label', __('Verbergen', CPC2_TEXT_DOMAIN)), // blank to hide
                     'avatar_size' => cpc_get_shortcode_value($values, 'cpc_activity-avatar_size', 64),                    

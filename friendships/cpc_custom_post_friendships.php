@@ -75,7 +75,7 @@ add_action( 'add_meta_boxes', 'friendship_info_box' );
 function friendship_info_box() {
     add_meta_box( 
         'friendship_info_box',
-        __( 'cpc_friendship', CPC2_TEXT_DOMAIN ),
+        __('Erstelle eine Freundschaft', CPC2_TEXT_DOMAIN ),
         'friendship_info_box_content',
         'cpc_friendship',
         'normal',

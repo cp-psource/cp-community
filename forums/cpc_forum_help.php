@@ -102,7 +102,7 @@ function cpc_admin_getting_started_forum() {
 			</td>
 			<td>
 				<input type="text" style="width:50px" name="cpc_forum_auto_close" value="<?php echo get_option('cpc_forum_auto_close'); ?>" /> 
-				<span class="description"><?php echo sprintf(__('Standardanzahl der Tage nach Inaktivität, in denen ein Forumsbeitrag automatisch geschlossen wird (leer für „Nie“). Kann für einzelne Foren über Bearbeiten unter <a href="%s">Alle Foren verwalten</a> überschrieben werden.', CPC2_TEXT_DOMAIN), admin_url( 'admin.php?page=cpccom_forum_setup' ) ); ?></span>
+				<span class="description"><?php echo sprintf(__('Standardanzahl der Tage nach Inaktivität, in denen ein Forumsbeitrag automatisch geschlossen wird (leer für Nie). Kann für einzelne Foren über Bearbeiten unter <a href="%s">Alle Foren verwalten</a> überschrieben werden.', CPC2_TEXT_DOMAIN), admin_url( 'admin.php?page=cpccom_forum_setup' ) ); ?></span>
 			</td>
         </tr>
 		<tr class="form-field">

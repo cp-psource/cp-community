@@ -634,12 +634,12 @@ function cpc_admin_getting_started_options() {
                                 echo cpc_codex_link('https://cp-community.n3rds.work/cpc_codex/cpc-alerts-activity');
                                 echo '<p><strong>'.__('Optionen', CPC2_TEXT_DOMAIN).'</strong><br />';
                                 echo '<table cellpadding="0" cellspacing="0"  class="cpc_shortcode_value_row">';
-                                    echo '<tr><td>'.__('Style of List', CPC2_TEXT_DOMAIN).'</td><td>';
+                                    echo '<tr><td>'.__('Stil der Liste', CPC2_TEXT_DOMAIN).'</td><td>';
                                         $style = cpc_get_shortcode_default($values, 'cpc_alerts_activity-style', 'dropdown');
                                         echo '<select name="cpc_alerts_activity-style">';
-                                            echo '<option value="dropdown"'.($style == 'dropdown' ? ' SELECTED' : '').'>'.__('Dropdown list', CPC2_TEXT_DOMAIN).'</option>';
-                                            echo '<option value="list"'.($style == 'list' ? ' SELECTED' : '').'>'.__('List', CPC2_TEXT_DOMAIN).'</option>';
-                                            echo '<option value="flag"'.($style == 'flag' ? ' SELECTED' : '').'>'.__('Icon', CPC2_TEXT_DOMAIN).'</option>';
+                                            echo '<option value="dropdown"'.($style == 'dropdown' ? ' SELECTED' : '').'>'.__('Dropdown Liste', CPC2_TEXT_DOMAIN).'</option>';
+                                            echo '<option value="list"'.($style == 'list' ? ' SELECTED' : '').'>'.__('Liste', CPC2_TEXT_DOMAIN).'</option>';
+                                            echo '<option value="flag"'.($style == 'flag' ? ' SELECTED' : '').'>'.__('Symbol', CPC2_TEXT_DOMAIN).'</option>';
                                         echo '</select></td><td>(style="'.$style.'")</td></tr>';
                                     echo '<tr class="cpc_desc"><td colspan="3">';
                                         echo __("How the alerts are presented.", CPC2_TEXT_DOMAIN);
@@ -2414,7 +2414,7 @@ function cpc_save_option($values, $the_post, $name, $checkbox=false) {
 if (is_admin()) add_action('cpc_show_styling_options_hook', 'cpc_show_styling_options', 10, 2);		
 function cpc_show_styling_options($function, $values) {
 
-    echo '<tr><td colspan=3 class="cpc_section">'.__('Style (not available via shortcode options)...', CPC2_TEXT_DOMAIN);    
+    echo '<tr><td colspan=3 class="cpc_section">'.__('Stil (nicht über Shortcode-Optionen verfügbar)...', CPC2_TEXT_DOMAIN);    
     
     if (isset($_GET['global_styles'])):
         if ($_GET['global_styles'] == 'on'):
@@ -2426,10 +2426,10 @@ function cpc_show_styling_options($function, $values) {
 
     $global_styles = ($var = get_option('cpccom_global_styles')) ? $var : 'off';
     if ($global_styles == 'on'):
-        echo '<br />'.__('Add styles="0" to a shortcode to avoid using the following styles.', CPC2_TEXT_DOMAIN);
-        echo '<br /><a href="'.admin_url( 'admin.php?page=cpc_com_shortcodes' ).'&global_styles=off">'.__('Switch styles off globally (this affects the entire output of the shortcode)', CPC2_TEXT_DOMAIN).'</a> ('.__('performance increase and easier to manually apply CSS', CPC2_TEXT_DOMAIN).')</td></tr>';    
+        echo '<br />'.__('Füge style="0" zu einem Shortcode hinzu, um die Verwendung der folgenden Stile zu vermeiden.', CPC2_TEXT_DOMAIN);
+        echo '<br /><a href="'.admin_url( 'admin.php?page=cpc_com_shortcodes' ).'&global_styles=off">'.__('Stile global ausschalten (dies betrifft die gesamte Ausgabe des Shortcodes)', CPC2_TEXT_DOMAIN).'</a> ('.__('performance increase and easier to manually apply CSS', CPC2_TEXT_DOMAIN).')</td></tr>';    
     else:
-        echo '<br /><a href="'.admin_url( 'admin.php?page=cpc_com_shortcodes' ).'&global_styles=on">'.__('Switch styles on globally</a> (this affects the entire output of the shortcodes, not the same as <a href="'.admin_url( 'admin.php?page=cpc_com_styles' ).'">Styles</a> which lets you style parts of the shortcode)', CPC2_TEXT_DOMAIN).'.</td></tr>';    
+        echo '<br /><a href="'.admin_url( 'admin.php?page=cpc_com_shortcodes' ).'&global_styles=on">'.__('Schalte Stile global ein</a> (dies betrifft die gesamte Ausgabe der Shortcodes, nicht dasselbe wie <a href="'.admin_url( 'admin.php?page=cpc_com_styles' ).'">Stile</a> wodurch Du Teile des Shortcodes formatieren kannst)', CPC2_TEXT_DOMAIN).'.</td></tr>';    
     endif;
 
     if ($global_styles != 'off'):
@@ -2797,14 +2797,14 @@ function cpc_show_core($values, $field, $label, $help, $video) {
     if (in_array($field, $values)) $html .= ' CHECKED';
     $html .= '>'.$label;
 
-    if ($help) $html .= sprintf('<a href="%s" target="_blank"><img style="width:16px;height:16px" src="'.plugins_url('../cp-community/css/images/help.png', __FILE__).'" title="'.__('help', CPC2_TEXT_DOMAIN).'" /></a>', $help);
-    if ($video) $html .= sprintf('<a href="%s" target="_blank"><img style="width:16px;height:16px" src="'.plugins_url('../cp-community/css/images/video.png', __FILE__).'" title="'.__('video', CPC2_TEXT_DOMAIN).'" /></a>', $video);
+    if ($help) $html .= sprintf('<a href="%s" target="_blank"><img style="width:16px;height:16px" src="'.plugins_url('../cp-community/css/images/help.png', __FILE__).'" title="'.__('Hilfe', CPC2_TEXT_DOMAIN).'" /></a>', $help);
+    if ($video) $html .= sprintf('<a href="%s" target="_blank"><img style="width:16px;height:16px" src="'.plugins_url('../cp-community/css/images/video.png', __FILE__).'" title="'.__('Video', CPC2_TEXT_DOMAIN).'" /></a>', $video);
     $html .= '<br />';
     return $html;
 }
 
 function cpc_codex_link($url) {
-    return '<div class="cpc_codex_link"><a target="_blank" href="'.$url.'">'.__('Click here for help, information and examples with this shortcode (opens new window)...').'</a></div>';
+    return '<div class="cpc_codex_link"><a target="_blank" href="'.$url.'">'.__('Klicke hier für Hilfe, Informationen und Beispiele mit diesem Shortcode (öffnet neues Fenster)...').'</a></div>';
 }
 
 /* STYLES */
@@ -2820,7 +2820,7 @@ function cpc_admin_getting_started_styles() {
         echo '</style>';
         echo '<div id="cpc_release_notes">';
             echo '<div id="cpc_welcome_bar" style="margin-top: 20px;">';
-                echo '<img id="cpc_welcome_logo" style="width:56px; height:56px; float:left;" src="'.plugins_url('../cp-community/css/images/cpc_logo.png', __FILE__).'" title="'.__('help', CPC2_TEXT_DOMAIN).'" />';
+                echo '<img id="cpc_welcome_logo" style="width:56px; height:56px; float:left;" src="'.plugins_url('../cp-community/css/images/cpc_logo.png', __FILE__).'" title="'.__('Hilfe', CPC2_TEXT_DOMAIN).'" />';
                 echo '<div style="font-size:2em; line-height:1em; font-weight:100; color:#fff;">'.__('Willkommen bei CP-Community', CPC2_TEXT_DOMAIN).'</div>';
                 echo '<p style="color:#fff;"><em>'.__('Das ultimative Plugin für soziale Netzwerke für ClassicPress', CPC2_TEXT_DOMAIN).'</em></p>';
             echo '</div>';
@@ -2839,22 +2839,22 @@ function cpc_admin_getting_started_styles() {
                         $sql = "DELETE FROM ".$wpdb->prefix."options WHERE option_name like 'cpc_styles_%'";
                         $wpdb->query($sql);
                         echo '<div class="cpc_success" style="margin-top:20px">';
-                            echo sprintf(__('CP Community styles all reset! <a href="%s">Continue...</a>', CPC2_TEXT_DOMAIN), admin_url( 'admin.php?page=cpc_com_styles' ));
+                            echo sprintf(__('CP-Community-Stile wurden alle zurückgesetzt! <a href="%s">Weiter...</a>', CPC2_TEXT_DOMAIN), admin_url( 'admin.php?page=cpc_com_styles' ));
                         echo '</div>';
 
                     } else {
             
                         echo '<h1>BETA</h1>';
-                        echo '<p>This is a new feature and is being trialled, please let us know what you think or any problems you may have so we can fix them! When stable we will expand the options available. Thank you!</p>';
+                        echo '<p>Dies ist eine neue Funktion und wird derzeit getestet. Teile uns bitte Deine Meinung mit oder teile uns eventuelle Probleme mit, damit wir diese beheben können! Sobald die Stabilität stabil ist, werden wir die verfügbaren Optionen erweitern. Danke schön!</p>';
                         echo '<div id="cpc_admin_getting_started_options_help" style="margin-bottom:20px;'.(true || !isset($_POST['cpc_expand_shortcode']) ? '' : 'display:none;').'">';
-                        echo sprintf(__('This section provides a quick and easy way to style all CP Community screen elements, saving you from using CSS. You can <a onclick="return confirm(\''.__('Are you sure, this cannot be undone?', CPC2_TEXT_DOMAIN).'\')" href="%s">reset all style changes</a>.', CPC2_TEXT_DOMAIN), admin_url( 'admin.php?page=cpc_com_styles&cpc_reset_options=1')).'<br />';
-                        echo '<p>'.sprintf(__('If you hover over an element, the CSS class used is shown, and you can then use <a href="%s">Custom CSS</a> to add more advanced attributes.', CPC2_TEXT_DOMAIN), admin_url( 'admin.php?page=cpc_com_custom_css')).'</p>';
+                        echo sprintf(__('Dieser Abschnitt bietet eine schnelle und einfache Möglichkeit, alle CP Community-Bildschirmelemente zu gestalten und erspart Dir die Verwendung von CSS. Zurücksetzen <a onclick="return confirm(\''.__('Bist Du sicher? Dies kann icht rückgängig gemacht werden!', CPC2_TEXT_DOMAIN).'\')" href="%s">Alle Stiländerungen zurücksetzen</a>.', CPC2_TEXT_DOMAIN), admin_url( 'admin.php?page=cpc_com_styles&cpc_reset_options=1')).'<br />';
+                        echo '<p>'.sprintf(__('Wenn Du mit der Maus über ein Element fährst, wird die verwendete CSS-Klasse angezeigt und Du kannst dann <a href="%s">Benutzerdefiniertes CSS</a> verwenden, um erweiterte Attribute hinzuzufügen.', CPC2_TEXT_DOMAIN), admin_url( 'admin.php?page=cpc_com_custom_css')).'</p>';
                         
                         $use_styles = get_option('cpccom_use_styles');
                         if (!$use_styles):
                         
-                            echo '<br />'.__('Using styles this way adds a small load to your pages, so you need to enable it first.', CPC2_TEXT_DOMAIN).'<br />';                        
-                            echo '<br /><input type="submit" id="cpc_styles_enable_submit" name="Submit" class="button-primary" value="'.__('Enable Styles', CPC2_TEXT_DOMAIN).'" />';
+                            echo '<br />'.__('Die Verwendung von Stilen auf diese Weise belastet Deine Seiten geringfügig, daher musst Du sie zuerst aktivieren.', CPC2_TEXT_DOMAIN).'<br />';                        
+                            echo '<br /><input type="submit" id="cpc_styles_enable_submit" name="Submit" class="button-primary" value="'.__('Aktiviere Stile', CPC2_TEXT_DOMAIN).'" />';
                             echo '</div>';
                         
                         else:
@@ -2862,7 +2862,7 @@ function cpc_admin_getting_started_styles() {
                             echo '</div>';                        
 
                             echo '<div id="cpc_admin_getting_started_options_please_wait">';
-                                echo __('Please wait, loading values....', CPC2_TEXT_DOMAIN);
+                                echo __('Bitte warten, Werte werden geladen...', CPC2_TEXT_DOMAIN);
                             echo '</div>';
 
                             echo '<div id="cpc_admin_getting_started_options_left_and_middle" style="display: none;">';
@@ -2871,7 +2871,7 @@ function cpc_admin_getting_started_styles() {
                                     $cpc_expand_tab = isset($_POST['cpc_expand_tab']) ? $_POST['cpc_expand_tab'] : 'elements';
                                     $tabs = array();
                                     array_push($tabs, array('tab' => 'cpc_option_elements',     'option' => 'elements',     'title' => __('Interface', CPC2_TEXT_DOMAIN)));
-                                    array_push($tabs, array('tab' => 'cpc_option_forums',       'option' => 'forums',       'title' => __('Forums', CPC2_TEXT_DOMAIN)));
+                                    array_push($tabs, array('tab' => 'cpc_option_forums',       'option' => 'forums',       'title' => __('Foren', CPC2_TEXT_DOMAIN)));
 
                                     // any more tabs?
                                     $tabs = apply_filters( 'cpc_styles_show_tab_filter', $tabs );
@@ -2886,12 +2886,12 @@ function cpc_admin_getting_started_styles() {
                                         echo cpc_show_tab($cpc_expand_tab, $tab['tab'], $tab['option'], $tab['title']);
                                     endforeach;
 
-                                    echo '<div id="cpc_styles_save_button" style="text-align:left"><input type="submit" id="cpc_styles_save_submit" name="Submit" class="button-primary" value="'.__('Save Styles', CPC2_TEXT_DOMAIN).'" /></div>';
+                                    echo '<div id="cpc_styles_save_button" style="text-align:left"><input type="submit" id="cpc_styles_save_submit" name="Submit" class="button-primary" value="'.__('Stile speichern', CPC2_TEXT_DOMAIN).'" /></div>';
 
                                     echo '<span style="display:none;float:left;margin-bottom:19px;" class="spinner"></span>';
-                                    echo '<div style="clear:both"><hr />'.__('If not being used, you should disable this feature (you can re-enable again).', CPC2_TEXT_DOMAIN).'</div>';
+                                    echo '<div style="clear:both"><hr />'.__('Wenn Du diese Funktion nicht verwendest, solltest Du sie deaktivieren (Du kannst sie erneut aktivieren).', CPC2_TEXT_DOMAIN).'</div>';
 
-                                    echo '<div id="cpc_styles_save_button" style="text-align:left"><input type="submit" id="cpc_styles_disable_submit" name="Submit" class="button-secondary" value="'.__('Disable Styles', CPC2_TEXT_DOMAIN).'" /></div>';
+                                    echo '<div id="cpc_styles_save_button" style="text-align:left"><input type="submit" id="cpc_styles_disable_submit" name="Submit" class="button-secondary" value="'.__('Stile deaktivieren', CPC2_TEXT_DOMAIN).'" /></div>';
 
                                 echo '</div>';
 
@@ -2899,7 +2899,7 @@ function cpc_admin_getting_started_styles() {
                                     /* SHORTCODES (2nd column) */
                                     $cpc_expand_shortcode = isset($_POST['cpc_expand_shortcode']) ? $_POST['cpc_expand_shortcode'] : 'cpc_elements_tab';
                                     // Elements
-                                    echo cpc_show_style($cpc_expand_tab, $cpc_expand_shortcode, 'elements', 'cpc_elements_tab', __('Elements', CPC2_TEXT_DOMAIN));
+                                    echo cpc_show_style($cpc_expand_tab, $cpc_expand_shortcode, 'elements', 'cpc_elements_tab', __('Elemente', CPC2_TEXT_DOMAIN));
                                     // Forums
                                     echo cpc_show_style($cpc_expand_tab, $cpc_expand_shortcode, 'forums', 'cpc_forum_tab', CPC_PREFIX.'-forum');
                                     echo cpc_show_style($cpc_expand_tab, $cpc_expand_shortcode, 'forums', 'cpc_forums_tab', CPC_PREFIX.'-forums');

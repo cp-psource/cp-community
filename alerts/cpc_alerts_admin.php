@@ -580,7 +580,7 @@ function cpc_alerts_scheduled_job() {
                                 $c++;
                                 // Update post
                                 update_post_meta( $pending->ID, 'cpc_alert_sent_datetime', current_time('mysql', 1) );
-                                if ($send_report) $report .= __('Benachrichtigung wurde als „OK“ gesendet markiert.', CPC2_TEXT_DOMAIN).'<br />';
+                                if ($send_report) $report .= __('Benachrichtigung wurde als OK gesendet markiert.', CPC2_TEXT_DOMAIN).'<br />';
                                 // If set, delete alert sent immediately
                                 if (get_option('cpc_alert_delete')) {
                                     if (wp_delete_post( $pending->ID, true)) {
