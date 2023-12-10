@@ -25,8 +25,8 @@ function cpc_menu() {
 	add_submenu_page('cpc_com', __('Einstellungen', CPC2_TEXT_DOMAIN), __('Einstellungen', CPC2_TEXT_DOMAIN), 'manage_options', 'cpc_com_setup', 'cpccom_setup');
 	add_submenu_page('cpc_com', __('Shortcodes', CPC2_TEXT_DOMAIN), __('Shortcodes', CPC2_TEXT_DOMAIN), 'manage_options', 'cpc_com_shortcodes', 'cpc_com_shortcodes');
 	add_submenu_page('cpc_com', __('Styles (BETA)', CPC2_TEXT_DOMAIN), __('Styles (BETA)', CPC2_TEXT_DOMAIN), 'manage_options', 'cpc_com_styles', 'cpc_com_styles');
-	add_submenu_page(get_option('cpc_core_admin_icons') ? 'cpc_com' : '', __('Benutzerdefinierte CSS', CPC2_TEXT_DOMAIN), __('Benutzerdefinierte CSS', CPC2_TEXT_DOMAIN), 'manage_options', 'cpc_com_custom_css', 'cpccom_custom_css');
-	add_submenu_page(get_option('cpc_core_admin_icons') ? 'cpc_com' : '', __('Clear all CPC data', CPC2_TEXT_DOMAIN), __('Clear all CPC data', CPC2_TEXT_DOMAIN), 'manage_options', 'cpc_com_reset', 'cpc_com_reset');
+	add_submenu_page(get_option('cpc_core_admin_icons') ? 'cpc_com' : '', __('Benutzerdefiniertes CSS', CPC2_TEXT_DOMAIN), __('Benutzerdefiniertes CSS', CPC2_TEXT_DOMAIN), 'manage_options', 'cpc_com_custom_css', 'cpccom_custom_css');
+	add_submenu_page(get_option('cpc_core_admin_icons') ? 'cpc_com' : '', __('Lösche alle CPC-Daten', CPC2_TEXT_DOMAIN), __('Lösche CPC-Daten', CPC2_TEXT_DOMAIN), 'manage_options', 'cpc_com_reset', 'cpc_com_reset');
 	add_submenu_page('cpc_com', __('Übersetzungen', CPC2_TEXT_DOMAIN), __('Übersetzungen', CPC2_TEXT_DOMAIN), 'manage_options', 'cpc_com_translations', 'cpc_com_translations');
     
     add_submenu_page(get_option('cpc_core_admin_icons') ? 'cpc_com' : '', __('Benachrichtigungen (pro Benutzer)', CPC2_TEXT_DOMAIN), __('Benachrichtigungen (pro Benutzer)', CPC2_TEXT_DOMAIN), 'manage_options', 'cpc_alerts_per_user', 'cpc_alerts_per_user');
@@ -191,22 +191,22 @@ function cpccom_manage() {
 	  	echo '<div id="cpc_admin_admin_links">';
 
 		  	echo '<div class="cpc_manage_left">';
-			  	echo '<h3>'.__('Configure', CPC2_TEXT_DOMAIN).'</h3>';
+			  	echo '<h3>'.__('Konfigurieren', CPC2_TEXT_DOMAIN).'</h3>';
 			  	echo '<ul class="cpc_manage_icons">';
-			  	echo '<li class="cpc_icon_css'.cpc_admin_fav('custom_css').'"><a href="admin.php?page=cpc_com_custom_css">'.__('Custom CSS', CPC2_TEXT_DOMAIN).'</a></li>';
-			  	echo '<li class="cpc_icon_reset'.cpc_admin_fav('cpc_com_reset').'"><a href="admin.php?page=cpc_com_reset">'.__('Clear all CP Community data', CPC2_TEXT_DOMAIN).'</a></li>';
+			  	echo '<li class="cpc_icon_css'.cpc_admin_fav('custom_css').'"><a href="admin.php?page=cpc_com_custom_css">'.__('Benutzerdefinierte CSS', CPC2_TEXT_DOMAIN).'</a></li>';
+			  	echo '<li class="cpc_icon_reset'.cpc_admin_fav('cpc_com_reset').'"><a href="admin.php?page=cpc_com_reset">'.__('Lösche alle CP-Community-Daten', CPC2_TEXT_DOMAIN).'</a></li>';
 			  	echo '</ul>';
 		  	echo '</div>';
 
             if (strpos(CPC_CORE_PLUGINS, 'core-activity') !== false || strpos(CPC_CORE_PLUGINS, 'core-friendships') !== false || (strpos(CPC_CORE_PLUGINS, 'core-profile') !== false && ((in_array('core-rewards', $values) || in_array('core-rewards', $values)))) ):
                 echo '<div class="cpc_manage_left">';
-                    echo '<h3>'.__('User', CPC2_TEXT_DOMAIN).'</h3>';
+                    echo '<h3>'.__('Benutzer', CPC2_TEXT_DOMAIN).'</h3>';
                     echo '<ul class="cpc_manage_icons">';
                     if (strpos(CPC_CORE_PLUGINS, 'core-activity') !== false)
-                        echo '<li class="cpc_icon_activity'.cpc_admin_fav('activity_posts').'"><a href="edit.php?post_type=cpc_activity">'.__('Manage Activity Posts', CPC2_TEXT_DOMAIN).'</a></li>';
+                        echo '<li class="cpc_icon_activity'.cpc_admin_fav('activity_posts').'"><a href="edit.php?post_type=cpc_activity">'.__('Aktivitätsbeiträge verwalten', CPC2_TEXT_DOMAIN).'</a></li>';
                     if (strpos(CPC_CORE_PLUGINS, 'core-friendships') !== false):
-                        echo '<li class="cpc_icon_friends'.cpc_admin_fav('friendships').'"><a href="edit.php?post_type=cpc_friendship">'.__('Manage Friendships', CPC2_TEXT_DOMAIN).'</a></li>';
-                        echo '<li class="cpc_icon_friends'.cpc_admin_fav('favourite_friendships').'"><a href="edit.php?post_type=cpc_favourite_friend">'.__('Manage Favourites', CPC2_TEXT_DOMAIN).'</a></li>';
+                        echo '<li class="cpc_icon_friends'.cpc_admin_fav('friendships').'"><a href="edit.php?post_type=cpc_friendship">'.__('Freundschaften verwalten', CPC2_TEXT_DOMAIN).'</a></li>';
+                        echo '<li class="cpc_icon_friends'.cpc_admin_fav('favourite_friendships').'"><a href="edit.php?post_type=cpc_favourite_friend">'.__('Favoriten verwalten', CPC2_TEXT_DOMAIN).'</a></li>';
                     endif;
                     echo '</ul>';
                 echo '</div>';
@@ -216,8 +216,8 @@ function cpccom_manage() {
                 echo '<div class="cpc_manage_left">';
                     echo '<h3>'.__('Foren', CPC2_TEXT_DOMAIN).'</h3>';
                     echo '<ul class="cpc_manage_icons">';
-                    echo '<li class="cpc_icon_forums'.cpc_admin_fav('manage_all_forums').'"><a href="admin.php?page=cpccom_forum_setup">'.__('Manage All Forums', CPC2_TEXT_DOMAIN).'</a></li>';
-                    echo '<li class="cpc_icon_forums'.cpc_admin_fav('forum_posts').'"><a href="edit.php?post_type=cpc_forum_post">'.__('Manage Forum Posts', CPC2_TEXT_DOMAIN).'</a></li>';
+                    echo '<li class="cpc_icon_forums'.cpc_admin_fav('manage_all_forums').'"><a href="admin.php?page=cpccom_forum_setup">'.__('Alle Foren verwalten', CPC2_TEXT_DOMAIN).'</a></li>';
+                    echo '<li class="cpc_icon_forums'.cpc_admin_fav('forum_posts').'"><a href="edit.php?post_type=cpc_forum_post">'.__('Forenbeiträge verwalten', CPC2_TEXT_DOMAIN).'</a></li>';
                     echo '</ul>';
                 echo '</div>';
             endif;
@@ -226,10 +226,10 @@ function cpccom_manage() {
                 echo '<div class="cpc_manage_left">';
                     echo '<h3>'.__('Benachrichtigungen', CPC2_TEXT_DOMAIN).'</h3>';
                     echo '<ul class="cpc_manage_icons">';
-                    echo '<li class="cpc_icon_alerts'.cpc_admin_fav('manage_alerts').'"><a href="edit.php?post_type=cpc_alerts">'.__('Manage Alerts', CPC2_TEXT_DOMAIN).'</a></li>';
-                    echo '<li class="cpc_icon_alerts'.cpc_admin_fav('manage_user_alerts').'"><a href="edit.php?page=cpc_alerts_per_user">'.__('Manage User Alerts', CPC2_TEXT_DOMAIN).'</a></li>';
+                    echo '<li class="cpc_icon_alerts'.cpc_admin_fav('manage_alerts').'"><a href="edit.php?post_type=cpc_alerts">'.__('Benachrichtigungen verwalten', CPC2_TEXT_DOMAIN).'</a></li>';
+                    echo '<li class="cpc_icon_alerts'.cpc_admin_fav('manage_user_alerts').'"><a href="edit.php?page=cpc_alerts_per_user">'.__('Benutzer-Benachrichtigungen verwalten', CPC2_TEXT_DOMAIN).'</a></li>';
                     echo '</ul>';
-                    echo '<p>'.sprintf(__('Clear out your <a href="%s">sent and pending alerts</a> regularly.', CPC2_TEXT_DOMAIN), admin_url( 'edit.php?post_type=cpc_alerts' )).'</p>';
+                    echo '<p>'.sprintf(__('Lösche regelmäßig Deine <a href="%s">gesendeten und ausstehenden Benachrichtigungen</a>.', CPC2_TEXT_DOMAIN), admin_url( 'edit.php?post_type=cpc_alerts' )).'</p>';
                 echo '</div>';
             endif;
 
@@ -377,8 +377,8 @@ function cpccom_setup() {
 				echo sprintf(__('füge dann Deine neuen Seiten zu Deinem <a href="%s">ClassicPress-Menü</a> hinzu.', CPC2_TEXT_DOMAIN), 'nav-menus.php').'<br />';
 				echo sprintf(__('Anpassen über <a href="%s">Shortcodes</a> (über das Menü).', CPC2_TEXT_DOMAIN), admin_url( 'admin.php?page=cpc_com_shortcodes' )).'</p>';
 				echo '<p style="font-size:1.4em; font-weight:100;">'.__('So erhältst Du Unterstützung', CPC2_TEXT_DOMAIN).'</p>';
-				echo '<p style="font-weight:100;">'.sprintf(__('Support is available at <a target="_blank" href="%s">cp-community.n3rds.work</a>', CPC2_TEXT_DOMAIN), 'https://cp-community.n3rds.work/').'<br />';
-				echo sprintf(__('with <a href="%s" target="_blank">forums</a>, <a href="https://cp-community.n3rds.work/help/" target="_blank">helpdesk</a>, and live chat support.', CPC2_TEXT_DOMAIN), 'https://n3rds.work/forums/', 'https://cp-community.n3rds.work/help/').'</p>';
+				echo '<p style="font-weight:100;">'.sprintf(__('Support gibt es unter <a target="_blank" href="%s">cp-community.n3rds.work</a>', CPC2_TEXT_DOMAIN), 'https://cp-community.n3rds.work/').'<br />';
+				echo sprintf(__('mit <a href="%s" target="_blank">Forum</a>, <a href="https://cp-community.n3rds.work/help/" target="_blank">helpdesk</a>, und Live-Chat-Unterstützung.', CPC2_TEXT_DOMAIN), 'https://cp-community.n3rds.work/forums/', 'https://cp-community.n3rds.work/help/').'</p>';
 			echo '</div>';
 		echo '</div>';
 

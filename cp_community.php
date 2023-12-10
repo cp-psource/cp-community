@@ -10,6 +10,15 @@ Text Domain: cp-community
 Domain Path: /languages
 
 */
+
+require 'psource/psource-plugin-update/psource-plugin-updater.php';
+use Psource\PluginUpdateChecker\v5\PucFactory;
+$MyUpdateChecker = PucFactory::buildUpdateChecker(
+	'https://n3rds.work//wp-update-server/?action=get_metadata&slug=cp-community', 
+	__FILE__, 
+	'cp-community' 
+);
+
 if ( !defined('CPC2_TEXT_DOMAIN') ) define('CPC2_TEXT_DOMAIN', 'cp-community');
 if ( !defined('CPC_PREFIX') ) define('CPC_PREFIX', 'cpc');
 // Re-write rules
