@@ -55,6 +55,10 @@ Halte Dich mit unserem [Newsletter](https://n3rds.work/webmasterservice-n3rdswor
 
 == ChangeLog ==
 
+= 1.0.1 =
+
+* CSS Anpassung Einstellungs-Screen
+
 = 1.0.0 =
 
 == Upgrade Notice ==
