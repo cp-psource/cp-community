@@ -7,19 +7,19 @@
 
 function cpc_custom_post_forum_post() {
 	$labels = array(
-		'name'               => __( 'Posts', CPC2_TEXT_DOMAIN ),
-		'singular_name'      => __( 'Post', CPC2_TEXT_DOMAIN ),
-		'add_new'            => __( 'Add New', CPC2_TEXT_DOMAIN ),
-		'add_new_item'       => __( 'Add New post', CPC2_TEXT_DOMAIN ),
-		'edit_item'          => __( 'Edit post', CPC2_TEXT_DOMAIN ),
-		'new_item'           => __( 'New post', CPC2_TEXT_DOMAIN ),
-		'all_items'          => __( 'Forum Posts', CPC2_TEXT_DOMAIN ),
-		'view_item'          => __( 'View Forum Post', CPC2_TEXT_DOMAIN ),
-		'search_items'       => __( 'Search Forum Posts', CPC2_TEXT_DOMAIN ),
-		'not_found'          => __( 'No forum post found', CPC2_TEXT_DOMAIN ),
-		'not_found_in_trash' => __( 'No forum post found in the Trash', CPC2_TEXT_DOMAIN ), 
+		'name'               => __( 'Beiträge', CPC2_TEXT_DOMAIN ),
+		'singular_name'      => __( 'Beitrag', CPC2_TEXT_DOMAIN ),
+		'add_new'            => __( 'Neuen hinzufügen', CPC2_TEXT_DOMAIN ),
+		'add_new_item'       => __( 'Neuen Beitrag hinzufügen', CPC2_TEXT_DOMAIN ),
+		'edit_item'          => __( 'Beitrag bearbeiten', CPC2_TEXT_DOMAIN ),
+		'new_item'           => __( 'Neuer Beitrag', CPC2_TEXT_DOMAIN ),
+		'all_items'          => __( 'Forumbeiträge', CPC2_TEXT_DOMAIN ),
+		'view_item'          => __( 'Forumbeitrag anzeigen', CPC2_TEXT_DOMAIN ),
+		'search_items'       => __( 'Forenbeiträge durchsuchen', CPC2_TEXT_DOMAIN ),
+		'not_found'          => __( 'Kein Forumsbeitrag gefunden', CPC2_TEXT_DOMAIN ),
+		'not_found_in_trash' => __( 'Kein Forumsbeitrag im Papierkorb gefunden', CPC2_TEXT_DOMAIN ), 
 		'parent_item_colon'  => '',
-		'menu_name'          => __('Forum Posts', CPC2_TEXT_DOMAIN),
+		'menu_name'          => __('Forumbeiträge', CPC2_TEXT_DOMAIN),
 	);
 	$args = array(
 		'labels'        		=> $labels,
@@ -53,16 +53,16 @@ function cpc_updated_forum_post_messages( $messages ) {
 	global $post, $post_ID;
 	$messages['cpc_forum_post'] = array(
 		0 => '', 
-		1 => __('Post updated.', CPC2_TEXT_DOMAIN),
-		2 => __('Custom field updated.', CPC2_TEXT_DOMAIN),
-		3 => __('Custom field deleted.', CPC2_TEXT_DOMAIN),
-		4 => __('Post updated.', CPC2_TEXT_DOMAIN),
+		1 => __('Beitrag aktualisiert.', CPC2_TEXT_DOMAIN),
+		2 => __('Benutzerdefiniertes Feld aktualisiert.', CPC2_TEXT_DOMAIN),
+		3 => __('Benutzerdefiniertes Feld gelöscht.', CPC2_TEXT_DOMAIN),
+		4 => __('Beitrag aktualisiert.', CPC2_TEXT_DOMAIN),
 		5 => isset($_GET['revision']) ? sprintf( __('Post restored to revision from %s'), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
-		6 => __('Post published.', CPC2_TEXT_DOMAIN),
-		7 => __('Post saved.', CPC2_TEXT_DOMAIN),
-		8 => __('Post submitted.', CPC2_TEXT_DOMAIN),
-		9 => sprintf( __('Post scheduled for: <strong>%1$s</strong>.'), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ) ),
-		10 => __('Post draft updated.', CPC2_TEXT_DOMAIN),
+		6 => __('Beitrag veröffentlicht.', CPC2_TEXT_DOMAIN),
+		7 => __('Beitrag gespeichert.', CPC2_TEXT_DOMAIN),
+		8 => __('Beitrag eingereicht.', CPC2_TEXT_DOMAIN),
+		9 => sprintf( __('Beitrag geplant für: <strong>%1$s</strong>.'), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ) ),
+		10 => __('Beitragsentwurf aktualisiert.', CPC2_TEXT_DOMAIN),
 	);
 	return $messages;
 }
@@ -76,7 +76,7 @@ add_action( 'add_meta_boxes', 'forum_post_info_box' );
 function forum_post_info_box() {
     add_meta_box( 
         'forum_post_info_box',
-        __( 'Post Details', CPC2_TEXT_DOMAIN ),
+        __( 'Beitragsdetails', CPC2_TEXT_DOMAIN ),
         'forum_post_info_box_content',
         'cpc_forum_post',
         'side',
@@ -88,7 +88,7 @@ function forum_post_info_box_content( $post ) {
 	global $wpdb;
 	wp_nonce_field( 'forum_post_info_box_content', 'forum_post_info_box_content_nonce' );
 
-	echo '<strong>'.__('Post author', CPC2_TEXT_DOMAIN).'</strong><br />';
+	echo '<strong>'.__('Autor des Beitrags', CPC2_TEXT_DOMAIN).'</strong><br />';
 	$author = get_user_by('id', $post->post_author);
 	echo $author->display_name.'<br />';
 	echo 'ID: '.$author->ID;
@@ -96,7 +96,7 @@ function forum_post_info_box_content( $post ) {
 	echo '<br /><br >';
 	echo '<input type="checkbox" name="cpc_sticky"';
 		if (get_post_meta($post->ID, 'cpc_sticky', true)) echo ' CHECKED';
-		echo '> '.__('Stick to top of posts?', CPC2_TEXT_DOMAIN);
+		echo '> '.__('Am Anfang der Beiträge anheften?', CPC2_TEXT_DOMAIN);
 }
 
 add_action( 'save_post', 'forum_post_info_box_save' );

@@ -27,17 +27,17 @@ function add_cpc_forum_custom_taxonomies() {
 		'hierarchical' => true,
 		// This array of options controls the labels displayed in the ClassicPress Admin UI
 		'labels' => array(
-			'name' 				=> __( 'Forums', CPC2_TEXT_DOMAIN ),
+			'name' 				=> __( 'Foren', CPC2_TEXT_DOMAIN ),
 			'singular_name' 	=> __( 'Forum', CPC2_TEXT_DOMAIN ),
-			'search_items' 		=> __( 'Search Forums', CPC2_TEXT_DOMAIN ),
-			'all_items' 		=> __( 'All Forums', CPC2_TEXT_DOMAIN ),
-			'parent_item' 		=> __( 'Parent Forum', CPC2_TEXT_DOMAIN ),
-			'parent_item_colon' => __( 'Parent Forum:', CPC2_TEXT_DOMAIN ),
-			'edit_item' 		=> __( 'Edit Forum', CPC2_TEXT_DOMAIN ),
-			'update_item' 		=> __( 'Update Forum', CPC2_TEXT_DOMAIN ),
-			'add_new_item' 		=> __( 'Add New Forum', CPC2_TEXT_DOMAIN ),
-			'new_item_name' 	=> __( 'New Forum Name', CPC2_TEXT_DOMAIN ),
-			'menu_name'			=> __( 'Forums', CPC2_TEXT_DOMAIN ),
+			'search_items' 		=> __( 'Suche Foren', CPC2_TEXT_DOMAIN ),
+			'all_items' 		=> __( 'Alle Foren', CPC2_TEXT_DOMAIN ),
+			'parent_item' 		=> __( 'Elternforum', CPC2_TEXT_DOMAIN ),
+			'parent_item_colon' => __( 'Elternforum:', CPC2_TEXT_DOMAIN ),
+			'edit_item' 		=> __( 'Forum bearbeiten', CPC2_TEXT_DOMAIN ),
+			'update_item' 		=> __( 'Forum aktualisieren', CPC2_TEXT_DOMAIN ),
+			'add_new_item' 		=> __( 'Neues Forum hinzufügen', CPC2_TEXT_DOMAIN ),
+			'new_item_name' 	=> __( 'Neuer Forumsname', CPC2_TEXT_DOMAIN ),
+			'menu_name'			=> __( 'Foren', CPC2_TEXT_DOMAIN ),
 		),
         // Control the slugs used for this taxonomy
 		'rewrite' => array(
@@ -56,23 +56,23 @@ function cpc_taxonomy_metadata_add( $tag ) {
 	// Only allow users with capability to publish content
 	if ( current_user_can( 'publish_posts' ) ): ?>
 	<div class="form-field">
-		<label for="cpc_forum_public"><?php _e('Visibility', CPC2_TEXT_DOMAIN); ?></label>
+		<label for="cpc_forum_public"><?php _e('Sichtbarkeit', CPC2_TEXT_DOMAIN); ?></label>
 		<input name="cpc_forum_public" id="cpc_forum_public" type="checkbox" style="width:10px" />
-		<span class="description"><?php _e('Can this forum be viewed without logging in?', CPC2_TEXT_DOMAIN); ?></span>
+		<span class="description"><?php _e('Kann dieses Forum auch ohne Anmeldung besucht werden?', CPC2_TEXT_DOMAIN); ?></span>
 	</div>
 
 	<div class="form-field">
-		<label for="cpc_forum_order"><?php _e('Order', CPC2_TEXT_DOMAIN); ?></label>
+		<label for="cpc_forum_order"><?php _e('Sortierung', CPC2_TEXT_DOMAIN); ?></label>
 		<input type="text" name="cpc_forum_order" id="cpc_forum_order" style="width:50px" />
-		<span class="description"><?php _e('Order in which the forum is shown, in a list of forums.', CPC2_TEXT_DOMAIN); ?></span>
+		<span class="description"><?php _e('Reihenfolge, in der das Forum in einer Forenliste angezeigt wird.', CPC2_TEXT_DOMAIN); ?></span>
 	</div> 
 
 
 	<div class="form-field">
-		<label for="cpc_forum_cat_page"><?php _e('ClassicPress page', CPC2_TEXT_DOMAIN); ?></label>
+		<label for="cpc_forum_cat_page"><?php _e('ClassicPress-Seite', CPC2_TEXT_DOMAIN); ?></label>
 		<select name="cpc_forum_cat_page" name="cpc_forum_cat_page">
 		 <?php 
-		  echo '<option value="0">'.__('Select page...', CPC2_TEXT_DOMAIN).'</option>';
+		  echo '<option value="0">'.__('Seite auswählen...', CPC2_TEXT_DOMAIN).'</option>';
 		  $pages = get_pages(); 
 		  foreach ( $pages as $page ) {
 		  	$option = '<option value="' . $page->ID . '">';
@@ -82,11 +82,11 @@ function cpc_taxonomy_metadata_add( $tag ) {
 		  }
 		 ?>						
 		</select>
-		<div class="description"><?php echo sprintf(__('ClassicPress page that has this forum\'s shortcodes on.<br />See <a href="%s">Getting Started</a> information.', CPC2_TEXT_DOMAIN), 'admin.php?page=cpc_com'); ?></div>
-		<div class="description"><br /><strong><?php _e('Make sure your forum slug matches your forum page slug.', CPC2_TEXT_DOMAIN); ?></strong><br />
-		<strong><?php _e('Your forum page should not have a parent page.', CPC2_TEXT_DOMAIN); ?></strong></div>    
+		<div class="description"><?php echo sprintf(__('ClassicPress-Seite, auf der die Shortcodes dieses Forums verfügbar sind.<br />Weitere Informationen findest Du unter <a href="%s">Erste Schritte</a>.', CPC2_TEXT_DOMAIN), 'admin.php?page=cpc_com'); ?></div>
+		<div class="description"><br /><strong><?php _e('Stelle sicher, dass Dein Forum-Slug mit Deinem Forum-Seiten-Slug übereinstimmt.', CPC2_TEXT_DOMAIN); ?></strong><br />
+		<strong><?php _e('Deine Forumseite sollte keine übergeordnete Seite haben.', CPC2_TEXT_DOMAIN); ?></strong></div>    
     </div> 
-    <p><a href="admin.php?page=cpccom_forum_setup"><?php _e('Go to Forum Administration', CPC2_TEXT_DOMAIN); ?></a></p><br />
+    <p><a href="admin.php?page=cpccom_forum_setup"><?php _e('Gehe zur Forumverwaltung', CPC2_TEXT_DOMAIN); ?></a></p><br />
 
 <?php endif;
 }
@@ -97,17 +97,17 @@ function cpc_taxonomy_metadata_edit( $tag ) {
 	if ( current_user_can( 'publish_posts' ) ): ?>
 	<tr class="form-field">
 		<th scope="row" valign="top">
-			<label for="cpc_forum_public"><?php _e('Visibility', CPC2_TEXT_DOMAIN); ?></label>
+			<label for="cpc_forum_public"><?php _e('Sichtbarkeit', CPC2_TEXT_DOMAIN); ?></label>
 		</th>
 		<td>
 			<input name="cpc_forum_public" id="cpc_forum_public" type="checkbox" <?php if ( cpc_get_term_meta($tag->term_id, 'cpc_forum_public', true) ) echo 'CHECKED'; ?> style="width:10px" />
-			<span class="description"><?php _e('Can this forum be viewed without logging in?', CPC2_TEXT_DOMAIN); ?></span>
+			<span class="description"><?php _e('Kann dieses Forum auch ohne Anmeldung besucht werden?', CPC2_TEXT_DOMAIN); ?></span>
 		</td>
 	</tr>
 
 	<tr class="form-field">
 		<th scope="row" valign="top">
-			<label for="cpc_forum_closed"><?php _e('Auto-close period', CPC2_TEXT_DOMAIN); ?></label>
+			<label for="cpc_forum_closed"><?php _e('Zeitraum für automatisches Schließen', CPC2_TEXT_DOMAIN); ?></label>
 		</th>
 		<td>
 			<?php
@@ -116,28 +116,28 @@ function cpc_taxonomy_metadata_edit( $tag ) {
 				$cpc_forum_auto_close = get_option( 'cpc_forum_auto_close' ) ? get_option( 'cpc_forum_auto_close' ) : '';
 			?>
 			<input type="text" name="cpc_forum_auto_close" id="cpc_forum_auto_close" style="width:50px" value="<?php echo $cpc_forum_auto_close; ?>" />
-			<span class="description"><?php echo sprintf(__('Number of days after no activity that a forum post will close automatically (if left blank, default is used from <a href="%s">Setup->Forum</a>).', CPC2_TEXT_DOMAIN), admin_url( 'admin.php?page=cpc_com_setup' )); ?></span>
+			<span class="description"><?php echo sprintf(__('Anzahl der Tage nach Inaktivität, in denen ein Forumsbeitrag automatisch geschlossen wird (wenn leer gelassen, wird die Standardeinstellung aus <a href="%s">Setup->Forum</a> verwendet).', CPC2_TEXT_DOMAIN), admin_url( 'admin.php?page=cpc_com_setup' )); ?></span>
 		</td>
 	</tr>
 
 	<tr class="form-field">
 		<th scope="row" valign="top">
-			<label for="cpc_forum_closed"><?php _e('Lock forum', CPC2_TEXT_DOMAIN); ?></label>
+			<label for="cpc_forum_closed"><?php _e('Forum sperren', CPC2_TEXT_DOMAIN); ?></label>
 		</th>
 		<td>
 			<input name="cpc_forum_closed" id="cpc_forum_closed" type="checkbox" <?php if ( cpc_get_term_meta($tag->term_id, 'cpc_forum_closed', true) ) echo 'CHECKED'; ?> style="width:10px" />
-			<span class="description"><?php _e('Lock this forum, stopping new posts and replies', CPC2_TEXT_DOMAIN); ?></span>
+			<span class="description"><?php _e('Sperre dieses Forum und verhindere neue Beiträge und Antworten', CPC2_TEXT_DOMAIN); ?></span>
 		</td>
 	</tr>
 
     <?php if (function_exists('cpc_forum_subs_extension_insert_rewrite_rules')): ?>
 	<tr class="form-field">
 		<th scope="row" valign="top">
-			<label for="cpc_forum_auto"><?php _e('Auto subscribe', CPC2_TEXT_DOMAIN); ?></label>
+			<label for="cpc_forum_auto"><?php _e('Automatisch abonnieren', CPC2_TEXT_DOMAIN); ?></label>
 		</th>
 		<td>
 			<input name="cpc_forum_auto" id="cpc_forum_auto" type="checkbox" <?php if ( cpc_get_term_meta($tag->term_id, 'cpc_forum_auto', true) ) echo 'CHECKED'; ?> style="width:10px" />
-			<span class="description"><?php _e('Automatically subscribe new users to this forum (users can then choose to opt-out)', CPC2_TEXT_DOMAIN); ?></span>
+			<span class="description"><?php _e('Neue Benutzer automatisch für dieses Forum abonnieren (Benutzer können sich dann abmelden)', CPC2_TEXT_DOMAIN); ?></span>
 		</td>
 	</tr>
     <?php endif; ?>
@@ -145,32 +145,32 @@ function cpc_taxonomy_metadata_edit( $tag ) {
     <?php if (function_exists('cpc_forum_subs_extension_insert_rewrite_rules')): ?>
 	<tr class="form-field">
 		<th scope="row" valign="top">
-			<label for="cpc_forum_email_all"><?php _e('Email all members', CPC2_TEXT_DOMAIN); ?></label>
+			<label for="cpc_forum_email_all"><?php _e('Sende allen Mitgliedern eine E-Mail', CPC2_TEXT_DOMAIN); ?></label>
 		</th>
 		<td>
 			<input name="cpc_forum_email_all" id="cpc_forum_email_all" type="checkbox" <?php if ( cpc_get_term_meta($tag->term_id, 'cpc_forum_email_all', true) ) echo 'CHECKED'; ?> style="width:10px" />
-			<span class="description"><?php _e('Always send email alert to all site members when new topics are added (no opt-out)', CPC2_TEXT_DOMAIN); ?></span>
+			<span class="description"><?php _e('Sende immer eine E-Mail-Benachrichtigung an alle Webseiten-Mitglieder, wenn neue Themen hinzugefügt werden (kein Opt-out)', CPC2_TEXT_DOMAIN); ?></span>
 		</td>
 	</tr>
     <?php endif; ?>
 
 	<tr class="form-field">
 		<th scope="row" valign="top">
-			<label for="cpc_forum_author"><?php _e('Show own posts', CPC2_TEXT_DOMAIN); ?></label>
+			<label for="cpc_forum_author"><?php _e('Eigene Beiträge anzeigen', CPC2_TEXT_DOMAIN); ?></label>
 		</th>
 		<td>
 			<input name="cpc_forum_author" id="cpc_forum_author" type="checkbox" <?php if ( cpc_get_term_meta($tag->term_id, 'cpc_forum_author', true) ) echo 'CHECKED'; ?> style="width:10px" />
-			<span class="description"><?php _e('Only show posts by current user (administrators always see all)', CPC2_TEXT_DOMAIN); ?></span>
+			<span class="description"><?php _e('Nur Beiträge des aktuellen Benutzers anzeigen (Administratoren sehen immer alle)', CPC2_TEXT_DOMAIN); ?></span>
 		</td>
 	</tr>
 
 	<tr class="form-field">
 		<th scope="row" valign="top">
-			<label for="cpc_forum_order"><?php _e('Order', CPC2_TEXT_DOMAIN); ?></label>
+			<label for="cpc_forum_order"><?php _e('Sortierung', CPC2_TEXT_DOMAIN); ?></label>
 		</th>
 		<td>
 			<input type="text" name="cpc_forum_order" id="cpc_forum_order" style="width:50px" value="<?php echo cpc_get_term_meta($tag->term_id, 'cpc_forum_order', true); ?>" />
-			<span class="description"><?php _e('Order in which the forum is shown, in a list of forums.', CPC2_TEXT_DOMAIN); ?></span>
+			<span class="description"><?php _e('Reihenfolge, in der das Forum in einer Forenliste angezeigt wird.', CPC2_TEXT_DOMAIN); ?></span>
 		</td>
 	</tr> 
 
@@ -180,22 +180,22 @@ function cpc_taxonomy_metadata_edit( $tag ) {
 		</th>
 		<td>
 			<p><span class="description">
-                <?php echo sprintf(__('On <a href="%s" target="_blank">ShareThis</a>, choose "website code" (not Wordpress) and copy the two sets of code supplied below (applies to all forums). Use [cpc-forum-sharethis slug="xxx"] to display.', CPC2_TEXT_DOMAIN), "http://www.sharethis.com"); ?>
+                <?php echo sprintf(__('Wähle auf <a href="%s" target="_blank">ShareThis</a> Webseiten-Code (nicht Wordpress) und kopiere die beiden unten bereitgestellten Codesätze (gilt für alle Foren). Verwende zum Anzeigen [cpc-forum-sharethis slug="xxx"].', CPC2_TEXT_DOMAIN), "http://www.sharethis.com"); ?>
             </span></p>
             <?php
             $buttons = get_option('cpc_forum_sharethis_buttons') ? get_option('cpc_forum_sharethis_buttons') : '';
             $js = get_option('cpc_forum_sharethis_js') ? get_option('cpc_forum_sharethis_js') : '';
             ?>
-            <p><strong><?php _e('1. Span tags (code for displaying your buttons)', CPC2_TEXT_DOMAIN); ?></strong></p>
+            <p><strong><?php _e('1. Span-Tags (Code zum Anzeigen Deiner Schaltflächen)', CPC2_TEXT_DOMAIN); ?></strong></p>
             <textarea style="height:100px;" name="cpc_forum_sharethis_buttons"><?php echo $buttons; ?></textarea>
-            <p><strong><?php _e('2. Script tags', CPC2_TEXT_DOMAIN); ?></strong></p>
+            <p><strong><?php _e('2. Skript-Tags', CPC2_TEXT_DOMAIN); ?></strong></p>
             <textarea style="height:100px;" name="cpc_forum_sharethis_js"><?php echo $js; ?></textarea>
 		</td>
 	</tr> 
 
 	<tr class="form-field">
 		<th scope="row" valign="top">
-			<label for="cpc_forum_cat_page"><?php _e('ClassicPress page', CPC2_TEXT_DOMAIN); ?></label>
+			<label for="cpc_forum_cat_page"><?php _e('ClassicPress-Seite', CPC2_TEXT_DOMAIN); ?></label>
 		</th>
 		<td>
 			<?php 
@@ -203,7 +203,7 @@ function cpc_taxonomy_metadata_edit( $tag ) {
 
             echo '<select name="cpc_forum_cat_page">';
 
-			  	if (!$forum_page) echo '<option value="0">'.__('Select page...', CPC2_TEXT_DOMAIN).'</option>';
+			  	if (!$forum_page) echo '<option value="0">'.__('Seite auswählen...', CPC2_TEXT_DOMAIN).'</option>';
 			  	$pages = get_pages(); 
 			  	foreach ( $pages as $page ):
 			  		$option = '<option value="' . $page->ID . '"';
@@ -217,21 +217,21 @@ function cpc_taxonomy_metadata_edit( $tag ) {
 			echo '</select>';
 			 ?>						
 			<br />
-			<span class="description"><?php _e('ClassicPress page that has this forum\'s shortcodes on.', CPC2_TEXT_DOMAIN); ?>
-			<?php if ($forum_page) { ?> [<a href="post.php?post=<?php echo $forum_page; ?>&action=edit"><?php _e('Edit', CPC2_TEXT_DOMAIN); ?></a>]<?php } ?></span><br />
-			<div class="description"><br /><strong><?php _e('Make sure your forum slug matches your forum page slug.', CPC2_TEXT_DOMAIN); ?></strong><br />
-			<strong><?php _e('Your forum page should not have a parent page.', CPC2_TEXT_DOMAIN); ?></strong></div>
+			<span class="description"><?php _e('ClassicPress-Seite, auf der die Shortcodes dieses Forums verfügbar sind.', CPC2_TEXT_DOMAIN); ?>
+			<?php if ($forum_page) { ?> [<a href="post.php?post=<?php echo $forum_page; ?>&action=edit"><?php _e('Bearbeiten', CPC2_TEXT_DOMAIN); ?></a>]<?php } ?></span><br />
+			<div class="description"><br /><strong><?php _e('Stelle sicher, dass Dein Forum-Slug mit Deinem Forum-Seiten-Slug übereinstimmt.', CPC2_TEXT_DOMAIN); ?></strong><br />
+			<strong><?php _e('Deine Forumseite sollte keine übergeordnete Seite haben.', CPC2_TEXT_DOMAIN); ?></strong></div>
 		</td>
 	</tr> 
 
 	<tr class="form-field">
 		<th scope="row" valign="top">
-			<label for="cpc_forum_featured_image"><?php _e('Featured Image', CPC2_TEXT_DOMAIN); ?></label>
+			<label for="cpc_forum_featured_image"><?php _e('Ausgewähltes Bild', CPC2_TEXT_DOMAIN); ?></label>
 		</th>
 		<td>
             <input id="cpc_forum_featured_upload_image" type="text" style="width: 50%" name="cpc_forum_featured_image" value="<?php echo cpc_get_term_meta($tag->term_id, 'cpc_forum_featured_image', true); ?>" /> 
-            <button id="cpc_forum_featured_upload_image_button" class="button-secondary"><?php _e('Select from Media Library', CPC2_TEXT_DOMAIN); ?></button><br />
-            <span class="description"><?php _e('URL of an image that, if set, is used with the [cpc-forums] shortcode.', CPC2_TEXT_DOMAIN); ?>
+            <button id="cpc_forum_featured_upload_image_button" class="button-secondary"><?php _e('Wähle aus der Medienbibliothek', CPC2_TEXT_DOMAIN); ?></button><br />
+            <span class="description"><?php _e('URL eines Bildes, das, sofern festgelegt, mit dem Shortcode [cpc-forums] verwendet wird.', CPC2_TEXT_DOMAIN); ?>
 		</td>
 	</tr> 
 
@@ -327,10 +327,10 @@ function cpc_save_taxonomy_metadata_notice(){
 	echo '<style>#message { display: none; }</style>';
 
 	echo '<div class="cpc_success" style="margin-top:24px;">&larr; ';
-		echo sprintf('<a href="%s">', admin_url( 'admin.php?page=cpccom_forum_setup' )).__('Back to Manage All Forums', CPC2_TEXT_DOMAIN).'</a>';
+		echo sprintf('<a href="%s">', admin_url( 'admin.php?page=cpccom_forum_setup' )).__('Zurück zu Alle Foren verwalten.', CPC2_TEXT_DOMAIN).'</a>';
 	echo '</div>';
     
-    echo '<p style="font-weight:bold">'.__('Please remember that your forum slug must always match the slug of the page your forum is operating on, and that forum page should not have a parent page. For example, if your forum slug is general-forum it must be on a page with a slug of general-forum. The forum name can be anything you want.', CPC2_TEXT_DOMAIN).'</p>';
+    echo '<p style="font-weight:bold">'.__('Bitte denke daran, dass Dein Forums-Slug immer mit dem Slug der Seite übereinstimmen muss, auf der Dein Forum aktiv ist, und dass diese Forumsseite keine übergeordnete Seite haben sollte. Wenn Dein Forum-Slug beispielsweise General-Forum lautet, muss er sich auf einer Seite mit dem Slug general-forum befinden. Der Name des Forums kann beliebig sein.', CPC2_TEXT_DOMAIN).'</p>';
     
 
 }

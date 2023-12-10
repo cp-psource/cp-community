@@ -12,7 +12,7 @@ if ($style == 'classic'):
 		foreach ($forum_posts as $forum_post):
 
 			if ($forum_post['post_status'] == 'publish' || current_user_can('edit_posts') || $forum_post['post_author'] = $current_user->ID):
-// echo '<span style="color:red">'.$forum_post['post_title'].'</span><br />';
+            // echo '<span style="color:red">'.$forum_post['post_title'].'</span><br />';
 
                 // read it?
                 $read = get_post_meta( $forum_post['ID'], 'cpc_forum_read', true );
@@ -42,7 +42,7 @@ if ($style == 'classic'):
 				if ($comments):
                     $comments_ptr = 0;
                     foreach($comments as $comment): // loop through replies
-// echo '<strong>'.$comment->comment_content.'</strong><br />';
+                        // echo '<strong>'.$comment->comment_content.'</strong><br />';
                         // check to see if involved in all the comments to this reply
                         $args = array(
                             'status' => 1,
@@ -56,29 +56,29 @@ if ($style == 'classic'):
                         $subcomments = get_comments($args); 
                         $involved_in_replies = false;
                         if ($subcomments):
-// echo 'comment authors...<br />';
+                            // echo 'comment authors...<br />';
                             foreach ($subcomments as $subcomment):
-// echo $current_user->ID.'-'.$subcomment->user_id.'<br />';
+                                // echo $current_user->ID.'-'.$subcomment->user_id.'<br />';
                                 if ($subcomment->user_id == $current_user->ID) $involved_in_replies = true;
                             endforeach;
                         endif;
                         reset($subcomments);
-// echo 'involved? '.($involved_in_replies ? 'YES' : 'NO').'<br />';
-// echo 'original poster? '.($current_user->ID == $forum_post['post_author'] ? 'YES' : 'NO').'<br />';
-// echo 'reply author? '.($comment->user_id == $current_user->ID ? 'YES' : 'NO').'<br />';
-// $private = get_comment_meta( $comment->comment_ID, 'cpc_private_post', true );
-// echo 'private? '.($private ? 'YES' : 'NO').'<br />';
+                        // echo 'involved? '.($involved_in_replies ? 'YES' : 'NO').'<br />';
+                        // echo 'original poster? '.($current_user->ID == $forum_post['post_author'] ? 'YES' : 'NO').'<br />';
+                        // echo 'reply author? '.($comment->user_id == $current_user->ID ? 'YES' : 'NO').'<br />';
+                        // $private = get_comment_meta( $comment->comment_ID, 'cpc_private_post', true );
+                        // echo 'private? '.($private ? 'YES' : 'NO').'<br />';
                     	if ($comment->user_id): // not an auto-close comment
                             // .. reply is applicable if current user is post author, or the reply author or involved in comments (or not a private reply)
 	                        $private = get_comment_meta( $comment->comment_ID, 'cpc_private_post', true );
 	                        if ($involved_in_replies || !$private || $current_user->ID == $forum_post['post_author'] || $comment->user_id == $current_user->ID):
-// echo 'reply is applicable (or post author, etc)<br />';
+                                // echo 'reply is applicable (or post author, etc)<br />';
                                 if (!$comments_ptr):
-// echo 'tracking first reply<br />';
+                                    // echo 'tracking first reply<br />';
                                     // .. track the first reply found (as ordered to first is latest)
                                     $comment_author = $comment->user_id;
                                     $author = cpc_display_name(array('user_id'=>$comment_author, 'link'=>1));
-// echo 'first reply author set to '.$author.'<br>';                                    
+                                    // echo 'first reply author set to '.$author.'<br>';                                    
                                     $author_id = $comment_author;
                                     $comment_date = $base_date == 'post_date_gmt' ? $comment->comment_date_gmt : $comment->comment_date;
                                     $created = sprintf($date_format, human_time_diff(strtotime($comment_date), current_time('timestamp', 1)), CPC2_TEXT_DOMAIN);
@@ -87,27 +87,27 @@ if ($style == 'classic'):
 									$new_topic_reply = ( !$read || (!in_array($current_user->user_login, $read) && !in_array($current_user->ID, $read)) );
                                     if ($comment_author != $current_user->ID && $new_topic_reply):
                                     	$forum_post['read'] = false;
-// echo 'not read the reply, so mark as new<br />';
+                                        // echo 'not read the reply, so mark as new<br />';
 									endif;
                                     if ($comment_author != $current_user->ID && cpc_since_last_logged_in($comment_date, $new_seconds)):
                                         if (!$new_item_read || ($new_item_read && !$forum_post['read'])) $forum_post['new'] = true;
-// echo 'new reply since previous login, so mark as new<br />';
+                                        // echo 'new reply since previous login, so mark as new<br />';
                                     endif;
 
                                 endif;
                                 // Now check if any comments on replies are more recent than the stored reply
                                 if ($subcomments):
-// echo 'checking comments on this reply...<br />';
+                                    // echo 'checking comments on this reply...<br />';
                                     foreach ($subcomments as $subcomment):
                                         $subcomment_date = $base_date == 'post_date_gmt' ? $subcomment->comment_date_gmt : $subcomment->comment_date;
-// echo '<span style="color:orange">'.$subcomment->comment_content.' ('.$subcomment_date.':'.$checked_date.')</span><br />';
+                                        // echo '<span style="color:orange">'.$subcomment->comment_content.' ('.$subcomment_date.':'.$checked_date.')</span><br />';
                                         if ($subcomment_date > $checked_date):
-// echo '<span style="color:green">newer comment... '.$subcomment->comment_content.'</span> '.$subcomment_date.' '.$checked_date.'<br />';
+                                            // echo '<span style="color:green">newer comment... '.$subcomment->comment_content.'</span> '.$subcomment_date.' '.$checked_date.'<br />';
                                             $subcomment_author = $subcomment->user_id;
                                             $comment_author = $subcomment_author;
                                             $author = cpc_display_name(array('user_id'=>$subcomment_author, 'link'=>1));
                                             $author_id = $subcomment_author;
-// echo 'set to '.$author.'<br />';
+                                            // echo 'set to '.$author.'<br />';
                                             $comment_date = $subcomment_date;
                                             $created = sprintf($date_format, human_time_diff(strtotime($subcomment_date), current_time('timestamp', 1)), CPC2_TEXT_DOMAIN);
                                             $checked_date = $subcomment_date; // to check against next loop
@@ -115,16 +115,16 @@ if ($style == 'classic'):
                                             $new_reply_comment = ( !$read || (!in_array($current_user->user_login, $read) && !in_array($current_user->ID, $read)) );
                                         	if ($subcomment_author != $current_user->ID && $new_reply_comment):
                                         		$forum_post['read'] = false;
-// echo 'not read the comment, so mark as unread<br />';
+                                                // echo 'not read the comment, so mark as unread<br />';
 											endif;      
                                             if ($subcomment_author != $current_user->ID && cpc_since_last_logged_in($subcomment_date, $new_seconds)):
                                                 if (!$new_item_read || ($new_item_read && !$forum_post['read'])) $forum_post['new'] = true;
-// echo 'new since previous login, so mark as new<br />';
+                                                // echo 'new since previous login, so mark as new<br />';
                                             endif;
                                         endif;
                                     endforeach;
                                 else:
-// echo 'no comments on this reply<br />';
+                                // echo 'no comments on this reply<br />';
                                 endif;
                                 $reply_count++; // increase count of replies
                                 $comments_ptr++;
@@ -139,8 +139,8 @@ if ($style == 'classic'):
 
                 // if last activity is current user, can't be new
                 if ($author_id == $current_user->ID || !is_user_logged_in()) $forum_post['read'] = true;
-// echo 'reply count:'.$reply_count.'<br />';
-// echo 'show as new? '.(!$forum_post['read'] ? 'NEW' : 'read').'<br />';
+                // echo 'reply count:'.$reply_count.'<br />';
+                // echo 'show as new? '.(!$forum_post['read'] ? 'NEW' : 'read').'<br />';
 
                 // start building HTML for this post
 				$forum_html = '';

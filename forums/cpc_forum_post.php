@@ -44,7 +44,7 @@ if (!isset($_GET['forum_action']) || ($_GET['forum_action'] != 'edit' && $_GET['
 		if ($the_post):
 			$post_slug = $the_post->post_name;
 		else:
-			echo '<div class="cpc_error">'.__('Failed to find forum post with topic_id', CPC2_TEXT_DOMAIN).'</div>';
+			echo '<div class="cpc_error">'.__('Forumbeitrag mit topic_id konnte nicht gefunden werden', CPC2_TEXT_DOMAIN).'</div>';
 		endif;
 	endif;
 
@@ -83,10 +83,10 @@ if (!isset($_GET['forum_action']) || ($_GET['forum_action'] != 'edit' && $_GET['
                         $date = $base_date == 'post_date_gmt' ? $post->post_date_gmt : $post->post_date;
                         if ($post->post_author != $current_user->ID && cpc_since_last_logged_in($date, $new_seconds)) {
                             $forum_post['new'] = true;
-// echo 'new since previous login, so mark as new<br />';
+                            // echo 'new since previous login, so mark as new<br />';
                             if ($new_item_read && $read && in_array($current_user->ID, $read)) {
                                 $forum_post['new'] = false;
-// echo 'but marking new posts as not new when read, so cancel<br />';
+                                // echo 'but marking new posts as not new when read, so cancel<br />';
                             }
                         }
 
@@ -297,10 +297,10 @@ if (!isset($_GET['forum_action']) || ($_GET['forum_action'] != 'edit' && $_GET['
                                             $post_html .= '<div class="cpc_forum_settings_options">';
 
                                                 $url = cpc_curPageURL();
-                                                if ($user_can_edit_forum || $is_forum_admin) $post_html .= '<a href="'.$url.cpc_query_mark($url).'forum_action=edit&post_id='.$post->ID.'">'.__('Edit', CPC2_TEXT_DOMAIN).'</a>';
-                                                if (($user_can_edit_forum || $is_forum_admin) && $timeout-$age >= 0 && $enable_timeout) $post_html .= '<br />('.sprintf(__('lock in %d seconds', CPC2_TEXT_DOMAIN), ($timeout-$age)).')';
+                                                if ($user_can_edit_forum || $is_forum_admin) $post_html .= '<a href="'.$url.cpc_query_mark($url).'forum_action=edit&post_id='.$post->ID.'">'.__('Bearbeiten', CPC2_TEXT_DOMAIN).'</a>';
+                                                if (($user_can_edit_forum || $is_forum_admin) && $timeout-$age >= 0 && $enable_timeout) $post_html .= '<br />('.sprintf(__('Sperre in %d Sekunden', CPC2_TEXT_DOMAIN), ($timeout-$age)).')';
                                                 if (($user_can_edit_forum && $user_can_delete_forum) || $is_forum_admin) $post_html .= ' | ';
-                                                if ($user_can_delete_forum || $is_forum_admin) $post_html .= '<a href="'.$url.cpc_query_mark($url).'forum_action=delete&post_id='.$post->ID.'">'.__('Delete', CPC2_TEXT_DOMAIN).'</a>';
+                                                if ($user_can_delete_forum || $is_forum_admin) $post_html .= '<a href="'.$url.cpc_query_mark($url).'forum_action=delete&post_id='.$post->ID.'">'.__('Löschen', CPC2_TEXT_DOMAIN).'</a>';
                                                 if ($report) $post_html .= ' | <a class="cpc_activity_settings_report" rel="'.$post->ID.'" href="mailto:'.$report_email.'?subject='.$url.'">'.$report_label.'</a>';
                                             $post_html .= '</div>';	
 
@@ -480,10 +480,10 @@ if (!isset($_GET['forum_action']) || ($_GET['forum_action'] != 'edit' && $_GET['
                                                     $comment_html .= '<div class="cpc_forum_settings_options">';
 
                                                         $url = cpc_curPageURL();
-                                                        if ($user_can_edit_comment || $is_forum_admin) $comment_html .= '<a href="'.$url.cpc_query_mark($url).'forum_action=edit&comment_id='.$comment->comment_ID.'">'.__('Edit', CPC2_TEXT_DOMAIN).'</a>';
-                                                        if (($user_can_edit_comment || $is_forum_admin) && $timeout-$age >= 0 && $enable_timeout) $comment_html .= '<br />('.sprintf(__('lock in %d seconds', CPC2_TEXT_DOMAIN), ($timeout-$age)).')';
+                                                        if ($user_can_edit_comment || $is_forum_admin) $comment_html .= '<a href="'.$url.cpc_query_mark($url).'forum_action=edit&comment_id='.$comment->comment_ID.'">'.__('Bearbeiten', CPC2_TEXT_DOMAIN).'</a>';
+                                                        if (($user_can_edit_comment || $is_forum_admin) && $timeout-$age >= 0 && $enable_timeout) $comment_html .= '<br />('.sprintf(__('Sperre in %d Sekunden', CPC2_TEXT_DOMAIN), ($timeout-$age)).')';
                                                         if (($user_can_edit_comment && $user_can_delete_comment) || $is_forum_admin) $comment_html .= ' | ';
-                                                        if ($user_can_delete_comment || $is_forum_admin) $comment_html .= '<a href="'.$url.cpc_query_mark($url).'forum_action=delete&comment_id='.$comment->comment_ID.'">'.__('Delete', CPC2_TEXT_DOMAIN).'</a>';
+                                                        if ($user_can_delete_comment || $is_forum_admin) $comment_html .= '<a href="'.$url.cpc_query_mark($url).'forum_action=delete&comment_id='.$comment->comment_ID.'">'.__('Löschen', CPC2_TEXT_DOMAIN).'</a>';
                                                         if ($report) $comment_html .= ' | <a class="cpc_activity_settings_report" rel="'.$comment->comment_ID.'" href="mailto:'.$report_email.'?subject='.$url.'">'.$report_label.'</a>';
                                                     $comment_html .= '</div>';	
 
@@ -542,10 +542,10 @@ if (!isset($_GET['forum_action']) || ($_GET['forum_action'] != 'edit' && $_GET['
                                                                 $subcomment_date = $base_date == 'post_date_gmt' ? $subcomment->comment_date_gmt : $subcomment->comment_date;
                                                                 if ($subcomment->user_id != $current_user->ID && cpc_since_last_logged_in($subcomment_date, $new_seconds)) {
                                                                     $new_comment_reply = true;
-// echo 'new comment since previous login, so mark as new<br />';
+                                                                    // echo 'new comment since previous login, so mark as new<br />';
                                                                     if ($new_item_read && $read && in_array($current_user->ID, $read)) {
                                                                         $new_comment_reply = false;
-// echo 'but marking new comments as not new when read, so cancel<br />';
+                                                                        // echo 'but marking new comments as not new when read, so cancel<br />';
                                                                     }
                                                                 }
 
@@ -603,10 +603,10 @@ if (!isset($_GET['forum_action']) || ($_GET['forum_action'] != 'edit' && $_GET['
                                                                             $sub_comment_html .= '</div>';
                                                                             $sub_comment_html .= '<div class="cpc_forum_settings_options">';
                                                                                 $url = cpc_curPageURL();
-                                                                                if ($user_can_edit_comment || $is_forum_admin) $sub_comment_html .= '<a href="'.$url.cpc_query_mark($url).'forum_action=edit&comment_id='.$subcomment->comment_ID.'">'.__('Edit', CPC2_TEXT_DOMAIN).'</a>';
-                                                                                if (($user_can_edit_comment || $is_forum_admin) && $timeout-$age >= 0 && $enable_timeout) $sub_comment_html .= '<br />('.sprintf(__('lock in %d seconds', CPC2_TEXT_DOMAIN), ($timeout-$age)).')';
+                                                                                if ($user_can_edit_comment || $is_forum_admin) $sub_comment_html .= '<a href="'.$url.cpc_query_mark($url).'forum_action=edit&comment_id='.$subcomment->comment_ID.'">'.__('Bearbeiten', CPC2_TEXT_DOMAIN).'</a>';
+                                                                                if (($user_can_edit_comment || $is_forum_admin) && $timeout-$age >= 0 && $enable_timeout) $sub_comment_html .= '<br />('.sprintf(__('Sperre in %d Sekunden', CPC2_TEXT_DOMAIN), ($timeout-$age)).')';
                                                                                 if (($user_can_edit_comment && $user_can_delete_comment) || $is_forum_admin) $sub_comment_html .= ' | ';
-                                                                                if ($user_can_delete_comment || $is_forum_admin) $sub_comment_html .= '<a href="'.$url.cpc_query_mark($url).'forum_action=delete&comment_id='.$subcomment->comment_ID.'">'.__('Delete', CPC2_TEXT_DOMAIN).'</a>';
+                                                                                if ($user_can_delete_comment || $is_forum_admin) $sub_comment_html .= '<a href="'.$url.cpc_query_mark($url).'forum_action=delete&comment_id='.$subcomment->comment_ID.'">'.__('Löschen', CPC2_TEXT_DOMAIN).'</a>';
                                                                                 if ($report) $sub_comment_html .= ' | <a class="cpc_activity_settings_report" rel="'.$subcomment->comment_ID.'" href="mailto:'.$report_email.'?subject='.$url.'">'.$report_label.'</a>';
                                                                             $sub_comment_html .= '</div>';	
 
@@ -636,7 +636,7 @@ if (!isset($_GET['forum_action']) || ($_GET['forum_action'] != 'edit' && $_GET['
                                                                             if (get_user_by('id', $subcomment->user_id)):
                                                                                 $sub_comment_author .= cpc_display_name(array('user_id'=>$subcomment->user_id, 'link'=>1));
                                                                             else:
-                                                                                $sub_comment_author .= __('(unknown)', CPC2_TEXT_DOMAIN);
+                                                                                $sub_comment_author .= __('(Unbekannt)', CPC2_TEXT_DOMAIN);
                                                                             endif;
                                                                         $sub_comment_author .= '</div>';
 
