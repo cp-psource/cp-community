@@ -4,6 +4,7 @@ Plugin Name: CP Community
 Plugin URI: https://n3rds.work
 Description: Füge Deiner ClassicPress-Webseite schnell und einfach ein soziales Netzwerk hinzu!
 Version: 1.0.0
+Author: DerN3rd (WMS N3rds@Work)
 Author URI: https://n3rds.work
 License: GPLv2 or later
 Text Domain: cp-community
