@@ -1,24 +1,27 @@
 <?php
 /*
 Plugin Name: CP Community
-Plugin URI: https://n3rds.work
+Plugin URI: https://cp-psource.github.io/cp-community/
 Description: Füge Deiner ClassicPress-Webseite schnell und einfach ein soziales Netzwerk hinzu!
 Version: 1.0.0
-Author: DerN3rd (WMS N3rds@Work)
-Author URI: https://n3rds.work
+Author: DerN3rd (PSOURCE)
+Author URI: https://github.com/cp-psource
 License: GPLv2 or later
 Text Domain: cp-community
 Domain Path: /languages
-
 */
 
-require 'psource/psource-plugin-update/psource-plugin-updater.php';
-use Psource\PluginUpdateChecker\v5\PucFactory;
-$MyUpdateChecker = PucFactory::buildUpdateChecker(
-	'https://n3rds.work//wp-update-server/?action=get_metadata&slug=cp-community', 
-	__FILE__, 
-	'cp-community' 
-);
+require 'psource/psource-plugin-update/plugin-update-checker.php';
+ use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
+ 
+ $myUpdateChecker = PucFactory::buildUpdateChecker(
+	 'https://github.com/cp-psource/cp-community',
+	 __FILE__,
+	 'cp-community'
+ );
+ 
+ //Set the branch that contains the stable release.
+ $myUpdateChecker->setBranch('master');
 
 if ( !defined('CPC2_TEXT_DOMAIN') ) define('CPC2_TEXT_DOMAIN', 'cp-community');
 if ( !defined('CPC_PREFIX') ) define('CPC_PREFIX', 'cpc');
