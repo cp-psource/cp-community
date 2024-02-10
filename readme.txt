@@ -1,7 +1,6 @@
 ﻿=== CP Community ===
 Contributors: DerN3rd
 Tags: wp community, social network, social networking, social media, cp-community, wp community, community
-Donate link: https://n3rds.work/spendenaktionen/unterstuetze-unsere-psource-free-werke/
 Requires at least: 4.9
 Tested up to: 6.0
 Stable tag: 1.0.0
@@ -29,35 +28,17 @@ Kein Problem! Ändere ganz einfach den gesamten Text, den Deine Benutzer sehen, 
 
 [POWERED BY PSOURCE](https://n3rds.work/)
 
-[Projektseite](https://cp-community.n3rds.work/)
+[Projektseite](https://cp-psource.github.io/cp-community/)
 [GitHub](https://github.com/piestingtal-source/cp-community)
-
-== Mehr PSOURCE ==
-
-= Finde mehr Piestingtal.Source =
-
-Mit unserem [A/B Test Plugin](https://n3rds.work/piestingtal_source/a-b-test-plugin/) holst Du mehr aus Deinem SEO.
-
-Wirf einen Blick in unser [PSOURCE Sortiment](https://n3rds.work/psource_kategorien/psource-plugins/) und hole noch mehr aus Deinem ClassicPress/ClassicPress!
-
-Halte Dich mit unserem [Newsletter](https://n3rds.work/webmasterservice-n3rdswork-digalize-das-piestingtal/newsletter-management/) über unsere Piestingtal.Source informiert!
-
-== Hilf uns ==
-
-Viele, viele Kaffees konsumieren wir während wir an unseren Plugins und Themes arbeiten.
-Wie wärs? Möchtest Du uns mit einer Kaffee-Spende bei der Arbeit an unseren Plugins unterstützen?
-
-= Unterstütze uns =
-
-Mach eine [Spende per Überweisung oder PayPal](https://n3rds.work/spendenaktionen/unterstuetze-unsere-psource-free-werke/) wir Danken Dir!
-
-Halte Dich mit unserem [Newsletter](https://n3rds.work/webmasterservice-n3rdswork-digalize-das-piestingtal/newsletter-management/) über unsere Piestingtal.Source informiert!
 
 == ChangeLog ==
 
 = 1.0.1 =
 
 * CSS Anpassung Einstellungs-Screen
+* Updater 1.3
+* Links aktualisiert
+* Fix: Creation of dynamic property
 
 = 1.0.0 =
 

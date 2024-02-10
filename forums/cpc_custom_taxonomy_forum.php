@@ -342,14 +342,14 @@ if (!class_exists('cpc_Tax_CTP_Filter')){
   /**
     * Tax CTP Filter Class 
     * Simple class to add custom taxonomy dropdown to a custom post type admin edit list
-    * @author Ohad Raz <admin@bainternet.info>
+    * @author DerN3rd <webmaster@n3rds.work>
     * @version 0.1
     */
-    class cpc_Tax_CTP_Filter
-    {
+    class cpc_Tax_CTP_Filter {
+		private $cpt = array();
         /**
          * __construct 
-         * @author Ohad Raz <admin@bainternet.info>
+         * @author DerN3rd <webmaster@n3rds.work>
          * @since 0.1
          * @param array $cpt [description]
          */
@@ -361,7 +361,7 @@ if (!class_exists('cpc_Tax_CTP_Filter')){
   
         /**
          * my_restrict_manage_posts  add the slelect dropdown per taxonomy
-         * @author Ohad Raz <admin@bainternet.info>
+         * @author DerN3rd <webmaster@n3rds.work>
          * @since 0.1
          * @return void
          */
@@ -388,7 +388,7 @@ if (!class_exists('cpc_Tax_CTP_Filter')){
          
         /**
          * generate_taxonomy_options generate dropdown
-         * @author Ohad Raz <admin@bainternet.info>
+         * @author DerN3rd <webmaster@n3rds.work>
          * @since 0.1
          * @param  string  $tax_slug 
          * @param  string  $parent   

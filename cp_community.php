@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: CP Community
-Plugin URI: https://n3rds.work
+Plugin URI: https://cp-psource.github.io/cp-community/
 Description: Füge Deiner ClassicPress-Webseite schnell und einfach ein soziales Netzwerk hinzu!
 Version: 1.0.0
 Author: DerN3rd (PSOURCE)
