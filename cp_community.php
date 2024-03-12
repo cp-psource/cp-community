@@ -339,7 +339,7 @@ function cpc_init() {
 	    wp_enqueue_script('cpc-admin-js', plugins_url('js/cpc.admin.js', __FILE__), array('jquery'));
 		wp_localize_script( 'cpc-admin-js', 'cpc_ajax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );		
 		wp_enqueue_style('cpc-admin-css', plugins_url('css/cpc_admin.css', __FILE__), 'css');		
-    else:
+st einen     else:
         // Core CPC JS
 		wp_enqueue_script('cpc-js', plugins_url('js/cp_community.js', __FILE__), array('jquery'));	
     endif;
