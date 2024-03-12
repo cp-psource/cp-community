@@ -184,6 +184,8 @@ function compareByName($a, $b) {
 
 function cpccom_manage() {
 
+    $values = isset($values) ? $values : '';
+
     if (!get_option('cpc_core_admin_icons')):
 
 	$values = $values ? explode(',', $values) : array();
