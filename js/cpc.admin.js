@@ -2,7 +2,7 @@ jQuery(document).ready(function() {
 
 	/* Promo button */
     jQuery("#cpc_commo_button").on('click', function(){
-        window.location.replace("https://www.cpcymposiumpro.com");
+        window.location.replace("https://cp-psource.github.io/cp-community/");
     });	
 	
     jQuery('.cpc_admin_fav').on('click', function(e) {
@@ -290,23 +290,25 @@ jQuery(document).ready(function() {
     });
     
 	// Remember which admin section to show after saving
-    jQuery('#cpc_setup').submit(function () {
-        
+    jQuery('#cpc_setup').on('submit', function(e) {
         // Sections
-    	var cpc_expand = '';
-		jQuery('.cpc_admin_getting_started_content').each(function(i, obj) {
-		    if (jQuery(this).css('display') != 'none') {
-		    	cpc_expand = jQuery(this).attr('id');
-		    }
-		});
-
-		var input = jQuery("<input>")
-		               .attr("type", "hidden")
-		               .attr("name", "cpc_expand").val(cpc_expand);
-
-		jQuery('#cpc_setup').append(jQuery(input));
-            
-    });
+        var cpc_expand = '';
+        jQuery('.cpc_admin_getting_started_content').each(function(i, obj) {
+            if (jQuery(this).css('display') != 'none') {
+                cpc_expand = jQuery(this).attr('id');
+            }
+        });
+    
+        var input = jQuery("<input>")
+            .attr("type", "hidden")
+            .attr("name", "cpc_expand")
+            .val(cpc_expand);
+    
+        jQuery('#cpc_setup').append(jQuery(input));
+        
+        // Optional: Prevent the default form submission behavior
+        e.preventDefault();
+    });    
     
     // Show default settings tab
     jQuery('.cpc_admin_getting_started_option').on('click', function() {

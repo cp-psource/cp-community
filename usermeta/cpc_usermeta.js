@@ -37,74 +37,65 @@ jQuery(document).ready(function() {
     };
     
     // submit Edit Profile
-	jQuery( "#cpc_usermeta_change" ).submit(function( event ) {
-		
-        // ... first change for mandatory fields
+	jQuery(document).on('submit', '#cpc_usermeta_change', function(event) {
+        // ... erste Änderung für obligatorische Felder
         var all_filled = true;
-        // ... but first clear any previous highlights
-        // ... and then add if necessary
-
+        // ... zuerst frühere Hervorhebungen löschen
+        // ... und dann gegebenenfalls hinzufügen
+    
         jQuery('.cpc_mandatory_field').each(function(i, obj) {
-			
             if (jQuery(this).val().trim() == '') {
-                if (jQuery('#s2id_'+jQuery(this).attr('id')).length > 0) {
-                    jQuery('#s2id_'+jQuery(this).attr('id')).addClass('cpc_field_error');
-					all_filled = false;
+                if (jQuery('#s2id_' + jQuery(this).attr('id')).length > 0) {
+                    jQuery('#s2id_' + jQuery(this).attr('id')).addClass('cpc_field_error');
+                    all_filled = false;
                 } else {
-					if(typeof jQuery(this).attr('id') != 'undefined') {
-						if (jQuery(this).attr('id').substr(0, 4) != 's2id') {
-							jQuery(this).addClass('cpc_field_error');
-							jQuery(this).val(''); // in case spaces entered, remove them
-							all_filled = false;
-						}
-					}
+                    if (typeof jQuery(this).attr('id') != 'undefined') {
+                        if (jQuery(this).attr('id').substr(0, 4) != 's2id') {
+                            jQuery(this).addClass('cpc_field_error');
+                            jQuery(this).val(''); // falls Leerzeichen eingegeben wurden, entfernen
+                            all_filled = false;
+                        }
+                    }
                 }
-                // highlight the tab
+                // Tab hervorheben
                 var tab_div = jQuery(this).closest('.cpc-tab');
-                jQuery('#cpc-'+jQuery(tab_div).attr('id')).addClass('cpc_field_error');
+                jQuery('#cpc-' + jQuery(tab_div).attr('id')).addClass('cpc_field_error');
             } else {
-                if (jQuery('#s2id_'+jQuery(this).attr('id')).length > 0) {
-                    jQuery('#s2id_'+jQuery(this).attr('id')).removeClass('cpc_field_error');
+                if (jQuery('#s2id_' + jQuery(this).attr('id')).length > 0) {
+                    jQuery('#s2id_' + jQuery(this).attr('id')).removeClass('cpc_field_error');
                 } else {
                     jQuery(this).removeClass('cpc_field_error');
                 }
-                // remove highlight from the tab
+                // Hervorhebung des Tabs entfernen
                 var tab_div = jQuery(this).closest('.cpc-tab');
-                jQuery('#cpc-'+jQuery(tab_div).attr('id')).removeClass('cpc_field_error');
+                jQuery('#cpc-' + jQuery(tab_div).attr('id')).removeClass('cpc_field_error');
             }
         });
-		
-
+    
         if (all_filled) {
-
-            // ... check passwords match (if entered)
-    	  	if (jQuery('#cpccom_password').length) {
-    			if (jQuery('#cpccom_password').val() != jQuery('#cpccom_password2').val()) {
-    				jQuery('#cpccom_password').addClass('cpc_field_error');			
-    				jQuery('#cpccom_password2').addClass('cpc_field_error');		
+            // ... überprüfe, ob Passwörter übereinstimmen (falls eingegeben)
+            if (jQuery('#cpccom_password').length) {
+                if (jQuery('#cpccom_password').val() != jQuery('#cpccom_password2').val()) {
+                    jQuery('#cpccom_password').addClass('cpc_field_error');
+                    jQuery('#cpccom_password2').addClass('cpc_field_error');
                     jQuery('#cpc_required_msg').slideDown('fast');
-    				event.preventDefault();
-                    // highlight the tab
+                    event.preventDefault();
+                    // Tab hervorheben
                     var tab_div = jQuery('#cpccom_password').closest('.cpc-tab');
-                    jQuery('#cpc-'+jQuery(tab_div).attr('id')).addClass('cpc_field_error');
-    			} else {                
-    				jQuery('#cpccom_password').removeClass('cpc_field_error');			
-    				jQuery('#cpccom_password2').removeClass('cpc_field_error');		
-                    // remove highlight from the tab
+                    jQuery('#cpc-' + jQuery(tab_div).attr('id')).addClass('cpc_field_error');
+                } else {
+                    jQuery('#cpccom_password').removeClass('cpc_field_error');
+                    jQuery('#cpccom_password2').removeClass('cpc_field_error');
+                    // Hervorhebung des Tabs entfernen
                     var tab_div = jQuery('#cpccom_password').closest('.cpc-tab');
-                    jQuery('#cpc-'+jQuery(tab_div).attr('id')).removeClass('cpc_field_error');
+                    jQuery('#cpc-' + jQuery(tab_div).attr('id')).removeClass('cpc_field_error');
                 }
-    		}
-
+            }
         } else {
-
             jQuery('#cpc_required_msg').slideDown('fast');
             event.preventDefault();
-
         }
-		
-
-	});
+    });    
 
 	// cpc_user_button
 

@@ -1,192 +1,188 @@
-jQuery(document).ready(function() {
+jQuery(function($) {
 
-	if (jQuery("#cpc_alerts_activity").length) {
-		jQuery("#cpc_alerts_activity").select2({
-			minimumInputLength: -1,
+    if ($("#cpc_alerts_activity").length) {
+        $("#cpc_alerts_activity").select2({
+            minimumInputLength: 0,
             minimumResultsForSearch: -1,
-			dropdownCssClass: 'cpc_alerts_activity',
-		});
-	};
+            dropdownCssClass: 'cpc_alerts_activity',
+        });
+    };
 
-    jQuery(".select2, .select2-multiple").on('select2:open', function (e) {
-         jQuery('.select2-search input').prop('focus',false);
+    $(document).on('select2:open', ".select2, .select2-multiple", function(e) {
+        $('.select2-search input').prop('focus', false);
     });
 
-	jQuery('#cpc_alerts_activity').on("change", function(e) { 
+    $('#cpc_alerts_activity').on("change", function(e) {
 
-		var alert_id = jQuery(this).val();
-		var selected = jQuery(this).find('option:selected');
-		var url = selected.data('url');
+        var alert_id = $(this).val();
+        var selected = $(this).find('option:selected');
+        var url = selected.data('url');
 
-		if (url == 'make_all_read') {
+        if (url == 'make_all_read') {
 
-            jQuery(".cpc_alerts_unread").removeClass("cpc_alerts_unread");
-            jQuery("#cpc_alerts_activity option[value='count']").remove();
-            jQuery(this).parent().find(".select2-chosen").html('');
-                    
-			jQuery.post(
-			    cpc_alerts.ajaxurl,
-			    {
-			        action : 'cpc_alerts_make_all_read',
-			        alert_id : alert_id,
-			        url : url
-			    },
-			    function(response) {
-			    }   
-			);
+            $(".cpc_alerts_unread").removeClass("cpc_alerts_unread");
+            $("#cpc_alerts_activity option[value='count']").remove();
+            $(this).parent().find(".select2-selection__rendered").html('');
 
-		} else {
-            
-            if (url == 'delete_all_text') {  
+            $.post(
+                cpc_alerts.ajaxurl, {
+                    action: 'cpc_alerts_make_all_read',
+                    alert_id: alert_id,
+                    url: url
+                },
+                function(response) {}
+            );
 
-                jQuery(".cpc_alert_item").remove();
-                jQuery("#cpc_alerts_activity option[value='count']").remove();
-                jQuery(this).parent().find(".select2-chosen").html('');
+        } else {
 
-                jQuery.post(
-                    cpc_alerts.ajaxurl,
-                    {
-                        action : 'cpc_alerts_delete_all',
+            if (url == 'delete_all_text') {
+
+                $(".cpc_alert_item").remove();
+                $("#cpc_alerts_activity option[value='count']").remove();
+                $(this).parent().find(".select2-selection__rendered").html('');
+
+                $.post(
+                    cpc_alerts.ajaxurl, {
+                        action: 'cpc_alerts_delete_all',
                     },
-                    function(response) {
-                    }   
-                );                
-                
+                    function(response) {}
+                );
+
             } else {
 
-                jQuery("body").addClass("cpc_wait_loading");
-                
-                jQuery.post(
-                    cpc_alerts.ajaxurl,
-                    {
-                        action : 'cpc_alerts_activity_redirect',
-                        alert_id : alert_id,
-                        url : url,
-                        delete_alert : jQuery(this).attr('rel')
+                $("body").addClass("cpc_wait_loading");
+
+                $.post(
+                    cpc_alerts.ajaxurl, {
+                        action: 'cpc_alerts_activity_redirect',
+                        alert_id: alert_id,
+                        url: url,
+                        delete_alert: $(this).attr('rel')
                     },
                     function(response) {
                         window.location.assign(response);
-                    }   
+                    }
                 );
-                
+
             }
-		}
+        }
 
-	});	
+    });
 
-	// ***** Users for custom post *****	
-	if (jQuery("#cpc_alert_recipient").length) {
+    // ***** Users for custom post *****
+    if ($("#cpc_alert_recipient").length) {
 
-		if (jQuery("#cpc_alert_recipient").val() == '') {
-			jQuery("#cpc_alert_recipient").select2({
-			    minimumInputLength: 1,
-			    query: function (query) {
-					jQuery.post(
-					    cpc_alerts.ajaxurl,
-					    {
-					        action : 'cpc_get_users',
-					        term : query.term
-					    },
-					    function(response) {
-					    	var json = jQuery.parseJSON(response);
-					    	var data = {results: []}, i, j, s;
-							for(var i = 0; i < json.length; i++) {
-						    	var obj = json[i];
-						    	data.results.push({id: obj.value, text: obj.label});
-							}
-							query.callback(data);	    	
-					    }   
-					);
-			    }
-			});
-		}	
+        if ($("#cpc_alert_recipient").val() == '') {
+            $("#cpc_alert_recipient").select2({
+                minimumInputLength: 1,
+                ajax: {
+                    url: cpc_alerts.ajaxurl,
+                    dataType: 'json',
+                    delay: 250,
+                    data: function(params) {
+                        return {
+                            action: 'cpc_get_users',
+                            term: params.term
+                        };
+                    },
+                    processResults: function(data) {
+                        var results = [];
+                        $.each(data, function(index, item) {
+                            results.push({
+                                id: item.value,
+                                text: item.label
+                            });
+                        });
+                        return {
+                            results: results
+                        };
+                    },
+                    cache: true
+                }
+            });
+        }
 
-	}
+    }
 
-	// Clear all sent alerts
-	jQuery(".cpc_alerts_list_item_link").on('click', function (event) {
-        var url = jQuery(this).data('url');
-        var alert_id = jQuery(this).data('id');
-        
-        jQuery.post(
-            cpc_alerts.ajaxurl,
-            {
-                action : 'cpc_alerts_activity_redirect',
-                alert_id : alert_id,
-                url : url
+    // Clear all sent alerts
+    $(".cpc_alerts_list_item_link").on('click', function(event) {
+        var url = $(this).data('url');
+        var alert_id = $(this).data('id');
+
+        $.post(
+            cpc_alerts.ajaxurl, {
+                action: 'cpc_alerts_activity_redirect',
+                alert_id: alert_id,
+                url: url
             },
             function(response) {
                 window.location.assign(response);
-            }   
+            }
         );
-        
-    });	
+
+    });
 
     // Mark all as read (for list)
-    jQuery("#cpc_make_all_read").on('click', function (event) {
+    $("#cpc_make_all_read").on('click', function(event) {
 
-        jQuery(this).parent().remove();
-        jQuery('#cpc_alerts_flag_unread').remove();
-        jQuery(".cpc_alerts_unread").removeClass("cpc_alerts_unread");
-        
-        jQuery.post(
-            cpc_alerts.ajaxurl,
-            {
-                action : 'cpc_alerts_make_all_read',
+        $(this).parent().remove();
+        $('#cpc_alerts_flag_unread').remove();
+        $(".cpc_alerts_unread").removeClass("cpc_alerts_unread");
+
+        $.post(
+            cpc_alerts.ajaxurl, {
+                action: 'cpc_alerts_make_all_read',
             },
-            function(response) {
-            }   
+            function(response) {}
         );
 
-	});	
-    
+    });
+
     // Delete alert from list
-    jQuery(".cpc_alerts_list_item_delete").on('click', function (event) {
-        
-        jQuery(this).parent().slideUp('fast');
-        
-        jQuery.post(
-            cpc_alerts.ajaxurl,
-            {
-                action : 'cpc_alerts_list_item_delete',
-                alert_id : jQuery(this).attr('rel'),
+    $(document).on('click', ".cpc_alerts_list_item_delete", function(event) {
+
+        $(this).parent().slideUp('fast');
+
+        $.post(
+            cpc_alerts.ajaxurl, {
+                action: 'cpc_alerts_list_item_delete',
+                alert_id: $(this).attr('rel'),
             },
-            function(response) {
-            }   
+            function(response) {}
         );
 
-	});	    
+    });
 
     // Show delete icon on hover
-    jQuery(".cpc_alerts_list_item").hover(function (event) {
+    $(document).on('mouseenter', ".cpc_alerts_list_item", function(event) {
 
-        jQuery(this).children('.cpc_alerts_list_item_delete').show();
+        $(this).children('.cpc_alerts_list_item_delete').show();
 
-	});	    
-    
+    });
+
     // Hide delete icon when mouse leaves
-    jQuery(".cpc_alerts_list_item").mouseleave(function (event) {
-        
-        jQuery(".cpc_alerts_list_item_delete").hide();
+    $(document).on('mouseleave', ".cpc_alerts_list_item", function(event) {
 
-	});	   
-    
+        $(this).children('.cpc_alerts_list_item_delete').hide();
+
+    });
+
     // Delete all
-    jQuery("#cpc_alerts_delete_all").on('click', function (event) {
+    $("#cpc_alerts_delete_all").on('click', function(event) {
 
-        jQuery(".cpc_alerts_list_item").slideUp('fast');
-        jQuery(this).hide();
-        jQuery("#cpc_mark_all_as_read_div").hide();
-        
-        jQuery.post(
-            cpc_alerts.ajaxurl,
-            {
-                action : 'cpc_alerts_delete_all',
+        $(".cpc_alerts_list_item").slideUp('fast');
+        $(this).hide();
+        $("#cpc_mark_all_as_read_div").hide();
+
+        $.post(
+            cpc_alerts.ajaxurl, {
+                action: 'cpc_alerts_delete_all',
             },
-            function(response) {
-            }   
+            function(response) {}
         );
 
-	});	    
-    
-})
+    });
+
+});
+
+

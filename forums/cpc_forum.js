@@ -149,26 +149,16 @@ jQuery(document).ready(function() {
                                 // and reload page whilst the hook carrys on (wait a little to ensure above is fired)
                                 setTimeout(function(){ document.location = reload_loc }, 2000);
 
-					        });
-                            
+					        });                           
 					    }
-
 					} else {
-
 						jQuery('#cpc_forum_post_content_label').addClass('cpc_field_error');
-
 					}
-
 				} else {
-
 					jQuery('#cpc_forum_post_title').addClass('cpc_field_error');
-
 				}
-
 			}
-
 		});
-
 	}
 
 	/* Add Reply */
@@ -412,10 +402,10 @@ jQuery(document).ready(function() {
 		jQuery(this).next('.cpc_forum_comment_settings_options').show();
 	});	
 
-	jQuery(document).mouseup(function (e) {
+	jQuery(document).on('mouseup', function(e) {
 		jQuery('.cpc_forum_settings_options').hide();
 		jQuery('.cpc_comment_settings_options').hide();
-	});
+	});	
 
 	/* Closed switch */
 

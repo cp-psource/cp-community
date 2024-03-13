@@ -2911,6 +2911,8 @@ function cpc_admin_getting_started_styles() {
 
                             /* ----------------------- ELEMENTS TAB ----------------------- */
 
+                            $cpc_expand_shortcode = ''; // Initialize $cpc_expand_shortcode
+
                             $function = 'cpc_elements';
                             $values = get_option('cpc_styles_'.$function) ? get_option('cpc_styles_'.$function) : array(); 
 
@@ -2937,6 +2939,8 @@ function cpc_admin_getting_started_styles() {
 
                         
                             /* ----------------------- FORUMS TAB ----------------------- */
+
+                            $cpc_expand_shortcode = ''; // Initialize $cpc_expand_shortcode for forums tab
 
                             // [cpc-forum]
                             $function = 'cpc_forum';
