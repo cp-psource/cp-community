@@ -11,7 +11,7 @@ function cpc_forum_init() {
     ) );		
 	wp_enqueue_style('cpc-forum-css', plugins_url('cpc_forum.css', __FILE__), 'css');
 	// Select2 replacement drop-down list from core (ready for dependenent plugins like who-to that only uses hooks/filters)
-	wp_enqueue_script('cpc-forum-select2-js', plugins_url('../js/select2.min.js', __FILE__), array('jquery'));	
+	wp_enqueue_script('cpc-forum-select2-js', plugins_url('../js/select2.js', __FILE__), array('jquery'));	
 	wp_enqueue_style('cpc-forum-select2-css', plugins_url('../js/select2.css', __FILE__), 'css');
 	// Anything else?
 	do_action('cpc_forum_init_hook');

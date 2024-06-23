@@ -9,7 +9,7 @@ function cpc_alerts_init() {
 	wp_localize_script('cpc-alerts-js', 'cpc_alerts', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ));    	
 
 	// Select2 replacement drop-down list from core
-	wp_enqueue_script('cpc-select2-js', plugins_url('../../cp-community/js/select2.min.js', __FILE__), array('jquery'));	
+	wp_enqueue_script('cpc-select2-js', plugins_url('../../cp-community/js/select2.js', __FILE__), array('jquery'));	
 	wp_enqueue_style('cpc-select2-css', plugins_url('../../cp-community/js/select2.css', __FILE__), 'css');
 
 	// Anything else?
