@@ -213,25 +213,25 @@ if (!isset($_GET['forum_action']) || ($_GET['forum_action'] != 'edit' && $_GET['
 
 						$post_title_html = apply_filters( 'cpc_forum_post_post_title_filter', $post_title_html, $post, $atts, $current_user->ID );
 
-						// work out URL for pagination
-						if ($pagination):
-		                    global $blog;
-		                    if ( cpc_using_permalinks() ):
-		                        if (!is_multisite()):
-									$url = get_bloginfo('url').'/'.$term->slug.'/'.$post_slug.'/page-%d';
-		                        else:
-		                            $blog_details = get_blog_details(get_current_blog_id());
-		                            $url = $blog_details->path.$term->slug.'/'.$post_slug.'/page-%d';
-		                        endif;
-		                    else:
-		                        if (!is_multisite()):
-									$url = get_bloginfo('url').'?page_id='.$_GET['page_id'].'&topic='.$_GET['topic'].'&page=%d';
-		                        else:
-		                            $blog_details = get_blog_details(get_current_blog_id());
-		                            $url = $blog_details->path.$term->slug."?topic=".$_GET['topic'].'&fpage=%d';
-		                        endif;
-		                    endif;
-		                endif;
+                        // Work out URL for pagination
+                        if ($pagination) {
+                            global $blog;
+                            if (cpc_using_permalinks()) {
+                                if (!is_multisite()) {
+                                    $url = get_bloginfo('url').'/'.$term->slug.'/'.$post_slug.'/?topic='.$_GET['topic'].'&page=%d';
+                                } else {
+                                    $blog_details = get_blog_details(get_current_blog_id());
+                                    $url = $blog_details->path.$term->slug.'/'.$post_slug.'/?topic='.$_GET['topic'].'&page=%d';
+                                }
+                            } else {
+                                if (!is_multisite()) {
+                                    $url = get_bloginfo('url').'?page_id='.$_GET['page_id'].'&topic='.$_GET['topic'].'&page=%d';
+                                } else {
+                                    $blog_details = get_blog_details(get_current_blog_id());
+                                    $url = $blog_details->path.'?page_id='.$_GET['page_id'].'&topic='.$_GET['topic'].'&fpage=%d';
+                                }
+                            }
+                        }
 
                         $pagination_html = cpc_insert_pagination($page, $pages, $pagination_first, $pagination_previous, $pagination_next, $url);
 

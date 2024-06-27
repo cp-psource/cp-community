@@ -197,10 +197,10 @@ if ($style == 'table'):
                         $url = '';
                         if (cpc_using_permalinks()) {
                             if (!is_multisite()) {
-                                $url = get_bloginfo('url').'/'.$slug.'/'.$forum_post['post_name'];
+                                $url = get_bloginfo('url').'/'.$slug.'/?topic='.$forum_post['post_name'];
                             } else {
                                 $blog_details = get_blog_details(get_current_blog_id());
-                                $url = $blog_details->path.$slug.'/'.$forum_post['post_name'];
+                                $url = $blog_details->path.$slug.'/?topic='.$forum_post['post_name'];
                             }
                         } else {
                             if (!is_multisite()) {
@@ -211,7 +211,7 @@ if ($style == 'table'):
                                 $blog_details = get_blog_details(get_current_blog_id());
                                 $url = $blog_details->path."?page_id=".$forum_page_id."&topic=".$forum_post['post_name'];
                             }
-                        }
+                        }                        
                         
                         $forum_title = esc_attr($forum_post['post_title']);
                         $forum_title = str_replace(array_keys(array('[' => '&#91;', ']' => '&#93;', '<' => '&lt;', '>' => '&gt;')), array_values(array('[' => '&#91;', ']' => '&#93;', '<' => '&lt;', '>' => '&gt;')), $forum_title);
