@@ -11,6 +11,9 @@ Text Domain: cp-community
 Domain Path: /languages
 */
 
+/**
+ * @@@@@@@@@@@@@@@@@ PS UPDATER 1.3 @@@@@@@@@@@
+ **/
 require 'psource/psource-plugin-update/plugin-update-checker.php';
  use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
  
@@ -21,7 +24,10 @@ require 'psource/psource-plugin-update/plugin-update-checker.php';
  );
  
  //Set the branch that contains the stable release.
- $myUpdateChecker->setBranch('master');
+ $myUpdateChecker->setBranch('main');
+/**
+ * @@@@@@@@@@@@@@@@@ ENDE PS UPDATER 1.3 @@@@@@@@@@@
+ **/
 
 if ( !defined('CPC2_TEXT_DOMAIN') ) define('CPC2_TEXT_DOMAIN', 'cp-community');
 if ( !defined('CPC_PREFIX') ) define('CPC_PREFIX', 'cpc');
