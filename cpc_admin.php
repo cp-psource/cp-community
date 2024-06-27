@@ -320,10 +320,12 @@ function cpccom_release_notes() {
 				<td valign="top" class="cpc_release_notes" style="<?php echo $cup_of_tea_left; ?>width:45%;">
 
 					<div style="font-size:1.6em; line-height:1.6em; color: #510051; font-weight: bold;">Core CP Community plugin</div>
-					<a href="http://www.wordpress.org/plugins/cp-community" target-"_blank">Verfügbar im PSOURCE GitHub-Repository</a><br />
+					<a href="https://cp-psource.github.io/cp-community/" target-"_blank">Verfügbar im PSOURCE GitHub-Repository</a><br />
 
-                    <h2 style="font-style:italic; margin-top:20px;">Changelog:</h2>
-					<p>Dies ist das erste PSOURCE Release mit der Versionsnummer 1.0.0.</p>
+                    <h2 style="font-style:italic; margin-top:20px;">Changelog Versionsnummer 1.0.1.:</h2>
+					<p>Wir haben ein Problem mit der verlinkung von Foren-Threads gelöst.</p>
+                    <p>Es ist uns gelungen, einige veraltete Funktionen zu modernisieren.<p>
+                    <p>Getestet mit WP 6.5.5 und PhP 8.3<p> 
                   
                 </td>
 				<td style="width:1%">&nbsp;</td>
@@ -335,7 +337,10 @@ function cpccom_release_notes() {
                     <h2 style="font-style:italic; margin-top:20px;">Entwicklung</h2>
 
                     <h3>Aktivität</h3>
-                    <p>Derzeit arbeiten wir daran die Gruppenfunktion in den CP Community-Core zu integrieren um ein nahtloseres zusammenspiel zwischen den einzelnen Komponenten und der Gruppenfunktion umzusetzen</p>
+                    <p>Wir planen die Entwicklungsumgebung auf Github weiter auszubauen und zugänglicher zu machen</p>
+                    <a href="https://github.com/cp-psource/cp-community/issues" target-"_blank">Hier kannst Du Fehler melden!</a><br />
+                    <p>Wir freuen uns über jeden, der dieses Projekt mitgestalten möchte:</p>
+                    <a href="https://github.com/orgs/cp-psource/projects/8" target-"_blank">Entwickler-Board</a><br />
 					
 				</td>
 			</tr></table>

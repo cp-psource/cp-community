@@ -20,14 +20,14 @@ jQuery(document).ready(function() {
 
     // Strength meter (on Edit Profile)
     if(jQuery("#cpc_password_strength_result").length > 0) {
-        jQuery("#cpccom_password").bind("keyup", function(){
+        jQuery("#cpccom_password").on("keyup", function(){
             var pass1 = jQuery("#cpccom_password").val();
             var pass2 = jQuery("#cpccom_password2").val();
             var strength = passwordStrength(pass1, 'admin', pass2);
             cpc_updateStrength(strength);
             if (pass1 == '' && pass2 == '') { jQuery("#cpc_password_strength_result").hide(); }
         });
-        jQuery("#cpccom_password2").bind("keyup", function(){
+        jQuery("#cpccom_password2").on("keyup", function(){
             var pass1 = jQuery("#cpccom_password").val();
             var pass2 = jQuery("#cpccom_password2").val();
             var strength = passwordStrength(pass1, 'admin', pass2);

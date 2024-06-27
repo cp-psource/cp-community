@@ -2,8 +2,8 @@
 Contributors: DerN3rd
 Tags: wp community, social network, social networking, social media, cp-community, wp community, community
 Requires at least: 4.9
-Tested up to: 6.0
-Stable tag: 1.0.0
+Tested up to: 6.5.5
+Stable tag: 1.0.1
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
