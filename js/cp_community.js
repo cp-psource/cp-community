@@ -20,7 +20,7 @@ jQuery(document).ready(function() {
 	});
 
 	// Escape or Enter to hide
-	jQuery(document).on('keyup', function(e) {
+	jQuery(document).keyup(function(e) {
 	  	if (e.keyCode == 13 || e.keyCode == 27) { 
             if (jQuery('#cpc_activity_dialog').length) {
                 jQuery('#cpc_activity_dialog').fadeOut(200); 

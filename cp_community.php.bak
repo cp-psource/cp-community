@@ -10,19 +10,6 @@ License: GPLv2 or later
 Text Domain: cp-community
 Domain Path: /languages
 */
-
-require 'psource/psource-plugin-update/plugin-update-checker.php';
- use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
- 
- $myUpdateChecker = PucFactory::buildUpdateChecker(
-	 'https://github.com/cp-psource/cp-community',
-	 __FILE__,
-	 'cp-community'
- );
- 
- //Set the branch that contains the stable release.
- $myUpdateChecker->setBranch('master');
-
 if ( !defined('CPC2_TEXT_DOMAIN') ) define('CPC2_TEXT_DOMAIN', 'cp-community');
 if ( !defined('CPC_PREFIX') ) define('CPC_PREFIX', 'cpc');
 // Re-write rules
@@ -33,8 +20,8 @@ add_filter( 'query_vars','cpc_forum_insert_query_vars' );
 add_action('plugins_loaded', 'cpc_languages');
 // Get core plugin features enabled
 if (!$core_plugins = get_option('cpc_default_core')):
-    update_option('cpc_default_core', 'core-profile,core-activity,core-avatar,core-friendships,core-groups,core-alerts,core-forums');
-    $core_plugins = 'core-profile,core-activity,core-avatar,core-friendships,core-groups,core-alerts,core-forums';
+    update_option('cpc_default_core', 'core-profile,core-activity,core-avatar,core-friendships,core-alerts,core-forums');
+    $core_plugins = 'core-profile,core-activity,core-avatar,core-friendships,core-alerts,core-forums';
 endif;
 if (!defined('CPC_CORE_PLUGINS')) define ('CPC_CORE_PLUGINS', $core_plugins);
 // Permalink re-writes
@@ -220,12 +207,6 @@ if (strpos(CPC_CORE_PLUGINS, 'core-friendships') !== false):
     require_once('friendships/cpc_friendships_shortcodes.php');
     require_once('friendships/cpc_friendships_help.php');
 endif;
-// Gruppen
-/*if (strpos(CPC_CORE_PLUGINS, 'core-groups') !== false):
-    require_once('groups/cpc_groups_core.php');
-    require_once('groups/cpc_groups_admins.php');
-    require_once('groups/cpc_group.php');
-endif;*/
 // Alerts
 if (strpos(CPC_CORE_PLUGINS, 'core-alerts') !== false):
     require_once('alerts/cpc_custom_post_alerts.php');
@@ -266,7 +247,7 @@ add_action( 'wp_footer', 'cpc_add_wait_modal_box' );
 function cpc_update_routine() {
 		
 	global $wpdb;
-	$new_version = '1.0.1';
+	$new_version = '2021.10';
 //echo get_option('cp_community_ver').'<br />';
 //echo $new_version.'<br />';
 	$do_update = (is_blog_admin() && current_user_can('manage_options') && get_option('cp_community_ver') != $new_version);

@@ -45,11 +45,12 @@ jQuery(document).ready(function() {
 		jQuery(this).next('.cpc_comment_settings_options').show();
 	});    
 
-	jQuery(document).on('mouseup', function(e) {
+	jQuery(document).mouseup(function (e) {
 		jQuery('.cpc_activity_settings_options').hide();
-		jQuery('.cpc_comment_settings').hide();
+        jQuery('.cpc_comment_settings').hide();
 		jQuery('.cpc_comment_settings_options').hide();
 	});
+
 
 	// Add activity post
 	if (jQuery('#cpc_activity_post').length) {

@@ -160,23 +160,23 @@ if ($style == 'classic'):
 
                     // Show title
                     global $blog;
-                    if (cpc_using_permalinks()) {
-                        if (!is_multisite()) {
-                            $url = get_bloginfo('url').'/'.$slug.'/'.$forum_post['post_name'].'/?topic='.$forum_post['post_name'];
-                        } else {
+                    if ( cpc_using_permalinks() ):
+                        if (!is_multisite()):
+                            $url = get_bloginfo('url').'/'.$slug.'/'.$forum_post['post_name'];
+                        else:
                             $blog_details = get_blog_details(get_current_blog_id());
-                            $url = $blog_details->path.$slug.'/'.$forum_post['post_name'].'/?topic='.$forum_post['post_name'];
-                        }
-                    } else {
-                        if (!is_multisite()) {
+                            $url = $blog_details->path.$slug.'/'.$forum_post['post_name'];
+                        endif;
+                    else:
+                        if (!is_multisite()):
                             $forum_page_id = cpc_get_term_meta($term->term_id, 'cpc_forum_cat_page', true);
                             $url = get_bloginfo('url')."/?page_id=".$forum_page_id."&topic=".$forum_post['post_name'];
-                        } else {
+                        else:
                             $forum_page_id = cpc_get_term_meta($term->term_id, 'cpc_forum_cat_page', true);
                             $blog_details = get_blog_details(get_current_blog_id());
                             $url = $blog_details->path."?page_id=".$forum_page_id."&topic=".$forum_post['post_name'];
-                        }
-                    }
+                        endif;
+                    endif;
 
                     $forum_title = esc_attr($forum_post['post_title']);
 

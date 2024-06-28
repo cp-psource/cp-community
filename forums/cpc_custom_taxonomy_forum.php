@@ -339,17 +339,18 @@ add_action('admin_notices','cpc_save_taxonomy_metadata_notice');
 /* Add filter to posts screen */
 
 if (!class_exists('cpc_Tax_CTP_Filter')){
-  /**
+
+  	/**
     * Tax CTP Filter Class 
     * Simple class to add custom taxonomy dropdown to a custom post type admin edit list
-    * @author DerN3rd <webmaster@n3rds.work>
     * @version 0.1
     */
     class cpc_Tax_CTP_Filter {
-		private $cpt = array();
+
+		private $cpt;
+
         /**
          * __construct 
-         * @author DerN3rd <webmaster@n3rds.work>
          * @since 0.1
          * @param array $cpt [description]
          */
@@ -361,7 +362,6 @@ if (!class_exists('cpc_Tax_CTP_Filter')){
   
         /**
          * my_restrict_manage_posts  add the slelect dropdown per taxonomy
-         * @author DerN3rd <webmaster@n3rds.work>
          * @since 0.1
          * @return void
          */
@@ -388,7 +388,6 @@ if (!class_exists('cpc_Tax_CTP_Filter')){
          
         /**
          * generate_taxonomy_options generate dropdown
-         * @author DerN3rd <webmaster@n3rds.work>
          * @since 0.1
          * @param  string  $tax_slug 
          * @param  string  $parent   

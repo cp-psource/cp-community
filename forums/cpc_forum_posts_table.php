@@ -24,24 +24,24 @@ if ($style == 'table'):
 		foreach ($forum_posts as $forum_post):
 
 			if ($forum_post['post_status'] == 'publish' || current_user_can('edit_posts') || $forum_post['post_author'] = $current_user->ID):
-            // echo '<span style="color:red">'.$forum_post['post_title'].'</span><br />';
-            // var_dump($forum_post['read']);
+// echo '<span style="color:red">'.$forum_post['post_title'].'</span><br />';
+// var_dump($forum_post['read']);
 
-			// read it?
-            $read = get_post_meta( $forum_post['ID'], 'cpc_forum_read', true );
-            if (!$read || (!in_array($current_user->user_login, $read) && !in_array($current_user->ID, $read))):
-                $forum_post['read'] = false;
-                // echo 'NOT READ<br />';
-                // var_dump($read);
-            endif;
-            // new?
-            if ($forum_post['post_author'] != $current_user->ID && cpc_since_last_logged_in($forum_post[$base_date], $new_seconds)):
-            // var_dump($forum_post['read']);
-            if (!$new_item_read || ($new_item_read && !$forum_post['read'])):
-            // echo ($forum_post['read'] ? 'y' : 'n').'<br />';
-            $forum_post['new'] = true;
-            // echo 'new since previous login, so mark as new<br />';
-            endif;
+				// read it?
+                $read = get_post_meta( $forum_post['ID'], 'cpc_forum_read', true );
+                if (!$read || (!in_array($current_user->user_login, $read) && !in_array($current_user->ID, $read))):
+                    $forum_post['read'] = false;
+// echo 'NOT READ<br />';
+// var_dump($read);
+                endif;
+                // new?
+                if ($forum_post['post_author'] != $current_user->ID && cpc_since_last_logged_in($forum_post[$base_date], $new_seconds)):
+// var_dump($forum_post['read']);
+                    if (!$new_item_read || ($new_item_read && !$forum_post['read'])):
+// echo ($forum_post['read'] ? 'y' : 'n').'<br />';
+                        $forum_post['new'] = true;
+// echo 'new since previous login, so mark as new<br />';
+                    endif;
                 endif;
 
 				$c++;
@@ -185,72 +185,55 @@ if ($style == 'table'):
 					$forum_html = apply_filters( 'cpc_forum_post_columns_filter', $forum_html, $forum_post['ID'], $atts );
 
 					$forum_html .= '<div class="cpc_forum_title';
-                    if (!$forum_post['read']) $forum_html .= ' cpc_forum_post_unread';
-                    if ($reply_icon && $forum_post['commented']) $forum_html .= ' cpc_forum_post_commented';
-                    $forum_html .= '">';
+						if (!$forum_post['read']) $forum_html .= ' cpc_forum_post_unread';
+						if ($reply_icon && $forum_post['commented']) $forum_html .= ' cpc_forum_post_commented';
+						$forum_html .= '">';
+						if ($forum_post['comment_status'] == 'closed' && $closed_prefix) $forum_html .= '['.$closed_prefix.'] ';
+						if ($forum_post['post_status'] == 'publish'):
 
-                    if ($forum_post['comment_status'] == 'closed' && $closed_prefix) {
-                        $forum_html .= '['.$closed_prefix.'] ';
-                    }
+                            global $blog;
+							if ( cpc_using_permalinks() ):
+								if (!is_multisite()):
+									$url = get_bloginfo('url').'/'.$slug.'/?topic='.$forum_post['post_name'];
+								else:
+									$blog_details = get_blog_details(get_current_blog_id());
+									$url = $blog_details->path.$slug.'/?topic='.$forum_post['post_name'];
+								endif;
+							else:
+								if (!is_multisite()):
+									$forum_page_id = cpc_get_term_meta($term->term_id, 'cpc_forum_cat_page', true);
+									$url = get_bloginfo('url')."/?page_id=".$forum_page_id."&topic=".$forum_post['post_name'];
+								else:
+									$forum_page_id = cpc_get_term_meta($term->term_id, 'cpc_forum_cat_page', true);
+									$blog_details = get_blog_details(get_current_blog_id());
+									$url = $blog_details->path."?page_id=".$forum_page_id."&topic=".$forum_post['post_name'];
+								endif;
+							endif;
+							
+                            $forum_title = esc_attr($forum_post['post_title']);
+                            $forum_title = str_replace(array_keys(array('[' => '&#91;',']' => '&#93;','<' => '&lt;','>' => '&gt;',)), array_values(array('[' => '&#91;',']' => '&#93;','<' => '&lt;','>' => '&gt;',)), $forum_title);  
+                            if (strlen($forum_title) > $title_length) $forum_title = substr($forum_title, 0, $title_length).'...';
+                            $multiline = (strpos($forum_title, chr(10)) !== false) ? true : false;
+                            if ($multiline) $forum_title = str_replace(chr(10), '<br />', $forum_title);
+							$forum_html .= '<a href="'.$url.'">'.$forum_title.'</a>';
+							if ($show_originator):
+                                $the_user = get_user_by('id', $forum_post['post_author']);
+                                if ($the_user)
+								    $forum_html .= sprintf($originator, cpc_display_name(array('user_id'=>$forum_post['post_author'], 'link'=>1)));
+							endif;
+						else:
+                            $forum_title = esc_attr($forum_post['post_title']);
+                            $forum_title = str_replace(array_keys(array('[' => '&#91;',']' => '&#93;','<' => '&lt;','>' => '&gt;',)), array_values(array('[' => '&#91;',']' => '&#93;','<' => '&lt;','>' => '&gt;',)), $forum_title);  
+							$forum_html .= $forum_title.$pending;						
+						endif;
 
-                    if ($forum_post['post_status'] == 'publish') {
-                        $url = '';
-                        if (cpc_using_permalinks()) {
-                            if (!is_multisite()) {
-                                $url = get_bloginfo('url').'/'.$slug.'/?topic='.$forum_post['post_name'];
-                            } else {
-                                $blog_details = get_blog_details(get_current_blog_id());
-                                $url = $blog_details->path.$slug.'/?topic='.$forum_post['post_name'];
-                            }
-                        } else {
-                            if (!is_multisite()) {
-                                $forum_page_id = cpc_get_term_meta($term->term_id, 'cpc_forum_cat_page', true);
-                                $url = get_bloginfo('url')."/?page_id=".$forum_page_id."&topic=".$forum_post['post_name'];
-                            } else {
-                                $forum_page_id = cpc_get_term_meta($term->term_id, 'cpc_forum_cat_page', true);
-                                $blog_details = get_blog_details(get_current_blog_id());
-                                $url = $blog_details->path."?page_id=".$forum_page_id."&topic=".$forum_post['post_name'];
-                            }
-                        }                        
-                        
-                        $forum_title = esc_attr($forum_post['post_title']);
-                        $forum_title = str_replace(array_keys(array('[' => '&#91;', ']' => '&#93;', '<' => '&lt;', '>' => '&gt;')), array_values(array('[' => '&#91;', ']' => '&#93;', '<' => '&lt;', '>' => '&gt;')), $forum_title);
-                        
-                        $title_length = 100; // Set your desired title length
-                        if (strlen($forum_title) > $title_length) {
-                            $forum_title = substr($forum_title, 0, $title_length).'...';
-                        }
-                        
-                        $multiline = (strpos($forum_title, chr(10)) !== false) ? true : false;
-                        if ($multiline) {
-                            $forum_title = str_replace(chr(10), '<br />', $forum_title);
-                        }
-                        
-                        $forum_html .= '<a href="'.$url.'">'.$forum_title.'</a>';
-                        
-                        if ($show_originator) {
-                            $the_user = get_user_by('id', $forum_post['post_author']);
-                            if ($the_user) {
-                                $forum_html .= sprintf($originator, cpc_display_name(array('user_id' => $forum_post['post_author'], 'link' => 1)));
-                            }
-                        }
-                    } else {
-                        $forum_title = esc_attr($forum_post['post_title']);
-                        $forum_title = str_replace(array_keys(array('[' => '&#91;', ']' => '&#93;', '<' => '&lt;', '>' => '&gt;')), array_values(array('[' => '&#91;', ']' => '&#93;', '<' => '&lt;', '>' => '&gt;')), $forum_title);
-                        
-                        $forum_html .= $forum_title.$pending;						
-                    }
+                        // New label?
+                        if ($forum_post['new']) $forum_html .= ' <span class="cpc_forum_new_label">'.convert_smilies($new_item_label).'</span>';
 
-                    // New label?
-                    if ($forum_post['new']) {
-                        $forum_html .= ' <span class="cpc_forum_new_label">'.convert_smilies($new_item_label).'</span>';
-                    }
+                        // Filter for suffix after name
+                        $forum_html = apply_filters( 'cpc_forum_post_name_filter', $forum_html, $forum_post['ID'] );
 
-                    // Filter for suffix after name
-                    $forum_html = apply_filters('cpc_forum_post_name_filter', $forum_html, $forum_post['ID']);
-
-                    $forum_html .= '</div>';
-
+					$forum_html .= '</div>';
 					if ($show_freshness):
 						$forum_html .= '<div class="cpc_forum_freshness">';
 						$forum_html .= $created ? $created : '&nbsp;';
