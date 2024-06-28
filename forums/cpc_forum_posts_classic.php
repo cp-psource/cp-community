@@ -162,10 +162,10 @@ if ($style == 'classic'):
                     global $blog;
                     if ( cpc_using_permalinks() ):
                         if (!is_multisite()):
-                            $url = get_bloginfo('url').'/'.$slug.'/'.$forum_post['post_name'];
+                            $url = get_bloginfo('url').'/'.$slug.'/'.$forum_post['post_name'].'/?topic='.$forum_post['post_name'];
                         else:
                             $blog_details = get_blog_details(get_current_blog_id());
-                            $url = $blog_details->path.$slug.'/'.$forum_post['post_name'];
+                            $url = $blog_details->path.$slug.'/'.$forum_post['post_name'].'/?topic='.$forum_post['post_name'];
                         endif;
                     else:
                         if (!is_multisite()):
