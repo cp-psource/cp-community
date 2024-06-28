@@ -7,7 +7,7 @@
   <a href="https://github.com/cp-psource/cp-community/discussions" style="text-decoration: none; color: #0366d6; font-weight: bold;">Support</a>
   <a href="https://github.com/cp-psource/cp-community/issues" style="text-decoration: none; color: #0366d6; font-weight: bold;">Bug Report</a>
   <a href="https://cp-psource.github.io/cp-community/psource.html" style="text-decoration: none; color: #0366d6; font-weight: bold;">PSOURCE</a>
-  <a href="https://cp-psource.github.io/cp-community/psource-de.html" style="text-decoration: none; color: #0366d6; font-weight: bold;">DEUTSCH</a> 
+  <a href="https://cp-psource.github.io/cp-community/readme-de.html" style="text-decoration: none; color: #0366d6; font-weight: bold;">DEUTSCH</a> 
 </div>
 
 ## Build Your WordPress Social Network – Your Way!
@@ -43,7 +43,7 @@ We our proud of our support, here to help you when you need it. Helpdesk, forums
   <a href="https://github.com/cp-psource/cp-community/discussions" style="text-decoration: none; color: #0366d6; font-weight: bold;">Support</a>
   <a href="https://github.com/cp-psource/cp-community/issues" style="text-decoration: none; color: #0366d6; font-weight: bold;">Bug Report</a>
   <a href="https://cp-psource.github.io/cp-community/psource.html" style="text-decoration: none; color: #0366d6; font-weight: bold;">PSOURCE</a>
-  <a href="https://cp-psource.github.io/cp-community/psource-de.html" style="text-decoration: none; color: #0366d6; font-weight: bold;">DEUTSCH</a> 
+  <a href="https://cp-psource.github.io/cp-community/readme-de.html" style="text-decoration: none; color: #0366d6; font-weight: bold;">DEUTSCH</a> 
 </div>
 
 <div>
