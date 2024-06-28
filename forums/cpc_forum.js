@@ -412,7 +412,7 @@ jQuery(document).ready(function() {
 		jQuery(this).next('.cpc_forum_comment_settings_options').show();
 	});	
 
-	jQuery(document).mouseup(function (e) {
+	jQuery(document).on('mouseup', function (e) {
 		jQuery('.cpc_forum_settings_options').hide();
 		jQuery('.cpc_comment_settings_options').hide();
 	});

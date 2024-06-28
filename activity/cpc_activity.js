@@ -45,13 +45,12 @@ jQuery(document).ready(function() {
 		jQuery(this).next('.cpc_comment_settings_options').show();
 	});    
 
-	jQuery(document).mouseup(function (e) {
+	jQuery(document).on('mouseup', function(e) {
 		jQuery('.cpc_activity_settings_options').hide();
-        jQuery('.cpc_comment_settings').hide();
+		jQuery('.cpc_comment_settings').hide();
 		jQuery('.cpc_comment_settings_options').hide();
 	});
-
-
+	
 	// Add activity post
 	if (jQuery('#cpc_activity_post').length) {
 
@@ -287,7 +286,7 @@ jQuery(document).ready(function() {
 					        term : query.term
 					    },
 					    function(response) {
-					    	var json = jQuery.parseJSON(response);
+					    	var json = JSON.parse(response);
 					    	var data = {results: []}, i, j, s;
 							for(var i = 0; i < json.length; i++) {
 						    	var obj = json[i];

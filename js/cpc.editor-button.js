@@ -39,6 +39,6 @@
 
 })();
 
-jQuery(document).mouseup(function (e) {
+jQuery(document).on('mouseup', function (e) {
   jQuery('#cpc_admin_shortcodes').hide();
 });

@@ -37,7 +37,7 @@ jQuery(document).ready(function() {
     };
     
     // submit Edit Profile
-	jQuery( "#cpc_usermeta_change" ).submit(function( event ) {
+	jQuery( "#cpc_usermeta_change" ).on('submit', function( event ) {
 		
         // ... first change for mandatory fields
         var all_filled = true;

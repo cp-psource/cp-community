@@ -33,6 +33,10 @@ Kein Problem! Ändere ganz einfach den gesamten Text, den Deine Benutzer sehen, 
 
 == ChangeLog ==
 
+= 1.0.2 =
+
+* Fix: Implicit conversion
+
 = 1.0.1 =
 
 * CSS Anpassung Einstellungs-Screen

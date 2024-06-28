@@ -285,7 +285,7 @@ jQuery(document).ready(function() {
     });
     
 	// Remember which admin section to show after saving
-    jQuery('#cpc_setup').submit(function () {
+    jQuery('#cpc_setup').on('submit', function () {
         
         // Sections
     	var cpc_expand = '';

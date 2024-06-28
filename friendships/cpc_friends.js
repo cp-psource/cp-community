@@ -86,7 +86,7 @@ jQuery(document).ready(function() {
 					        term : query.term
 					    },
 					    function(response) {
-					    	var json = jQuery.parseJSON(response);
+					    	var json = JSON.parse(response);
 					    	var data = {results: []}, i, j, s;
 							for(var i = 0; i < json.length; i++) {
 						    	var obj = json[i];
@@ -110,7 +110,7 @@ jQuery(document).ready(function() {
 					        term : query.term
 					    },
 					    function(response) {
-					    	var json = jQuery.parseJSON(response);
+					    	var json = JSON.parse(response);
 					    	var data = {results: []}, i, j, s;
 							for(var i = 0; i < json.length; i++) {
 						    	var obj = json[i];
@@ -141,7 +141,7 @@ jQuery(document).ready(function() {
 					        term : query.term
 					    },
 					    function(response) {
-					    	var json = jQuery.parseJSON(response);
+					    	var json = JSON.parse(response);
 					    	var data = {results: []}, i, j, s;
 							for(var i = 0; i < json.length; i++) {
 						    	var obj = json[i];
@@ -165,7 +165,7 @@ jQuery(document).ready(function() {
 					        term : query.term
 					    },
 					    function(response) {
-					    	var json = jQuery.parseJSON(response);
+					    	var json = JSON.parse(response);
 					    	var data = {results: []}, i, j, s;
 							for(var i = 0; i < json.length; i++) {
 						    	var obj = json[i];

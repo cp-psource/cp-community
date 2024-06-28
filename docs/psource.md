@@ -1,5 +1,3 @@
-# CP Community
-
 <div style="display: flex; justify-content: space-around; background-color: #f3f3f3; padding: 10px; border-radius: 5px;">
   <a href="https://cp-psource.github.io/cp-community/" style="text-decoration: none; color: #0366d6; font-weight: bold;">Home</a>
   <a href="https://github.com/cp-psource/cp-community/releases" style="text-decoration: none; color: #0366d6; font-weight: bold;">Downloads</a>
@@ -10,31 +8,32 @@
   <a href="https://cp-psource.github.io/cp-community/psource-de.html" style="text-decoration: none; color: #0366d6; font-weight: bold;">DEUTSCH</a> 
 </div>
 
-## Build Your WordPress Social Network – Your Way!
+## PSOURCE is a collection of plugins and themes for ClassicPress that are free to use. There are no premium features, subscription costs or anything like that. Everything is completely free to use. The community is invited to contribute their favorites and develop them further together
 
-To see what your social network could look like (you can make it look any way you like!), join this site to see many of the features in action.
+We have a large selection of plugins and themes for ClassicPress. In particular, many of our plugins/themes are designed for use in a multisite environment and for professional use.
 
-## Activity
+Explore our repository and try out our plugins/themes.
 
-Activity, attachments, avatar, header image, YouTube and many more features, event profile fields to make your social network, YOUR social network!
+We invite the community to participate in the development of our plugins/themes. If you have an idea for a new plugin or theme or suggestions for improving existing projects, we welcome your contributions. Here are some ways you can contribute:
 
-## Forums
+* Create an ISSUE to report a bug or suggest a feature.
+* Create a pull request to contribute code.
+* Discuss in the forum or on our homepage.
 
-Unlimited forums, with attachments, YouTube, subscriptions, choice of layouts and masses of options to tailor the forum to work YOUR way!
+We look forward to hearing from you and seeing your contributions.
 
-## And So Much More!
+All of our plugins/themes are licensed under the GPLv2 license. This means that you can use, modify and distribute them freely. We are happy if you use our plugins/themes in your own projects.
 
-It’s Easy To Use
+If you have any questions or problems with one of our plugins/themes, you can contact us via the forum or on our homepage. We are happy to help you.
 
-Just add WordPress shortcodes to any page, post or widget and if you want, layout how you want, set options for everything – even languages!
+Thank you for visiting PSOURCE. We hope that our plugins/themes are useful to you and we are happy to welcome you to the community.
 
-And Developed The WordPress Way
+## Popular PSOURCE
 
-Everything has been written with WordPress in mind. No custom tables, no unnecessary styles (so it matches your site), removing the risk of incompatibility!
-
-### With Great Support For You And Your Site!
-
-We our proud of our support, here to help you when you need it. Helpdesk, forums, live chat and even Skype, we want to be there to help you out, to make YOUR social network the best!
+| Plugin | Bild | Beschreibung | Link |
+|--------|------|--------------|------|
+| CP Community | ![CP Community](psource/cpc_logo.png) | This is the ultimate social network plugin for ClassicPress. You can create your own social network on your ClassicPress website. | [MORE...](https://cp-psource.github.io/cp-community/) |
+| PS BeitragsAds | ![PS BeitragsAds](psource/ipa.png) | Define and place custom ads for post types and more, the easiest tool to advertise effectively. | [MORE...](https://cp-psource.github.io/ps-post-ads/) |
 
 <div style="display: flex; justify-content: space-around; background-color: #f3f3f3; padding: 10px; border-radius: 5px;">
   <a href="https://cp-psource.github.io/cp-community/" style="text-decoration: none; color: #0366d6; font-weight: bold;">Home</a>

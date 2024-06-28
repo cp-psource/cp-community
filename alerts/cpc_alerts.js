@@ -88,7 +88,7 @@ jQuery(document).ready(function() {
 					        term : query.term
 					    },
 					    function(response) {
-					    	var json = jQuery.parseJSON(response);
+					    	var json = JSON.parse(response);
 					    	var data = {results: []}, i, j, s;
 							for(var i = 0; i < json.length; i++) {
 						    	var obj = json[i];
@@ -158,14 +158,14 @@ jQuery(document).ready(function() {
 	});	    
 
     // Show delete icon on hover
-    jQuery(".cpc_alerts_list_item").hover(function (event) {
-
-        jQuery(this).children('.cpc_alerts_list_item_delete').show();
-
-	});	    
+    jQuery(".cpc_alerts_list_item").on('mouseenter', function() {
+        $(this).children('.cpc_alerts_list_item_delete').show();
+    }).on('mouseleave', function() {
+        $(this).children('.cpc_alerts_list_item_delete').hide();
+    }); 
     
     // Hide delete icon when mouse leaves
-    jQuery(".cpc_alerts_list_item").mouseleave(function (event) {
+    jQuery(".cpc_alerts_list_item").on('mouseleave', function (event) {
         
         jQuery(".cpc_alerts_list_item_delete").hide();
 
@@ -179,14 +179,11 @@ jQuery(document).ready(function() {
         jQuery("#cpc_mark_all_as_read_div").hide();
         
         jQuery.post(
-            cpc_alerts.ajaxurl,
-            {
+            cpc_alerts.ajaxurl, {
                 action : 'cpc_alerts_delete_all',
             },
             function(response) {
             }   
         );
-
-	});	    
-    
+	});	        
 })
