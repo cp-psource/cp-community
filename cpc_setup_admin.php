@@ -1,7 +1,7 @@
 <?php
 
 // Default settings header
-add_action('cpc_admin_getting_started_hook', 'cpc_admin_getting_started_options_header', 0.5);
+add_action('cpc_admin_getting_started_hook', 'cpc_admin_getting_started_options_header', 1);
 function cpc_admin_getting_started_options_header() {
     // Default settings hook
     do_action( 'cpc_admin_getting_started_options_hook' );
@@ -2509,7 +2509,7 @@ function cpc_show_styling_options_save($function, $the_post, $values) {
 }
 
 // System Options header
-add_action('cpc_admin_getting_started_hook', 'cpc_admin_getting_started_core_header', 0.5);
+add_action('cpc_admin_getting_started_hook', 'cpc_admin_getting_started_core_header', 1);
 function cpc_admin_getting_started_core_header() {
     echo '<h2>'.sprintf(__('Optionen (nicht über <a href="%s">Shortcode</a> festgelegt)', CPC2_TEXT_DOMAIN), admin_url( 'admin.php?page=cpc_com_shortcodes' )).'</h2>';
 }
@@ -2747,7 +2747,7 @@ function cpc_admin_getting_started_core_save($the_post) {
 // Add to Getting Started information
 if (!function_exists('cpc_admin_getting_started_extensions')):
 
-    add_action('cpc_admin_getting_started_hook', 'cpc_admin_getting_started_extensions', 0.2);
+    add_action('cpc_admin_getting_started_hook', 'cpc_admin_getting_started_extensions', 1);
     function cpc_admin_getting_started_extensions() {
 
         $css = ( (!isset($_POST['cpc_expand'])) || (isset($_POST['cpc_expand']) && $_POST['cpc_expand'] == 'cpc_admin_getting_started_extensions') ) ? 'cpc_admin_getting_started_menu_item_remove_icon ' : '';         
