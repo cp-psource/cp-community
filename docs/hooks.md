@@ -356,6 +356,7 @@ function my_custom_alert_add_action($recipient_id, $alert_id, $url, $message) {
 **Beispiel**:
 
 <pre>
+```php
 add_action('wp_enqueue_scripts', 'cpc_activity_init');
 function cpc_activity_init() {
     // JavaScript-Datei einbinden
@@ -378,6 +379,7 @@ function cpc_activity_init() {
     // Zusätzliche Hooks für andere Plugins oder Themes
     do_action('cpc_activity_init_hook');
 }
+```
 </pre>
 
 **Hinweis**:
