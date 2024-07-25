@@ -282,6 +282,8 @@ function my_custom_auto_close_action($post_id) {
 }
 ```
 
+## ajax_activity.php
+
 ### Hook: cpc_activity_comment_add_hook
 
 **Beschreibung**: Wird ausgelöst, nachdem ein neuer Kommentar zu einer Aktivität hinzugefügt wurde.
@@ -328,11 +330,13 @@ function my_custom_post_add_alerts($the_post, $the_files, $new_id) {
 }
 ```
 
+## cpc_activity.php
+
 ### Hook: cpc_alert_add_hook
 
 **Beschreibung**: Dieser Hook wird ausgelöst, nachdem eine neue Benachrichtigung (Alert) erstellt und gespeichert wurde. Er ermöglicht es anderen Plugins oder Funktionen, zusätzliche Aktionen auszuführen, sobald die Benachrichtigung erstellt wurde.
 
-**Seit**: Unbekannt
+**Seit**: 0.0.1
 
 **Parameter**:
 - `int $recipient_id` – Die ID des Benachrichtigungsempfängers. Dies ist der Benutzer, der die Benachrichtigung erhält.
@@ -353,6 +357,8 @@ function my_custom_alert_add_action($recipient_id, $alert_id, $url, $message) {
     error_log($log_message);
 }
 ```
+
+## cpc_activity_shortcodes.php
 
 ### Hook: cpc_activity_init
 
@@ -400,6 +406,172 @@ function cpc_activity_init() {
 
 Dieser Hook stellt sicher, dass alle erforderlichen Ressourcen für die Aktivitätsfunktionalität geladen werden.
 Der Hook cpc_activity_init_hook ermöglicht es anderen Entwicklern, zusätzliche Ressourcen hinzuzufügen, ohne die Kernfunktionalität zu überschreiben.
+
+## lib_activity.php
+
+### Hook: cpc_activity_post_add_hook
+
+**Beschreibung**: Dieser Hook wird ausgelöst, nachdem ein neuer Aktivitätsbeitrag hinzugefügt wurde. Er ermöglicht es anderen Plugins oder Funktionen, zusätzliche Aktionen auszuführen, sobald der Beitrag erstellt und gespeichert wurde.
+
+**Seit**: 0.0.1
+
+**Parameter**:
+- `array $post_data` – Ein Array, das die Daten des neuen Beitrags enthält, wie im `$_POST`-Array gesendet.
+- `array $file_data` – Ein Array, das die Dateidaten enthält, die eventuell hochgeladen wurden, wie im `$_FILES`-Array gesendet.
+- `int $post_id` – Die ID des neu erstellten Beitrags.
+
+**Beispiel**:
+
+```php
+add_action('cpc_activity_post_add_hook', 'my_custom_activity_post_add_action', 10, 3);
+function my_custom_activity_post_add_action($post_data, $file_data, $post_id) {
+    // Beispiel: Loggen der Post-ID und der Benutzer-ID
+    $log_message = sprintf('Neuer Aktivitätsbeitrag #%d erstellt von Benutzer %d.', $post_id, get_current_user_id());
+    error_log($log_message);
+
+    // Beispiel: Sende Benachrichtigung an den Administrator
+    $admin_email = get_option('admin_email');
+    $subject = 'Neuer Aktivitätsbeitrag erstellt';
+    $message = sprintf('Ein neuer Aktivitätsbeitrag mit der ID %d wurde erstellt.', $post_id);
+    wp_mail($admin_email, $subject, $message);
+}
+```
+
+**Details**:
+
+**JavaScript- und CSS-Dateien einbinden**:
+
+- `wp_enqueue_script('cpc-activity-js')` lädt das JavaScript für die Aktivität.
+- `wp_localize_script()` macht PHP-Variablen im JavaScript verfügbar.
+- `wp_enqueue_style('cpc-activity-css')` lädt das CSS für die Aktivität.
+- `wp_enqueue_script('cpc-select2-js')` und `wp_enqueue_style('cpc-select2-css')` binden die Select2-Bibliothek ein.
+
+**Aktivitätsbeitrag hinzufügen**:
+
+- Ein neuer Beitrag wird erstellt und gespeichert, wenn die Aktion `cpc_activity_post_add` ausgeführt wird.
+- Metadaten werden für den Beitrag gespeichert.
+- Ein HTML-Block für den neuen Beitrag wird generiert, einschließlich Avatar, Metadaten, Beitragstext und Anhänge.
+- Der Hook `cpc_activity_post_add_hook` wird ausgeführt, um weitere Aktionen zu ermöglichen.
+
+**Verarbeitung von Shortcodes**:
+
+- Der Inhalt des Beitrags wird formatiert, einschließlich Verlinkungen und Zitaten.
+- Wenn Anhänge vorhanden sind, werden diese ebenfalls im HTML angezeigt.
+
+**Endgültige Ausgabe**:
+
+- Der formatierte HTML-Code für den neuen Aktivitätsbeitrag wird an die Seite ausgegeben.
+- Dieser Hook ist nützlich, um nach der Erstellung eines neuen Aktivitätsbeitrags zusätzliche benutzerdefinierte Aktionen auszuführen, wie das Senden von Benachrichtigungen oder das Protokollieren von Ereignissen.
+
+## cpc_alerts_admin.php
+
+### Hook: cpc_alert_add_hook
+
+**Beschreibung**: Dieser Hook wird ausgelöst, nachdem eine neue Benachrichtigung (Alert) erstellt und gespeichert wurde. Er ermöglicht es anderen Plugins oder Funktionen, zusätzliche Aktionen auszuführen, sobald die Benachrichtigung erstellt wurde.
+
+**Seit**: 0.0.1
+
+**Parameter**:
+- `int $recipient_id` – Die ID des Benachrichtigungsempfängers. Dies ist der Benutzer, der die Benachrichtigung erhält.
+- `int $alert_id` – Die ID des neu erstellten Benachrichtigungsbeitrags.
+- `string $url` – Die URL, die auf die Seite verweist, auf der der Benutzer die vollständige Benachrichtigung sehen kann.
+- `string $message` – Die Nachricht, die in der Benachrichtigung enthalten ist.
+
+**Beispiel**:
+
+```php
+add_action('cpc_alert_add_hook', 'my_custom_alert_add_action', 10, 4);
+function my_custom_alert_add_action($recipient_id, $alert_id, $url, $message) {
+    // Beispiel: Protokollieren der Benachrichtigungserstellung
+    $log_message = sprintf('Benachrichtigung #%d für Benutzer %d erstellt. URL: %s, Nachricht: %s', $alert_id, $recipient_id, $url, $message);
+    error_log($log_message);
+
+    // Beispiel: Sende Benachrichtigung an den Administrator
+    $admin_email = get_option('admin_email');
+    $subject = 'Neue Benachrichtigung erstellt';
+    $email_message = sprintf('Eine neue Benachrichtigung mit der ID %d wurde für Benutzer %d erstellt. URL: %s', $alert_id, $recipient_id, $url);
+    wp_mail($admin_email, $subject, $email_message);
+}
+```
+
+**Details**:
+
+**Benachrichtigung erstellen**:
+
+- Der Funktionsaufruf `cpc_com_insert_alert` erstellt einen neuen Benachrichtigungsbeitrag (cpc_alerts) mit den übergebenen Parametern.
+- Die Benachrichtigung wird mit Titel, Inhalt, Status und weiteren Metadaten gespeichert.
+
+**Metadaten aktualisieren**:
+
+- Die Metadaten der Benachrichtigung werden aktualisiert, einschließlich des Empfängernamens, des Typs der Benachrichtigung und der Parameter.
+
+**Status überprüfen**:
+
+- Wenn der Status der Benachrichtigung auf publish gesetzt ist, wird das aktuelle Datum und eine Notiz zum Status hinzugefügt.
+
+**Hook auslösen**:
+
+Der Hook `cpc_alert_add_hook` wird mit den Parametern `recipient_id`, `new_alert_id`, `url` und `msg` ausgelöst, um zusätzliche Aktionen zu ermöglichen.
+
+**Rückgabewert**:
+
+- Die Funktion gibt die ID der neu erstellten Benachrichtigung zurück.
+
+Dieser Hook ist nützlich, um nach der Erstellung einer neuen Benachrichtigung weitere benutzerdefinierte Aktionen durchzuführen, wie das Senden von E-Mails oder das Protokollieren von Ereignissen.
+
+### Hook: `cpc_admin_getting_started_alerts`
+
+**Beschreibung**: 
+Diese Funktion zeigt die Einstellungsseite für Benachrichtigungen im Admin-Bereich von ClassicPress an. Sie bietet Optionen zur Konfiguration von E-Mail-Benachrichtigungen und zeigt Hilfetexte und Links zu nützlichen Plugins an.
+
+**Seit**: 0.0.1
+
+**Parameter**: Keine
+
+**Rückgabewert**: Keine (die Funktion gibt HTML-Ausgabe direkt aus)
+
+**Details**:
+
+1. **Menüeintrag anzeigen**:
+   - Die Funktion überprüft, ob die `cpc_expand`-POST-Variable gesetzt ist und ob sie dem aktuellen Menüeintrag entspricht. Falls ja, wird eine CSS-Klasse hinzugefügt, um das Menüelement mit einem Symbol zum Entfernen anzuzeigen.
+   - Ein HTML-Element wird ausgegeben, das als Menüeintrag dient, der auf die Benachrichtigungseinstellungen verweist.
+
+2. **Hilfetext und Setup-Inhalte anzeigen**:
+   - Basierend auf der `cpc_expand`-POST-Variable wird der Abschnitt für die Benachrichtigungs-Einstellungen entweder angezeigt oder ausgeblendet.
+   - Der Inhalt enthält allgemeine Hinweise zur Verwendung von E-Mail-Benachrichtigungen, einschließlich der Empfehlung, einen externen Mailserver zu verwenden, wenn ein hohes Volumen von E-Mails vorhanden ist.
+   - Weitere Hinweise umfassen Empfehlungen für Plugins wie [Postman SMTP Mailer/Email Log](https://wordpress.org/plugins/postman-smtp/) und [WP Crontrol](https://wordpress.org/plugins/wp-crontrol/).
+
+3. **Einstellungen für Benachrichtigungen**:
+   - Verschiedene Optionen können konfiguriert werden, darunter:
+     - Deaktivierung von Benachrichtigungen
+     - Häufigkeit von E-Mail-Benachrichtigungen
+     - Maximale Anzahl von E-Mails pro Zyklus
+     - Zusammenfassende E-Mail-Adresse für gesendete Benachrichtigungen
+     - E-Mail-Adresse für detaillierte Cron-Berichte
+     - "Von" Name und E-Mail-Adresse für Benachrichtigungen
+     - Option zur Test-E-Mail
+     - Aufbewahrung von Benachrichtigungsmeldungen
+     - Erneutes Senden fehlgeschlagener Benachrichtigungen
+     - Testbenachrichtigung hinzufügen
+
+4. **Aktionen nach dem Formular**:
+   - Nach dem Formular wird der Hook `cpc_alerts_admin_setup_form_hook` ausgelöst, um zusätzliche Anpassungen oder Erweiterungen durch andere Plugins oder Funktionen zu ermöglichen.
+
+**Beispiel**:
+
+```php
+// Beispiel: Hook für zusätzliche Einstellungen nach dem Formular
+add_action('cpc_alerts_admin_setup_form_hook', 'my_custom_admin_alerts_setup');
+function my_custom_admin_alerts_setup() {
+    echo '<p>'.__('Hier könnten zusätzliche Optionen oder Hinweise angezeigt werden.', CPC2_TEXT_DOMAIN).'</p>';
+}
+```
+
+**Verwendung**:
+
+Die Funktion wird verwendet, um die Admin-Benutzeroberfläche für die Benachrichtigungseinstellungen zu erstellen und anzupassen. Sie sollte innerhalb des ClassicPress-Adminbereichs aufgerufen werden.
+
+
 
 
 
