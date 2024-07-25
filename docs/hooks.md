@@ -15,14 +15,12 @@
 
 **Beispiel**:
 
-<pre>
-~~~
+```php
 add_action('cpc_activity_post_add_hook', 'my_custom_function');
 function my_custom_function($the_post, $the_files, $new_id) {
     // Dein Code hier, zum Beispiel eine Benachrichtigung senden
 }
-~~~
-</pre>
+```
 
 ## cpc_admin.php
 
@@ -37,8 +35,7 @@ function my_custom_function($the_post, $the_files, $new_id) {
 
 **Beispiel**:
 
-<pre>
-~~~
+```php
 add_action('cpc_admin_quick_start_form_save_hook', 'my_custom_quick_start_save_function');
 function my_custom_quick_start_save_function($post_data) {
     // Verarbeite die Daten aus dem Formular
@@ -47,8 +44,7 @@ function my_custom_quick_start_save_function($post_data) {
         update_option('my_custom_option', sanitize_text_field($post_data['my_custom_option']));
     }
 }
-~~~
-</pre>
+```
 
 ### Hook: cpc_admin_quick_start_hook
 
@@ -60,8 +56,7 @@ function my_custom_quick_start_save_function($post_data) {
 
 **Beispiel**:
 
-<pre>
-~~~
+```php
 add_action('cpc_admin_quick_start_hook', 'my_custom_quick_start_content');
 function my_custom_quick_start_content() {
     echo '<div class="quick-start-section">';
@@ -69,8 +64,7 @@ function my_custom_quick_start_content() {
     echo '<p>Hier sind einige Anweisungen, wie du mit meinem benutzerdefinierten Modul beginnen kannst...</p>';
     echo '</div>';
 }
-~~~
-</pre>
+```
 
 ### Hook: cpc_admin_setup_form_save_hook
 
@@ -84,8 +78,7 @@ function my_custom_quick_start_content() {
 
 **Beispiel**:
 
-<pre>
-~~~
+```php
 add_action('cpc_admin_setup_form_save_hook', 'my_custom_setup_save_function');
 function my_custom_setup_save_function($post_data) {
     // Verarbeite die Daten aus dem Formular
@@ -94,8 +87,7 @@ function my_custom_setup_save_function($post_data) {
         update_option('my_setup_option', sanitize_text_field($post_data['my_setup_option']));
     }
 }
-~~~
-</pre>
+```
 
 ### Hook: cpc_admin_setup_form_get_hook
 
@@ -109,8 +101,7 @@ function my_custom_setup_save_function($post_data) {
 
 **Beispiel**:
 
-<pre>
-~~~
+```php
 add_action('cpc_admin_setup_form_get_hook', 'my_custom_setup_get_function');
 function my_custom_setup_get_function($get_data) {
     // Verarbeite die abgerufenen Daten
@@ -119,8 +110,7 @@ function my_custom_setup_get_function($get_data) {
         echo '<div class="notice notice-success"><p>' . esc_html($get_data['my_custom_notice']) . '</p></div>';
     }
 }
-~~~
-</pre>
+```
 
 ### Hook: cpc_admin_getting_started_hook
 
@@ -132,8 +122,7 @@ function my_custom_setup_get_function($get_data) {
 
 **Beispiel**:
 
-<pre>
-~~~
+```php
 add_action('cpc_admin_getting_started_hook', 'my_custom_getting_started_content');
 function my_custom_getting_started_content() {
     echo '<div class="getting-started-section">';
@@ -141,8 +130,7 @@ function my_custom_getting_started_content() {
     echo '<p>Hier sind einige Anweisungen, wie du mit meinem Modul beginnen kannst...</p>';
     echo '</div>';
 }
-~~~
-</pre>
+```
 
 ### Hook: cpc_admin_getting_started_shortcodes_save_hook
 
@@ -155,8 +143,7 @@ function my_custom_getting_started_content() {
 
 **Beispiel**:
 
-<pre>
-~~~
+```php
 add_action('cpc_admin_getting_started_shortcodes_save_hook', 'my_custom_shortcodes_save_function');
 function my_custom_shortcodes_save_function($post_data) {
     // Verarbeite die Daten aus dem Formular
@@ -165,8 +152,7 @@ function my_custom_shortcodes_save_function($post_data) {
         update_option('my_custom_shortcodes_option', sanitize_text_field($post_data['my_custom_shortcodes_option']));
     }
 }
-~~~
-</pre>
+```
 
 ### Hook: cpc_admin_getting_started_shortcodes_hook
 
@@ -178,8 +164,7 @@ function my_custom_shortcodes_save_function($post_data) {
 
 **Beispiel**:
 
-<pre>
-~~~
+```php
 add_action('cpc_admin_getting_started_shortcodes_hook', 'my_custom_shortcodes_content');
 function my_custom_shortcodes_content() {
     echo '<div class="getting-started-section">';
@@ -187,8 +172,7 @@ function my_custom_shortcodes_content() {
     echo '<p>Hier sind einige nützliche Shortcodes, die du in deinen Seiten und Beiträgen verwenden kannst...</p>';
     echo '</div>';
 }
-~~~
-</pre>
+```
 
 ### Hook: cpc_admin_getting_started_styles_save_hook
 
@@ -201,8 +185,7 @@ function my_custom_shortcodes_content() {
 
 **Beispiel**:
 
-<pre>
-~~~
+```php
 add_action('cpc_admin_getting_started_styles_save_hook', 'my_custom_styles_save_function');
 function my_custom_styles_save_function($post_data) {
     // Verarbeite die Daten aus dem Formular
@@ -211,8 +194,7 @@ function my_custom_styles_save_function($post_data) {
         update_option('my_custom_styles_option', sanitize_text_field($post_data['my_custom_styles_option']));
     }
 }
-~~~
-</pre>
+```
 
 ### Hook: cpc_admin_getting_started_styles_hook
 
@@ -224,8 +206,7 @@ function my_custom_styles_save_function($post_data) {
 
 **Beispiel**:
 
-<pre>
-~~~
+```php
 add_action('cpc_admin_getting_started_styles_hook', 'my_custom_styles_content');
 function my_custom_styles_content() {
     echo '<div class="getting-started-section">';
@@ -233,8 +214,7 @@ function my_custom_styles_content() {
     echo '<p>Hier sind einige hilfreiche Tipps zur Anpassung der Stile auf Deiner Seite...</p>';
     echo '</div>';
 }
-~~~
-</pre>
+```
 
 ### Hook: cpc_admin_custom_css_form_save_hook
 
@@ -247,8 +227,7 @@ function my_custom_styles_content() {
 
 **Beispiel**:
 
-<pre>
-~~~
+```php
 add_action('cpc_admin_custom_css_form_save_hook', 'my_custom_css_save_function');
 function my_custom_css_save_function($post_data) {
     // Verarbeite die Daten aus dem Formular
@@ -259,8 +238,7 @@ function my_custom_css_save_function($post_data) {
         wp_mail('admin@example.com', 'CSS wurde aktualisiert', 'Das benutzerdefinierte CSS wurde aktualisiert.');
     }
 }
-~~~
-</pre>
+```
 
 ### Hook: cpc_admin_custom_css_form_hook
 
@@ -272,8 +250,7 @@ function my_custom_css_save_function($post_data) {
 
 **Beispiel**:
 
-<pre>
-~~~
+```php
 add_action('cpc_admin_custom_css_form_hook', 'my_custom_css_form_options');
 function my_custom_css_form_options() {
     // Füge zusätzliche Optionen oder Erklärungen zum CSS-Formular hinzu
@@ -281,8 +258,7 @@ function my_custom_css_form_options() {
     echo '<p>Hier kannst du zusätzliche Optionen oder Erklärungen zum benutzerdefinierten CSS hinzufügen.</p>';
     echo '</td></tr>';
 }
-~~~
-</pre>
+```
 
 ## cpc_core.php
 
@@ -297,16 +273,14 @@ function my_custom_css_form_options() {
 
 **Beispiel**:
 
-<pre>
-~~~
+```php
 add_action('cpc_forum_auto_close_hook', 'my_custom_auto_close_action');
 function my_custom_auto_close_action($post_id) {
     // Verarbeite den geschlossenen Beitrag weiter
     // Beispiel: Benachrichtige den Administrator oder führe eine andere Aktion durch
     wp_mail('admin@example.com', 'Forum-Kommentar geschlossen', 'Die Kommentare zu dem Beitrag mit der ID ' . $post_id . ' wurden automatisch geschlossen.');
 }
-~~~
-</pre>
+```
 
 ### Hook: cpc_activity_comment_add_hook
 
@@ -320,8 +294,7 @@ function my_custom_auto_close_action($post_id) {
 
 **Beispiel**:
 
-<pre>
-~~~
+```php
 add_action('cpc_activity_comment_add_hook', 'my_custom_comment_add_action', 10, 2);
 function my_custom_comment_add_action($post_data, $comment_id) {
     // Verarbeite den neuen Kommentar weiter
@@ -330,8 +303,7 @@ function my_custom_comment_add_action($post_data, $comment_id) {
     $comment_author = isset($post_data['comment_author']) ? $post_data['comment_author'] : '';
     wp_mail('admin@example.com', 'Neuer Kommentar hinzugefügt', "Ein neuer Kommentar von $comment_author wurde hinzugefügt: $comment_content");
 }
-~~~
-</pre>
+```
 
 ### Hook: cpc_activity_post_add_hook
 
@@ -346,8 +318,7 @@ function my_custom_comment_add_action($post_data, $comment_id) {
 
 **Beispiel**:
 
-<pre>
-~~~
+```php
 add_action('cpc_activity_post_add_hook', 'my_custom_post_add_alerts', 10, 3);
 function my_custom_post_add_alerts($the_post, $the_files, $new_id) {
     // Verarbeite die Benachrichtigung hier weiter
@@ -355,8 +326,7 @@ function my_custom_post_add_alerts($the_post, $the_files, $new_id) {
     $message = sprintf('Neuer Beitrag von %s: %s', get_user_by('id', $author_id)->display_name, $the_post['cpc_activity_post']);
     wp_mail('admin@example.com', 'Neuer Aktivitätsbeitrag', $message);
 }
-~~~
-</pre>
+```
 
 ### Hook: cpc_alert_add_hook
 
@@ -372,8 +342,7 @@ function my_custom_post_add_alerts($the_post, $the_files, $new_id) {
 
 **Beispiel**:
 
-<pre>
-~~~
+```php
 add_action('cpc_alert_add_hook', 'my_custom_alert_add_action', 10, 4);
 function my_custom_alert_add_action($recipient_id, $alert_id, $url, $message) {
     // Führe zusätzliche Aktionen durch, z.B. Protokollierung oder zusätzliche Benachrichtigungen
@@ -383,8 +352,7 @@ function my_custom_alert_add_action($recipient_id, $alert_id, $url, $message) {
     // Schreibe in ein Protokoll
     error_log($log_message);
 }
-~~~
-</pre>
+```
 
 ### Hook: cpc_activity_init
 
@@ -403,8 +371,7 @@ function my_custom_alert_add_action($recipient_id, $alert_id, $url, $message) {
 
 **Beispiel**:
 
-<pre>
-~~~
+```php
 add_action('wp_enqueue_scripts', 'cpc_activity_init');
 function cpc_activity_init() {
     // JavaScript-Datei einbinden
@@ -427,8 +394,7 @@ function cpc_activity_init() {
     // Zusätzliche Hooks für andere Plugins oder Themes
     do_action('cpc_activity_init_hook');
 }
-~~~
-</pre>
+```
 
 **Hinweis**:
 
