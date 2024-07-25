@@ -580,8 +580,110 @@ function my_custom_admin_alerts_setup() {
 
 Die Funktion wird verwendet, um die Admin-Benutzeroberfläche für die Benachrichtigungseinstellungen zu erstellen und anzupassen. Sie sollte innerhalb des ClassicPress-Adminbereichs aufgerufen werden.
 
+## cpc_alerts_shortcodes.php
+
+### Hook: cpc_alerts_init_hook
+
+**Beschreibung**: Wird ausgelöst, nachdem die Skripte und Stile für das `cpc_alerts` Plugin in die Warteschlange eingereiht wurden. Dieser Hook ermöglicht es Entwicklern, zusätzliche Skripte, Stile oder andere Initialisierungen durchzuführen.
+
+**Seit**: Unbekannt
+
+**Parameter**: Keine
+
+**Beispiel**:
+
+```php
+add_action('cpc_alerts_init_hook', 'my_custom_initialization');
+function my_custom_initialization() {
+    // Dein Code hier, zum Beispiel ein weiteres Script einreihen
+    wp_enqueue_script('my-custom-js', plugins_url('my_custom_script.js', __FILE__), array('jquery'));
+}
+```
+## ajax_activity.php
+
+### Hook: cpc_activity_comment_add_hook
+
+**Beschreibung**: Wird ausgelöst, nachdem ein neuer Kommentar im ClassicPress-Beitrag des Typs `cpc_activity_comment` eingefügt wurde. Dies ermöglicht es Entwicklern, zusätzliche Aktionen nach dem Hinzufügen eines Kommentars durchzuführen, z.B. das Aktualisieren von Caches oder das Senden von Benachrichtigungen.
+
+**Seit**: Unbekannt
+
+**Parameter**:
+- `$_POST` (Typ: array) – Die Daten, die mit dem Kommentar übermittelt wurden, wie `post_id`, `comment_content`, und andere POST-Parameter.
+- `$new_id` (Typ: int) – Die ID des neu erstellten Kommentars.
+
+**Beispiel**:
+
+```php
+add_action('cpc_activity_comment_add_hook', 'my_custom_comment_action', 10, 2);
+function my_custom_comment_action($post_data, $comment_id) {
+    // Dein Code hier, z.B. eine Benachrichtigung senden
+    // $post_data enthält die POST-Daten, $comment_id ist die ID des neuen Kommentars
+}
+```
+
+### Erklärung der `cpc_activity_comment_add` Funktion
+
+- **Funktion**: Diese Funktion verarbeitet die Daten für einen neuen Kommentar, erstellt diesen Kommentar in der Datenbank und gibt das HTML für die Anzeige des Kommentars zurück.
+- **Parameter**: Nimmt Daten aus `$_POST` entgegen, um den Kommentar zu erstellen.
+- **Aktionen**:
+  - `wp_insert_comment` fügt den Kommentar in die Datenbank ein.
+  - `do_action('cpc_activity_comment_add_hook', $_POST, $new_id)` ermöglicht zusätzliche Aktionen nach dem Hinzufügen des Kommentars.
+  - Gibt HTML für die Anzeige des Kommentars zurück oder `0` bei Fehlern.
+
+## cpc_avatar_shortcodes.php
+
+### Hook: cpc_avatar_init_hook
+
+**Beschreibung**: Wird ausgelöst, nachdem die Skripte und Stile für das `cpc_avatar` Plugin in die Warteschlange eingereiht wurden. Dieser Hook ermöglicht Entwicklern, zusätzliche Skripte, Stile oder andere Initialisierungen vorzunehmen.
+
+**Seit**: 0.0.1
+
+**Parameter**: Keine
+
+**Beispiel**:
+
+```php
+add_action('cpc_avatar_init_hook', 'my_custom_avatar_initialization');
+function my_custom_avatar_initialization() {
+    // Dein Code hier, z.B. ein weiteres Script einreihen
+    wp_enqueue_script('my-custom-avatar-js', plugins_url('my_custom_avatar_script.js', __FILE__), array('jquery'));
+}
+```
+
+**Shortcode**: [cpc_avatar]
+
+**Beschreibung**: Gibt das HTML für das Avatar des Benutzers zurück. Der Shortcode kann verwendet werden, um das Avatar eines bestimmten Benutzers anzuzeigen und es ermöglicht zusätzliche Optionen wie das Ändern des Avatars oder das Verlinken auf das Profil.
+
+Seit: 0.0.1
+
+Parameter:
+
+user_id (Typ: int) – Die ID des Benutzers, dessen Avatar angezeigt werden soll. Standardmäßig wird das Avatar des aktuellen Benutzers angezeigt.
+size (Typ: int|string) – Die Größe des Avatars in Pixeln oder als Prozentwert (z.B. '100px' oder '50%'). Standardwert ist 256.
+change_link (Typ: bool) – Wenn true, wird ein Link zum Ändern des Avatars angezeigt. Standardwert ist false.
+profile_link (Typ: bool) – Wenn true, wird der Avatar mit einem Link zum Profil des Benutzers versehen. Standardwert ist false.
+change_avatar_text (Typ: string) – Der Text des Links zum Ändern des Avatars. Standardwert ist 'Bild ändern'.
+change_avatar_title (Typ: string) – Der Titel des Links zum Ändern des Avatars. Standardwert ist 'Bild hochladen und zuschneiden, um es anzuzeigen'.
+avatar_style (Typ: string) – Der Stil des Avatars. Mögliche Werte sind popup oder andere benutzerdefinierte Stile. Standardwert ist 'popup'.
+popup_width (Typ: int) – Die Breite des Popups zum Ändern des Avatars. Standardwert ist 750.
+popup_height (Typ: int) – Die Höhe des Popups zum Ändern des Avatars. Standardwert ist 450.
+styles (Typ: bool) – Ob Stile angewendet werden sollen. Standardwert ist true.
+check_privacy (Typ: bool) – Ob die Sichtbarkeit des Profils überprüft werden soll. Standardwert ist false.
+after (Typ: string) – Inhalt, der nach dem Avatar eingefügt wird.
+before (Typ: string) – Inhalt, der vor dem Avatar eingefügt wird.
+Beispiel:
+
+php
+Code kopieren
+echo do_shortcode('[cpc_avatar user_id="123" size="100" change_link="true" profile_link="true"]');
+Erklärung:
+
+cpc_avatar_init: Diese Funktion lädt die notwendigen Skripte und Stile für das cpc_avatar Plugin. Sie wird beim Laden des Footers initialisiert.
+cpc_avatar: Dieser Shortcode generiert HTML für die Anzeige eines Avatars, basierend auf den angegebenen Attributen. Er kann auch Links zum Profil oder zur Avatar-Änderung hinzufügen.
+
 ### Entwickler-Ressourcen:
 
+- **Shortcodes:** [CP Community Shortcodes](shortcodes.md)
 - **Hooks:** [CP Community Hooks](hooks.md)
 - **Filter:** [CP Community Filter](filter.md)
 

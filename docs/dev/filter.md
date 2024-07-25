@@ -11,6 +11,7 @@
 
 ### Entwickler-Ressourcen:
 
+- **Shortcodes:** [CP Community Shortcodes](shortcodes.md)
 - **Hooks:** [CP Community Hooks](hooks.md)
 - **Filter:** [CP Community Filter](filter.md)
 

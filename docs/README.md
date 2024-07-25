@@ -38,6 +38,7 @@ Wir sind stolz auf unseren Support, der Dir zur Seite steht, wenn Du ihn brauchs
 
 ### Entwickler-Ressourcen:
 
+- **Shortcodes:** [CP Community Shortcodes](dev/shortcodes.md)
 - **Hooks:** [CP Community Hooks](dev/hooks.md)
 - **Filter:** [CP Community Filter](dev/filter.md)
 
