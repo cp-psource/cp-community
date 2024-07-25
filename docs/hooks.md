@@ -359,25 +359,25 @@ function my_custom_alert_add_action($recipient_id, $alert_id, $url, $message) {
 add_action('wp_enqueue_scripts', 'cpc_activity_init');
 function cpc_activity_init() {
     // JavaScript-Datei einbinden
-    wp_enqueue_script('cpc-activity-js', plugins_url('cpc_activity.js', __FILE__), array('jquery'));```
+    wp_enqueue_script('cpc-activity-js', plugins_url('cpc_activity.js', __FILE__), array('jquery'));
     
-    ```// JavaScript lokalisieren, um PHP-Variablen verfügbar zu machen
+    // JavaScript lokalisieren, um PHP-Variablen verfügbar zu machen
     wp_localize_script('cpc-activity-js', 'cpc_activity_ajax', array(
         'ajaxurl' => admin_url('admin-ajax.php'),
         'plugins_url' => plugins_url('', __FILE__),
         'activity_post_focus' => get_option('cpccom_activity_set_focus')
-    ));```
+    ));
     
-    ```// CSS-Datei einbinden
-    wp_enqueue_style('cpc-activity-css', plugins_url('cpc_activity.css', __FILE__), array(), '1.0.0');```
+    // CSS-Datei einbinden
+    wp_enqueue_style('cpc-activity-css', plugins_url('cpc_activity.css', __FILE__), array(), '1.0.0');
     
-    ```// Select2-Bibliothek einbinden
+    // Select2-Bibliothek einbinden
     wp_enqueue_script('cpc-select2-js', plugins_url('../js/select2.js', __FILE__), array('jquery'), '4.0.13', true);
-    wp_enqueue_style('cpc-select2-css', plugins_url('../js/select2.css', __FILE__), array(), '4.0.13');```
+    wp_enqueue_style('cpc-select2-css', plugins_url('../js/select2.css', __FILE__), array(), '4.0.13');
     
-    ```// Zusätzliche Hooks für andere Plugins oder Themes
+    // Zusätzliche Hooks für andere Plugins oder Themes
     do_action('cpc_activity_init_hook');
-}```
+}`
 
 **Hinweis**:
 
