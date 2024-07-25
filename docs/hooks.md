@@ -269,6 +269,125 @@ function my_custom_auto_close_action($post_id) {
     wp_mail('admin@example.com', 'Forum-Kommentar geschlossen', 'Die Kommentare zu dem Beitrag mit der ID ' . $post_id . ' wurden automatisch geschlossen.');
 }```
 
+### Hook: cpc_activity_comment_add_hook
+
+**Beschreibung**: Wird ausgelöst, nachdem ein neuer Kommentar zu einer Aktivität hinzugefügt wurde.
+
+**Seit**: unbekannt
+
+**Parameter**:
+- `array $post_data` – Die Daten, die beim Hinzufügen des Kommentars gesendet wurden (aus `$_POST`).
+- `int $comment_id` – Die ID des neu hinzugefügten Kommentars.
+
+**Beispiel**:
+
+```php
+add_action('cpc_activity_comment_add_hook', 'my_custom_comment_add_action', 10, 2);
+function my_custom_comment_add_action($post_data, $comment_id) {
+    // Verarbeite den neuen Kommentar weiter
+    // Beispiel: Sende eine Benachrichtigung oder führe eine andere Aktion aus
+    $comment_content = isset($post_data['comment_content']) ? $post_data['comment_content'] : '';
+    $comment_author = isset($post_data['comment_author']) ? $post_data['comment_author'] : '';
+    wp_mail('admin@example.com', 'Neuer Kommentar hinzugefügt', "Ein neuer Kommentar von $comment_author wurde hinzugefügt: $comment_content");
+}```
+
+### Hook: cpc_activity_post_add_hook
+
+**Beschreibung**: Wird ausgelöst, wenn ein neuer Beitrag zur Aktivität hinzugefügt wird. Dieser Hook wird verwendet, um Benachrichtigungen für neue Beiträge zu senden.
+
+**Seit**: 0.0.1
+
+**Parameter**:
+- `array $the_post` – Die Daten des Beitrags (aus `$_POST` oder `get_post()`).
+- `array $the_files` – Die Dateianhänge, die mit dem Beitrag verbunden sind.
+- `int $new_id` – Die ID des neu hinzugefügten Beitrags.
+
+**Beispiel**:
+
+```php
+add_action('cpc_activity_post_add_hook', 'my_custom_post_add_alerts', 10, 3);
+function my_custom_post_add_alerts($the_post, $the_files, $new_id) {
+    // Verarbeite die Benachrichtigung hier weiter
+    $author_id = $the_post['cpc_activity_post_author'];
+    $message = sprintf('Neuer Beitrag von %s: %s', get_user_by('id', $author_id)->display_name, $the_post['cpc_activity_post']);
+    wp_mail('admin@example.com', 'Neuer Aktivitätsbeitrag', $message);
+}```
+
+### Hook: cpc_alert_add_hook
+
+**Beschreibung**: Dieser Hook wird ausgelöst, nachdem eine neue Benachrichtigung (Alert) erstellt und gespeichert wurde. Er ermöglicht es anderen Plugins oder Funktionen, zusätzliche Aktionen auszuführen, sobald die Benachrichtigung erstellt wurde.
+
+**Seit**: Unbekannt
+
+**Parameter**:
+- `int $recipient_id` – Die ID des Benachrichtigungsempfängers. Dies ist der Benutzer, der die Benachrichtigung erhält.
+- `int $alert_id` – Die ID des neu erstellten Benachrichtigungsbeitrags.
+- `string $url` – Die URL, die auf die Seite verweist, auf der der Benutzer die vollständige Benachrichtigung sehen kann.
+- `string $message` – Die Nachricht, die in der Benachrichtigung enthalten ist.
+
+**Beispiel**:
+
+```php
+add_action('cpc_alert_add_hook', 'my_custom_alert_add_action', 10, 4);
+function my_custom_alert_add_action($recipient_id, $alert_id, $url, $message) {
+    // Führe zusätzliche Aktionen durch, z.B. Protokollierung oder zusätzliche Benachrichtigungen
+    $recipient = get_user_by('id', $recipient_id);
+    $log_message = sprintf('Benachrichtigung #%d für Benutzer %s erstellt. URL: %s, Nachricht: %s', $alert_id, $recipient->user_login, $url, $message);
+
+    // Schreibe in ein Protokoll
+    error_log($log_message);
+}```
+
+### Hook: cpc_activity_init
+
+**Beschreibung**: Dieser Hook wird verwendet, um JavaScript- und CSS-Ressourcen für die Aktivitäts-Komponente des Plugins zu registrieren und zu laden. Außerdem ermöglicht er es anderen Plugins oder Themes, zusätzliche Skripte und Stile einzufügen, indem der Hook cpc_activity_init_hook aufgerufen wird.
+
+**Seit**: 0.0.1
+
+**Parameter**: Keine
+
+**Funktionsweise**:
+
+- JavaScript einbinden: Lädt das Haupt-JavaScript für die Aktivitätsfunktionalität des Plugins und lokalisiert es, um PHP-Variablen für die clientseitige Nutzung bereitzustellen.
+- CSS einbinden: Lädt das CSS für die Stilgestaltung der Aktivitätsfunktionalität des Plugins.
+- Select2-Bibliothek: Lädt die Select2 JavaScript- und CSS-Dateien, die für Dropdown-Listen verwendet werden.
+- Zusätzliche Hooks: Ermöglicht anderen Plugins oder Themes, zusätzliche Skripte oder Stile einzufügen.
+
+**Beispiel**:
+
+```php
+add_action('wp_enqueue_scripts', 'cpc_activity_init');
+function cpc_activity_init() {
+    // JavaScript-Datei einbinden
+    wp_enqueue_script('cpc-activity-js', plugins_url('cpc_activity.js', __FILE__), array('jquery'));
+    
+    // JavaScript lokalisieren, um PHP-Variablen verfügbar zu machen
+    wp_localize_script('cpc-activity-js', 'cpc_activity_ajax', array(
+        'ajaxurl' => admin_url('admin-ajax.php'),
+        'plugins_url' => plugins_url('', __FILE__),
+        'activity_post_focus' => get_option('cpccom_activity_set_focus')
+    ));
+    
+    // CSS-Datei einbinden
+    wp_enqueue_style('cpc-activity-css', plugins_url('cpc_activity.css', __FILE__), array(), '1.0.0');
+    
+    // Select2-Bibliothek einbinden
+    wp_enqueue_script('cpc-select2-js', plugins_url('../js/select2.js', __FILE__), array('jquery'), '4.0.13', true);
+    wp_enqueue_style('cpc-select2-css', plugins_url('../js/select2.css', __FILE__), array(), '4.0.13');
+    
+    // Zusätzliche Hooks für andere Plugins oder Themes
+    do_action('cpc_activity_init_hook');
+}```
+
+**Hinweis**:
+
+Dieser Hook stellt sicher, dass alle erforderlichen Ressourcen für die Aktivitätsfunktionalität geladen werden.
+Der Hook cpc_activity_init_hook ermöglicht es anderen Entwicklern, zusätzliche Ressourcen hinzuzufügen, ohne die Kernfunktionalität zu überschreiben.
+
+
+
+
+
 
 
 

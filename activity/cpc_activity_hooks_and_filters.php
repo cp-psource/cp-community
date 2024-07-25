@@ -23,9 +23,15 @@ function cpc_activity_add_username($items){
     
 }   
 
-// Hook into cpc_activity_post_add to send alerts for new posts
-// to target user, if not the current user
-
+/**
+ * Sendet Benachrichtigungen für neue Beiträge zur Aktivität.
+ *
+ * @since 0.0.1
+ *
+ * @param array $the_post Die Daten des Beitrags.
+ * @param array $the_files Die Dateianhänge des Beitrags.
+ * @param int $new_id Die ID des neu hinzugefügten Beitrags.
+ */
 add_action( 'cpc_activity_post_add_hook', 'cpc_activity_post_add_alerts', 10, 3 );
 function cpc_activity_post_add_alerts($the_post, $the_files, $new_id) {
 
@@ -37,13 +43,11 @@ function cpc_activity_post_add_alerts($the_post, $the_files, $new_id) {
 		$get_the_post = get_post($new_id);
 		$get_recipient = $get_the_post ? get_user_by('id', $get_the_post->cpc_target) : false;
 		if ($get_recipient && $get_the_post->cpc_target != $the_post['cpc_activity_post_author']) {
-			// To a single person
+			// Einzelperson benachrichtigen
 			array_push($recipients, $get_the_post->cpc_target);
 		} else {
-			
-			// First check to see if alerts should be sent, when posting to all friends...
+			// Überprüfen, ob Benachrichtigungen an alle Freunde gesendet werden sollen
 			if (get_option('cpccom_all_friends_alerts')):
-				// ... if so, carry on
 				global $current_user;	
 				$friends = cpc_get_friends($current_user->ID, false);
 				if ($friends):
@@ -54,11 +58,10 @@ function cpc_activity_post_add_alerts($the_post, $the_files, $new_id) {
 			endif;			
 		}
 
-		// alerts only added if activity type is default (ie. not set)
-		// other types must add alerts themselves
+		// Benachrichtigungen nur hinzufügen, wenn der Beitragstyp der Standardtyp ist
 		if ($get_the_post && !$get_the_post->cpc_target_type):
 
-			// Any changes to recipients list?
+			// Empfängerliste anpassen
 			$recipients = apply_filters('cpc_activity_post_add_alerts_recipients_filter', $recipients, $the_post, $the_files, $new_id);
 
 			if (post_type_exists('cpc_alerts') && count($recipients) > 0):

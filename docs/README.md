@@ -35,6 +35,12 @@ Alles wurde mit WordPress im Hinterkopf geschrieben. Keine benutzerdefinierten T
 
 Wir sind stolz auf unseren Support, der Dir zur Seite steht, wenn Du ihn brauchst. Helpdesk, Foren, Live-Chat und sogar Skype – wir sind da, um Dir zu helfen, Dein soziales Netzwerk zum besten zu machen!
 
+
+### Entwickler-Ressourcen:
+
+- **Hooks:** [CP Community Hooks](https://cp-psource.github.io/cp-community/hooks.html)
+- **Filter:** [CP Community Filter](https://cp-psource.github.io/cp-community/filter.html)
+
 <div style="display: flex; justify-content: space-around; background-color: #f3f3f3; padding: 10px; border-radius: 5px;">
   <a href="https://cp-psource.github.io/cp-community/" style="text-decoration: none; color: #0366d6; font-weight: bold;">Home</a>
   <a href="https://github.com/cp-psource/cp-community/releases" style="text-decoration: none; color: #0366d6; font-weight: bold;">Downloads</a>
@@ -43,11 +49,6 @@ Wir sind stolz auf unseren Support, der Dir zur Seite steht, wenn Du ihn brauchs
   <a href="https://github.com/cp-psource/cp-community/issues" style="text-decoration: none; color: #0366d6; font-weight: bold;">Bug Report</a>
   <a href="https://cp-psource.github.io/cp-community/psource.html" style="text-decoration: none; color: #0366d6; font-weight: bold;">PSOURCE</a>
 </div>
-
-### Entwickler-Ressourcen:
-
-- **Hooks:** [CP Community Hooks](https://cp-psource.github.io/cp-community/hooks.html)
-- **Filter:** [CP Community Filter](https://cp-psource.github.io/cp-community/filter.html)
 
 <div>
  <a href="https://github.com/cp-psource">Copyright PSOURCE 2024</a>

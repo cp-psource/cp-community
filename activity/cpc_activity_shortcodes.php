@@ -3,19 +3,25 @@
 /* **** */ /* INIT */ /* **** */
 
 function cpc_activity_init() {
-	// JS and CSS
-	wp_enqueue_script('cpc-activity-js', plugins_url('cpc_activity.js', __FILE__), array('jquery'));	
-	wp_localize_script( 'cpc-activity-js', 'cpc_activity_ajax', array( 
-		'ajaxurl' => admin_url( 'admin-ajax.php' ),
-		'plugins_url' => plugins_url( '', __FILE__ ),
+    // JavaScript-Datei einbinden
+    wp_enqueue_script('cpc-activity-js', plugins_url('cpc_activity.js', __FILE__), array('jquery'));
+    
+    // JavaScript lokalisieren, um PHP-Variablen verfügbar zu machen
+    wp_localize_script('cpc-activity-js', 'cpc_activity_ajax', array(
+        'ajaxurl' => admin_url('admin-ajax.php'),
+        'plugins_url' => plugins_url('', __FILE__),
         'activity_post_focus' => get_option('cpccom_activity_set_focus')
-	));		
-	wp_enqueue_style('cpc-activity-css', plugins_url('cpc_activity.css', __FILE__), 'css');	
-	// Select2 replacement drop-down list from core (ready for dependenent plugins like who-to that only uses hooks/filters)
-	wp_enqueue_script('cpc-select2-js', plugins_url('../js/select2.js', __FILE__), array('jquery'));	
-	wp_enqueue_style('cpc-select2-css', plugins_url('../js/select2.css', __FILE__), 'css');
-	// Anything else?
-	do_action('cpc_activity_init_hook');
+    ));
+    
+    // CSS-Datei einbinden
+    wp_enqueue_style('cpc-activity-css', plugins_url('cpc_activity.css', __FILE__), array(), '1.0.0');
+    
+    // Select2-Bibliothek einbinden
+    wp_enqueue_script('cpc-select2-js', plugins_url('../js/select2.js', __FILE__), array('jquery'), '4.0.13', true);
+    wp_enqueue_style('cpc-select2-css', plugins_url('../js/select2.css', __FILE__), array(), '4.0.13');
+    
+    // Zusätzliche Hooks für andere Plugins oder Themes
+    do_action('cpc_activity_init_hook');
 }
 
 

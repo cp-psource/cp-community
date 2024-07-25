@@ -413,7 +413,13 @@ function cpc_activity_settings_unsticky() {
 
 }
 
-/* ADD COMMENT */
+/**
+ * Fügt einen neuen Kommentar zu einer Aktivität hinzu.
+ *
+ * @since 0.0.1
+ *
+ * @global WP_User $current_user Der aktuelle Benutzer
+ */
 function cpc_activity_comment_add() {
 
 	global $current_user;
@@ -433,9 +439,10 @@ function cpc_activity_comment_add() {
 
 	if ($new_id):
 
-		// Any further actions?
+		// Weitere Aktionen nach dem Hinzufügen des Kommentars
 		do_action( 'cpc_activity_comment_add_hook', $_POST, $new_id );
 
+        // HTML für den neuen Kommentar
         $item_html = '<div class="cpc_activity_comment" style="position:relative;padding-left: '.($_POST['size']+10).'px">';
 
             // Avatar
@@ -447,11 +454,11 @@ function cpc_activity_comment_add() {
                 endif;
             $item_html .= '</div>';
 
-            // Name and date
+            // Name und Datum
             $item_html .= cpc_display_name(array('user_id'=>$current_user->ID, 'link'=>$_POST['link']));
             $item_html .= '<br />';
 
-            // The Comment
+            // Der Kommentar
             $item_html .= (cpc_formatted_content($_POST['comment_content']));
 
         $item_html .= '</div>';
