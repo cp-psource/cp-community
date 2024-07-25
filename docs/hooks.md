@@ -327,6 +327,7 @@ function my_custom_post_add_alerts($the_post, $the_files, $new_id) {
 
 **Beispiel**:
 
+<pre>
 ```php
 add_action('cpc_alert_add_hook', 'my_custom_alert_add_action', 10, 4);
 function my_custom_alert_add_action($recipient_id, $alert_id, $url, $message) {
@@ -336,7 +337,9 @@ function my_custom_alert_add_action($recipient_id, $alert_id, $url, $message) {
 
     // Schreibe in ein Protokoll
     error_log($log_message);
-}```
+}
+```
+</pre>
 
 ### Hook: cpc_activity_init
 
