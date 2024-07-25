@@ -10,31 +10,31 @@
   <a href="https://cp-psource.github.io/cp-community/readme-de.html" style="text-decoration: none; color: #0366d6; font-weight: bold;">DEUTSCH</a> 
 </div>
 
-## Build Your WordPress Social Network – Your Way!
+## Baue Dein WordPress Soziales Netzwerk – Auf Deine Weise!
 
-To see what your social network could look like (you can make it look any way you like!), join this site to see many of the features in action.
+Um zu sehen, wie Dein soziales Netzwerk aussehen könnte (Du kannst es so gestalten, wie Du möchtest!), tritt dieser Seite bei, um viele der Funktionen in Aktion zu sehen.
 
-## Activity
+## Aktivität
 
-Activity, attachments, avatar, header image, YouTube and many more features, event profile fields to make your social network, YOUR social network!
+Aktivität, Anhänge, Avatar, Header-Bild, YouTube und viele weitere Funktionen, sogar Profilfelder für Events, um Dein soziales Netzwerk zu Deinem sozialen Netzwerk zu machen!
 
-## Forums
+## Foren
 
-Unlimited forums, with attachments, YouTube, subscriptions, choice of layouts and masses of options to tailor the forum to work YOUR way!
+Unbegrenzte Foren mit Anhängen, YouTube, Abonnements, Auswahl an Layouts und zahlreichen Optionen, um das Forum genau nach Deinen Wünschen zu gestalten!
 
-## And So Much More!
+## Und so vieles mehr!
 
-It’s Easy To Use
+### Einfach zu bedienen
 
-Just add WordPress shortcodes to any page, post or widget and if you want, layout how you want, set options for everything – even languages!
+Füge einfach WordPress-Shortcodes zu jeder Seite, jedem Beitrag oder Widget hinzu und gestalte, wenn Du möchtest, das Layout nach Deinen Vorstellungen. Setze Optionen für alles – sogar für Sprachen!
 
-And Developed The WordPress Way
+### Und entwickelt auf WordPress-Art
 
-Everything has been written with WordPress in mind. No custom tables, no unnecessary styles (so it matches your site), removing the risk of incompatibility!
+Alles wurde mit WordPress im Hinterkopf geschrieben. Keine benutzerdefinierten Tabellen, keine unnötigen Stile (damit es zu Deiner Seite passt) und damit kein Risiko von Inkompatibilität!
 
-### With Great Support For You And Your Site!
+### Mit großartigem Support für Dich und Deine Seite!
 
-We our proud of our support, here to help you when you need it. Helpdesk, forums, live chat and even Skype, we want to be there to help you out, to make YOUR social network the best!
+Wir sind stolz auf unseren Support, der Dir zur Seite steht, wenn Du ihn brauchst. Helpdesk, Foren, Live-Chat und sogar Skype – wir sind da, um Dir zu helfen, Dein soziales Netzwerk zum besten zu machen!
 
 <div style="display: flex; justify-content: space-around; background-color: #f3f3f3; padding: 10px; border-radius: 5px;">
   <a href="https://cp-psource.github.io/cp-community/" style="text-decoration: none; color: #0366d6; font-weight: bold;">Home</a>
@@ -45,6 +45,11 @@ We our proud of our support, here to help you when you need it. Helpdesk, forums
   <a href="https://cp-psource.github.io/cp-community/psource.html" style="text-decoration: none; color: #0366d6; font-weight: bold;">PSOURCE</a>
   <a href="https://cp-psource.github.io/cp-community/readme-de.html" style="text-decoration: none; color: #0366d6; font-weight: bold;">DEUTSCH</a> 
 </div>
+
+### Entwickler-Ressourcen:
+
+- **Hooks:** [The Basics, Theme Colors and Typography](https://cp-psource.github.io/cp-community/hooks.html)
+- **Filter:** [Structuring Your Site with Regions](https://cp-psource.github.io/cp-community/filter.html)
 
 <div>
  <a href="https://github.com/cp-psource">Copyright PSOURCE 2024</a>

@@ -25,19 +25,19 @@ function cpc_api_user_last_active($user_id, $format=false) {
 
 
 /**
- * Inserts a ClassicPress post of type cpc_activity
+ * Fügt einen ClassicPress-Beitrag des Typs cpc_activity ein
  *
  * @since 14.12.2
  *
- * @param   string  $activity_post The activity post to be inserted
- * @param   int     $the_author_id ID of a ClassicPress member as the author of the activity post
- * @param   int     $the_target_id ID of a ClassicPress member as the target of the activity post (use $the_author_id for post to self/friends)
- * @param   array   $the_post      Optional $_POST to be further processed by cpc_activity_post_add_hook
- * @param   array   $the_files     Optional $_FILES to be further processed by cpc_activity_post_add_hook
+ * @param   string  $activity_post Der Aktivitätspost, der eingefügt werden soll
+ * @param   int     $the_author_id ID eines ClassicPress-Mitglieds als Autor des Aktivitätsposts
+ * @param   int     $the_target_id ID eines ClassicPress-Mitglieds als Ziel des Aktivitätsposts (verwende $the_author_id für Post an sich selbst/Freunde)
+ * @param   array   $the_post      Optional $_POST zur weiteren Verarbeitung durch cpc_activity_post_add_hook
+ * @param   array   $the_files     Optional $_FILES zur weiteren Verarbeitung durch cpc_activity_post_add_hook
  *
- * @return  int     ID of new ClassicPress post, or false if insert failed
+ * @return  int     ID des neuen ClassicPress-Beitrags oder false, wenn das Einfügen fehlgeschlagen ist
  *
- * Note: This includes the cpc_activity_post_add_hook hook, so alerts can be generated
+ * Hinweis: Dies beinhaltet den Hook cpc_activity_post_add_hook, sodass Benachrichtigungen generiert werden können
  */
 function cpc_api_insert_activity_post($activity_post, $the_author_id, $the_target_id, $the_post=null, $the_files=null) {
                                   
