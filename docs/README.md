@@ -7,7 +7,6 @@
   <a href="https://github.com/cp-psource/cp-community/discussions" style="text-decoration: none; color: #0366d6; font-weight: bold;">Support</a>
   <a href="https://github.com/cp-psource/cp-community/issues" style="text-decoration: none; color: #0366d6; font-weight: bold;">Bug Report</a>
   <a href="https://cp-psource.github.io/cp-community/psource.html" style="text-decoration: none; color: #0366d6; font-weight: bold;">PSOURCE</a>
-  <a href="https://cp-psource.github.io/cp-community/readme-de.html" style="text-decoration: none; color: #0366d6; font-weight: bold;">DEUTSCH</a> 
 </div>
 
 ## Baue Dein WordPress Soziales Netzwerk – Auf Deine Weise!
@@ -43,13 +42,12 @@ Wir sind stolz auf unseren Support, der Dir zur Seite steht, wenn Du ihn brauchs
   <a href="https://github.com/cp-psource/cp-community/discussions" style="text-decoration: none; color: #0366d6; font-weight: bold;">Support</a>
   <a href="https://github.com/cp-psource/cp-community/issues" style="text-decoration: none; color: #0366d6; font-weight: bold;">Bug Report</a>
   <a href="https://cp-psource.github.io/cp-community/psource.html" style="text-decoration: none; color: #0366d6; font-weight: bold;">PSOURCE</a>
-  <a href="https://cp-psource.github.io/cp-community/readme-de.html" style="text-decoration: none; color: #0366d6; font-weight: bold;">DEUTSCH</a> 
 </div>
 
 ### Entwickler-Ressourcen:
 
-- **Hooks:** [The Basics, Theme Colors and Typography](https://cp-psource.github.io/cp-community/hooks.html)
-- **Filter:** [Structuring Your Site with Regions](https://cp-psource.github.io/cp-community/filter.html)
+- **Hooks:** [CP Community Hooks](https://cp-psource.github.io/cp-community/hooks.html)
+- **Filter:** [CP Community Filter](https://cp-psource.github.io/cp-community/filter.html)
 
 <div>
  <a href="https://github.com/cp-psource">Copyright PSOURCE 2024</a>

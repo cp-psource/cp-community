@@ -442,6 +442,11 @@ function cpccom_setup() {
 
 }
 
+/**
+ * Initialisiert die Shortcodes-Seite im Admin-Bereich
+ *
+ * @since 0.0.1
+ */
 function cpc_com_shortcodes() {
 
 	// Flush re-write rules, good idea if problem with linking, saves having to re-save permalink
@@ -464,6 +469,11 @@ function cpc_com_shortcodes() {
 
 }
 
+/**
+ * Initialisiert die Stile-Seite im Admin-Bereich
+ *
+ * @since 0.0.1
+ */
 function cpc_com_styles() {
 
 	// Flush re-write rules, good idea if problem with linking, saves having to re-save permalink
@@ -675,6 +685,11 @@ function cpc_com_reset() {
 
 }
 
+/**
+ * Initialisiert die benutzerdefinierte CSS-Seite im Admin-Bereich
+ *
+ * @since 0.0.1
+ */
 function cpccom_custom_css() {
 
 	// React to POSTed information

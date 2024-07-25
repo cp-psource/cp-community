@@ -386,15 +386,22 @@ function cpc_get_wp_editor($content,$textarea,$css) {
 	return $editor_html_code;
 }
 
-// Automatically close forum comments older than a certain number of days based
-// on setting in admin panel for discussion
+/**
+ * Schließt automatisch die Kommentare in einem Forum, die älter als eine bestimmte Anzahl von Tagen sind,
+ * basierend auf den Einstellungen im Admin-Bereich für Diskussionen.
+ *
+ * @since 0.0.1
+ *
+ * @param   array   $posts  Ein Array von WP_Post Objekten
+ * @return  array   $posts  Das unveränderte Array von WP_Post Objekten
+ */
 function cpc_forum_close_comments( $posts ) {
 	
 	if (sizeof($posts) == 1):
 
 		if ( 'cpc_forum_post' == get_post_type($posts[0]->ID) && $posts[0]->comment_status != 'closed'):
 
-			// Get post forum to see if has specific auto-close set for that forum, if not use global default
+			// Hole die Forenbeiträge und prüfe, ob ein spezielles automatisches Schließen für dieses Forum festgelegt ist
 			$post_terms = get_the_terms( $posts[0]->ID, 'cpc_forum' );
 			$the_post_terms = $post_terms[0];
 			$cpc_forum_auto_close = cpc_get_term_meta($the_post_terms->term_id, 'cpc_forum_auto_close', true) ? cpc_get_term_meta($the_post_terms->term_id, 'cpc_forum_auto_close', true) : '';
@@ -408,10 +415,12 @@ function cpc_forum_close_comments( $posts ) {
 
 					if (!get_post_meta($posts[0]->ID, 'cpc_reopened_date', true)):
 
+						// Schließe die Kommentare und Pingbacks
 						$posts[0]->comment_status = 'closed';
 						$posts[0]->ping_status    = 'closed';
 						wp_update_post( $posts[0] );
 
+						// Füge einen Kommentar hinzu, der erklärt, dass das Forum geschlossen wurde
 						$data = array(
 						    'comment_post_ID' => $posts[0]->ID,
 						    'comment_content' => __('Wegen Inaktivität geschlossen.', CPC2_TEXT_DOMAIN),
@@ -429,7 +438,7 @@ function cpc_forum_close_comments( $posts ) {
 
 						if ($new_id):
 
-							// Any further actions?
+							// Weitere Aktionen nach dem Schließen des Forums
 							do_action( 'cpc_forum_auto_close_hook', $posts[0]->ID );
 
 						endif;
