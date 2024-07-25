@@ -582,8 +582,8 @@ Die Funktion wird verwendet, um die Admin-Benutzeroberfläche für die Benachric
 
 ### Entwickler-Ressourcen:
 
-- **Hooks:** [CP Community Hooks](https://cp-psource.github.io/cp-community/hooks.html)
-- **Filter:** [CP Community Filter](https://cp-psource.github.io/cp-community/filter.html)
+- **Hooks:** [CP Community Hooks](dev/hooks.md)
+- **Filter:** [CP Community Filter](dev/filter.md)
 
 <div style="display: flex; justify-content: space-around; background-color: #f3f3f3; padding: 10px; border-radius: 5px;">
   <a href="https://cp-psource.github.io/cp-community/" style="text-decoration: none; color: #0366d6; font-weight: bold;">Home</a>
