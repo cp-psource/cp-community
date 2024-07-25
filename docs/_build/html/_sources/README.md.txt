@@ -2,18 +2,6 @@
 
 Willkommen bei der CP-Community-Dokumentation!
 
-## Table of Contents
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
-   dev/filter
-   dev/hooks
-   dev/shortcodes
-   psource
-   psource-de
-
 ## Baue Dein WordPress Soziales Netzwerk – Auf Deine Weise!
 
 Um zu sehen, wie Dein soziales Netzwerk aussehen könnte (Du kannst es so gestalten, wie Du möchtest!), tritt dieser Seite bei, um viele der Funktionen in Aktion zu sehen.
