@@ -41,7 +41,7 @@ source_suffix = '.md'
 #source_encoding = 'utf-8-sig'
 
 # The master toctree document.
-master_doc = 'README'
+master_doc = 'index'
 
 # General information about the project.
 project = 'CP Community'
@@ -192,7 +192,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('README', 'PSOURCEthemedemo.tex', u'PSOURCE theme demo Documentation',
+  ('index', 'PSOURCEthemedemo.tex', u'PSOURCE theme demo Documentation',
    u'PSOURCE, PSOURCE', 'manual'),
 ]
 
@@ -222,7 +222,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('README', 'psourcethemedemo', u'PSOURCE theme demo Documentation',
+    ('index', 'psourcethemedemo', u'PSOURCE theme demo Documentation',
      [u'PSOURCE'], 1)
 ]
 
@@ -236,7 +236,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('README', 'PSOURCEthemedemo', u'PSOURCE theme demo Documentation',
+  ('index', 'PSOURCEthemedemo', u'PSOURCE theme demo Documentation',
    u'PSOURCE', 'PSOURCEthemedemo',
    'One line description of project.', 'Miscellaneous'),
 ]
