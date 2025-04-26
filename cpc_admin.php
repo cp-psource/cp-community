@@ -186,7 +186,7 @@ function cpccom_manage() {
 
     if (!get_option('cpc_core_admin_icons')):
 
-	$values = $values ? explode(',', $values) : array();
+    $values = isset($values) ? explode(',', $values) : array();
 
 	  	echo '<div id="cpc_admin_admin_links">';
 
