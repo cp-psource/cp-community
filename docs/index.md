@@ -39,9 +39,9 @@ Wir sind stolz auf unseren Support, der Dir zur Seite steht, wenn Du ihn brauchs
 
 ### Entwickler-Ressourcen:
 
-- **Shortcodes:** [CP Community Shortcodes](dev/shortcodes.html)
-- **Hooks:** [CP Community Hooks](dev/hooks.html)
-- **Filter:** [CP Community Filter](dev/filter.html)
+- **Shortcodes:** [CP Community Shortcodes](shortcodes.html)
+- **Hooks:** [CP Community Hooks](hooks.html)
+- **Filter:** [CP Community Filter](filter.html)
 
 <div style="display: flex; justify-content: space-around; background-color: #f3f3f3; padding: 10px; border-radius: 5px;">
   <a href="https://cp-psource.github.io/cp-community/" style="text-decoration: none; color: #0366d6; font-weight: bold;">Home</a>
