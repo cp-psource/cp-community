@@ -5,13 +5,13 @@ title: "CP Community Hooks"
 
 <h2 align="center" style="color:#38c2bb;">📚 CP Community Hooks</h2>
 
-# CP-Community Hooks Dokumentation
-
+<div>
 ## core_api.php
 
 ### Hook: cpc_activity_post_add_hook
 
-**Beschreibung**: Wird ausgelöst, nachdem ein neuer WordPress-Beitrag des Typs `cpc_activity` eingefügt wurde. Ermöglicht es, zusätzliche Aktionen oder Benachrichtigungen zu generieren.
+**Beschreibung**: Wird ausgelöst, nachdem ein neuer WordPress-Beitrag des Typs `cpc_activity` eingefügt wurde. 
+Ermöglicht es, zusätzliche Aktionen oder Benachrichtigungen zu generieren.
 
 **Seit**: 14.12.2
 
@@ -684,6 +684,8 @@ cpc_avatar: Dieser Shortcode generiert HTML für die Anzeige eines Avatars, basi
 - **Shortcodes:** [CP Community Shortcodes](shortcodes.md)
 - **Hooks:** [CP Community Hooks](hooks.md)
 - **Filter:** [CP Community Filter](filter.md)
+
+</div>
 
 <div style="display: flex; justify-content: space-around; background-color: #f3f3f3; padding: 10px; border-radius: 5px;">
   <a href="https://cp-psource.github.io/cp-community/" style="text-decoration: none; color: #0366d6; font-weight: bold;">Home</a>
