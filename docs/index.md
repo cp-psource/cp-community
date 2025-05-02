@@ -1,6 +1,14 @@
-# CP Community Dokumentation
+---
+layout: psource-theme
+title: "CP Community"
+---
 
-Willkommen bei der CP-Community-Dokumentation!
+<h2 align="center" style="color:#38c2bb;">📚 CP Community</h2>
+
+<div class="menu">
+  <a href="https://github.com/cp-psource/cp-community/discussions" style="color:#38c2bb;">💬 Forum</a>
+  <a href="https://github.com/cp-psource/cp-community/releases" style="color:#38c2bb;">📝 Download</a>
+</div>
 
 ## Baue Dein WordPress Soziales Netzwerk – Auf Deine Weise!
 
@@ -31,9 +39,9 @@ Wir sind stolz auf unseren Support, der Dir zur Seite steht, wenn Du ihn brauchs
 
 ### Entwickler-Ressourcen:
 
-- **Shortcodes:** [CP Community Shortcodes](dev/shortcodes.md)
-- **Hooks:** [CP Community Hooks](dev/hooks.md)
-- **Filter:** [CP Community Filter](dev/filter.md)
+- **Shortcodes:** [CP Community Shortcodes](dev/shortcodes.html)
+- **Hooks:** [CP Community Hooks](dev/hooks.html)
+- **Filter:** [CP Community Filter](dev/filter.html)
 
 <div style="display: flex; justify-content: space-around; background-color: #f3f3f3; padding: 10px; border-radius: 5px;">
   <a href="https://cp-psource.github.io/cp-community/" style="text-decoration: none; color: #0366d6; font-weight: bold;">Home</a>

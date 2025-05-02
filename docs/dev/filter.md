@@ -1,3 +1,10 @@
+---
+layout: psource-theme
+title: "CP Community"
+---
+
+<h2 align="center" style="color:#38c2bb;">📚 CP Community - Filter</h2>
+
 <div style="display: flex; justify-content: space-around; background-color: #f3f3f3; padding: 10px; border-radius: 5px;">
   <a href="https://cp-psource.github.io/cp-community/" style="text-decoration: none; color: #0366d6; font-weight: bold;">Home</a>
   <a href="https://github.com/cp-psource/cp-community/releases" style="text-decoration: none; color: #0366d6; font-weight: bold;">Downloads</a>
