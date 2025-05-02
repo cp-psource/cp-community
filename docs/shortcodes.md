@@ -1,6 +1,6 @@
 ---
 layout: psource-theme
-title: "CP Community"
+title: "CP Community Shortcodes"
 ---
 
 <h2 align="center" style="color:#38c2bb;">📚 CP Community Shortcodes</h2>
