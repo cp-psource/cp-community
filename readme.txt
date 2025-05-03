@@ -2,8 +2,8 @@
 Contributors: DerN3rd
 Tags: wp community, social network, social networking, social media, cp-community, wp community, community
 Requires at least: 4.9
-Tested up to: 6.5.5
-Stable tag: 1.0.1
+Tested up to: 6.8.1
+Stable tag: 1.0.2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
@@ -26,7 +26,7 @@ Möchtest Du etwas ändern, das Layout, den Text, die Schaltflächenbeschriftung
 
 Kein Problem! Ändere ganz einfach den gesamten Text, den Deine Benutzer sehen, über die Optionen. Verwendest Du WPML? Funktioniert auch problemlos mit diesem Plugin!
 
-[POWERED BY PSOURCE](https://n3rds.work/)
+[POWERED BY PSOURCE](https://github.com/cp-psource)
 
 [Projektseite](https://cp-psource.github.io/cp-community/)
 [GitHub](https://github.com/piestingtal-source/cp-community)
@@ -36,6 +36,8 @@ Kein Problem! Ändere ganz einfach den gesamten Text, den Deine Benutzer sehen, 
 = 1.0.2 =
 
 * Fix: Implicit conversion
+* Update: Updater
+* Fix some old PhP
 
 = 1.0.1 =
 

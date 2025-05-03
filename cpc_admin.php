@@ -320,10 +320,10 @@ function cpccom_release_notes() {
 					<div style="font-size:1.6em; line-height:1.6em; color: #510051; font-weight: bold;">Core CP Community plugin</div>
 					<a href="https://cp-psource.github.io/cp-community/" target-"_blank">Verfügbar im PSOURCE GitHub-Repository</a><br />
 
-                    <h2 style="font-style:italic; margin-top:20px;">Changelog Versionsnummer 1.0.1.:</h2>
-					<p>Wir haben ein Problem mit der verlinkung von Foren-Threads gelöst.</p>
+                    <h2 style="font-style:italic; margin-top:20px;">Changelog Versionsnummer 1.0.2.:</h2>
+					<p>Wir haben einen neuen Updater und Hilfelinks hinzugefügt.</p>
                     <p>Es ist uns gelungen, einige veraltete Funktionen zu modernisieren.<p>
-                    <p>Getestet mit WP 6.5.5 und PhP 8.3<p> 
+                    <p>Getestet mit WP 6.8.1, CP 2.4.1 und PhP 8.3<p> 
                   
                 </td>
 				<td style="width:1%">&nbsp;</td>

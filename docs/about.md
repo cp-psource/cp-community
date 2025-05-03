@@ -1,3 +1,16 @@
+---
+layout: psource-theme
+title: "PSOURCE"
+---
+
+<h2 align="center" style="color:#38c2bb;">📚 PSOURCE</h2>
+
+<div class="menu">
+  <a href="https://github.com/orgs/cp-psource/discussions" style="color:#38c2bb;">💬 Forum</a>
+  <a href="https://github.com/cp-psource" style="color:#38c2bb;">📝 GitHub</a>
+</div>
+
+
 ## PSOURCE - DEUTSCH
 ## PSOURCE ist eine Sammlung von Plugins und Themes für Classic/WordPress, die kostenlos nutzbar sind. Es gibt keine Premium-Features, Abo-Kosten oder ähnliches. Alles ist komplett kostenlos in vollem Umfang nutzbar. Die Community ist eingeladen, zu ihren Favoriten beizutragen und diese gemeinsam weiterzuentwickeln
 

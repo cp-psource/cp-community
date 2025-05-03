@@ -5,6 +5,11 @@ title: "CP Community Hooks"
 
 <h2 align="center" style="color:#38c2bb;">📚 CP Community Hooks</h2>
 
+<div class="menu">
+  <a href="https://github.com/cp-psource/cp-community/discussions" style="color:#38c2bb;">💬 Forum</a>
+  <a href="https://github.com/cp-psource/cp-community/releases" style="color:#38c2bb;">📝 Download</a>
+</div>
+
 ## core_api.php
 
 ### Hook: cpc_activity_post_add_hook
@@ -14,12 +19,15 @@ Ermöglicht es, zusätzliche Aktionen oder Benachrichtigungen zu generieren.
 
 **Seit**: 14.12.2
 
-**Parameter**:
-- `$the_post` (Typ: array) – Optional. Weitere zu verarbeitende Daten aus `$_POST`.
-- `$the_files` (Typ: array) – Optional. Weitere zu verarbeitende Daten aus `$_FILES`.
-- `$new_id` (Typ: int) – Die ID des neu erstellten WordPress-Beitrags.
+### Parameter
 
-**Beispiel**:
+| Name         | Typ    | Beschreibung                                                                 |
+|--------------|--------|-----------------------------------------------------------------------------|
+| `$the_post`  | array  | Optional. Weitere zu verarbeitende Daten aus `$_POST`.                      |
+| `$the_files` | array  | Optional. Weitere zu verarbeitende Daten aus `$_FILES`.                     |
+| `$new_id`    | int    | Die ID des neu erstellten WordPress-Beitrags.                               |
+
+### Beispiel
 
 ```php
 add_action('cpc_activity_post_add_hook', 'my_custom_function');
@@ -39,7 +47,7 @@ function my_custom_function($the_post, $the_files, $new_id) {
 **Parameter**:
 - `$_POST` (Typ: array) – Die Daten, die aus dem Formular übermittelt wurden.
 
-**Beispiel**:
+### Beispiel:
 
 ```php
 add_action('cpc_admin_quick_start_form_save_hook', 'my_custom_quick_start_save_function');
@@ -60,7 +68,7 @@ function my_custom_quick_start_save_function($post_data) {
 
 **Parameter**: Keine
 
-**Beispiel**:
+### Beispiel:
 
 ```php
 add_action('cpc_admin_quick_start_hook', 'my_custom_quick_start_content');
@@ -82,7 +90,7 @@ function my_custom_quick_start_content() {
 
 - `$_POST` (Typ: array) – Die Daten, die aus dem Formular übermittelt wurden.
 
-**Beispiel**:
+### Beispiel:
 
 ```php
 add_action('cpc_admin_setup_form_save_hook', 'my_custom_setup_save_function');
@@ -105,7 +113,7 @@ function my_custom_setup_save_function($post_data) {
 
 - `$_GET` (Typ: array) – Die Daten, die aus dem Formular abgerufen wurden.
 
-**Beispiel**:
+### Beispiel:
 
 ```php
 add_action('cpc_admin_setup_form_get_hook', 'my_custom_setup_get_function');
@@ -126,7 +134,7 @@ function my_custom_setup_get_function($get_data) {
 
 **Parameter**: Keine
 
-**Beispiel**:
+### Beispiel:
 
 ```php
 add_action('cpc_admin_getting_started_hook', 'my_custom_getting_started_content');
@@ -147,7 +155,7 @@ function my_custom_getting_started_content() {
 **Parameter**:
 - `$_POST` (Typ: array) – Die Daten, die aus dem Formular übermittelt wurden.
 
-**Beispiel**:
+### Beispiel:
 
 ```php
 add_action('cpc_admin_getting_started_shortcodes_save_hook', 'my_custom_shortcodes_save_function');
@@ -168,7 +176,7 @@ function my_custom_shortcodes_save_function($post_data) {
 
 **Parameter**: Keine
 
-**Beispiel**:
+### Beispiel:
 
 ```php
 add_action('cpc_admin_getting_started_shortcodes_hook', 'my_custom_shortcodes_content');
@@ -189,7 +197,7 @@ function my_custom_shortcodes_content() {
 **Parameter**:
 - `$_POST` (Typ: array) – Die Daten, die aus dem Formular übermittelt wurden.
 
-**Beispiel**:
+### Beispiel:
 
 ```php
 add_action('cpc_admin_getting_started_styles_save_hook', 'my_custom_styles_save_function');
@@ -210,7 +218,7 @@ function my_custom_styles_save_function($post_data) {
 
 **Parameter**: Keine
 
-**Beispiel**:
+### Beispiel:
 
 ```php
 add_action('cpc_admin_getting_started_styles_hook', 'my_custom_styles_content');
@@ -231,7 +239,7 @@ function my_custom_styles_content() {
 **Parameter**:
 - `$_POST` (Typ: array) – Die Daten, die aus dem Formular übermittelt wurden, einschließlich des benutzerdefinierten CSS.
 
-**Beispiel**:
+### Beispiel:
 
 ```php
 add_action('cpc_admin_custom_css_form_save_hook', 'my_custom_css_save_function');
@@ -254,7 +262,7 @@ function my_custom_css_save_function($post_data) {
 
 **Parameter**: Keine
 
-**Beispiel**:
+### Beispiel:
 
 ```php
 add_action('cpc_admin_custom_css_form_hook', 'my_custom_css_form_options');
@@ -277,7 +285,7 @@ function my_custom_css_form_options() {
 **Parameter**:
 - `int $post_id` – Die ID des Forenbeitrags, dessen Kommentare geschlossen wurden.
 
-**Beispiel**:
+### Beispiel:
 
 ```php
 add_action('cpc_forum_auto_close_hook', 'my_custom_auto_close_action');
@@ -300,7 +308,7 @@ function my_custom_auto_close_action($post_id) {
 - `array $post_data` – Die Daten, die beim Hinzufügen des Kommentars gesendet wurden (aus `$_POST`).
 - `int $comment_id` – Die ID des neu hinzugefügten Kommentars.
 
-**Beispiel**:
+### Beispiel:
 
 ```php
 add_action('cpc_activity_comment_add_hook', 'my_custom_comment_add_action', 10, 2);
@@ -324,7 +332,7 @@ function my_custom_comment_add_action($post_data, $comment_id) {
 - `array $the_files` – Die Dateianhänge, die mit dem Beitrag verbunden sind.
 - `int $new_id` – Die ID des neu hinzugefügten Beitrags.
 
-**Beispiel**:
+### Beispiel:
 
 ```php
 add_action('cpc_activity_post_add_hook', 'my_custom_post_add_alerts', 10, 3);
@@ -350,7 +358,7 @@ function my_custom_post_add_alerts($the_post, $the_files, $new_id) {
 - `string $url` – Die URL, die auf die Seite verweist, auf der der Benutzer die vollständige Benachrichtigung sehen kann.
 - `string $message` – Die Nachricht, die in der Benachrichtigung enthalten ist.
 
-**Beispiel**:
+### Beispiel:
 
 ```php
 add_action('cpc_alert_add_hook', 'my_custom_alert_add_action', 10, 4);
@@ -381,7 +389,7 @@ function my_custom_alert_add_action($recipient_id, $alert_id, $url, $message) {
 - Select2-Bibliothek: Lädt die Select2 JavaScript- und CSS-Dateien, die für Dropdown-Listen verwendet werden.
 - Zusätzliche Hooks: Ermöglicht anderen Plugins oder Themes, zusätzliche Skripte oder Stile einzufügen.
 
-**Beispiel**:
+### Beispiel:
 
 ```php
 add_action('wp_enqueue_scripts', 'cpc_activity_init');
@@ -426,7 +434,7 @@ Der Hook cpc_activity_init_hook ermöglicht es anderen Entwicklern, zusätzliche
 - `array $file_data` – Ein Array, das die Dateidaten enthält, die eventuell hochgeladen wurden, wie im `$_FILES`-Array gesendet.
 - `int $post_id` – Die ID des neu erstellten Beitrags.
 
-**Beispiel**:
+### Beispiel:
 
 ```php
 add_action('cpc_activity_post_add_hook', 'my_custom_activity_post_add_action', 10, 3);
@@ -483,7 +491,7 @@ function my_custom_activity_post_add_action($post_data, $file_data, $post_id) {
 - `string $url` – Die URL, die auf die Seite verweist, auf der der Benutzer die vollständige Benachrichtigung sehen kann.
 - `string $message` – Die Nachricht, die in der Benachrichtigung enthalten ist.
 
-**Beispiel**:
+### Beispiel:
 
 ```php
 add_action('cpc_alert_add_hook', 'my_custom_alert_add_action', 10, 4);
@@ -563,7 +571,7 @@ Diese Funktion zeigt die Einstellungsseite für Benachrichtigungen im Admin-Bere
 4. **Aktionen nach dem Formular**:
    - Nach dem Formular wird der Hook `cpc_alerts_admin_setup_form_hook` ausgelöst, um zusätzliche Anpassungen oder Erweiterungen durch andere Plugins oder Funktionen zu ermöglichen.
 
-**Beispiel**:
+### Beispiel:
 
 ```php
 // Beispiel: Hook für zusätzliche Einstellungen nach dem Formular
@@ -587,7 +595,7 @@ Die Funktion wird verwendet, um die Admin-Benutzeroberfläche für die Benachric
 
 **Parameter**: Keine
 
-**Beispiel**:
+### Beispiel:
 
 ```php
 add_action('cpc_alerts_init_hook', 'my_custom_initialization');
@@ -608,7 +616,7 @@ function my_custom_initialization() {
 - `$_POST` (Typ: array) – Die Daten, die mit dem Kommentar übermittelt wurden, wie `post_id`, `comment_content`, und andere POST-Parameter.
 - `$new_id` (Typ: int) – Die ID des neu erstellten Kommentars.
 
-**Beispiel**:
+### Beispiel:
 
 ```php
 add_action('cpc_activity_comment_add_hook', 'my_custom_comment_action', 10, 2);
@@ -637,7 +645,7 @@ function my_custom_comment_action($post_data, $comment_id) {
 
 **Parameter**: Keine
 
-**Beispiel**:
+### Beispiel:
 
 ```php
 add_action('cpc_avatar_init_hook', 'my_custom_avatar_initialization');
@@ -668,12 +676,12 @@ styles (Typ: bool) – Ob Stile angewendet werden sollen. Standardwert ist true.
 check_privacy (Typ: bool) – Ob die Sichtbarkeit des Profils überprüft werden soll. Standardwert ist false.
 after (Typ: string) – Inhalt, der nach dem Avatar eingefügt wird.
 before (Typ: string) – Inhalt, der vor dem Avatar eingefügt wird.
-Beispiel:
 
-php
-Code kopieren
+### Beispiel:
+
 echo do_shortcode('[cpc_avatar user_id="123" size="100" change_link="true" profile_link="true"]');
-Erklärung:
+
+### Erklärung:
 
 cpc_avatar_init: Diese Funktion lädt die notwendigen Skripte und Stile für das cpc_avatar Plugin. Sie wird beim Laden des Footers initialisiert.
 cpc_avatar: Dieser Shortcode generiert HTML für die Anzeige eines Avatars, basierend auf den angegebenen Attributen. Er kann auch Links zum Profil oder zur Avatar-Änderung hinzufügen.
@@ -684,19 +692,6 @@ cpc_avatar: Dieser Shortcode generiert HTML für die Anzeige eines Avatars, basi
 - **Hooks:** [CP Community Hooks](hooks.md)
 - **Filter:** [CP Community Filter](filter.md)
 
-
-<div style="display: flex; justify-content: space-around; background-color: #f3f3f3; padding: 10px; border-radius: 5px;">
-  <a href="https://cp-psource.github.io/cp-community/" style="text-decoration: none; color: #0366d6; font-weight: bold;">Home</a>
-  <a href="https://github.com/cp-psource/cp-community/releases" style="text-decoration: none; color: #0366d6; font-weight: bold;">Downloads</a>
-  <a href="https://github.com/cp-psource/cp-community/wiki" style="text-decoration: none; color: #0366d6; font-weight: bold;">Docs</a>
-  <a href="https://github.com/cp-psource/cp-community/discussions" style="text-decoration: none; color: #0366d6; font-weight: bold;">Support</a>
-  <a href="https://github.com/cp-psource/cp-community/issues" style="text-decoration: none; color: #0366d6; font-weight: bold;">Bug Report</a>
-  <a href="https://cp-psource.github.io/cp-community/psource.html" style="text-decoration: none; color: #0366d6; font-weight: bold;">PSOURCE</a>
-</div>
-
-<div>
- <a href="https://github.com/cp-psource">Copyright PSOURCE 2024</a>
-</div>
 
 
 
