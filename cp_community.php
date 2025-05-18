@@ -31,6 +31,12 @@ require 'psource/psource-plugin-update/plugin-update-checker.php';
 
 if ( !defined('CPC2_TEXT_DOMAIN') ) define('CPC2_TEXT_DOMAIN', 'cp-community');
 if ( !defined('CPC_PREFIX') ) define('CPC_PREFIX', 'cpc');
+
+// Emoji Styles entfernen im Admin
+add_action('admin_init', function() {
+    remove_action('admin_print_styles', 'print_emoji_styles');
+});
+
 // Re-write rules
 add_filter( 'rewrite_rules_array','cpc_forum_insert_rewrite_rules' );
 add_action( 'wp_loaded','cpc_forum_flush_rewrite_rules' );
@@ -58,8 +64,7 @@ function cpc_flush_rewrite_rules()
 // Uncomment the following line to force a re-write flush (debugging only)
 //add_action( 'init', 'cpc_flush_rewrite_rules');
 // Add CP Community re-write rules
-function cpc_forum_insert_rewrite_rules( $rules )
-{
+function cpc_forum_insert_rewrite_rules( $rules ) {
 	global $wp_rewrite;
     
 	$newrules = array();
@@ -226,12 +231,6 @@ if (strpos(CPC_CORE_PLUGINS, 'core-friendships') !== false):
     require_once('friendships/cpc_friendships_shortcodes.php');
     require_once('friendships/cpc_friendships_help.php');
 endif;
-// Gruppen
-/*if (strpos(CPC_CORE_PLUGINS, 'core-groups') !== false):
-    require_once('groups/cpc_groups_core.php');
-    require_once('groups/cpc_groups_admins.php');
-    require_once('groups/cpc_group.php');
-endif;*/
 // Alerts
 if (strpos(CPC_CORE_PLUGINS, 'core-alerts') !== false):
     require_once('alerts/cpc_custom_post_alerts.php');

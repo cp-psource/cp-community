@@ -74,7 +74,6 @@ function cpc_admin_shortcodes_add_usermeta_dialog() {
     		echo '<select id="cpc_usermeta_meta">';
     			echo '<option value="cpccom_home">'.__('Stadt/Gemeinde', CPC2_TEXT_DOMAIN).'</option>';
     			echo '<option value="cpccom_country">'.__('Land', CPC2_TEXT_DOMAIN).'</option>';
-    			echo '<option value="cpccom_map">'.__('Karte', CPC2_TEXT_DOMAIN).'</option>';
     		echo '</select></p>';
 
     		echo '<p>'.__('Beschriftung zur Anzeige', CPC2_TEXT_DOMAIN).'<br />';

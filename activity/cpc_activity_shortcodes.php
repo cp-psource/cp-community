@@ -74,7 +74,6 @@ function cpc_activity_page($atts){
     endif;
     $html .= '</div>';
     if (strpos(CPC_CORE_PLUGINS, 'core-profile') !== false):
-        $html .= cpc_usermeta(array('user_id'=>$user_id, 'meta'=>'cpccom_map', 'map_style'=>$map_style, 'size'=>$map_size, 'zoom'=>$map_zoom, 'before'=>'<div id="cpc_display_map" style="float:left;margin-right:15px;">', 'after'=>'</div>'));
         $html .= '<div style="float:left;margin-right:15px;">';
         $html .= cpc_usermeta(array('user_id'=>$user_id, 'meta'=>'cpccom_home', 'before'=>'<strong>'.$town_label.'</strong><br />', 'after'=>'<br />'));
         $html .= cpc_usermeta(array('user_id'=>$user_id, 'meta'=>'cpccom_country', 'before'=>'<strong>'.$country_label.'</strong><br />', 'after'=>'<br />'));

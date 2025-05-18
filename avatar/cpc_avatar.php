@@ -135,7 +135,11 @@ var userSettings = {
 		'time':'<?php echo time() ?>'
 	},
 	ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>',
-	pagenow = '<?php echo $current_screen->id; ?>',
+	<?php
+	// Fehlervermeidung: Variablen prüfen, bevor sie verwendet werden
+	global $current_screen, $admin_body_class, $wp_locale;
+	?>
+	pagenow = '<?php echo (isset($current_screen) && is_object($current_screen) && isset($current_screen->id)) ? $current_screen->id : ''; ?>',
 	typenow = '<?php if ( isset($current_screen->post_type) ) echo $current_screen->post_type; ?>',
 	adminpage = '<?php echo $admin_body_class; ?>',
 	thousandsSeparator = '<?php echo addslashes( $wp_locale->number_format['thousands_sep'] ); ?>',
@@ -225,10 +229,8 @@ function user_avatar_add_photo_step1($uid)
  * @param mixed $uid
  * @return void
  */
-function user_avatar_add_photo_step2($uid)
-{
+function user_avatar_add_photo_step2($uid) {
 	
-
 		if (!(($_FILES["uploadedfile"]["type"] == "image/gif") || ($_FILES["uploadedfile"]["type"] == "image/jpeg") || ($_FILES["uploadedfile"]["type"] == "image/png") || ($_FILES["uploadedfile"]["type"] == "image/pjpeg") || ($_FILES["uploadedfile"]["type"] == "image/x-png"))){
 			echo "<div class='error'><p>".__("Bitte lade eine Bilddatei hoch (.jpeg, .gif, .png).", CPC2_TEXT_DOMAIN)."</p></div>";
 			user_avatar_add_photo_step1($uid);
@@ -238,8 +240,8 @@ function user_avatar_add_photo_step2($uid)
         // check file size
         $file_size = $_FILES["uploadedfile"]["size"];
         $file_size = $file_size / 1024; // KB
-        if ($file_size > 500):
-            echo "<div class='error'><p>".sprintf(__("Bitte lade eine Bilddatei mit weniger als 500 KB hoch (Deine war %dKB).", CPC2_TEXT_DOMAIN), $file_size)."</p></div>";
+        if ($file_size > 5120): // 5 MB Limit
+            echo "<div class='error'><p>".sprintf(__("Bitte lade eine Bilddatei mit weniger als 5 MB hoch (Deine war %dKB).", CPC2_TEXT_DOMAIN), $file_size)."</p></div>";
             die();
         else:
             $overrides = array('test_form' => false);
@@ -421,7 +423,7 @@ function user_avatar_add_photo_step3($uid)
 	@unlink( $original_file );
 
 	/* Update user's meta data for quick reference */
-  	update_user_meta( $uid, 'cpc_com_avatar', "/cpc-pro-content/members/".$user_id."/avatar/".$time_now."-cpcfull.jpg" );
+  	update_user_meta( $uid, 'cpc_com_avatar', "/cpc-pro-content/members/".$uid."/avatar/".$time_now."-cpcfull.jpg" );
 
 	if ( is_wp_error( $cropped_full ) )
 		wp_die( __( 'Bild konnte nicht verarbeitet werden. Bitte gehe zurück und versuche es erneut.' ), __( 'Bildverarbeitungsfehler' ) );		
@@ -629,7 +631,7 @@ function user_avatar_delete(){
 		$current_user = wp_get_current_user();
 		
 		// If user clicks the remove avatar button, in URL deleter_avatar=true
-		if( isset($_GET['delete_avatar']) && wp_verify_nonce($_GET['_nononce'], 'user_avatar') && ( $_GET['u'] == $current_user->id || current_user_can('edit_users')) )
+		if( isset($_GET['delete_avatar']) && wp_verify_nonce($_GET['_nononce'], 'user_avatar') && ( $_GET['u'] == $current_user->ID || current_user_can('edit_users')) )
 		{
 			$user_id = cpc_get_user_id();
 			

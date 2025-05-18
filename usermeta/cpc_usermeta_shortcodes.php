@@ -163,54 +163,34 @@ function cpc_usermeta($atts) {
 
     	if ($user_can_see_profile):
 
-    		$user = get_user_by('id', $user_id);
-    		if ($user):
-    			if ($meta != 'cpccom_map'):
-        
-                    $user_values = array('ID', 'display_name', 'user_firstname', 'user_lastname', 'user_login', 'user_nicename', 'user_email', 'user_url', 'user_registered', 'user_status');
-                    if (in_array($meta, $user_values)) {
-        
-                        if ($label) $html .= '<span class="cpc_usermeta_label">'.$label.'</span> ';    
-                        if ($meta == 'user_email' && $link) {
-                            $html .= '<a href="mailto:'.$user->$meta.'">'.$user->$meta.'</a>';
-                        } else {
-                            $html .= $user->$meta;
-                        }
-        
-                    } else {
+        $user = get_user_by('id', $user_id);
+        if ($user):
 
-                        if ($value = get_user_meta( $user_id, $meta, true )) {
-                            if ($label) $html .= '<span class="cpc_usermeta_label">'.$label.'</span> ';
-                        } else {
-                            if ($value = get_user_meta( $user_id, 'cpc_'.$meta, true )):
-                                // Filter for value
-                                $value = apply_filters( 'cpc_usermeta_value_filter', $value, $atts, $user_id );
-                            endif;
-                        }
-                        $html .= $value;
-        
-                    }
-        
-                else:
-        
-    				$city = get_user_meta( $user_id, 'cpccom_home', true );
-    				$country = get_user_meta( $user_id, 'cpccom_country', true );
-    				if ($city && $country):
-    					if ($map_style == "static"):
-    						$html .= '<a target="_blank" href="http://maps.google.co.uk/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q='.$city.',+'.$country.'&amp;ie=UTF8&amp;hq=&amp;hnear='.$city.',+'.$country.'&amp;output=embed&amp;z=5" alt="Click on map to enlarge" title="Click on map to enlarge">';
-    						$html .= '<img src="http://maps.google.com/maps/api/staticmap?center='.$city.',.+'.$country.'&size='.$size[0].'x'.$size[1].'&zoom='.$zoom.'&maptype=roadmap&markers=color:blue|label:&nbsp;|'.$city.',+'.$country.'&sensor=false" />';
-    						$html .= "</a>";
-    					else:
-    						$html .= "<iframe width='".$size[0]."' height='".$size[1]."' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='https://maps.google.co.uk/maps?q=".$city.",+".$country."&amp;z=".$zoom."&amp;output=embed&amp;iwloc=near'></iframe>";
-    					endif;
-                    else:
-                        $html .= "<div id='cpc_no_map_available' style='width:".$size[0]."px; height:".$size[1]."px;'></div>";
-    				endif;
+            $user_values = array('ID', 'display_name', 'user_firstname', 'user_lastname', 'user_login', 'user_nicename', 'user_email', 'user_url', 'user_registered', 'user_status');
+            if (in_array($meta, $user_values)) {
 
-    			endif;
-    		endif;
+                if ($label) $html .= '<span class="cpc_usermeta_label">'.$label.'</span> ';
+                if ($meta == 'user_email' && $link) {
+                    $html .= '<a href="mailto:'.$user->$meta.'">'.$user->$meta.'</a>';
+                } else {
+                    $html .= $user->$meta;
+                }
 
-    	endif;
+            } else {
+
+                $value = get_user_meta($user_id, $meta, true);
+                if (!$value) {
+                    $value = get_user_meta($user_id, 'cpc_'.$meta, true);
+                    $value = apply_filters('cpc_usermeta_value_filter', $value, $atts, $user_id);
+                }
+
+                if ($label) $html .= '<span class="cpc_usermeta_label">'.$label.'</span> ';
+                $html .= $value;
+            }
+
+        endif;
+
+    endif;
 
     endif;
     
@@ -986,7 +966,6 @@ function cpc_backup_activity_page($atts){
         $html .= '</div>';
     endif;
     if (strpos(CPC_CORE_PLUGINS, 'core-profile') !== false):
-        $html .= cpc_usermeta(array('user_id'=>$user_id, 'meta'=>'cpccom_map', 'map_style'=>$map_style, 'size'=>$map_size, 'zoom'=>$map_zoom, 'before'=>'<div id="cpc_display_map" style="float:left;margin-right:15px;">', 'after'=>'</div>'));
         $html .= '<div style="float:left;margin-right:15px;">';
         $html .= cpc_usermeta(array('user_id'=>$user_id, 'meta'=>'cpccom_home', 'before'=>'<strong>'.$town_label.'</strong><br />', 'after'=>'<br />'));
         $html .= cpc_usermeta(array('user_id'=>$user_id, 'meta'=>'cpccom_country', 'before'=>'<strong>'.$country_label.'</strong><br />', 'after'=>'<br />'));

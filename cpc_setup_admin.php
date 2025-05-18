@@ -2104,7 +2104,6 @@ function cpc_admin_getting_started_options() {
                                             echo '<option value="user_status"'.($meta == 'user_status' ? ' SELECTED' : '').'>'.__('Benutzerstatus', CPC2_TEXT_DOMAIN).'</option>';
                                             echo '<option value="cpccom_home"'.($meta == 'cpccom_home' ? ' SELECTED' : '').'>'.__('Stadt/Gemeinde', CPC2_TEXT_DOMAIN).'</option>';
                                             echo '<option value="cpccom_country"'.($meta == 'cpccom_country' ? ' SELECTED' : '').'>'.__('Land', CPC2_TEXT_DOMAIN).'</option>';
-                                            echo '<option value="cpccom_map"'.($meta == 'cpccom_map' ? ' SELECTED' : '').'>'.__('Karte', CPC2_TEXT_DOMAIN).'</option>';
                                         echo '</select></td><td>(meta="'.$meta.'")</td></tr>';
 
                                     echo '<tr><td colspan=3 class="cpc_section">'.__('Wenn oben Karte ausgewählt wurde...', CPC2_TEXT_DOMAIN).'</td></tr>';            

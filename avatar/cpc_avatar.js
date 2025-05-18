@@ -82,5 +82,29 @@ jQuery(document).ready(function() {
 		}
 	});
 
+	// ----- Thickbox responsive fix -----
+	var original_tb_position = window.tb_position;
+	window.tb_position = function() {
+		if (original_tb_position) original_tb_position();
+		var $tbWindow = jQuery('#TB_window');
+		if ($tbWindow.length) {
+			var maxWidth = jQuery(window).width() * 0.95;
+			var maxHeight = jQuery(window).height() * 0.9;
+			$tbWindow.css({
+				width: maxWidth + 'px',
+				height: 'auto',
+				maxHeight: maxHeight + 'px',
+				left: (jQuery(window).width() - maxWidth) / 2 + 'px',
+				top: jQuery(window).height() * 0.05 + 'px',
+				marginLeft: 0,
+				marginTop: 0
+			});
+			jQuery('#TB_iframeContent').css({
+				width: '100%',
+				height: maxHeight * 0.85 + 'px'
+			});
+		}
+	};
+
 });
 

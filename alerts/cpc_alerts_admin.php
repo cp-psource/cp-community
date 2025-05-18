@@ -731,8 +731,8 @@ function cpc_alerts_scheduled_job() {
 /* show status of cron job */
 function cpc_show_cron_flag_status() {
 
-    $current_screen = get_current_screen();
-    if ($current_screen->id == 'edit-cpc_alerts') {
+    $current_screen = function_exists('get_current_screen') ? get_current_screen() : null;
+    if (is_object($current_screen) && isset($current_screen->id) && $current_screen->id == 'edit-cpc_alerts') {
     
         if ( (isset($_GET['cpc_cron_flag_reset']) ) || (isset($_POST['cpc_cron_flag_reset']) && $_POST['cpc_cron_flag_reset'] == "1") ) {
             echo '<div class="notice notice-warning">';

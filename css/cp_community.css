@@ -152,8 +152,22 @@ li.toplevel_page_cpc_com .dashicons-before:before {
 /* Admin */
 
 #TB_window {
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
+  max-width: 95vw !important;
+  width: 95vw !important;
+  height: auto !important;
+  max-height: 90vh !important;
+  top: 5vh !important;
+  left: 2.5vw !important;
+  margin-left: 0 !important;
+  overflow: visible !important;
+}
+
+#TB_iframeContent {
+  width: 100% !important;
+  height: 80vh !important;
+  min-height: 400px;
+  max-height: 80vh !important;
+  border: none !important;
 }
 
 #TB_ajaxContent {
