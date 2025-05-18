@@ -17,6 +17,7 @@ add_action( 'wp_ajax_nopriv_cpc_return_activity_posts', 'cpc_return_activity_pos
 function cpc_return_activity_posts() {
 
 	global $current_user;
+    $items = '';
 
     $data = $_POST['data'];
     $arr = $data['arr'];

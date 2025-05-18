@@ -162,24 +162,6 @@ function cpc_usermeta_form_save( $user_id ) {
 	update_user_meta($user_id, 'cpccom_home', $home_form);
 	update_user_meta($user_id, 'cpccom_country', $country_form);
 
-	if ($home_form && $country_form):
-
-		// Change spaces to %20 for Google maps API and geo-code
-		$city = str_replace(' ','%20',$home_form);
-		$country = str_replace(' ','%20',$country_form);
-		$fgc = 'http://maps.googleapis.com/maps/api/geocode/json?address='.$city.'+'.$country.'&sensor=false';
-
-		if ($json = @file_get_contents($fgc) ):
-			$json_output = json_decode($json, true);
-			$lat = $json_output['results'][0]['geometry']['location']['lat'];
-			$lng = $json_output['results'][0]['geometry']['location']['lng'];
-
-			update_user_meta($user_id, 'cpccom_lat', $lat);
-			update_user_meta($user_id, 'cpccom_long', $lng);
-        endif;
-
-	endif;
-
     // This must be last
     if (current_user_can('manage_options')):
         if (isset($_POST['cpc_close_account'])) cpc_deactivate_account($user_id);

@@ -41,6 +41,15 @@ add_action('admin_init', function() {
 add_filter( 'rewrite_rules_array','cpc_forum_insert_rewrite_rules' );
 add_action( 'wp_loaded','cpc_forum_flush_rewrite_rules' );
 add_filter( 'query_vars','cpc_forum_insert_query_vars' );
+add_filter('rewrite_rules_array', 'cpc_profile_rewrite_rules');
+function cpc_profile_rewrite_rules($rules) {
+    $new_rules = array(
+        'profile/([^/]+)/?$' => 'index.php?pagename=profile&user=$matches[1]',
+    );
+    return $new_rules + $rules;
+}
+add_filter('rewrite_rules_array', 'cpc_profile_rewrite_rules');
+
 // Language
 add_action('plugins_loaded', 'cpc_languages');
 // Get core plugin features enabled
