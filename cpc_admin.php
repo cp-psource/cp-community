@@ -19,7 +19,7 @@ function cpc_menu() {
 	
     $admin_favs = get_option('cpc_admin_favs');
 
-	$menu_label = (defined('CPC_MENU')) ? CPC_MENU : 'CP Community';
+	$menu_label = (defined('CPC_MENU')) ? CPC_MENU : 'PS Community';
 	add_menu_page($menu_label, $menu_label, 'manage_options', 'cpc_com', 'cpccom_setup', 'none'); 
 	add_submenu_page('cpc_com', __('Versionshinweise', CPC2_TEXT_DOMAIN), __('Versionshinweise', CPC2_TEXT_DOMAIN), 'manage_options', 'cpc_com_release_notes', 'cpccom_release_notes');
 	add_submenu_page('cpc_com', __('Einstellungen', CPC2_TEXT_DOMAIN), __('Einstellungen', CPC2_TEXT_DOMAIN), 'manage_options', 'cpc_com_setup', 'cpccom_setup');
@@ -98,7 +98,7 @@ function cpc_menu() {
     
             update_option('cpc_forum_meta_update_all', true);
     
-            echo '<div class="error"><p>'.__('CP Community-Update erfolgreich.', CPC2_TEXT_DOMAIN).'</p></div>';    
+            echo '<div class="error"><p>'.__('PS Community-Update erfolgreich.', CPC2_TEXT_DOMAIN).'</p></div>';    
     
         endif;
     
@@ -122,7 +122,7 @@ function cpc_add_external_link_admin_submenu() {
         if (in_array('setup_rewards', $admin_favs))
             $submenu['cpc_com'][] = array( 'Rewards (setup)', 'manage_options', admin_url('edit.php?post_type=cpc_rewards') );
         if (in_array('cpc_com_reset', $admin_favs))
-            $submenu['cpc_com'][] = array( 'CP Community Reset', 'manage_options', admin_url('admin.php?page=cpc_com_reset') );
+            $submenu['cpc_com'][] = array( 'PS Community Reset', 'manage_options', admin_url('admin.php?page=cpc_com_reset') );
         // User
         if (in_array('activity_posts', $admin_favs))
             $submenu['cpc_com'][] = array( 'Activity Posts (all)', 'manage_options', admin_url('edit.php?post_type=cpc_activity') );
@@ -277,16 +277,16 @@ function cpccom_release_notes() {
 	  	echo '<div id="cpc_release_notes">';
 	  		echo '<div id="cpc_welcome_bar" style="margin-top: 20px;">';
 		  		echo '<img id="cpc_welcome_logo" style="width:56px; height:56px; float:left;" src="'.plugins_url('../cp-community/css/images/cpc_logo.png', __FILE__).'" title="'.__('help', CPC2_TEXT_DOMAIN).'" />';
-		  		echo '<div style="font-size:2em; line-height:1em; font-weight:100; color:#fff;">'.__('Willkommen bei CP Community', CPC2_TEXT_DOMAIN).'</div>';
+		  		echo '<div style="font-size:2em; line-height:1em; font-weight:100; color:#fff;">'.__('Willkommen bei PS Community', CPC2_TEXT_DOMAIN).'</div>';
 		  		echo '<p style="color:#fff;"><em>'.__('Das ultimative Plugin für soziale Netzwerke für WordPress', CPC2_TEXT_DOMAIN).'</em></p>';
 	  		echo '</div>';
 
-	  		echo '<div style="font-size:1.4em; margin-top:20px">'.__('Vielen Dank, dass Du CP Community installiert hast!', CPC2_TEXT_DOMAIN).'</div>';
+	  		echo '<div style="font-size:1.4em; margin-top:20px">'.__('Vielen Dank, dass Du PS Community installiert hast!', CPC2_TEXT_DOMAIN).'</div>';
 
 	  		?>
 
             <div id="cpc_release_notes_psource" class="cpc_release_notes" style="float:right; width:280px; margin-left: 20px;">
-                <div style="float:right;width:200px"><?php echo sprintf(__('Bitte besuche unsere <a href="%s" target="_blank">Projektseite</a>, oder wirke auf <a href="%s" target="_blank">GitHub</a> mit, um CP Community noch großartiger zu machen!', CPC2_TEXT_DOMAIN), 'https://cp-community.n3rds.work/', 'http://twitter.com/cpcymposium'); ?></div>
+                <div style="float:right;width:200px"><?php echo sprintf(__('Bitte besuche unsere <a href="%s" target="_blank">Projektseite</a>, oder wirke auf <a href="%s" target="_blank">GitHub</a> mit, um PS Community noch großartiger zu machen!', CPC2_TEXT_DOMAIN), 'https://cp-community.n3rds.work/', 'http://twitter.com/cpcymposium'); ?></div>
             </div>
             <p>
             	<?php echo sprintf(__('Wenn Du neu bei CP-Community bist, solltest Du die <a href="%s">Setup-Seite</a> besuchen...', CPC2_TEXT_DOMAIN), admin_url('admin.php?page=cpc_com_setup')); ?>
@@ -296,7 +296,7 @@ function cpccom_release_notes() {
             	<?php echo __('Wenn Du einen Cache oder ein CDN (vielleicht wie CloudFlare) verwendest, empfehlen wir, nach dem Upgrade aller Plugins alle Deine Dateien zu löschen/löschen.', CPC2_TEXT_DOMAIN); ?>
             </p>
 
-            <em><strong>DerN3rd, CP Community-Entwickler</strong></em></p>
+            <em><strong>DerN3rd, PS Community-Entwickler</strong></em></p>
 
             <?php
             echo '<div style="font-size:1.4em; margin:20px 0 20px 0">'.sprintf(__('Versionshinweise für den aktuellen Build (%s)', CPC2_TEXT_DOMAIN), get_option('cp_community_ver')).'...</div>';
@@ -317,7 +317,7 @@ function cpccom_release_notes() {
             <table><tr>
 				<td valign="top" class="cpc_release_notes" style="<?php echo $cup_of_tea_left; ?>width:45%;">
 
-					<div style="font-size:1.6em; line-height:1.6em; color: #510051; font-weight: bold;">Core CP Community plugin</div>
+					<div style="font-size:1.6em; line-height:1.6em; color: #510051; font-weight: bold;">Core PS Community plugin</div>
 					<a href="https://cp-psource.github.io/cp-community/" target-"_blank">Verfügbar im PSOURCE GitHub-Repository</a><br />
 
                     <h2 style="font-style:italic; margin-top:20px;">Changelog Versionsnummer 1.0.3.:</h2>
@@ -330,8 +330,8 @@ function cpccom_release_notes() {
 				<td style="width:1%">&nbsp;</td>
 				<td valign="top" class="cpc_release_notes" style="<?php echo $cup_of_tea_right; ?>">
 
-                    <div style="font-size:1.6em; line-height:1.6em; color: #510051; font-weight: bold;">CP Community Entwicklung</div>
-					<a href="https://n3rds.work/licenses/" target-"_blank">Hilf mit CP Community noch besser zu machen!</a><br />			
+                    <div style="font-size:1.6em; line-height:1.6em; color: #510051; font-weight: bold;">PS Community Entwicklung</div>
+					<a href="https://n3rds.work/licenses/" target-"_blank">Hilf mit PS Community noch besser zu machen!</a><br />			
 
                     <h2 style="font-style:italic; margin-top:20px;">Entwicklung</h2>
 
@@ -544,11 +544,11 @@ function cpc_com_translations() {
         echo '<p>'.__('Dies ist die Standardsprache Deiner Webseite:', CPC2_TEXT_DOMAIN).' '.$locale.'</p>';
     
 		echo '<h3>'.__('Standardmäßige .mo-Datei basierend auf dem Standardgebietsschema', CPC2_TEXT_DOMAIN).'</h3>';
-        echo '<p>'.sprintf(__('Wenn Du die Übersetzungen für CP Community für die Standardsprache/das Standardgebietsschema Deiner Webseite ändern möchtest, <a href="%s" target="_blank">hole Dir die Basis-.pot-Datei</a> und dann die .mo Die Datei, die Du erstellen solltest (mit einer Anwendung wie <a href="%s" target="_blank">PoEdit</a>), ist:', CPC2_TEXT_DOMAIN), "https://n3rds.work/translation/", "http://www.poedit.com").'</p>';
+        echo '<p>'.sprintf(__('Wenn Du die Übersetzungen für PS Community für die Standardsprache/das Standardgebietsschema Deiner Webseite ändern möchtest, <a href="%s" target="_blank">hole Dir die Basis-.pot-Datei</a> und dann die .mo Die Datei, die Du erstellen solltest (mit einer Anwendung wie <a href="%s" target="_blank">PoEdit</a>), ist:', CPC2_TEXT_DOMAIN), "https://n3rds.work/translation/", "http://www.poedit.com").'</p>';
 		echo '<p><span style="padding:4px 8px 4px 8px;border-radius: 3px; border: 1px solid #aaa; background-color:white">'.$mofile.'</span></p>';    
 
 		echo '<h3>'.__('Hinzufügen von Sprachen, die Benutzer selbst auswählen können', CPC2_TEXT_DOMAIN).'</h3>';
-		echo '<p>'.sprintf(__('Du musst mit PoEdit eine .mo-Datei generieren, die auf heruntergeladenen .po-Dateien von <a href="%s" target="_blank">CrowdIn.Net</a> basiert, die Du Deinen Benutzern anbietest (oder eine wie oben beschrieben erstellen). mit einer Anwendung wie PoEdit) wäre cp-community-fr_FR.mo beispielsweise die .mo-Datei für Französisch. Du legst die .mo-Dateien im Übersetzungsordner ab, wie im nächsten Abschnitt unten auf dieser Seite gezeigt. Lies mehr darüber im <a href="%s" target="_blank">CP Community Codex</a>.', CPC2_TEXT_DOMAIN), "https://crowdin.com/project/community", "https://cp-community.n3rds.work/translating-cp-community/").'</p>';
+		echo '<p>'.sprintf(__('Du musst mit PoEdit eine .mo-Datei generieren, die auf heruntergeladenen .po-Dateien von <a href="%s" target="_blank">CrowdIn.Net</a> basiert, die Du Deinen Benutzern anbietest (oder eine wie oben beschrieben erstellen). mit einer Anwendung wie PoEdit) wäre cp-community-fr_FR.mo beispielsweise die .mo-Datei für Französisch. Du legst die .mo-Dateien im Übersetzungsordner ab, wie im nächsten Abschnitt unten auf dieser Seite gezeigt. Lies mehr darüber im <a href="%s" target="_blank">PS Community Codex</a>.', CPC2_TEXT_DOMAIN), "https://crowdin.com/project/community", "https://cp-community.n3rds.work/translating-cp-community/").'</p>';
 
         echo '<p>'.__('Um Benutzern die Möglichkeit zu geben, zwischen alternativen Sprachen zu wählen, gib unten zusätzliche Sprachen und Gebietsschemas ein, siehe Beispiel weiter unten auf der Seite.', CPC2_TEXT_DOMAIN).'</p>';
         echo '<p>'.__('Gib die Standardsprache Deiner Webseite ganz oben ein und gib kein Komma und kein Gebietsschema ein (sieh Dir das Beispiel für eine englische Webseite an).', CPC2_TEXT_DOMAIN).'</p>';
@@ -620,7 +620,7 @@ function cpc_com_reset() {
 
   		echo '<div style="font-size:1.4em; margin-top:20px">'.__('CP-Community-Datenentfernung (Zurücksetzen)', CPC2_TEXT_DOMAIN).'</div>';
 
-		echo '<p>'.__('Verwende diesen Bildschirm, um CP Community zurückzusetzen oder alle Daten zu entfernen, bevor Du das Plugin deinstallierst.', CPC2_TEXT_DOMAIN).'</p>';
+		echo '<p>'.__('Verwende diesen Bildschirm, um PS Community zurückzusetzen oder alle Daten zu entfernen, bevor Du das Plugin deinstallierst.', CPC2_TEXT_DOMAIN).'</p>';
 
 		// admins only!
 		if (current_user_can('manage_options')):
@@ -675,7 +675,7 @@ function cpc_com_reset() {
 			echo '<form onsubmit="return confirm(\''.__('Bist du sicher? Letzte Möglichkeit!', CPC2_TEXT_DOMAIN).'\')" action="'.admin_url( 'admin.php?page=cpc_com_reset' ).'" method="POST">';
 				wp_nonce_field( 'cpc_com_reset', 'cpc_com_reset_nonce' );				
 				echo '<input type="hidden" name="cpc_com_reset_confirm" value="Y" />';
-				echo '<input type="submit" class="button-primary" value="'.__('Lösche alle CP Community-Daten', CPC2_TEXT_DOMAIN).'" />';			
+				echo '<input type="submit" class="button-primary" value="'.__('Lösche alle PS Community-Daten', CPC2_TEXT_DOMAIN).'" />';			
 			echo '</form>';
 
 		else:

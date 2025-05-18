@@ -1106,7 +1106,7 @@ function cpc_admin_getting_started_options() {
                                         $new_seconds = cpc_get_shortcode_default($values, 'cpc_forum-new_seconds', 259200);
                                         echo '<input type="text" name="cpc_forum-new_seconds" class="cpc_shortcode_tip_available" value="'.$new_seconds.'" /> seconds</td><td>(new_seconds="'.$new_seconds.'")</td></tr>';
                                     echo '<tr id="cpc_shortcode_tip" style="display:none"';
-                                        echo '><td colspan="3" class="cpc_admin_shortcode_tip">'.sprintf(__('Styling-Tipps findest Du im <a href="%s" target="_blank">CP Community Codex</a>.', CPC2_TEXT_DOMAIN), 'https://cp-community.n3rds.work/cpc-forum/').'</td></tr>';
+                                        echo '><td colspan="3" class="cpc_admin_shortcode_tip">'.sprintf(__('Styling-Tipps findest Du im <a href="%s" target="_blank">PS Community Codex</a>.', CPC2_TEXT_DOMAIN), 'https://cp-community.n3rds.work/cpc-forum/').'</td></tr>';
 
                                     echo '<tr><td>'.__('Markiere gelesene Artikel als nicht mehr neu', CPC2_TEXT_DOMAIN).'</td><td>';
                                         $new_item_read = cpc_get_shortcode_default($values, 'cpc_forum-new_item_read', true);
@@ -2841,7 +2841,7 @@ function cpc_admin_getting_started_styles() {
                         echo '<h1>BETA</h1>';
                         echo '<p>Dies ist eine neue Funktion und wird derzeit getestet. Teile uns bitte Deine Meinung mit oder teile uns eventuelle Probleme mit, damit wir diese beheben können! Sobald die Stabilität stabil ist, werden wir die verfügbaren Optionen erweitern. Danke schön!</p>';
                         echo '<div id="cpc_admin_getting_started_options_help" style="margin-bottom:20px;'.(true || !isset($_POST['cpc_expand_shortcode']) ? '' : 'display:none;').'">';
-                        echo sprintf(__('Dieser Abschnitt bietet eine schnelle und einfache Möglichkeit, alle CP Community-Bildschirmelemente zu gestalten und erspart Dir die Verwendung von CSS. Zurücksetzen <a onclick="return confirm(\''.__('Bist Du sicher? Dies kann icht rückgängig gemacht werden!', CPC2_TEXT_DOMAIN).'\')" href="%s">Alle Stiländerungen zurücksetzen</a>.', CPC2_TEXT_DOMAIN), admin_url( 'admin.php?page=cpc_com_styles&cpc_reset_options=1')).'<br />';
+                        echo sprintf(__('Dieser Abschnitt bietet eine schnelle und einfache Möglichkeit, alle PS Community-Bildschirmelemente zu gestalten und erspart Dir die Verwendung von CSS. Zurücksetzen <a onclick="return confirm(\''.__('Bist Du sicher? Dies kann icht rückgängig gemacht werden!', CPC2_TEXT_DOMAIN).'\')" href="%s">Alle Stiländerungen zurücksetzen</a>.', CPC2_TEXT_DOMAIN), admin_url( 'admin.php?page=cpc_com_styles&cpc_reset_options=1')).'<br />';
                         echo '<p>'.sprintf(__('Wenn Du mit der Maus über ein Element fährst, wird die verwendete CSS-Klasse angezeigt und Du kannst dann <a href="%s">Benutzerdefiniertes CSS</a> verwenden, um erweiterte Attribute hinzuzufügen.', CPC2_TEXT_DOMAIN), admin_url( 'admin.php?page=cpc_com_custom_css')).'</p>';
                         
                         $use_styles = get_option('cpccom_use_styles');

@@ -822,7 +822,7 @@ function cpc_add_wait_modal_box() {
 function cpc_add_custom_css() {
 	$css = '';
 	if ($value = stripslashes( get_option('cpccom_custom_css') )) $css .= $value;
-	echo '<style>/* CP Community Custom CSS */' . chr(13) . chr(10) . $css . '</style>';
+	echo '<style>/* PS Community Custom CSS */' . chr(13) . chr(10) . $css . '</style>';
 	// ... and Styles if activated (elements)
     if (get_option('cpccom_use_styles')):
         $values = get_option('cpc_styles_'.'cpc_elements') ? get_option('cpc_styles_'.'cpc_elements') : array();
@@ -848,7 +848,7 @@ function cpc_admin_tip($html, $tip, $msg) {
             $html .= '<div class="cpc_admin_tip">';
             $html .= '<div style="font-size: 0.8em; float:right; margin-left: 20px; margin-bottom; 5px;"><a href="'.$url.'">'.__('Tipp verwerfen', CPC2_TEXT_DOMAIN).'</a></div>';
             $html .= __('Tipp', CPC2_TEXT_DOMAIN).': '.__($msg, CPC2_TEXT_DOMAIN);
-            $html .= '<div style="font-style:italic; margin-top: 15px; font-size:0.8em;">'.sprintf(__('Dieser Tipp ist nur für Webseiten-Administratoren sichtbar und kann bei Ablehnung über CP Community->Setup-><a href="%s">Core Options</a> erneut aktiviert werden.', CPC2_TEXT_DOMAIN), admin_url( 'admin.php?page=cpc_com_setup&cpc_expand=cpc_admin_getting_started_core#core' )).'</div>';
+            $html .= '<div style="font-style:italic; margin-top: 15px; font-size:0.8em;">'.sprintf(__('Dieser Tipp ist nur für Webseiten-Administratoren sichtbar und kann bei Ablehnung über PS Community->Setup-><a href="%s">Core Options</a> erneut aktiviert werden.', CPC2_TEXT_DOMAIN), admin_url( 'admin.php?page=cpc_com_setup&cpc_expand=cpc_admin_getting_started_core#core' )).'</div>';
             $html .= '</div>';
         endif;
     endif;
@@ -946,13 +946,13 @@ function cpc_put_style($values, $function, $element) {
 
 function cpc_styles($values, $function, $elements) {
 
-	$html = '<!-- CP Community Styles -->';
+	$html = '<!-- PS Community Styles -->';
     $html .= '<style>';
     foreach($elements as $element):
         $html .= cpc_put_style($values, $function, $element);
     endforeach;
     $html .= '</style>';
-	$html .= '<!-- CP Community Styles Ende -->';
+	$html .= '<!-- PS Community Styles Ende -->';
     return $html;
     
 }

@@ -3,7 +3,7 @@
  * Configuration settings for advanced users.
  * 
  * This file is replaced when the plugin is updated, so make a copy of any changes
- * that you make so you can re-apply them after updating CP Community.
+ * that you make so you can re-apply them after updating PS Community.
  *
  */
 

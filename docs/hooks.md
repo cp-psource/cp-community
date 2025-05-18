@@ -1,9 +1,9 @@
 ---
 layout: psource-theme
-title: "CP Community Hooks"
+title: "PS Community Hooks"
 ---
 
-<h2 align="center" style="color:#38c2bb;">📚 CP Community Hooks</h2>
+<h2 align="center" style="color:#38c2bb;">📚 PS Community Hooks</h2>
 
 <div class="menu">
   <a href="https://github.com/cp-psource/cp-community/discussions" style="color:#38c2bb;">💬 Forum</a>
@@ -688,9 +688,9 @@ cpc_avatar: Dieser Shortcode generiert HTML für die Anzeige eines Avatars, basi
 
 ### Entwickler-Ressourcen:
 
-- **Shortcodes:** [CP Community Shortcodes](shortcodes.md)
-- **Hooks:** [CP Community Hooks](hooks.md)
-- **Filter:** [CP Community Filter](filter.md)
+- **Shortcodes:** [PS Community Shortcodes](shortcodes.md)
+- **Hooks:** [PS Community Hooks](hooks.md)
+- **Filter:** [PS Community Filter](filter.md)
 
 
 

@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: CP Community
+Plugin Name: PS Community
 Plugin URI: https://cp-psource.github.io/cp-community/
 Description: Füge Deiner WordPress-Webseite schnell und einfach ein soziales Netzwerk hinzu!
 Version: 1.0.3
@@ -72,7 +72,7 @@ function cpc_flush_rewrite_rules()
 }
 // Uncomment the following line to force a re-write flush (debugging only)
 //add_action( 'init', 'cpc_flush_rewrite_rules');
-// Add CP Community re-write rules
+// Add PS Community re-write rules
 function cpc_forum_insert_rewrite_rules( $rules ) {
 	global $wp_rewrite;
     
@@ -376,7 +376,7 @@ if (strpos(CPC_CORE_PLUGINS, 'core-alerts') !== false):
         $seconds = ($value = get_option('cpc_alerts_cron_schedule')) ? $value : 3600; // Defaults to every hour
         $schedules['cpc_community_alerts_schedule'] = array(
             'interval' => $seconds, // in seconds
-            'display' => __( 'CP Community alerts schedule', CPC2_TEXT_DOMAIN )
+            'display' => __( 'PS Community alerts schedule', CPC2_TEXT_DOMAIN )
         );
         return $schedules;
     }

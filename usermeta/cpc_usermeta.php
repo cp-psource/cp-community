@@ -97,7 +97,7 @@ function cpc_usermeta_form($user)
 	{
 		?>
 
-		<h3><?php _e('CP Community', CPC2_TEXT_DOMAIN); ?></h3>
+		<h3><?php _e('PS Community', CPC2_TEXT_DOMAIN); ?></h3>
 
 		<table class="form-table">
 

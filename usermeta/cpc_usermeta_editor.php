@@ -1,6 +1,6 @@
 <?php
 
-// Add menu item(s) to CP Community Editor toolbar button
+// Add menu item(s) to PS Community Editor toolbar button
 add_filter('cpc_admin_shortcodes', 'cpc_admin_shortcodes_add_usermeta', 10, 1);
 function cpc_admin_shortcodes_add_usermeta($items) {
 	

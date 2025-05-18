@@ -1,9 +1,9 @@
 ---
 layout: psource-theme
-title: "CP Community"
+title: "PS Community"
 ---
 
-<h2 align="center" style="color:#38c2bb;">📚 CP Community</h2>
+<h2 align="center" style="color:#38c2bb;">📚 PS Community</h2>
 
 <div class="menu">
   <a href="https://github.com/cp-psource/cp-community/discussions" style="color:#38c2bb;">💬 Forum</a>
@@ -39,7 +39,7 @@ Wir sind stolz auf unseren Support, der Dir zur Seite steht, wenn Du ihn brauchs
 
 ### Entwickler-Ressourcen:
 
-- **Shortcodes:** [CP Community Shortcodes](shortcodes.html)
-- **Hooks:** [CP Community Hooks](hooks.html)
-- **Filter:** [CP Community Filter](filter.html)
+- **Shortcodes:** [PS Community Shortcodes](shortcodes.html)
+- **Hooks:** [PS Community Hooks](hooks.html)
+- **Filter:** [PS Community Filter](filter.html)
 

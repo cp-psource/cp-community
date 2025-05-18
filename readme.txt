@@ -1,4 +1,4 @@
-﻿=== CP Community ===
+﻿=== PS Community ===
 Contributors: DerN3rd
 Tags: wp community, social network, social networking, social media, cp-community, wp community, community
 Requires at least: 4.9
@@ -16,11 +16,11 @@ Füge einfach das Plugin hinzu, klicken auf eine Schaltfläche und Du hast ganz 
 
 **Unglaublich kompatibel**
 
-Unglaublich kompatibel mit Themes und Plugins. Weitere Informationen, einschließlich zusätzlicher Plugins für CP Community, findest Du unter https://cp-community.n3rds.work/.
+Unglaublich kompatibel mit Themes und Plugins. Weitere Informationen, einschließlich zusätzlicher Plugins für PS Community, findest Du unter https://cp-community.n3rds.work/.
 
 **Massiv anpassbar**
 
-Möchtest Du etwas ändern, das Layout, den Text, die Schaltflächenbeschriftungen? Die wahre Stärke von CP Community liegt in Shortcodes mit zahlreichen Optionen, mit denen Du nahezu alles ändern und Deine sozialen Netzwerkseiten so gestalten kannst, wie Du es möchtest!
+Möchtest Du etwas ändern, das Layout, den Text, die Schaltflächenbeschriftungen? Die wahre Stärke von PS Community liegt in Shortcodes mit zahlreichen Optionen, mit denen Du nahezu alles ändern und Deine sozialen Netzwerkseiten so gestalten kannst, wie Du es möchtest!
 
 **Mehrsprachige Webseite?**
 

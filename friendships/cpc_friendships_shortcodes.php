@@ -581,7 +581,7 @@ function cpc_alerts_friends($atts) {
             $html .= '<div id="cpc_alerts_friends_flag_unread" style="position: absolute; padding-top: '.($flag_pending_size*0.2).'px; line-height:'.($flag_pending_size*0.8).'px; font-size:'.($flag_pending_size*0.8).'px; border-radius: '.$flag_pending_radius.'px; top:'.$flag_pending_top.'px; left:'.$flag_pending_left.'px; width:'.$flag_pending_size.'px; height:'.$flag_pending_size.'px;">'.$unread_count.'</div>';
         endif;
         $html .= '</a></div>';
-        if (!$flag_url) $html .= '<div class="cpc_error">'.__('Lege flag_url in CP Community->Setup->Standard-Shortcode-Einstellungen (Freunde) oder im Shortcode fest, im Shortcode für den Link, wahrscheinlich auf die Seite mit [cpc-friends] darauf.', CPC2_TEXT_DOMAIN).'</div>';
+        if (!$flag_url) $html .= '<div class="cpc_error">'.__('Lege flag_url in PS Community->Setup->Standard-Shortcode-Einstellungen (Freunde) oder im Shortcode fest, im Shortcode für den Link, wahrscheinlich auf die Seite mit [cpc-friends] darauf.', CPC2_TEXT_DOMAIN).'</div>';
         
         if ($html) $html = apply_filters ('cpc_wrap_shortcode_styles_filter', $html, 'cpc_alerts_friends', $before, $after, $styles, $values);
 

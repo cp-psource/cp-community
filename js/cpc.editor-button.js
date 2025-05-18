@@ -8,7 +8,7 @@
           t.editor = ed;
 
           ed.addButton('cpc_com', {
-              title : 'CP Community',
+              title : 'PS Community',
               cmd : 'cpc_com_cmd',
               icon : 'cpc_com',
           });

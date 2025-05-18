@@ -1,9 +1,9 @@
 ---
 layout: psource-theme
-title: "CP Community Filter"
+title: "PS Community Filter"
 ---
 
-<h2 align="center" style="color:#38c2bb;">📚 CP Community - Filter</h2>
+<h2 align="center" style="color:#38c2bb;">📚 PS Community - Filter</h2>
 
 <div style="display: flex; justify-content: space-around; background-color: #f3f3f3; padding: 10px; border-radius: 5px;">
   <a href="https://cp-psource.github.io/cp-community/" style="text-decoration: none; color: #0366d6; font-weight: bold;">Home</a>
@@ -18,9 +18,9 @@ title: "CP Community Filter"
 
 ### Entwickler-Ressourcen:
 
-- **Shortcodes:** [CP Community Shortcodes](shortcodes.md)
-- **Hooks:** [CP Community Hooks](hooks.md)
-- **Filter:** [CP Community Filter](filter.md)
+- **Shortcodes:** [PS Community Shortcodes](shortcodes.md)
+- **Hooks:** [PS Community Hooks](hooks.md)
+- **Filter:** [PS Community Filter](filter.md)
 
 <div style="display: flex; justify-content: space-around; background-color: #f3f3f3; padding: 10px; border-radius: 5px;">
   <a href="https://cp-psource.github.io/cp-community/" style="text-decoration: none; color: #0366d6; font-weight: bold;">Home</a>

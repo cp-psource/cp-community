@@ -211,7 +211,7 @@ function cpc_admin_getting_started_alerts() {
   	echo '<div class="cpc_admin_getting_started_content" id="cpc_admin_getting_started_alerts" style="display:'.$display.';">';
 	?>
 
-	<?php echo __('CP Community-Benachrichtigungen verwenden die interne WordPress-Funktion wp_mail().', CPC2_TEXT_DOMAIN).' '; ?>
+	<?php echo __('PS Community-Benachrichtigungen verwenden die interne WordPress-Funktion wp_mail().', CPC2_TEXT_DOMAIN).' '; ?>
 	<?php echo __('Wenn Du abhängig von Deinem Host ein hohes Volumen hast, solltest Du die Verwendung eines externen Mailservers in Betracht ziehen.', CPC2_TEXT_DOMAIN).' '; ?>
 	<?php echo sprintf(__('Es stehen mehrere WordPress-Plugins zur Verfügung, die dies unterstützen, z. B. <a href="%s">Postman SMTP Mailer/Email Log</a>.', CPC2_TEXT_DOMAIN), "https://wordpress.org/plugins/postman-smtp/"); ?>
 
@@ -743,7 +743,7 @@ function cpc_show_cron_flag_status() {
         $cpc_cron_flag = get_option('cpc_cron_flag');
         if ($cpc_cron_flag) {
             echo '<div class="notice notice-warning">';
-                echo '<p>'.sprintf(__('CP Community Cron current processing. Started at %s.', CPC2_TEXT_DOMAIN), date("Y-m-d H:i:s",$cpc_cron_flag)).'</p>';
+                echo '<p>'.sprintf(__('PS Community Cron current processing. Started at %s.', CPC2_TEXT_DOMAIN), date("Y-m-d H:i:s",$cpc_cron_flag)).'</p>';
                 $interval = time() - $cpc_cron_flag;
                 // only show reset button if stuck for over an hour
                 if ($interval > 3600) {
@@ -752,7 +752,7 @@ function cpc_show_cron_flag_status() {
             echo '</div>';
         } else {
             echo '<div class="notice notice-success">';
-                echo '<p>'.__('CP Community Cron ready to process.', CPC2_TEXT_DOMAIN);
+                echo '<p>'.__('PS Community Cron ready to process.', CPC2_TEXT_DOMAIN);
                 $last_sent = get_option('cpc_cron_flag_last_sent');
                 if (true || $last_sent) {
                     echo ' '.sprintf(__('Last processed: %s.', CPC2_TEXT_DOMAIN), date("Y-m-d H:i:s",$last_sent));
