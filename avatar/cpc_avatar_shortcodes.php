@@ -4,14 +4,26 @@
 
 function cpc_avatar_init() {
 
-	wp_enqueue_script("thickbox");
-	wp_enqueue_style("thickbox");
 	wp_enqueue_script('cpc-avatar-js', plugins_url('cpc_avatar.js', __FILE__), array('jquery'));	
 	wp_enqueue_style('user-avatar', plugins_url('user-avatar.css', __FILE__), 'css');
 	wp_enqueue_style('imgareaselect');
 	wp_enqueue_script('imgareaselect');
-	// Anything else?
+	wp_enqueue_style('psource-modal', plugins_url('../assets/psource-ui/modal/psource-modal.css', __FILE__));
+    wp_enqueue_script('psource-modal', plugins_url('../assets/psource-ui/modal/psource-modal.js', __FILE__), array(), false, true);
 	do_action('cpc_avatar_init_hook');
+
+    // Modal-HTML nur einmal ausgeben!
+    static $modal_output = false;
+    if (!$modal_output) {
+        $modal_output = true;
+        ?>
+        <dialog id="user-avatar-modal" class="psource-modal" style="width: 750px; max-width: 95vw;">
+            <button class="psource-modal-close" aria-label="Schließen" style="float:right;">&times;</button>
+            <iframe id="user-avatar-iframe" src="" width="720" height="450" style="border:0;width:100%;height:450px;"></iframe>
+        </dialog>
+        <?php
+    }
+    do_action('cpc_avatar_init_hook');
 }
 
 /* ********** */ /* SHORTCODES */ /* ********** */
@@ -83,9 +95,9 @@ function cpc_avatar($atts) {
 				$html .= user_avatar_get_avatar( $user_id, $size );
 				if ($change_link):
 					if ($avatar_style == 'popup'):
-						$url = admin_url('admin-ajax.php').'?action=user_avatar_add_photo&amp;step=1&amp;uid='.$current_user->ID.'&amp;TB_iframe=true&amp;width='.$popup_width.'&amp;height='.$popup_height;
-						$html .= '<a id="user-avatar-link" class="button-secondary thickbox" style="text-decoration: none;opacity:0.7;background-color: #000; color:#fff !important; padding: 3px 8px 3px 8px; position:absolute; bottom:18px; left: 10px;" href="'.$url.'" title="'.$change_avatar_title.'" >'.$change_avatar_text.'</a>';
-					else:
+                        $url = admin_url('admin-ajax.php').'?action=user_avatar_add_photo&step=1&uid='.$current_user->ID.'&modal=1';
+                        $html .= '<a id="user-avatar-link" class="button-secondary" data-psource-modal-open="user-avatar-modal" style="text-decoration: none;opacity:0.7;background-color: #000; color:#fff !important; padding: 3px 8px 3px 8px; position:absolute; bottom:18px; left: 10px;" href="'.$url.'" title="'.$change_avatar_title.'">'.$change_avatar_text.'</a>';
+                    else:
 						$html .= '<a id="user-avatar-link" style="text-decoration: none;opacity:0.7;background-color: #000; color:#fff !important; padding: 3px 8px 3px 8px; position:absolute; bottom:18px; left: 10px;" href="'.get_page_link(get_option('cpccom_change_avatar_page')).'?user_id='.$user_id.'&action=change_avatar" title="'.$change_avatar_title.'" >'.$change_avatar_text.'</a>';
 					endif;
 				endif;
@@ -107,46 +119,47 @@ function cpc_avatar($atts) {
 
 function cpc_avatar_change_link($atts) {
 
-	// Init
-	add_action('wp_footer', 'cpc_avatar_init');
+    // Init
+    add_action('wp_footer', 'cpc_avatar_init');
 
-	global $current_user;
-	$html = '';
+    global $current_user;
+    $html = '';
 
-	if (is_user_logged_in()) {
+    if (is_user_logged_in()) {
         
         // Shortcode parameters
-		$values = cpc_get_shortcode_options('cpc_avatar_change_link');
-		extract( shortcode_atts( array(
-			'text' => cpc_get_shortcode_value($values, 'cpc_avatar_change_link-text', __('Bild ändern', CPC2_TEXT_DOMAIN)),
+        $values = cpc_get_shortcode_options('cpc_avatar_change_link');
+        extract( shortcode_atts( array(
+            'text' => cpc_get_shortcode_value($values, 'cpc_avatar_change_link-text', __('Bild ändern', CPC2_TEXT_DOMAIN)),
             'change_style' => cpc_get_shortcode_value($values, 'cpc_avatar_change_link-change_style', 'page'),            
             'change_avatar_title' => cpc_get_shortcode_value($values, 'cpc_avatar_change_link-change_avatar_title', __('Bild hochladen und zuschneiden, um es anzuzeigen', CPC2_TEXT_DOMAIN)),
-			'styles' => true,
+            'styles' => true,
             'after' => '',
-			'before' => '',
-		), $atts, 'cpc_avatar_change' ) );
+            'before' => '',
+        ), $atts, 'cpc_avatar_change' ) );
 
-		$values = cpc_get_shortcode_options('cpc_avatar');
-		extract( shortcode_atts( array(
+        $values = cpc_get_shortcode_options('cpc_avatar');
+        extract( shortcode_atts( array(
             'popup_width' => cpc_get_shortcode_value($values, 'cpc_avatar-popup_width', 750),            
             'popup_height' => cpc_get_shortcode_value($values, 'cpc_avatar-popup_height', 450),            
-		), $atts, 'cpc_avatar' ) );
+        ), $atts, 'cpc_avatar' ) );
 
-		$user_id = cpc_get_user_id();
+        $user_id = cpc_get_user_id();
 
-		if ($current_user->ID == $user_id):
+        if ($current_user->ID == $user_id):
             if ($change_style == 'popup'):
-                $url = admin_url('admin-ajax.php').'?action=user_avatar_add_photo&amp;step=1&amp;uid='.$current_user->ID.'&amp;TB_iframe=true&amp;width='.$popup_width.'&amp;height='.$popup_height;    
-                $html .= '<a id="user-avatar-link" class="button-secondary thickbox" href="'.$url.'" title="'.$change_avatar_title.'" >'.$text.'</a>';
+                // NEU: Modal-Link ohne Thickbox
+                $url = admin_url('admin-ajax.php').'?action=user_avatar_add_photo&step=1&uid='.$current_user->ID.'&modal=1';
+                $html .= '<a id="user-avatar-link" class="button-secondary" data-psource-modal-open="user-avatar-modal" href="'.$url.'" title="'.$change_avatar_title.'">'.$text.'</a>';
             else:
-    			$html .= '<a href="'.get_page_link(get_option('cpccom_change_avatar_page')).'?user_id='.$user_id.'" title="'.$change_avatar_title.'">'.$text.'</a>';
+                $html .= '<a href="'.get_page_link(get_option('cpccom_change_avatar_page')).'?user_id='.$user_id.'" title="'.$change_avatar_title.'">'.$text.'</a>';
             endif;
         endif;
 
-	}
+    }
 
-	if ($html) $html = apply_filters ('cpc_wrap_shortcode_styles_filter', $html, 'cpc_avatar_change_link', $before, $after, $styles, $values);
-	return $html;
+    if ($html) $html = apply_filters ('cpc_wrap_shortcode_styles_filter', $html, 'cpc_avatar_change_link', $before, $after, $styles, $values);
+    return $html;
 
 }
 

@@ -62,20 +62,19 @@ jQuery(document).ready(function() {
         );         
     });
 
-    jQuery('#cpc_forum_featured_upload_image_button').on('click', function() {
-        formfield = jQuery('#cpc_forum_featured_upload_image').attr('name');
-        tb_show('', 'media-upload.php?type=image&TB_iframe=true');
-        return false;
+    jQuery('#cpc_forum_featured_upload_image_button').on('click', function(e) {
+        e.preventDefault();
+        var mediaUploader = wp.media({
+            title: 'Bild auswählen',
+            button: { text: 'Bild übernehmen' },
+            multiple: false
+        });
+        mediaUploader.on('select', function() {
+            var attachment = mediaUploader.state().get('selection').first().toJSON();
+            jQuery('#cpc_forum_featured_upload_image').val(attachment.url);
+        });
+        mediaUploader.open();
     });
-
-    if (jQuery("#cpc_forum_featured_upload_image_button").length) {
-        window.send_to_editor = function(html) {
-            var imgurl = jQuery('img', html).attr('src');
-            if (typeof imgurl === "undefined") imgurl = jQuery(html).attr('src');
-            jQuery('#cpc_forum_featured_upload_image').val(imgurl);
-            tb_remove();
-        }
-    }
 
     // Un-hide shortcode options once page is ready
     if (jQuery('#cpc_admin_getting_started_options_left_and_middle').length) {

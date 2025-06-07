@@ -1,20 +1,11 @@
 <?php
 
 // Following are so media library can be used for featured image
-function wp_gear_manager_admin_scripts() {
-    wp_enqueue_script('media-upload');
-    wp_enqueue_script('thickbox');
-    wp_enqueue_script('jquery');
-}
-
-function wp_gear_manager_admin_styles() {
-    wp_enqueue_style('thickbox');
-}
-
-add_action('admin_print_scripts', 'wp_gear_manager_admin_scripts');
-add_action('admin_print_styles', 'wp_gear_manager_admin_styles');
-
-
+add_action('admin_enqueue_scripts', function($hook) {
+    if ($hook !== 'edit-tags.php?taxonomy=cpc_forum') return;
+    wp_enqueue_media();
+    wp_enqueue_script('cpc-forum-media', plugins_url('assets/psource-ui/modal/media-modal.js', __FILE__), array('jquery'), false, true);
+});
 
 /* Create forum_post custom taxonomy */
 

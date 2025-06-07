@@ -172,7 +172,6 @@ function cpc_admin_shortcodes_add_usermeta_js() {
 			code = jQuery("<div/>").text(code).html();
 
 			tinyMCE.activeEditor.insertContent(code);
-			tb_remove();
 		});
 
 		// Avatar
@@ -195,7 +194,6 @@ function cpc_admin_shortcodes_add_usermeta_js() {
 			code = jQuery("<div/>").text(code).html();
 
 			tinyMCE.activeEditor.insertContent(code);
-			tb_remove();
 		});
 
 		// User meta
@@ -222,7 +220,6 @@ function cpc_admin_shortcodes_add_usermeta_js() {
 			code = jQuery("<div/>").text(code).html();
 
 			tinyMCE.activeEditor.insertContent(code);
-			tb_remove();
 		});
 
 		// User meta (edit profile)
@@ -262,7 +259,6 @@ function cpc_admin_shortcodes_add_usermeta_js() {
 			code = jQuery("<div/>").text(code).html();
 
 			tinyMCE.activeEditor.insertContent(code);
-			tb_remove();
 		});
 
 	});';

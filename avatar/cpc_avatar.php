@@ -13,9 +13,22 @@ require_once('cpc_avatar_shortcodes.php');
 if (is_admin())  add_action('admin_print_styles-user-edit.php', 'user_avatar_admin_print_styles');
 if (is_admin())  add_action('admin_print_styles-profile.php', 'user_avatar_admin_print_styles');
 
+function user_avatar_admin_enqueue_modal_assets() {
+    wp_enqueue_style(
+		'psource-modal',
+		plugins_url('../assets/psource-ui/modal/psource-modal.css', __FILE__)
+	);
+	wp_enqueue_script(
+		'psource-modal',
+		plugins_url('../assets/psource-ui/modal/psource-modal.js', __FILE__),
+		array(),
+		false,
+		true
+	);
+}
+add_action('admin_enqueue_scripts', 'user_avatar_admin_enqueue_modal_assets');
+
 function user_avatar_admin_print_styles() {
-	wp_enqueue_script("thickbox");
-	wp_enqueue_style("thickbox");
 	wp_enqueue_style('user-avatar', plugins_url('user-avatar.css', __FILE__), 'css');
 }
 
@@ -115,78 +128,44 @@ function user_avatar_core_avatar_url($uid = false)
  * @return void
  */
 function user_avatar_add_photo() {
-	global $current_user;
-	
-	if(($_GET['uid'] == $current_user->ID || current_user_can('edit_users')) &&  is_numeric($_GET['uid'])) 
-	{
-		$uid = $_GET['uid'];
-	?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//DE" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" <?php do_action('admin_xml_ns'); ?> <?php language_attributes(); ?>>
-<head>
-<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php echo get_option('blog_charset'); ?>" />
-<title><?php bloginfo('name') ?> &rsaquo; <?php _e('Uploads'); ?> &#8212; <?php _e('WordPress'); ?></title>
+    global $current_user;
 
-<script type="text/javascript">
-//<![CDATA[
-addLoadEvent = function(func){if(typeof jQuery!="undefined")jQuery(document).ready(func);else if(typeof wpOnload!='function'){wpOnload=func;}else{var oldonload=wpOnload;wpOnload=function(){oldonload();func();}}};
-var userSettings = {
-		'url': '<?php echo SITECOOKIEPATH; ?>',
-		'uid': '<?php if ( ! isset($current_user) ) $current_user = wp_get_current_user(); echo $current_user->ID; ?>',
-		'time':'<?php echo time() ?>'
-	},
-	ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>',
-	<?php
-	// Fehlervermeidung: Variablen prüfen, bevor sie verwendet werden
-	global $current_screen, $admin_body_class, $wp_locale;
-	?>
-	pagenow = '<?php echo (isset($current_screen) && is_object($current_screen) && isset($current_screen->id)) ? $current_screen->id : ''; ?>',
-	typenow = '<?php if ( isset($current_screen->post_type) ) echo $current_screen->post_type; ?>',
-	adminpage = '<?php echo $admin_body_class; ?>',
-	thousandsSeparator = '<?php echo addslashes( $wp_locale->number_format['thousands_sep'] ); ?>',
-	decimalPoint = '<?php echo addslashes( $wp_locale->number_format['decimal_point'] ); ?>',
-	isRtl = <?php echo (int) is_rtl(); ?>;
-//]]>
-</script>
-<?php
+    if(($_GET['uid'] == $current_user->ID || current_user_can('edit_users')) && is_numeric($_GET['uid'])) {
+        $uid = $_GET['uid'];
 
-	
-	do_action('user_avatar_iframe_head');
-	// Bootstrap
-	//wp_enqueue_style	('bootstrap', plugins_url().'/cp-community/bootstrap/css/bootstrap.min.css', 'css');
-	//wp_enqueue_style	('bootstrap-theme', plugins_url().'/cp-community/bootstrap/css/bootstrap-theme.min.css', 'css');
-	//wp_enqueue_script	('bootstrap-js', plugins_url().'/cp-community/bootstrap/js/bootstrap.min.js', array('jquery'));	
-	
-	
-?>
-
-</head>
-<body>
-<?php
-	switch($_GET['step'])
-	{
-		case 1:
-			user_avatar_add_photo_step1($uid);
-		break;
-		
-		case 2:
-			user_avatar_add_photo_step2($uid);
-		break;
-		
-		case 3:
-			user_avatar_add_photo_step3($uid);
-		break;
-	}
-		
-	do_action('admin_print_footer_scripts');
-?>
-<script type="text/javascript">if(typeof wpOnload=='function')wpOnload();</script>
-</body>
-</html>
-<?php
-	}else {
-		wp_die(__("Du darfst das nicht.", CPC2_TEXT_DOMAIN));
-	}
-	die();
+        // Prüfe, ob das Modal (iframe) geladen wird
+        if (isset($_GET['modal']) && $_GET['modal'] == 1) {
+            // NUR das Formular ausgeben, KEIN komplettes HTML-Dokument!
+            switch($_GET['step']) {
+                case 1: user_avatar_add_photo_step1($uid); break;
+                case 2: user_avatar_add_photo_step2($uid); break;
+                case 3: user_avatar_add_photo_step3($uid); break;
+            }
+        } else {
+            // Standard: komplettes HTML-Dokument (z.B. für Direktaufruf)
+            ?><!DOCTYPE html>
+            <html xmlns="http://www.w3.org/1999/xhtml" <?php do_action('admin_xml_ns'); ?> <?php language_attributes(); ?>>
+            <head>
+            <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php echo get_option('blog_charset'); ?>" />
+            <title><?php bloginfo('name') ?> &rsaquo; <?php _e('Uploads'); ?> &#8212; <?php _e('WordPress'); ?></title>
+            <?php do_action('user_avatar_iframe_head'); ?>
+            </head>
+            <body>
+            <?php
+            switch($_GET['step']) {
+                case 1: user_avatar_add_photo_step1($uid); break;
+                case 2: user_avatar_add_photo_step2($uid); break;
+                case 3: user_avatar_add_photo_step3($uid); break;
+            }
+            ?>
+            </body>
+            </html>
+            <?php
+        }
+        die();
+    } else {
+        wp_die(__("Du darfst das nicht.", CPC2_TEXT_DOMAIN));
+    }
 }
 
 /**
@@ -303,7 +282,13 @@ function user_avatar_add_photo_step2($uid) {
             <input type="submit" class="cpc_button btn btn-primary" style="margin-left:0;" id="user-avatar-crop-button" value="<?php esc_attr_e('Bild zuschneiden', CPC2_TEXT_DOMAIN); ?>" />
             </div>
             </form>
-
+			
+			<?php
+			// imgAreaSelect und jQuery im Modal/iframe einbinden:
+			echo '<link rel="stylesheet" href="' . includes_url('js/imgareaselect/imgareaselect.css') . '" type="text/css" />';
+			echo '<script src="' . includes_url('js/jquery/jquery.js') . '"></script>';
+			echo '<script src="' . includes_url('js/imgareaselect/jquery.imgareaselect.js') . '"></script>';
+			?>
             <script type="text/javascript">
 
 
@@ -664,7 +649,17 @@ function user_avatar_form($profile)
 
 	<div id="user-avatar-display" class="submitbox" >
 	<p id="user-avatar-display-image"><?php echo user_avatar_get_avatar($profile->ID, 150); ?></p>
-	<a id="user-avatar-link" class="button-secondary thickbox" href="<?php echo admin_url('admin-ajax.php'); ?>?action=user_avatar_add_photo&step=1&uid=<?php echo $profile->ID; ?>&TB_iframe=true&width=720&height=450" title="<?php _e('Hochladen und Zuschneiden des anzuzeigenden Bildes', CPC2_TEXT_DOMAIN); ?>" ><?php _e('Bild aktualisieren', CPC2_TEXT_DOMAIN); ?></a> 
+	<a id="user-avatar-link"
+	class="button-secondary"
+	data-psource-modal-open="user-avatar-modal"
+	href="<?php echo admin_url('admin-ajax.php'); ?>?action=user_avatar_add_photo&step=1&uid=<?php echo $profile->ID; ?>&modal=1"
+	title="<?php _e('Hochladen und Zuschneiden des anzuzeigenden Bildes', CPC2_TEXT_DOMAIN); ?>">
+	<?php _e('Bild aktualisieren', CPC2_TEXT_DOMAIN); ?>
+	</a>
+	<dialog id="user-avatar-modal" class="psource-modal" style="width: 750px; max-width: 95vw;">
+		<button class="psource-modal-close" aria-label="Schließen" style="float:right;">&times;</button>
+		<iframe id="user-avatar-iframe" src="" width="720" height="450" style="border:0;width:100%;height:450px;"></iframe>
+	</dialog>
 	
 	<?php 
 		// Remove the User-Avatar button if there is no uploaded image
