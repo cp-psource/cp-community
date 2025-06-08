@@ -127,7 +127,21 @@ function cpc_admin_getting_started_forum() {
                     <?php _e('Sticky-Option nur dem Webseiten-Administrator anzeigen.', CPC2_TEXT_DOMAIN); ?>
                 </span>
             </td>            
-		</tr> 
+		</tr>
+		<tr class="form-field">
+			<td scope="row" valign="top">
+				<label for="cpc_com_toolbar"><?php _e('Editor im Frontend', CPC2_TEXT_DOMAIN); ?></label>
+			</td>
+			<td>
+				<?php $toolbar = get_option('cpc_com_toolbar') ? get_option('cpc_com_toolbar') : 'none'; ?>
+				<select name="cpc_com_toolbar" id="cpc_com_toolbar">
+					<option value="none" <?php selected($toolbar, 'none'); ?>><?php _e('Kein Editor', CPC2_TEXT_DOMAIN); ?></option>
+					<option value="wysiwyg" <?php selected($toolbar, 'wysiwyg'); ?>><?php _e('WYSIWYG (TinyMCE)', CPC2_TEXT_DOMAIN); ?></option>
+					<option value="bbcodes" <?php selected($toolbar, 'bbcodes'); ?>><?php _e('BBCode-Editor', CPC2_TEXT_DOMAIN); ?></option>
+				</select>
+				<span class="description"><?php _e('Wähle den Editor-Typ für das Forum-Frontend.', CPC2_TEXT_DOMAIN); ?></span>
+			</td>
+		</tr>
 		<?php 
 				do_action('cpc_admin_getting_started_forum_hook');
 		?>
@@ -158,7 +172,11 @@ function cpc_admin_forum_save($the_post) {
 		update_option('cpc_forum_sticky_admin_only', true);
 	else:
 		delete_option('cpc_forum_sticky_admin_only');
-	endif;    
+	endif;
+	
+	if (isset($the_post['cpc_com_toolbar'])) {
+		update_option('cpc_com_toolbar', $the_post['cpc_com_toolbar']);
+	}
 
 	do_action('cpc_admin_forum_save_hook', $the_post);
 

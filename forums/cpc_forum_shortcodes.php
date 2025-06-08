@@ -934,8 +934,22 @@ function cpc_forum_post($atts) {
 								
 								$form_html .= '<div id="cpc_forum_post_content_label">'.$content_label.'</div>';
 
-				    			if ( defined( 'CPC_FORUM_TOOLBAR' ) && get_option( 'cpc_com_toolbar' ) == 'wysiwyg' ):
-				                	$form_html .= cpc_get_wp_editor('', 'cpc_forum_post_textarea', '');
+								if ( defined( 'CPC_FORUM_TOOLBAR' ) && get_option( 'cpc_com_toolbar' ) == 'wysiwyg' ):
+									$form_html .= cpc_get_wp_editor('', 'cpc_forum_post_textarea', '');
+								elseif ( defined( 'CPC_FORUM_TOOLBAR' ) && get_option( 'cpc_com_toolbar' ) == 'bbcodes' ):
+									// BBCode-Toolbar + Textarea
+									$form_html .= '
+									<div class="cpc_bbcode_toolbar">
+										<button type="button" data-tag="b"><b>B</b></button>
+										<button type="button" data-tag="i"><i>I</i></button>
+										<button type="button" data-tag="u"><u>U</u></button>
+										<button type="button" data-tag="quote">Zitat</button>
+										<button type="button" data-tag="code">Code</button>
+										<button type="button" data-tag="url">Link</button>
+										<button type="button" data-tag="img">Bild</button>
+									</div>
+									<textarea id="cpc_forum_post_textarea" name="cpc_forum_post_textarea"></textarea>
+									';
 								else:
 									$form_html .= '<textarea id="cpc_forum_post_textarea" name="cpc_forum_post_textarea"></textarea>';
 								endif;

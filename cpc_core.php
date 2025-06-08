@@ -1,6 +1,7 @@
 <?php 
 /* ************* */ /* HOOKS/FILTERS */ /* ************* */
-
+//var_dump(get_option('cpc_com_toolbar'));
+if (!defined('CPC_FORUM_TOOLBAR')) define('CPC_FORUM_TOOLBAR', true);
 // Updates last logged in
 function cpc_update_last_logged_in($user_login, $user) {
     $last_login = get_user_meta($user->ID, 'cpccom_last_login', true);
@@ -589,10 +590,18 @@ function cpc_formatted_content($content, $include_extra_formatting=true, $force=
                 array('<code>', '</code>', '[code]', '[/code]'), 
                 array('<pre class="cpc_code">', '</pre>', '<pre class="cpc_code">', '</pre>'), 
                 $content
-            );	
+            );
+			// HIER: BBCODE-PARSER AUFRUFEN, WENN MODUS BBCODES
+            if ($mode == 'bbcodes') {
+                $content = cpc_bbcode_replace($content);
+            }	
             $content = convert_smilies(cpc_make_clickable(wpautop($content)));
         else:
             if ($mode == 'wysiwyg') $content = wpautop($content);
+			// HIER: BBCODE-PARSER AUFRUFEN, WENN MODUS BBCODES
+            if ($mode == 'bbcodes') {
+                $content = cpc_bbcode_replace($content);
+            }
         endif;
 
         // .... and then put back in any code segments
@@ -956,6 +965,20 @@ function cpc_styles($values, $function, $elements) {
     return $html;
     
 }
+
+function cpc_load_wp_editor_frontend() {
+    if (!is_admin()) {
+        if (function_exists('wp_enqueue_editor')) {
+            wp_enqueue_editor();
+        }
+        wp_enqueue_script('jquery');
+        wp_enqueue_script('editor');
+        wp_enqueue_script('quicktags');
+        wp_enqueue_script('tinymce');
+        wp_enqueue_style('editor-buttons');
+    }
+}
+add_action('wp_enqueue_scripts', 'cpc_load_wp_editor_frontend');
 
 // Wrapper for all returned HTML from shortodes, including optional admin styling
 add_filter( 'cpc_wrap_shortcode_styles_filter', 'cpc_wrap_shortcode_styles', 10, 8 );
