@@ -352,8 +352,8 @@ function cpc_get_user_id() {
 // Returns instance of WP editor
 function cpc_get_wp_editor($content,$textarea,$css) {
 	
-    $cpc_com_toolbar_icons = ($value = get_option('cpc_com_toolbar_icons')) ? $value : "bold,italic,underline";
-    $cpc_com_toolbar_css_file = ($value = get_option('cpc_com_toolbar_css_file')) ? $value : WP_PLUGIN_URL  . '/cp-community-extensions/cp-community-forum-toolbar/editor-styles.css';  
+    $cpc_com_toolbar_icons = ($value = get_option('cpc_com_toolbar_icons')) ? $value : "bold,italic,underline,link,unlink,bullist,numlist,forecolor,backcolor,blockquote";
+    //$cpc_com_toolbar_css_file = ($value = get_option('cpc_com_toolbar_css_file')) ? $value : WP_PLUGIN_URL  . '/cp-community-extensions/cp-community-forum-toolbar/editor-styles.css';  
     $cpc_com_toolbar_height = ($value = get_option('cpc_com_toolbar_height')) ? $value : 200;
 
     $settings = array(
@@ -367,7 +367,7 @@ function cpc_get_wp_editor($content,$textarea,$css) {
             'resize' => false,
             'wp_autoresize_on' => true,
             'content_css' => $cpc_com_toolbar_css_file
-            )
+        )
     );
 
     ob_start();
