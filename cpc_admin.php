@@ -320,10 +320,10 @@ function cpccom_release_notes() {
 					<div style="font-size:1.6em; line-height:1.6em; color: #510051; font-weight: bold;">Core PS Community plugin</div>
 					<a href="https://cp-psource.github.io/cp-community/" target-"_blank">Verfügbar im PSOURCE GitHub-Repository</a><br />
 
-                    <h2 style="font-style:italic; margin-top:20px;">Changelog Versionsnummer 1.0.3.:</h2>
-					<p>Wir haben etwas an der Responsive gearbeitet.</p>
-                    <p>Es ist uns gelungen, einige veraltete Funktionen zu modernisieren.<p>
-                    <p>Wir haben einen Bug gefixt im Handling von Profil-URLs, Profile werden jetzt richtig unter dem Benutzrnamen aufgerufen.<p>
+                    <h2 style="font-style:italic; margin-top:20px;">Changelog Versionsnummer 1.0.4.:</h2>
+					<p>Wir haben einige Permalink-Bugs behoben im Forum</p>
+                    <p>Im Forum steht jetzt ein WYSIWYG Editor und ein BBCODE Editor zur Verfügung, wähle in den Forum-Einstellungen.<p>
+                    <p>Thickbox entfernt und ersetzt für bessere ClassicPress Kompatibilität und mehr Sicherheit.<p>
                     <p>Getestet mit WP 6.8.1, CP 2.4.1 und PhP 8.3<p> 
                   
                 </td>

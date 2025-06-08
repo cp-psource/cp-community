@@ -3,7 +3,7 @@ Contributors: DerN3rd
 Tags: wp community, social network, social networking, social media, cp-community, wp community, community
 Requires at least: 4.9
 Tested up to: 6.8.1
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
@@ -32,6 +32,12 @@ Kein Problem! Ändere ganz einfach den gesamten Text, den Deine Benutzer sehen, 
 [GitHub](https://github.com/piestingtal-source/cp-community)
 
 == ChangeLog ==
+
+= 1.0.4 =
+
+* Wir haben einige Permalink-Bugs behoben im Forum
+* Im Forum steht jetzt ein WYSIWYG Editor und ein BBCODE Editor zur Verfügung, wähle in den Forum-Einstellungen.
+* Thickbox entfernt und ersetzt für bessere ClassicPress Kompatibilität und mehr Sicherheit.
 
 = 1.0.3 =
 
