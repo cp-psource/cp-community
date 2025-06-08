@@ -226,23 +226,16 @@ function cpc_display_array($arrayname,$tab="&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp",$ind
 
 // Get current URL
 function cpc_curPageURL() {
- 	$pageURL = 'http';
- 	$cpc_force_https = get_option('cpc_force_https');
- 	$pageURL_https = '';
- 	if (!$cpc_force_https) { // Default
- 		if (isset($_SERVER["HTTPS"])) $pageURL_https = "s";
- 	} else {
- 		if ($cpc_force_https == 'https') $pageURL_https = "s"; // Force HTTPS
- 			// ... else force HTTP (ie. as current set)
- 	}
- 	$pageURL .= $pageURL_https;
- 	$pageURL .= "://";
- 	if ($_SERVER["SERVER_PORT"] != "80") {
-  		$pageURL .= $_SERVER["HTTP_HOST"].":".$_SERVER["SERVER_PORT"].$_SERVER['REQUEST_URI'];
- 	} else {
-  		$pageURL .= $_SERVER["HTTP_HOST"].$_SERVER['REQUEST_URI'];
- 	}
- 	return $pageURL;
+    $protocol = 'http';
+    if (
+        (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' && $_SERVER['HTTPS'] != '') ||
+        (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)
+    ) {
+        $protocol = 'https';
+    }
+    $host = $_SERVER['HTTP_HOST'];
+    $request_uri = $_SERVER['REQUEST_URI'];
+    return $protocol . '://' . $host . $request_uri;
 }
 
 // Permalinks or not?

@@ -471,3 +471,32 @@ function cpc_validate_forum_reply_edit() {
     return r;
 
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.cpc_bbcode_toolbar button').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            // Das nächste Textarea nach der Toolbar finden
+            var toolbar = btn.closest('.cpc_bbcode_toolbar');
+            var textarea = toolbar ? toolbar.nextElementSibling : null;
+            if (!textarea || textarea.tagName.toLowerCase() !== 'textarea') return;
+            var start = textarea.selectionStart;
+            var end = textarea.selectionEnd;
+            var selected = textarea.value.substring(start, end);
+            var before = textarea.value.substring(0, start);
+            var after = textarea.value.substring(end);
+
+            var tag = btn.getAttribute('data-tag');
+            var insert = '';
+            if (tag === 'url') {
+                insert = '[url=LINK]'+(selected||'Linktext')+'[/url]';
+            } else if (tag === 'img') {
+                insert = '[img]'+(selected||'URL')+'[/img]';
+            } else {
+                insert = '['+tag+']'+selected+'[/'+tag+']';
+            }
+            textarea.value = before + insert + after;
+            textarea.focus();
+            textarea.selectionStart = textarea.selectionEnd = before.length + insert.length;
+        });
+    });
+});

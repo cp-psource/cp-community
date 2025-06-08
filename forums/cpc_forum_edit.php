@@ -225,8 +225,22 @@ function cpc_post_edit($post_id, $atts) {
 
                 $the_content = preg_replace('/\t/', '', $the_content);
     
-    			if ( defined( 'CPC_FORUM_TOOLBAR' ) && get_option( 'cpc_com_toolbar' ) == 'wysiwyg' ):
-                	$form_html .= cpc_get_wp_editor($the_content, 'cpc_forum_post_edit_textarea', 'margin-bottom:10px;');
+				if ( defined( 'CPC_FORUM_TOOLBAR' ) && get_option( 'cpc_com_toolbar' ) == 'wysiwyg' ):
+					$form_html .= cpc_get_wp_editor($the_content, 'cpc_forum_post_edit_textarea', 'margin-bottom:10px;');
+				elseif ( defined( 'CPC_FORUM_TOOLBAR' ) && get_option( 'cpc_com_toolbar' ) == 'bbcodes' ):
+					// BBCode-Toolbar + Textarea
+					$form_html .= '
+					<div class="cpc_bbcode_toolbar">
+						<button type="button" data-tag="b"><b>B</b></button>
+						<button type="button" data-tag="i"><i>I</i></button>
+						<button type="button" data-tag="u"><u>U</u></button>
+						<button type="button" data-tag="quote">Zitat</button>
+						<button type="button" data-tag="code">Code</button>
+						<button type="button" data-tag="url">Link</button>
+						<button type="button" data-tag="img">Bild</button>
+					</div>
+					<textarea id="cpc_forum_post_edit_textarea" name="cpc_forum_post_edit_textarea">'.$the_content.'</textarea>
+					';
 				else:
 					$form_html .= '<textarea id="cpc_forum_post_edit_textarea" name="cpc_forum_post_edit_textarea">'.$the_content.'</textarea>';
 				endif;
@@ -278,10 +292,13 @@ function cpc_post_edit($post_id, $atts) {
 
 			$form_html .= '</div>';
 
-			$form_html .= '<button id="cpc_forum_post_edit_button" type="submit" class="cpc_button '.$class.'">'.$update_label.'</button>';
-			$form_html .= '</form>';
-			$form_html .= '<form ACTION="'.$url.'" METHOD="POST">';
-				$form_html .= '&nbsp;<button id="cpc_forum_post_cancel_button" type="submit" class="cpc_button '.$class.'">'.$cancel_label.'</button>';
+			$form_html .= '<form ACTION="'.$url.'" onsubmit="if (typeof cpc_forum_extended_mandatory_check == \'function\') { return cpc_forum_extended_mandatory_check(); }" METHOD="POST">';
+			$form_html .= '<input type="hidden" name="action" value="cpc_forum_post_edit" />';
+			$form_html .= '<input type="hidden" name="cpc_post_id" value="'.$post_id.'" />';
+			$form_html .= '<input type="hidden" name="cpc_forum_moderate" value="'.$moderate.'" />';
+			// ... weitere Felder ...
+			$form_html .= '<button id="cpc_forum_post_edit_button" type="submit" name="submit_edit" class="cpc_button '.$class.'">'.$update_label.'</button>';
+			$form_html .= '&nbsp;<button id="cpc_forum_post_cancel_button" type="submit" name="submit_cancel" class="cpc_button '.$class.'">'.$cancel_label.'</button>';
 			$form_html .= '</form>';
 		
 		$form_html .= '</div>';
