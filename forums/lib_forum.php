@@ -47,27 +47,12 @@ if ($action) {
 
             endif;             
 
-			$new_post = get_post($new_id);
+            $new_post = get_post($new_id);
             if (true || $the_post['cpc_forum_choose']): // everybody can choose
 
-                if (is_multisite()) {
+                // IMMER Query-Variante bauen!
+                $url = get_bloginfo('url').'/'.$the_post['cpc_forum_slug'].'/?topic='.$new_post->post_name;
 
-                    $blog_details = get_blog_details($blog->blog_id);
-                    $url = $blog_details->path.$the_post['cpc_forum_slug'].'/'.$new_post->post_name;
-
-                } else {
-
-                    if ( cpc_using_permalinks() ):
-                        $url = get_bloginfo('url').'/'.$the_post['cpc_forum_slug'].'/'.$new_post->post_name;
-                    else:
-                        // Get term, and then page for forum
-                        $new_term = get_term_by('slug', $the_post['cpc_forum_slug'], 'cpc_forum');
-                        $forum_page_id = cpc_get_term_meta($new_term->term_id, 'cpc_forum_cat_page', true);
-                        $url = get_bloginfo('url')."/?page_id=".$forum_page_id."&topic=".$new_post->post_name;
-                    endif;
-
-                }
-            
                 // set meta for this post at the forum level
                 $the_forum_term = get_term_by('slug', $the_post['cpc_forum_slug'], 'cpc_forum');
                 $term_id = $the_forum_term->term_id;
@@ -75,7 +60,7 @@ if ($action) {
                 cpc_update_term_meta($term_id, 'cpc_last_post_created', date('Y-m-d H:i:s'));
                 cpc_update_term_meta($term_id, 'cpc_last_post_created_gmt', gmdate('Y-m-d H:i:s'));
                 cpc_update_term_meta($term_id, 'cpc_last_post_author', $current_user->ID);
-              
+            
                 echo $new_id.'|'.$url.'|'.$status;
 
             else:

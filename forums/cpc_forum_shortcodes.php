@@ -707,10 +707,24 @@ function cpc_forum_comment($atts) {
                                                 $form_html = apply_filters( 'cpc_forum_comment_pre_form_filter', $form_html, $atts, $current_user->ID );
                                                 
                                                 if ( defined( 'CPC_FORUM_TOOLBAR' ) && get_option( 'cpc_com_toolbar' ) == 'wysiwyg' ):
-	                                                $form_html .= cpc_get_wp_editor('', 'cpc_forum_comment', 'margin-top:20px;margin-bottom:20px;');
-												else:
-													$form_html .= '<textarea id="cpc_forum_comment" name="cpc_forum_comment"></textarea>';
-												endif;
+												$form_html .= cpc_get_wp_editor('', 'cpc_forum_comment', 'margin-top:20px;margin-bottom:20px;');
+											elseif ( defined( 'CPC_FORUM_TOOLBAR' ) && get_option( 'cpc_com_toolbar' ) == 'bbcodes' ):
+												// BBCode-Toolbar + Textarea
+												$form_html .= '
+												<div class="cpc_bbcode_toolbar">
+													<button type="button" data-tag="b"><b>B</b></button>
+													<button type="button" data-tag="i"><i>I</i></button>
+													<button type="button" data-tag="u"><u>U</u></button>
+													<button type="button" data-tag="quote">Zitat</button>
+													<button type="button" data-tag="code">Code</button>
+													<button type="button" data-tag="url">Link</button>
+													<button type="button" data-tag="img">Bild</button>
+												</div>
+												<textarea id="cpc_forum_comment" name="cpc_forum_comment"></textarea>
+												';
+											else:
+												$form_html .= '<textarea id="cpc_forum_comment" name="cpc_forum_comment"></textarea>';
+											endif;
 
                                                 // If can move, show list
                                                 $user_can_move_post = $my_posts[0]->post_author == $current_user->ID ? true : false;

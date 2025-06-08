@@ -203,94 +203,94 @@ function cpc_post_edit($post_id, $atts) {
     
 		$form_html = '';
 		$form_html .= '<div id="cpc_forum_post_edit_div">';
-			
-			$form_html .= '<div id="cpc_forum_post_edit_form">';
+		$form_html .= '<div id="cpc_forum_post_edit_form">';
 
-				$url = cpc_curPageURL();
-				$url = preg_replace("/[&?]forum_action=edit&post_id=[0-9]+/","",$url);
+		$url = cpc_curPageURL();
+		$url = preg_replace("/[&?]forum_action=edit&post_id=[0-9]+/","",$url);
 
-				$form_html .= '<form ACTION="'.$url.'" onsubmit="if (typeof cpc_forum_extended_mandatory_check == \'function\') { return cpc_forum_extended_mandatory_check(); }" METHOD="POST">';
-				$form_html .= '<input type="hidden" name="action" value="cpc_forum_post_edit" />';
-				$form_html .= '<input type="hidden" name="cpc_post_id" value="'.$post_id.'" />';
-				$form_html .= '<input type="hidden" name="cpc_forum_moderate" value="'.$moderate.'" />';
+		$form_html .= '<form ACTION="'.$url.'" onsubmit="if (typeof cpc_forum_extended_mandatory_check == \'function\') { return cpc_forum_extended_mandatory_check(); }" METHOD="POST">';
+		$form_html .= '<input type="hidden" name="action" value="cpc_forum_post_edit" />';
+		$form_html .= '<input type="hidden" name="cpc_post_id" value="'.$post_id.'" />';
+		$form_html .= '<input type="hidden" name="cpc_forum_moderate" value="'.$moderate.'" />';
 
-				$form_html .= '<div id="cpc_forum_post_title_label">'.$title_label.'</div>';
-				$form_html .= '<input type="text" id="cpc_forum_post_edit_title" name="cpc_forum_post_edit_title" value="'.$the_post->post_title.'" />';
+		$form_html .= '<div id="cpc_forum_post_title_label">'.$title_label.'</div>';
+		$form_html .= '<input type="text" id="cpc_forum_post_edit_title" name="cpc_forum_post_edit_title" value="'.$the_post->post_title.'" />';
 
-				$form_html = apply_filters( 'cpc_forum_post_edit_pre_form_filter', $form_html, $atts, $current_user->ID, $post_id );
+		$form_html = apply_filters( 'cpc_forum_post_edit_pre_form_filter', $form_html, $atts, $current_user->ID, $post_id );
 
-				$form_html .= '<div id="cpc_forum_post_content_label">'.$content_label.'</div>';
+		$form_html .= '<div id="cpc_forum_post_content_label">'.$content_label.'</div>';
 
-                $the_content = cpc_formatted_content($the_post->post_content, false);
+		$the_content = cpc_formatted_content($the_post->post_content, false);
+		$the_content = preg_replace('/\t/', '', $the_content);
 
-                $the_content = preg_replace('/\t/', '', $the_content);
-    
-				if ( defined( 'CPC_FORUM_TOOLBAR' ) && get_option( 'cpc_com_toolbar' ) == 'wysiwyg' ):
-					$form_html .= cpc_get_wp_editor($the_content, 'cpc_forum_post_edit_textarea', 'margin-bottom:10px;');
-				elseif ( defined( 'CPC_FORUM_TOOLBAR' ) && get_option( 'cpc_com_toolbar' ) == 'bbcodes' ):
-					// BBCode-Toolbar + Textarea
-					$form_html .= '
-					<div class="cpc_bbcode_toolbar">
-						<button type="button" data-tag="b"><b>B</b></button>
-						<button type="button" data-tag="i"><i>I</i></button>
-						<button type="button" data-tag="u"><u>U</u></button>
-						<button type="button" data-tag="quote">Zitat</button>
-						<button type="button" data-tag="code">Code</button>
-						<button type="button" data-tag="url">Link</button>
-						<button type="button" data-tag="img">Bild</button>
-					</div>
-					<textarea id="cpc_forum_post_edit_textarea" name="cpc_forum_post_edit_textarea">'.$the_content.'</textarea>
-					';
-				else:
-					$form_html .= '<textarea id="cpc_forum_post_edit_textarea" name="cpc_forum_post_edit_textarea">'.$the_content.'</textarea>';
-				endif;
+		if ( defined( 'CPC_FORUM_TOOLBAR' ) && get_option( 'cpc_com_toolbar' ) == 'wysiwyg' ):
+			$form_html .= cpc_get_wp_editor($the_content, 'cpc_forum_post_edit_textarea', 'margin-bottom:10px;');
+		elseif ( defined( 'CPC_FORUM_TOOLBAR' ) && get_option( 'cpc_com_toolbar' ) == 'bbcodes' ):
+			$form_html .= '
+			<div class="cpc_bbcode_toolbar">
+				<button type="button" data-tag="b"><b>B</b></button>
+				<button type="button" data-tag="i"><i>I</i></button>
+				<button type="button" data-tag="u"><u>U</u></button>
+				<button type="button" data-tag="quote">Zitat</button>
+				<button type="button" data-tag="code">Code</button>
+				<button type="button" data-tag="url">Link</button>
+				<button type="button" data-tag="img">Bild</button>
+			</div>
+			<textarea id="cpc_forum_post_edit_textarea" name="cpc_forum_post_edit_textarea">'.$the_content.'</textarea>
+			';
+		else:
+			$form_html .= '<textarea id="cpc_forum_post_edit_textarea" name="cpc_forum_post_edit_textarea">'.$the_content.'</textarea>';
+		endif;
 
-				$user_can_move_post = $the_post->post_author == $current_user->ID ? true : false;
-				$user_can_move_post = apply_filters( 'cpc_forum_post_user_can_move_post_filter', $user_can_move_post, $the_post, $current_user->ID, $post_term_term_id );
+		$user_can_move_post = $the_post->post_author == $current_user->ID ? true : false;
+		$user_can_move_post = apply_filters( 'cpc_forum_post_user_can_move_post_filter', $user_can_move_post, $the_post, $current_user->ID, $post_term_term_id );
 
-				if ($user_can_move_post || $is_forum_admin):
+		if ($user_can_move_post || $is_forum_admin):
 
-					$terms = get_terms( "cpc_forum", array(
-					    'hide_empty'    => false, 
-					    'fields'        => 'all', 
-					    'hierarchical'  => false, 
-					) );
+			$terms = get_terms( "cpc_forum", array(
+				'hide_empty'    => false, 
+				'fields'        => 'all', 
+				'hierarchical'  => false, 
+			) );
 
-					if ($can_move_forum):
-				        $form_html .= '<select name="cpc_post_forum_slug" id="cpc_post_forum_slug" style="float:right; width:50%; margin-top:5px">';
+			if ($can_move_forum):
+				$form_html .= '<select name="cpc_post_forum_slug" id="cpc_post_forum_slug" style="float:right; width:50%; margin-top:5px">';
+				foreach ( $terms as $term ):
+					if (user_can_see_forum($current_user->ID, $term->term_id) || $is_forum_admin):
+						$selected_as_default = ($post_term_slug == $term->slug) ? ' SELECTED' : '';
+						$form_html .= '<option value="'.$term->slug.'" '.$selected_as_default.'>'.$term->name.'</option>';
+					endif;
+				endforeach;
+				$form_html .= '</select>';
+			else:
+				$form_html .= '<input type="hidden" name="cpc_post_forum_slug" value="'.$post_term_slug.'" />';
+			endif;
 
-							foreach ( $terms as $term ):
-								if (user_can_see_forum($current_user->ID, $term->term_id) || $is_forum_admin):
-						            $selected_as_default = ($post_term_slug == $term->slug) ? ' SELECTED' : '';
-						            $form_html .= '<option value="'.$term->slug.'" '.$selected_as_default.'>'.$term->name.'</option>';
-						        endif;
-						    endforeach;
+			if (!get_option('cpc_forum_sticky_admin_only') || $is_forum_admin):
+				$form_html .= '<input type="checkbox" name="cpc_sticky"';
+				if (get_post_meta($post_id, 'cpc_sticky', true)) $form_html .= ' CHECKED';
+				$form_html .= '> '.__('Am Anfang der Beiträge anheften?', CPC2_TEXT_DOMAIN);
+			endif;
 
-				        $form_html .= '</select>';
-    
-				    else:
-						$form_html .= '<input type="hidden" name="cpc_post_forum_slug" value="'.$post_term_slug.'" />';
-				    endif;
+		else:
+			$form_html .= '<input type="hidden" name="cpc_post_forum_slug" value="'.$post_term_slug.'" />';
+			$form_html .= '<input type="checkbox" style="display:none" name="cpc_sticky"';
+			if (get_post_meta($post_id, 'cpc_sticky', true)) $form_html .= ' CHECKED';
+			$form_html .= '>';
+		endif;
 
-                    if (!get_option('cpc_forum_sticky_admin_only') || $is_forum_admin):
-                        $form_html .= '<input type="checkbox" name="cpc_sticky"';
-                            if (get_post_meta($post_id, 'cpc_sticky', true)) $form_html .= ' CHECKED';
-                            $form_html .= '> '.__('Am Anfang der Beiträge anheften?', CPC2_TEXT_DOMAIN);
-                    endif;
+		$form_html .= '<input type="hidden" name="cpc_post_forum_term_id" value="'.$post_term_term_id.'" />';
 
-				else:
+		if ($moderate) $form_html .= '<div id="cpc_forum_post_edit_moderate">'.$moderate_msg.'</div>';
 
-					$form_html .= '<input type="hidden" name="cpc_post_forum_slug" value="'.$post_term_slug.'" />';
-					$form_html .= '<input type="checkbox" style="display:none" name="cpc_sticky"';
-						if (get_post_meta($post_id, 'cpc_sticky', true)) $form_html .= ' CHECKED';
-						$form_html .= '>';
-				endif;
-    
-				$form_html .= '<input type="hidden" name="cpc_post_forum_term_id" value="'.$post_term_term_id.'" />';
+		$form_html .= '<button id="cpc_forum_post_edit_button" type="submit" name="submit_edit" class="cpc_button '.$class.'">'.$update_label.'</button>';
+		$form_html .= '&nbsp;<button id="cpc_forum_post_cancel_button" type="submit" name="submit_cancel" class="cpc_button '.$class.'">'.$cancel_label.'</button>';
+		$form_html .= '</form>';
 
-				if ($moderate) $form_html .= '<div id="cpc_forum_post_edit_moderate">'.$moderate_msg.'</div>';
+		$form_html .= '</div>';
+		$form_html .= '</div>';
 
-			$form_html .= '</div>';
+		$html .= $form_html;
 
 			$form_html .= '<form ACTION="'.$url.'" onsubmit="if (typeof cpc_forum_extended_mandatory_check == \'function\') { return cpc_forum_extended_mandatory_check(); }" METHOD="POST">';
 			$form_html .= '<input type="hidden" name="action" value="cpc_forum_post_edit" />';
@@ -435,15 +435,31 @@ function cpc_save_post($post_data, $files_data, $moved_to, $atts) {
 		$user_can_edit_forum = apply_filters( 'cpc_forum_post_user_can_edit_filter', $user_can_edit_forum, $current_post, $current_user->ID, $post_term_term_id );
 
 		if ( $user_can_edit_forum || $is_forum_admin ):
-    
-            $title = esc_html($post_data['cpc_forum_post_edit_title']);
-            $content = esc_html($post_data['cpc_forum_post_edit_textarea']);
-		  	$my_post = array(
-		      	'ID'           	=> $post_id,
-		      	'post_title' 	=> $title,
-		      	'post_content' 	=> $content,
-		  	);
-		  	wp_update_post( $my_post ); // sanitises
+
+			// Titel holen
+			if (!empty($post_data['cpc_forum_post_edit_title'])) {
+				$title = esc_html($post_data['cpc_forum_post_edit_title']);
+			} elseif (!empty($post_data['cpc_forum_post_title'])) {
+				$title = esc_html($post_data['cpc_forum_post_title']);
+			} else {
+				$title = $current_post->post_title; // Fallback: alter Titel
+			}
+
+			// Inhalt holen
+			if (!empty($post_data['cpc_forum_post_edit_textarea'])) {
+				$content = esc_html($post_data['cpc_forum_post_edit_textarea']);
+			} elseif (!empty($post_data['cpc_forum_post_textarea'])) {
+				$content = esc_html($post_data['cpc_forum_post_textarea']);
+			} else {
+				$content = $current_post->post_content; // Fallback: alter Inhalt
+			}
+
+			$my_post = array(
+				'ID'           => $post_id,
+				'post_title'   => $title,
+				'post_content' => $content,
+			);
+			wp_update_post( $my_post ); // sanitises
 
 		  	// Sticky?
 		  	if (isset($_POST['cpc_sticky'])):
@@ -453,53 +469,46 @@ function cpc_save_post($post_data, $files_data, $moved_to, $atts) {
 		  	endif;
 
 			// Change forum?
-			$current_post_terms = get_the_terms( $post_id, 'cpc_forum' );
-			$current_post_term = $current_post_terms[0];
-			if ($current_post_term->slug != $post_data['cpc_post_forum_slug']):
+			if (!empty($post_data['cpc_post_forum_slug'])) {
+				$new_slug = $post_data['cpc_post_forum_slug'];
+				$current_post_terms = get_the_terms($post_id, 'cpc_forum');
+				$current_post_term = $current_post_terms[0];
+				if ($current_post_term->slug != $new_slug) {
+					// Optional: Erfolgsmeldung bauen
+					$the_post = get_post($post_id);
+					if (is_multisite()) {
+						$blog_details = get_blog_details(get_current_blog_id());
+						$url = $blog_details->path . $new_slug . '/' . $the_post->post_name;
+						$forum_url = $blog_details->path . $new_slug;
+					} else {
+						if (cpc_using_permalinks()) {
+							$url = get_bloginfo('url') . '/' . $new_slug . '/' . $the_post->post_name;
+							$forum_url = get_bloginfo('url') . '/' . $new_slug;
+						} else {
+							$new_term = get_term_by('slug', $new_slug, 'cpc_forum');
+							$forum_page_id = cpc_get_term_meta($new_term->term_id, 'cpc_forum_cat_page', true);
+							$url = get_bloginfo('url') . "/?page_id=" . $forum_page_id . "&topic=" . $the_post->post_name;
+							$forum_url = get_bloginfo('url') . "/?page_id=" . $forum_page_id;
+						}
+					}
+					$new_term = get_term_by('slug', $new_slug, 'cpc_forum');
+					$return_html = '<div class="cpc_success">' . sprintf($moved_to, '<a href="' . $url . '">' . esc_attr($the_post->post_title) . '</a>', '<a href="' . $forum_url . '">' . esc_attr($new_term->name) . '</a>') . '</div>';
 
-				$return_html .= 'MOVE<br>';
-
-				$the_post = get_post($post_id);
-				if (is_multisite()) {
-
-					$blog_details = get_blog_details($blog->blog_id);
-					$url = $blog_details->path.$post_data['cpc_post_forum_slug'].'/'.$the_post->post_name;
-					$forum_url = $blog_details->path.$post_data['cpc_post_forum_slug'];
-
-
-				} else {
-
-					if ( cpc_using_permalinks() ):
-						$url = get_bloginfo('url').'/'.$post_data['cpc_post_forum_slug'].'/'.$the_post->post_name;
-						$forum_url = get_bloginfo('url').'/'.$post_data['cpc_post_forum_slug'];
-					else:
-						// Get term, and then page for forum
-						$new_term = get_term_by('slug', $post_data['cpc_post_forum_slug'], 'cpc_forum');
-						$forum_page_id = cpc_get_term_meta($new_term->term_id, 'cpc_forum_cat_page', true);
-						$url = get_bloginfo('url')."/?page_id=".$forum_page_id."&topic=".$the_post->post_name;
-						$forum_url = get_bloginfo('url')."/?page_id=".$forum_page_id;
-					endif;
-
+					// Save post forum (term)
+					wp_set_object_terms($post_id, $new_slug, 'cpc_forum');
 				}
-				
-				$new_term = get_term_by('slug', $post_data['cpc_post_forum_slug'], 'cpc_forum');
-				$return_html = '<div class="cpc_success">'.sprintf($moved_to, '<a href="'.$url.'">'.esc_attr($the_post->post_title).'</a>', '<a href="'.$forum_url.'">'.esc_attr($new_term->name).'</a>').'</div>';
-
-			  	// Save post forum (term)
-			  	wp_set_object_terms( $post_id, $post_data['cpc_post_forum_slug'], 'cpc_forum' );
-
-			endif;
+			}
 
 			// Any further actions?
 			do_action( 'cpc_forum_post_edit_hook', $post_data, $files_data, $post_id );
 
-		endif;
+			endif; // $user_can_edit_forum || $is_forum_admin
 
-	endif;
+			endif; // $post_id
 
-	return $return_html;
+			return $return_html;
 
-}
+		}
 
 function cpc_save_comment($post_data, $files_data, $atts) {
 
