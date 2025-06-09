@@ -353,7 +353,7 @@ function cpc_get_user_id() {
 function cpc_get_wp_editor($content,$textarea,$css) {
 	
     $cpc_com_toolbar_icons = ($value = get_option('cpc_com_toolbar_icons')) ? $value : "bold,italic,underline,link,unlink,bullist,numlist,forecolor,backcolor,blockquote";
-    $cpc_com_toolbar_css_file = plugins_url('forums/forum_toolbar.css', __FILE__); 
+    $cpc_com_toolbar_css_file = plugins_url('forums/cpc_forum_toolbar.css', __FILE__); 
     $cpc_com_toolbar_height = ($value = get_option('cpc_com_toolbar_height')) ? $value : 200;
 
     $settings = array(
