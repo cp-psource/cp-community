@@ -320,7 +320,7 @@ function cpccom_release_notes() {
 					<div style="font-size:1.6em; line-height:1.6em; color: #510051; font-weight: bold;">Core PS Community plugin</div>
 					<a href="https://cp-psource.github.io/cp-community/" target-"_blank">Verfügbar im PSOURCE GitHub-Repository</a><br />
 
-                    <h2 style="font-style:italic; margin-top:20px;">Changelog Versionsnummer 1.0.4.:</h2>
+                    <h2 style="font-style:italic; margin-top:20px;">Changelog Versionsnummer 1.0.5.:</h2>
 					<p>Wir haben einige Permalink-Bugs behoben im Forum</p>
                     <p>Im Forum steht jetzt ein WYSIWYG Editor und ein BBCODE Editor zur Verfügung, wähle in den Forum-Einstellungen.<p>
                     <p>Thickbox entfernt und ersetzt für bessere ClassicPress Kompatibilität und mehr Sicherheit.<p>
