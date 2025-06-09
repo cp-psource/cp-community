@@ -1,4 +1,6 @@
 <?php
+require_once plugin_dir_path(__FILE__).'cpc_forum_toolbar.php';
+
 function cpc_post_delete($post_id, $atts) {
 
 	global $current_user;
@@ -223,22 +225,21 @@ function cpc_post_edit($post_id, $atts) {
 		$the_content = cpc_formatted_content($the_post->post_content, false);
 		$the_content = preg_replace('/\t/', '', $the_content);
 
+		// Hole immer den rohen BBCODE aus der Datenbank:
+		$raw_content = $the_post->post_content;
+
+		// Jetzt je nach Modus umwandeln:
 		if ( defined( 'CPC_FORUM_TOOLBAR' ) && get_option( 'cpc_com_toolbar' ) == 'wysiwyg' ):
+			// Für WYSIWYG: BBCODE nach HTML umwandeln
+			$the_content = cpc_bbcode_replace($raw_content);
 			$form_html .= cpc_get_wp_editor($the_content, 'cpc_forum_post_edit_textarea', 'margin-bottom:10px;');
 		elseif ( defined( 'CPC_FORUM_TOOLBAR' ) && get_option( 'cpc_com_toolbar' ) == 'bbcodes' ):
-			$form_html .= '
-			<div class="cpc_bbcode_toolbar">
-				<button type="button" data-tag="b"><b>B</b></button>
-				<button type="button" data-tag="i"><i>I</i></button>
-				<button type="button" data-tag="u"><u>U</u></button>
-				<button type="button" data-tag="quote">Zitat</button>
-				<button type="button" data-tag="code">Code</button>
-				<button type="button" data-tag="url">Link</button>
-				<button type="button" data-tag="img">Bild</button>
-			</div>
-			<textarea id="cpc_forum_post_edit_textarea" name="cpc_forum_post_edit_textarea">'.$the_content.'</textarea>
-			';
+			// Für BBCode-Editor: BBCODE direkt anzeigen
+			$the_content = $raw_content;
+			$form_html .= cpc_get_bbcode_toolbar('cpc_forum_post_edit_textarea', 'cpc_forum_post_edit_textarea', $the_content);
 		else:
+			// Fallback
+			$the_content = $raw_content;
 			$form_html .= '<textarea id="cpc_forum_post_edit_textarea" name="cpc_forum_post_edit_textarea">'.$the_content.'</textarea>';
 		endif;
 
@@ -356,44 +357,49 @@ function cpc_comment_edit($comment_id, $atts) {
 
 		$form_html = '';
 		$form_html .= '<div id="cpc_forum_post_edit_div">';
-			
-			$form_html .= '<div id="cpc_forum_post_edit_form">';
-    
-				$url = cpc_curPageURL();
-				$url = preg_replace("/[&?]forum_action=edit&comment_id=[0-9]+/","",$url);
+		$form_html .= '<div id="cpc_forum_post_edit_form">';
+		$url = cpc_curPageURL();
+		$url = preg_replace("/[&?]forum_action=edit&comment_id=[0-9]+/","",$url);
+		$form_html .= '<form ACTION="'.$url.'" METHOD="POST" onsubmit="return cpc_validate_forum_reply_edit();">';
+		$form_html .= '<input type="hidden" name="action" value="cpc_forum_comment_edit" />';
+		$form_html .= '<input type="hidden" name="cpc_comment_id" value="'.$comment_id.'" />';
+		$form_html .= '<input type="hidden" name="cpc_forum_moderate" value="'.$moderate.'" />';
 
-				$form_html .= '<form ACTION="'.$url.'" METHOD="POST" onsubmit="return cpc_validate_forum_reply_edit();">';
-				$form_html .= '<input type="hidden" name="action" value="cpc_forum_comment_edit" />';
-				$form_html .= '<input type="hidden" name="cpc_comment_id" value="'.$comment_id.'" />';
-				$form_html .= '<input type="hidden" name="cpc_forum_moderate" value="'.$moderate.'" />';
+		$form_html .= '<div id="cpc_forum_comment_content_label">'.$content_label.'</div>';
+		$form_html = apply_filters( 'cpc_forum_comment_edit_pre_form_filter', $form_html, $atts, $current_user->ID );
 
-				$form_html .= '<div id="cpc_forum_comment_content_label">'.$content_label.'</div>';
-				$form_html = apply_filters( 'cpc_forum_comment_edit_pre_form_filter', $form_html, $atts, $current_user->ID );
-					
-                $the_content = cpc_formatted_content($the_comment->comment_content, false);
-                $the_content = preg_replace('/\t/', '', $the_content);
+		$the_content = cpc_formatted_content($the_comment->comment_content, false);
+		$the_content = preg_replace('/\t/', '', $the_content);
 
-    			if ( defined( 'CPC_FORUM_TOOLBAR' ) && get_option( 'cpc_com_toolbar' ) == 'wysiwyg' ):
-					$form_html .= cpc_get_wp_editor($the_content, 'cpc_forum_comment_edit_textarea', 'margin-top:20px;margin-bottom:20px;');
-				else:
-					$form_html .= '<textarea id="cpc_forum_comment_edit_textarea" name="cpc_forum_comment_edit_textarea">'.$the_content.'</textarea>';
-				endif;
-				if ($moderate) $form_html .= '<div id="cpc_forum_comment_edit_moderate">'.$moderate_msg.'</div>';
+		// Hole immer den rohen BBCODE aus der Datenbank:
+		$raw_content = $the_comment->comment_content;
 
-                if (!$the_comment->comment_parent):
-				    $form_html = apply_filters( 'cpc_forum_comment_edit_post_form_filter', $form_html, $atts, $current_user->ID, $the_post->ID, $the_comment->comment_ID );
-                else:
-				    $form_html = apply_filters( 'cpc_forum_subcomment_edit_post_form_filter', $form_html, $atts, $current_user->ID, $the_post->ID, $the_comment->comment_ID );
-                endif;
+		// Jetzt je nach Modus umwandeln:
+		if ( defined( 'CPC_FORUM_TOOLBAR' ) && get_option( 'cpc_com_toolbar' ) == 'wysiwyg' ):
+			// Für WYSIWYG: BBCODE nach HTML umwandeln
+			$the_content = cpc_bbcode_replace($raw_content);
+			$form_html .= cpc_get_wp_editor($the_content, 'cpc_forum_comment_edit_textarea', 'margin-top:20px;margin-bottom:20px;');
+		elseif ( defined( 'CPC_FORUM_TOOLBAR' ) && get_option( 'cpc_com_toolbar' ) == 'bbcodes' ):
+			// Für BBCode-Editor: BBCODE direkt anzeigen
+			$the_content = $raw_content;
+			$form_html .= cpc_get_bbcode_toolbar('cpc_forum_comment_edit_textarea', 'cpc_forum_comment_edit_textarea', $the_content);
+		else:
+			// Fallback
+			$the_content = $raw_content;
+			$form_html .= '<textarea id="cpc_forum_comment_edit_textarea" name="cpc_forum_comment_edit_textarea">'.$the_content.'</textarea>';
+		endif;
+		if ($moderate) $form_html .= '<div id="cpc_forum_comment_edit_moderate">'.$moderate_msg.'</div>';
 
-			$form_html .= '</div>';
+		if (!$the_comment->comment_parent):
+			$form_html = apply_filters( 'cpc_forum_comment_edit_post_form_filter', $form_html, $atts, $current_user->ID, $the_post->ID, $the_comment->comment_ID );
+		else:
+			$form_html = apply_filters( 'cpc_forum_subcomment_edit_post_form_filter', $form_html, $atts, $current_user->ID, $the_post->ID, $the_comment->comment_ID );
+		endif;
 
-			$form_html .= '<button id="cpc_forum_comment_edit_button" type="submit" class="cpc_button '.$class.'">'.$update_label.'</button>';
-			$form_html .= '</form>';
-			$form_html .= '<form ACTION="'.$url.'" METHOD="POST">';
-				$form_html .= '<button id="cpc_forum_post_cancel_button" type="submit" class="cpc_button '.$class.'">'.$cancel_label.'</button>';
-			$form_html .= '</form>';
-		
+		$form_html .= '<button id="cpc_forum_comment_edit_button" type="submit" name="submit_edit" class="cpc_button '.$class.'">'.$update_label.'</button>';
+		$form_html .= '&nbsp;<button id="cpc_forum_post_cancel_button" type="submit" name="submit_cancel" class="cpc_button '.$class.'">'.$cancel_label.'</button>';
+		$form_html .= '</form>';
+		$form_html .= '</div>';
 		$form_html .= '</div>';
 
 		$html .= $form_html;
@@ -511,6 +517,7 @@ function cpc_save_post($post_data, $files_data, $moved_to, $atts) {
 		}
 
 function cpc_save_comment($post_data, $files_data, $atts) {
+	//error_log('cpc_save_comment called: '.print_r($post_data, true));
 
 	global $current_user;
 
@@ -534,25 +541,31 @@ function cpc_save_comment($post_data, $files_data, $atts) {
 		$user_can_edit_comment = $current_comment->user_id == $current_user->ID ? true : false;
 		$user_can_edit_comment = apply_filters( 'cpc_forum_post_user_can_edit_comment_filter', $user_can_edit_comment, $current_comment, $current_user->ID, $post_term_term_id );
 
-        $the_content = esc_html($post_data['cpc_forum_comment_edit_textarea']);    
-        $the_content = preg_replace('/\t/', '', $the_content);
+		$the_content = trim($post_data['cpc_forum_comment_edit_textarea']);
+		$the_content = preg_replace('/\t/', '', $the_content);
 
 		if ( $user_can_edit_comment || $is_forum_admin ):
 			$commentarr = array();
 			$commentarr['comment_ID'] = $comment_id;
 			$commentarr['comment_content'] = $the_content;
-			if (!wp_update_comment( $commentarr )) {
-				echo '<pre>Could not update comment</pre>';
-        		var_dump($the_content);
-			} // sanitises
-
-			// Any further actions?
+		if (wp_update_comment( $commentarr )) {
+			sleep(1);
+			clean_comment_cache($comment_id);
+			clean_post_cache($the_post->ID);
+			wp_cache_flush();
+			wp_suspend_cache_invalidation(false);
+			$forum_slug = $the_post_terms->slug;
+			$url = get_bloginfo('url').'/'.$forum_slug.'/?topic='.$the_post->post_name;
+			$url = add_query_arg('cpc_updated', time(), $url); // <-- HIER EINFÜGEN
+			wp_redirect($url);
+			exit;
+			} else {
+				error_log('Could not update comment: ' . $the_content);
+			}
 			do_action( 'cpc_forum_comment_edit_hook', $post_data, $files_data, $comment_id );
-
 		endif;
 
 	endif;
 
 }
-
 ?>

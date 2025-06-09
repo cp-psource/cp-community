@@ -1,5 +1,5 @@
 <?php
-
+require_once plugin_dir_path(__FILE__).'cpc_forum_toolbar.php';
 /* **** */ /* INIT */ /* **** */
 
 function cpc_forum_init() {
@@ -706,25 +706,25 @@ function cpc_forum_comment($atts) {
                                                 $form_html .= '<div id="cpc_forum_comment_content_label">'.$content_label.'</div>';
                                                 $form_html = apply_filters( 'cpc_forum_comment_pre_form_filter', $form_html, $atts, $current_user->ID );
                                                 
-                                                if ( defined( 'CPC_FORUM_TOOLBAR' ) && get_option( 'cpc_com_toolbar' ) == 'wysiwyg' ):
-												$form_html .= cpc_get_wp_editor('', 'cpc_forum_comment', 'margin-top:20px;margin-bottom:20px;');
-											elseif ( defined( 'CPC_FORUM_TOOLBAR' ) && get_option( 'cpc_com_toolbar' ) == 'bbcodes' ):
-												// BBCode-Toolbar + Textarea
-												$form_html .= '
-												<div class="cpc_bbcode_toolbar">
-													<button type="button" data-tag="b"><b>B</b></button>
-													<button type="button" data-tag="i"><i>I</i></button>
-													<button type="button" data-tag="u"><u>U</u></button>
-													<button type="button" data-tag="quote">Zitat</button>
-													<button type="button" data-tag="code">Code</button>
-													<button type="button" data-tag="url">Link</button>
-													<button type="button" data-tag="img">Bild</button>
-												</div>
-												<textarea id="cpc_forum_comment" name="cpc_forum_comment"></textarea>
-												';
-											else:
-												$form_html .= '<textarea id="cpc_forum_comment" name="cpc_forum_comment"></textarea>';
-											endif;
+												// Hole immer den rohen BBCODE aus der Datenbank
+												$raw_content = '';
+												if ($my_posts && isset($my_posts[0]->post_content)) {
+													$raw_content = $my_posts[0]->post_content;
+												}
+
+												if ( defined( 'CPC_FORUM_TOOLBAR' ) && get_option( 'cpc_com_toolbar' ) == 'wysiwyg' ):
+													// Für WYSIWYG: BBCODE nach HTML umwandeln
+													$the_content = cpc_bbcode_replace($raw_content);
+													$form_html .= cpc_get_wp_editor($the_content, 'cpc_forum_comment', 'margin-top:20px;margin-bottom:20px;');
+												elseif ( defined( 'CPC_FORUM_TOOLBAR' ) && get_option( 'cpc_com_toolbar' ) == 'bbcodes' ):
+													// Für BBCode-Editor: BBCODE direkt anzeigen
+													$the_content = $raw_content;
+													$form_html .= cpc_get_bbcode_toolbar('cpc_forum_comment', 'cpc_forum_comment', $the_content);
+												else:
+													// Fallback
+													$the_content = $raw_content;
+													$form_html .= '<textarea id="cpc_forum_comment" name="cpc_forum_comment">'.$the_content.'</textarea>';
+												endif;
 
                                                 // If can move, show list
                                                 $user_can_move_post = $my_posts[0]->post_author == $current_user->ID ? true : false;
@@ -948,26 +948,25 @@ function cpc_forum_post($atts) {
 								
 								$form_html .= '<div id="cpc_forum_post_content_label">'.$content_label.'</div>';
 
-								if ( defined( 'CPC_FORUM_TOOLBAR' ) && get_option( 'cpc_com_toolbar' ) == 'wysiwyg' ):
-									$form_html .= cpc_get_wp_editor('', 'cpc_forum_post_textarea', '');
-								elseif ( defined( 'CPC_FORUM_TOOLBAR' ) && get_option( 'cpc_com_toolbar' ) == 'bbcodes' ):
-									// BBCode-Toolbar + Textarea
-									$form_html .= '
-									<div class="cpc_bbcode_toolbar">
-										<button type="button" data-tag="b"><b>B</b></button>
-										<button type="button" data-tag="i"><i>I</i></button>
-										<button type="button" data-tag="u"><u>U</u></button>
-										<button type="button" data-tag="quote">Zitat</button>
-										<button type="button" data-tag="code">Code</button>
-										<button type="button" data-tag="url">Link</button>
-										<button type="button" data-tag="img">Bild</button>
-									</div>
-									<textarea id="cpc_forum_post_textarea" name="cpc_forum_post_textarea"></textarea>
-									';
-								else:
-									$form_html .= '<textarea id="cpc_forum_post_textarea" name="cpc_forum_post_textarea"></textarea>';
-								endif;
+								// Hole immer den rohen BBCODE aus der Datenbank
+								$raw_content = '';
+								if ($my_posts && isset($my_posts[0]->post_content)) {
+									$raw_content = $my_posts[0]->post_content;
+								}
 
+								if ( defined( 'CPC_FORUM_TOOLBAR' ) && get_option( 'cpc_com_toolbar' ) == 'wysiwyg' ):
+									// Für WYSIWYG: BBCODE nach HTML umwandeln
+									$the_content = cpc_bbcode_replace($raw_content);
+									$form_html .= cpc_get_wp_editor($the_content, 'cpc_forum_post_textarea', '');
+								elseif ( defined( 'CPC_FORUM_TOOLBAR' ) && get_option( 'cpc_com_toolbar' ) == 'bbcodes' ):
+									// Für BBCode-Editor: BBCODE direkt anzeigen
+									$the_content = $raw_content;
+									$form_html .= cpc_get_bbcode_toolbar('cpc_forum_post_textarea', 'cpc_forum_post_textarea', $the_content);
+								else:
+									// Fallback
+									$the_content = $raw_content;
+									$form_html .= '<textarea id="cpc_forum_post_textarea" name="cpc_forum_post_textarea">'.$the_content.'</textarea>';
+								endif;
 								if ($moderate) $form_html .= '<div id="cpc_forum_post_moderate">'.$moderate_msg.'</div>';
 
 								$form_html = apply_filters( 'cpc_forum_post_post_form_filter', $form_html, $atts, $current_user->ID );

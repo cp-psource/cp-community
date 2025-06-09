@@ -258,7 +258,7 @@ function cpc_bbcode_replace($text_to_search) {
       $text_to_search
     );
     
-    $text_to_search = esc_html($text_to_search);
+    //$text_to_search = esc_html($text_to_search);
 
 	$text_to_search = str_replace('http://youtu.be/', 'http://www.youtube.com/watch?v=', $text_to_search);
 
@@ -353,7 +353,7 @@ function cpc_get_user_id() {
 function cpc_get_wp_editor($content,$textarea,$css) {
 	
     $cpc_com_toolbar_icons = ($value = get_option('cpc_com_toolbar_icons')) ? $value : "bold,italic,underline,link,unlink,bullist,numlist,forecolor,backcolor,blockquote";
-    //$cpc_com_toolbar_css_file = ($value = get_option('cpc_com_toolbar_css_file')) ? $value : WP_PLUGIN_URL  . '/cp-community-extensions/cp-community-forum-toolbar/editor-styles.css';  
+    $cpc_com_toolbar_css_file = plugins_url('forums/forum_toolbar.css', __FILE__); 
     $cpc_com_toolbar_height = ($value = get_option('cpc_com_toolbar_height')) ? $value : 200;
 
     $settings = array(
